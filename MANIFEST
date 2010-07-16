@@ -1,0 +1,17 @@
+Build.PL
+LICENSE
+MANIFEST
+META.yml
+data/uniprops
+lib/Actions.pm
+lib/Cursor.pm
+lib/CursorBase.pm
+lib/DEBUG.pm
+lib/LazyMap.pm
+lib/NAME.pm
+lib/NULL.lex
+lib/RE_ast.pm
+lib/STD.pm
+lib/Stash.pm
+lib/mangle.pl
+lib/viv
