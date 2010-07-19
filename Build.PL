@@ -3,7 +3,7 @@ use strict;
 use warnings;
 
 use Module::Build 0.3601;
-
+use lib 'inc'; use MyBuilder;
 
 my %module_build_args = (
   'build_requires' => {
@@ -19,7 +19,7 @@ my %module_build_args = (
     'Pawel Murias <pawelmurias@gmail.com>'
   ],
   'dist_name' => 'STD',
-  'dist_version' => '0.01',
+  'dist_version' => '0.02',
   'license' => 'artistic_2',
   'module_name' => 'STD',
   'recommends' => {},
@@ -32,6 +32,6 @@ my %module_build_args = (
 );
 
 
-my $build = Module::Build->new(%module_build_args);
+my $build = MyBuilder->new(%module_build_args);
 
 $build->create_build_script;

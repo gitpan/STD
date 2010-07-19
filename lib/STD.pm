@@ -1,6 +1,6 @@
 use 5.010;
 use utf8;
-{ package STD;
+{ package STD;BEGIN {$STD::VERSION = 0.02}
 use Moose ':all' => { -prefix => "moose_" };
 use Encode;
 moose_extends('Cursor');
@@ -9975,7 +9975,8 @@ my $C=shift;
 if (my ($C) = ($C->_NOTBEFORE(sub {
 my $C=shift;
 (($C) x !!do {
-$C->worry("Leading 0 does not indicate octal in Perl 6") })
+my $M = $C;
+$C->worry("Leading 0 does not indicate octal in Perl 6; please use 0o" . $M->{'decint'}->Str . " if you mean that") })
 }))) { ($C) } else { () }
 }))) {
 $C
@@ -10721,21 +10722,21 @@ moose_extends('STD');
 our $ALLROLES = { 'STD::P6', 1 };
 our $REGEXES = {
     ALL => [ qw/POST PRE arglist args blast block blockoid capterm capture circumfix coloncircumfix colonpair comp_unit curlycheck declarator default_value deflongname desigilname dotty dottyop dottyopish eat_terminator fakesignature fatarrow infix infix_circumfix_meta_operator infix_postfix_meta_operator infix_prefix_meta_operator infixish infixstopper label lambda macro_def method_def methodop modifier_expr module_name multi_declarator multisig named_param nullterm nulltermish number old_rx_mods old_tr_mods package_declarator package_def param_sep param_var parameter pblock post_constraint postcircumfix postfix postfix_prefix_meta_operator postop prefix prefix_circumfix_meta_operator prefix_postfix_meta_operator privop quasiquibble quote quote_mod regex_block regex_declarator regex_def routine_declarator routine_def scope_declarator scoped semiarglist semilist sibble signature sigterm special_variable statement statement_control statement_mod_cond statement_mod_loop statement_prefix statementlist strtonum sublongname subshortname term terminator termish trait trait_mod tribble type_constraint type_declarator typename unitstart value variable variable_declarator version vnum xblock/ ],
-    circumfix => [ qw/circumfix__S_192sigil__PEEK circumfix__S_193Paren_Thesis__PEEK circumfix__S_194Bra_Ket__PEEK circumfix__S_215Cur_Ly__PEEK/ ],
-    dotty => [ qw/dotty__S_195DotStar__PEEK dotty__S_196Dot__PEEK/ ],
-    infix => [ qw/infix__S_191lambda__PEEK infix__S_217Dot__PEEK infix__S_223StarStar__PEEK infix__S_238Star__PEEK infix__S_239Slash__PEEK infix__S_240div__PEEK infix__S_241Percent__PEEK infix__S_242PercentPercent__PEEK infix__S_243mod__PEEK infix__S_244PlusAmp__PEEK infix__S_245LtLt__PEEK infix__S_246GtGt__PEEK infix__S_247TildeAmp__PEEK infix__S_248QuestionAmp__PEEK infix__S_249TildeLt__PEEK infix__S_250TildeGt__PEEK infix__S_251PlusLt__PEEK infix__S_252PlusGt__PEEK infix__S_253Plus__PEEK infix__S_254Minus__PEEK infix__S_255PlusVert__PEEK infix__S_256PlusCaret__PEEK infix__S_257TildeVert__PEEK infix__S_258TildeCaret__PEEK infix__S_259QuestionVert__PEEK infix__S_260QuestionCaret__PEEK infix__S_261x__PEEK infix__S_262xx__PEEK infix__S_263Tilde__PEEK infix__S_264Amp__PEEK infix__S_265Vert__PEEK infix__S_266Caret__PEEK infix__S_271LtEqualGt__PEEK infix__S_272cmp__PEEK infix__S_273leg__PEEK infix__S_274but__PEEK infix__S_275does__PEEK infix__S_276DotDot__PEEK infix__S_277CaretDotDot__PEEK infix__S_278DotDotCaret__PEEK infix__S_279CaretDotDotCaret__PEEK infix__S_280EqualEqual__PEEK infix__S_281BangEqual__PEEK infix__S_282Lt__PEEK infix__S_283LtEqual__PEEK infix__S_284Gt__PEEK infix__S_285GtEqual__PEEK infix__S_286TildeTilde__PEEK infix__S_287BangTilde__PEEK infix__S_288EqualTilde__PEEK infix__S_289eq__PEEK infix__S_290ne__PEEK infix__S_291lt__PEEK infix__S_292le__PEEK infix__S_293gt__PEEK infix__S_294ge__PEEK infix__S_295EqualColonEqual__PEEK infix__S_296EqualEqualEqual__PEEK infix__S_297eqv__PEEK infix__S_298before__PEEK infix__S_299after__PEEK infix__S_300AmpAmp__PEEK infix__S_301VertVert__PEEK infix__S_302CaretCaret__PEEK infix__S_303SlashSlash__PEEK infix__S_304min__PEEK infix__S_305max__PEEK infix__S_306QuestionQuestion_BangBang__PEEK infix__S_307BangBang__PEEK infix__S_308Question__PEEK infix__S_309ff__PEEK infix__S_310Caretff__PEEK infix__S_311ffCaret__PEEK infix__S_312CaretffCaret__PEEK infix__S_313fff__PEEK infix__S_314Caretfff__PEEK infix__S_315fffCaret__PEEK infix__S_316CaretfffCaret__PEEK infix__S_317Equal__PEEK infix__S_318ColonEqual__PEEK infix__S_319ColonColonEqual__PEEK infix__S_320DotEqual__PEEK infix__S_321EqualGt__PEEK infix__S_324Comma__PEEK infix__S_325Colon__PEEK infix__S_326X__PEEK infix__S_327Z__PEEK infix__S_328minmax__PEEK infix__S_329DotDotDot__PEEK infix__S_335and__PEEK infix__S_336andthen__PEEK infix__S_337or__PEEK infix__S_338orelse__PEEK infix__S_339xor__PEEK infix__S_340LtEqualEqual__PEEK infix__S_341EqualEqualGt__PEEK infix__S_342LtLtEqualEqual__PEEK infix__S_343EqualEqualGtGt__PEEK/ ],
-    infix_circumfix_meta_operator => [ qw/infix_circumfix_meta_operator__S_205Fre_Nch__PEEK infix_circumfix_meta_operator__S_206LtLt_GtGt__PEEK/ ],
-    infix_postfix_meta_operator => [ qw/infix_postfix_meta_operator__S_207Equal__PEEK/ ],
-    infix_prefix_meta_operator => [ qw/infix_prefix_meta_operator__S_200Bang__PEEK infix_prefix_meta_operator__S_201R__PEEK infix_prefix_meta_operator__S_202S__PEEK infix_prefix_meta_operator__S_203X__PEEK infix_prefix_meta_operator__S_204Z__PEEK/ ],
+    circumfix => [ qw/circumfix__S_191sigil__PEEK circumfix__S_192Paren_Thesis__PEEK circumfix__S_193Bra_Ket__PEEK circumfix__S_214Cur_Ly__PEEK/ ],
+    dotty => [ qw/dotty__S_194DotStar__PEEK dotty__S_195Dot__PEEK/ ],
+    infix => [ qw/infix__S_190lambda__PEEK infix__S_216Dot__PEEK infix__S_222StarStar__PEEK infix__S_237Star__PEEK infix__S_238Slash__PEEK infix__S_239div__PEEK infix__S_240Percent__PEEK infix__S_241PercentPercent__PEEK infix__S_242mod__PEEK infix__S_243PlusAmp__PEEK infix__S_244LtLt__PEEK infix__S_245GtGt__PEEK infix__S_246TildeAmp__PEEK infix__S_247QuestionAmp__PEEK infix__S_248TildeLt__PEEK infix__S_249TildeGt__PEEK infix__S_250PlusLt__PEEK infix__S_251PlusGt__PEEK infix__S_252Plus__PEEK infix__S_253Minus__PEEK infix__S_254PlusVert__PEEK infix__S_255PlusCaret__PEEK infix__S_256TildeVert__PEEK infix__S_257TildeCaret__PEEK infix__S_258QuestionVert__PEEK infix__S_259QuestionCaret__PEEK infix__S_260x__PEEK infix__S_261xx__PEEK infix__S_262Tilde__PEEK infix__S_263Amp__PEEK infix__S_264Vert__PEEK infix__S_265Caret__PEEK infix__S_270LtEqualGt__PEEK infix__S_271cmp__PEEK infix__S_272leg__PEEK infix__S_273but__PEEK infix__S_274does__PEEK infix__S_275DotDot__PEEK infix__S_276CaretDotDot__PEEK infix__S_277DotDotCaret__PEEK infix__S_278CaretDotDotCaret__PEEK infix__S_279EqualEqual__PEEK infix__S_280BangEqual__PEEK infix__S_281Lt__PEEK infix__S_282LtEqual__PEEK infix__S_283Gt__PEEK infix__S_284GtEqual__PEEK infix__S_285TildeTilde__PEEK infix__S_286BangTilde__PEEK infix__S_287EqualTilde__PEEK infix__S_288eq__PEEK infix__S_289ne__PEEK infix__S_290lt__PEEK infix__S_291le__PEEK infix__S_292gt__PEEK infix__S_293ge__PEEK infix__S_294EqualColonEqual__PEEK infix__S_295EqualEqualEqual__PEEK infix__S_296eqv__PEEK infix__S_297before__PEEK infix__S_298after__PEEK infix__S_299AmpAmp__PEEK infix__S_300VertVert__PEEK infix__S_301CaretCaret__PEEK infix__S_302SlashSlash__PEEK infix__S_303min__PEEK infix__S_304max__PEEK infix__S_305QuestionQuestion_BangBang__PEEK infix__S_306BangBang__PEEK infix__S_307Question__PEEK infix__S_308ff__PEEK infix__S_309Caretff__PEEK infix__S_310ffCaret__PEEK infix__S_311CaretffCaret__PEEK infix__S_312fff__PEEK infix__S_313Caretfff__PEEK infix__S_314fffCaret__PEEK infix__S_315CaretfffCaret__PEEK infix__S_316Equal__PEEK infix__S_317ColonEqual__PEEK infix__S_318ColonColonEqual__PEEK infix__S_319DotEqual__PEEK infix__S_320EqualGt__PEEK infix__S_323Comma__PEEK infix__S_324Colon__PEEK infix__S_325X__PEEK infix__S_326Z__PEEK infix__S_327minmax__PEEK infix__S_328DotDotDot__PEEK infix__S_334and__PEEK infix__S_335andthen__PEEK infix__S_336or__PEEK infix__S_337orelse__PEEK infix__S_338xor__PEEK infix__S_339LtEqualEqual__PEEK infix__S_340EqualEqualGt__PEEK infix__S_341LtLtEqualEqual__PEEK infix__S_342EqualEqualGtGt__PEEK/ ],
+    infix_circumfix_meta_operator => [ qw/infix_circumfix_meta_operator__S_204Fre_Nch__PEEK infix_circumfix_meta_operator__S_205LtLt_GtGt__PEEK/ ],
+    infix_postfix_meta_operator => [ qw/infix_postfix_meta_operator__S_206Equal__PEEK/ ],
+    infix_prefix_meta_operator => [ qw/infix_prefix_meta_operator__S_199Bang__PEEK infix_prefix_meta_operator__S_200R__PEEK infix_prefix_meta_operator__S_201S__PEEK infix_prefix_meta_operator__S_202X__PEEK infix_prefix_meta_operator__S_203Z__PEEK/ ],
     module_name => [ qw/module_name__S_039normal__PEEK/ ],
     multi_declarator => [ qw/multi_declarator__S_058multi__PEEK multi_declarator__S_059proto__PEEK multi_declarator__S_060only__PEEK multi_declarator__S_061null__PEEK/ ],
     package_declarator => [ qw/package_declarator__S_048class__PEEK package_declarator__S_049grammar__PEEK package_declarator__S_050module__PEEK package_declarator__S_051package__PEEK package_declarator__S_052role__PEEK package_declarator__S_053knowhow__PEEK package_declarator__S_054slang__PEEK package_declarator__S_055require__PEEK package_declarator__S_056trusts__PEEK package_declarator__S_057also__PEEK/ ],
-    postcircumfix => [ qw/postcircumfix__S_208Paren_Thesis__PEEK postcircumfix__S_209Bra_Ket__PEEK postcircumfix__S_210Cur_Ly__PEEK postcircumfix__S_211Lt_Gt__PEEK postcircumfix__S_212LtLt_GtGt__PEEK postcircumfix__S_213Fre_Nch__PEEK/ ],
-    postfix => [ qw/postfix__S_216i__PEEK postfix__S_218MinusGt__PEEK postfix__S_219PlusPlus__PEEK postfix__S_220MinusMinus__PEEK/ ],
-    postfix_prefix_meta_operator => [ qw/postfix_prefix_meta_operator__S_199Nch__PEEK/ ],
-    prefix => [ qw/prefix__S_221PlusPlus__PEEK prefix__S_222MinusMinus__PEEK prefix__S_224Bang__PEEK prefix__S_225Plus__PEEK prefix__S_226Minus__PEEK prefix__S_227TildeTilde__PEEK prefix__S_228Tilde__PEEK prefix__S_229QuestionQuestion__PEEK prefix__S_230Question__PEEK prefix__S_231TildeCaret__PEEK prefix__S_232PlusCaret__PEEK prefix__S_233QuestionCaret__PEEK prefix__S_234CaretCaret__PEEK prefix__S_235Caret__PEEK prefix__S_236VertVert__PEEK prefix__S_237Vert__PEEK prefix__S_267sleep__PEEK prefix__S_268abs__PEEK prefix__S_269let__PEEK prefix__S_270temp__PEEK prefix__S_322so__PEEK prefix__S_323not__PEEK/ ],
-    prefix_circumfix_meta_operator => [ qw/prefix_circumfix_meta_operator__S_197reduce__PEEK/ ],
-    prefix_postfix_meta_operator => [ qw/prefix_postfix_meta_operator__S_198Fre__PEEK/ ],
+    postcircumfix => [ qw/postcircumfix__S_207Paren_Thesis__PEEK postcircumfix__S_208Bra_Ket__PEEK postcircumfix__S_209Cur_Ly__PEEK postcircumfix__S_210Lt_Gt__PEEK postcircumfix__S_211LtLt_GtGt__PEEK postcircumfix__S_212Fre_Nch__PEEK/ ],
+    postfix => [ qw/postfix__S_215i__PEEK postfix__S_217MinusGt__PEEK postfix__S_218PlusPlus__PEEK postfix__S_219MinusMinus__PEEK/ ],
+    postfix_prefix_meta_operator => [ qw/postfix_prefix_meta_operator__S_198Nch__PEEK/ ],
+    prefix => [ qw/prefix__S_220PlusPlus__PEEK prefix__S_221MinusMinus__PEEK prefix__S_223Bang__PEEK prefix__S_224Plus__PEEK prefix__S_225Minus__PEEK prefix__S_226TildeTilde__PEEK prefix__S_227Tilde__PEEK prefix__S_228QuestionQuestion__PEEK prefix__S_229Question__PEEK prefix__S_230TildeCaret__PEEK prefix__S_231PlusCaret__PEEK prefix__S_232QuestionCaret__PEEK prefix__S_233CaretCaret__PEEK prefix__S_234Caret__PEEK prefix__S_235VertVert__PEEK prefix__S_236Vert__PEEK prefix__S_266sleep__PEEK prefix__S_267abs__PEEK prefix__S_268let__PEEK prefix__S_269temp__PEEK prefix__S_321so__PEEK prefix__S_322not__PEEK/ ],
+    prefix_circumfix_meta_operator => [ qw/prefix_circumfix_meta_operator__S_196reduce__PEEK/ ],
+    prefix_postfix_meta_operator => [ qw/prefix_postfix_meta_operator__S_197Fre__PEEK/ ],
     quote => [ qw/quote__S_141SlashSlash__PEEK quote__S_142Slash_Slash__PEEK quote__S_143qq__PEEK quote__S_144q__PEEK quote__S_145Q__PEEK quote__S_157rx__PEEK quote__S_158m__PEEK quote__S_159mm__PEEK quote__S_160s__PEEK quote__S_161ss__PEEK quote__S_162tr__PEEK quote__S_163y__PEEK quote__S_164quasi__PEEK/ ],
     quote_mod => [ qw/quote_mod__S_146w__PEEK quote_mod__S_147ww__PEEK quote_mod__S_148p__PEEK quote_mod__S_149x__PEEK quote_mod__S_150to__PEEK quote_mod__S_151s__PEEK quote_mod__S_152a__PEEK quote_mod__S_153h__PEEK quote_mod__S_154f__PEEK quote_mod__S_155c__PEEK quote_mod__S_156b__PEEK/ ],
     regex_declarator => [ qw/regex_declarator__S_066regex__PEEK regex_declarator__S_067token__PEEK regex_declarator__S_068rule__PEEK/ ],
@@ -10747,8 +10748,8 @@ our $REGEXES = {
     statement_mod_loop => [ qw/statement_mod_loop__S_035while__PEEK statement_mod_loop__S_036until__PEEK statement_mod_loop__S_037for__PEEK statement_mod_loop__S_038given__PEEK/ ],
     statement_prefix => [ qw/statement_prefix__S_015BEGIN__PEEK statement_prefix__S_016CHECK__PEEK statement_prefix__S_017INIT__PEEK statement_prefix__S_018START__PEEK statement_prefix__S_019ENTER__PEEK statement_prefix__S_020FIRST__PEEK statement_prefix__S_021END__PEEK statement_prefix__S_022LEAVE__PEEK statement_prefix__S_023KEEP__PEEK statement_prefix__S_024UNDO__PEEK statement_prefix__S_025NEXT__PEEK statement_prefix__S_026LAST__PEEK statement_prefix__S_027PRE__PEEK statement_prefix__S_028POST__PEEK statement_prefix__S_168sink__PEEK statement_prefix__S_169try__PEEK statement_prefix__S_170quietly__PEEK statement_prefix__S_171gather__PEEK statement_prefix__S_172contend__PEEK statement_prefix__S_173async__PEEK statement_prefix__S_174maybe__PEEK statement_prefix__S_175lazy__PEEK statement_prefix__S_176do__PEEK statement_prefix__S_177lift__PEEK/ ],
     strtonum => [ qw/strtonum__S_138rational__PEEK strtonum__S_139complex__PEEK strtonum__S_140number__PEEK/ ],
-    term => [ qw/term__S_076fatarrow__PEEK term__S_077variable__PEEK term__S_078package_declarator__PEEK term__S_079scope_declarator__PEEK term__S_080multi_declarator__PEEK term__S_081routine_declarator__PEEK term__S_082regex_declarator__PEEK term__S_083type_declarator__PEEK term__S_084circumfix__PEEK term__S_085dotty__PEEK term__S_086value__PEEK term__S_087capterm__PEEK term__S_088sigterm__PEEK term__S_089statement_prefix__PEEK term__S_090colonpair__PEEK term__S_178YOU_ARE_HERE__PEEK term__S_179new__PEEK term__S_180ColonColonQuestionIDENT__PEEK term__S_181Object__PEEK term__S_182undef__PEEK term__S_183proceed__PEEK term__S_184time__PEEK term__S_185now__PEEK term__S_186self__PEEK term__S_187defer__PEEK term__S_188rand__PEEK term__S_189Star__PEEK term__S_190StarStar__PEEK term__S_214lambda__PEEK term__S_330DotDotDot__PEEK term__S_331QuestionQuestionQuestion__PEEK term__S_332BangBangBang__PEEK term__S_333identifier__PEEK term__S_334name__PEEK/ ],
-    terminator => [ qw/terminator__S_344Semi__PEEK terminator__S_345if__PEEK terminator__S_346unless__PEEK terminator__S_347while__PEEK terminator__S_348until__PEEK terminator__S_349for__PEEK terminator__S_350given__PEEK terminator__S_351when__PEEK terminator__S_352MinusMinusGt__PEEK terminator__S_353BangBang__PEEK/ ],
+    term => [ qw/term__S_076fatarrow__PEEK term__S_077variable__PEEK term__S_078package_declarator__PEEK term__S_079scope_declarator__PEEK term__S_080multi_declarator__PEEK term__S_081routine_declarator__PEEK term__S_082regex_declarator__PEEK term__S_083type_declarator__PEEK term__S_084circumfix__PEEK term__S_085dotty__PEEK term__S_086value__PEEK term__S_087capterm__PEEK term__S_088sigterm__PEEK term__S_089statement_prefix__PEEK term__S_090colonpair__PEEK term__S_178new__PEEK term__S_179ColonColonQuestionIDENT__PEEK term__S_180Object__PEEK term__S_181undef__PEEK term__S_182proceed__PEEK term__S_183time__PEEK term__S_184now__PEEK term__S_185self__PEEK term__S_186defer__PEEK term__S_187rand__PEEK term__S_188Star__PEEK term__S_189StarStar__PEEK term__S_213lambda__PEEK term__S_329DotDotDot__PEEK term__S_330QuestionQuestionQuestion__PEEK term__S_331BangBangBang__PEEK term__S_332identifier__PEEK term__S_333name__PEEK/ ],
+    terminator => [ qw/terminator__S_343Semi__PEEK terminator__S_344if__PEEK terminator__S_345unless__PEEK terminator__S_346while__PEEK terminator__S_347until__PEEK terminator__S_348for__PEEK terminator__S_349given__PEEK terminator__S_350when__PEEK terminator__S_351MinusMinusGt__PEEK terminator__S_352BangBang__PEEK/ ],
     trait_mod => [ qw/trait_mod__S_069is__PEEK trait_mod__S_070hides__PEEK trait_mod__S_071does__PEEK trait_mod__S_072will__PEEK trait_mod__S_073of__PEEK trait_mod__S_074as__PEEK trait_mod__S_075handles__PEEK/ ],
     type_declarator => [ qw/type_declarator__S_165subset__PEEK type_declarator__S_166enum__PEEK type_declarator__S_167constant__PEEK/ ],
     value => [ qw/value__S_135quote__PEEK value__S_136number__PEEK value__S_137version__PEEK/ ],
@@ -11114,6 +11115,15 @@ blockoid: !!perl/hash:RE_ast
         - !!perl/hash:RE_sequence
           alt: blockoid_0 0
           zyg:
+          - !!perl/hash:RE_string
+            i: 0
+            text: '{YOU_ARE_HERE}'
+          - !!perl/hash:RE_method
+            name: you_are_here
+            rest: ''
+        - !!perl/hash:RE_sequence
+          alt: blockoid_0 1
+          zyg:
           - !!perl/hash:RE_bracket
             re: !!perl/hash:RE_sequence
               zyg:
@@ -11139,7 +11149,7 @@ blockoid: !!perl/hash:RE_ast
             name: curlycheck
             rest: ''
         - !!perl/hash:RE_sequence
-          alt: blockoid_0 1
+          alt: blockoid_0 2
           zyg:
           - !!perl/hash:RE_assertion
             assert: '?'
@@ -11150,7 +11160,7 @@ blockoid: !!perl/hash:RE_ast
             name: panic
             rest: 1
         - !!perl/hash:RE_sequence
-          alt: blockoid_0 2
+          alt: blockoid_0 3
           zyg:
           - !!perl/hash:RE_assertion
             assert: '?'
@@ -11225,7 +11235,7 @@ capture: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: ws
       rest: ''
-circumfix__S_192sigil: !!perl/hash:RE_ast
+circumfix__S_191sigil: !!perl/hash:RE_ast
   dba: contextualizer
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -11256,7 +11266,7 @@ circumfix__S_192sigil: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-circumfix__S_193Paren_Thesis: !!perl/hash:RE_ast
+circumfix__S_192Paren_Thesis: !!perl/hash:RE_ast
   dba: parenthesized expression
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -11283,7 +11293,7 @@ circumfix__S_193Paren_Thesis: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-circumfix__S_194Bra_Ket: !!perl/hash:RE_ast
+circumfix__S_193Bra_Ket: !!perl/hash:RE_ast
   dba: array composer
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -11311,7 +11321,7 @@ circumfix__S_194Bra_Ket: !!perl/hash:RE_ast
       name: O
       rest: 1
     - !!perl/hash:RE_block {}
-circumfix__S_215Cur_Ly: !!perl/hash:RE_ast
+circumfix__S_214Cur_Ly: !!perl/hash:RE_ast
   dba: circumfix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -11805,7 +11815,7 @@ desigilname: !!perl/hash:RE_ast
         name: longname
         rest: ''
 desigilname_0: *14
-dotty__S_195DotStar: !!perl/hash:RE_ast
+dotty__S_194DotStar: !!perl/hash:RE_ast
   dba: dotty
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -11819,16 +11829,16 @@ dotty__S_195DotStar: !!perl/hash:RE_ast
             text: .
           - !!perl/hash:RE_bracket
             re: &15 !!perl/hash:RE_any
-              altname: dotty__S_195DotStar_0
+              altname: dotty__S_194DotStar_0
               dba: dotty
               dic: STD::P6
               zyg:
               - !!perl/hash:RE_cclass
-                alt: dotty__S_195DotStar_0 0
+                alt: dotty__S_194DotStar_0 0
                 i: 0
                 text: '[+*?=]'
               - !!perl/hash:RE_sequence
-                alt: dotty__S_195DotStar_0 1
+                alt: dotty__S_194DotStar_0 1
                 zyg:
                 - !!perl/hash:RE_string
                   i: 0
@@ -11851,8 +11861,8 @@ dotty__S_195DotStar: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-dotty__S_195DotStar_0: *15
-dotty__S_196Dot: !!perl/hash:RE_ast
+dotty__S_194DotStar_0: *15
+dotty__S_195Dot: !!perl/hash:RE_ast
   dba: dotty
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -12016,7 +12026,7 @@ fatarrow: !!perl/hash:RE_ast
       atom: !!perl/hash:RE_method
         name: EXPR
         rest: 1
-infix__S_191lambda: !!perl/hash:RE_ast
+infix__S_190lambda: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -12027,16 +12037,16 @@ infix__S_191lambda: !!perl/hash:RE_ast
         name: before
         nobind: 1
         re: &18 !!perl/hash:RE_any
-          altname: infix__S_191lambda_0
+          altname: infix__S_190lambda_0
           dba: infix
           dic: STD::P6
           zyg:
           - !!perl/hash:RE_string
-            alt: infix__S_191lambda_0 0
+            alt: infix__S_190lambda_0 0
             i: 0
             text: '{'
           - !!perl/hash:RE_string
-            alt: infix__S_191lambda_0 1
+            alt: infix__S_190lambda_0 1
             i: 0
             text: ->
     - !!perl/hash:RE_assertion
@@ -12047,8 +12057,8 @@ infix__S_191lambda: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_191lambda_0: *18
-infix__S_217Dot: !!perl/hash:RE_ast
+infix__S_190lambda_0: *18
+infix__S_216Dot: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -12062,7 +12072,7 @@ infix__S_217Dot: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: obs
       rest: 1
-infix__S_223StarStar: !!perl/hash:RE_ast
+infix__S_222StarStar: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -12075,7 +12085,7 @@ infix__S_223StarStar: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_238Star: !!perl/hash:RE_ast
+infix__S_237Star: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -12088,7 +12098,7 @@ infix__S_238Star: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_239Slash: !!perl/hash:RE_ast
+infix__S_238Slash: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -12101,7 +12111,7 @@ infix__S_239Slash: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_240div: !!perl/hash:RE_ast
+infix__S_239div: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -12114,7 +12124,7 @@ infix__S_240div: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_241Percent: !!perl/hash:RE_ast
+infix__S_240Percent: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -12127,7 +12137,7 @@ infix__S_241Percent: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_242PercentPercent: !!perl/hash:RE_ast
+infix__S_241PercentPercent: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -12140,7 +12150,7 @@ infix__S_242PercentPercent: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_243mod: !!perl/hash:RE_ast
+infix__S_242mod: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -12153,7 +12163,7 @@ infix__S_243mod: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_244PlusAmp: !!perl/hash:RE_ast
+infix__S_243PlusAmp: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -12166,7 +12176,7 @@ infix__S_244PlusAmp: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_245LtLt: !!perl/hash:RE_ast
+infix__S_244LtLt: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -12194,7 +12204,7 @@ infix__S_245LtLt: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_246GtGt: !!perl/hash:RE_ast
+infix__S_245GtGt: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -12222,7 +12232,7 @@ infix__S_246GtGt: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_247TildeAmp: !!perl/hash:RE_ast
+infix__S_246TildeAmp: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -12235,7 +12245,7 @@ infix__S_247TildeAmp: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_248QuestionAmp: !!perl/hash:RE_ast
+infix__S_247QuestionAmp: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -12248,7 +12258,7 @@ infix__S_248QuestionAmp: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_249TildeLt: !!perl/hash:RE_ast
+infix__S_248TildeLt: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -12284,7 +12294,7 @@ infix__S_249TildeLt: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_250TildeGt: !!perl/hash:RE_ast
+infix__S_249TildeGt: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -12320,7 +12330,7 @@ infix__S_250TildeGt: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_251PlusLt: !!perl/hash:RE_ast
+infix__S_250PlusLt: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -12356,7 +12366,7 @@ infix__S_251PlusLt: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_252PlusGt: !!perl/hash:RE_ast
+infix__S_251PlusGt: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -12392,7 +12402,7 @@ infix__S_252PlusGt: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_253Plus: !!perl/hash:RE_ast
+infix__S_252Plus: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -12413,7 +12423,7 @@ infix__S_253Plus: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_254Minus: !!perl/hash:RE_ast
+infix__S_253Minus: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -12434,7 +12444,7 @@ infix__S_254Minus: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_255PlusVert: !!perl/hash:RE_ast
+infix__S_254PlusVert: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -12447,7 +12457,7 @@ infix__S_255PlusVert: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_256PlusCaret: !!perl/hash:RE_ast
+infix__S_255PlusCaret: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -12460,7 +12470,7 @@ infix__S_256PlusCaret: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_257TildeVert: !!perl/hash:RE_ast
+infix__S_256TildeVert: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -12473,7 +12483,7 @@ infix__S_257TildeVert: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_258TildeCaret: !!perl/hash:RE_ast
+infix__S_257TildeCaret: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -12486,7 +12496,7 @@ infix__S_258TildeCaret: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_259QuestionVert: !!perl/hash:RE_ast
+infix__S_258QuestionVert: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -12499,7 +12509,7 @@ infix__S_259QuestionVert: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_260QuestionCaret: !!perl/hash:RE_ast
+infix__S_259QuestionCaret: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -12512,7 +12522,7 @@ infix__S_260QuestionCaret: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_261x: !!perl/hash:RE_ast
+infix__S_260x: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -12525,7 +12535,7 @@ infix__S_261x: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_262xx: !!perl/hash:RE_ast
+infix__S_261xx: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -12538,7 +12548,7 @@ infix__S_262xx: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_263Tilde: !!perl/hash:RE_ast
+infix__S_262Tilde: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -12551,7 +12561,7 @@ infix__S_263Tilde: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_264Amp: !!perl/hash:RE_ast
+infix__S_263Amp: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -12564,7 +12574,7 @@ infix__S_264Amp: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_265Vert: !!perl/hash:RE_ast
+infix__S_264Vert: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -12577,7 +12587,7 @@ infix__S_265Vert: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_266Caret: !!perl/hash:RE_ast
+infix__S_265Caret: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -12590,7 +12600,7 @@ infix__S_266Caret: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_271LtEqualGt: !!perl/hash:RE_ast
+infix__S_270LtEqualGt: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -12603,7 +12613,7 @@ infix__S_271LtEqualGt: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_272cmp: !!perl/hash:RE_ast
+infix__S_271cmp: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -12616,7 +12626,7 @@ infix__S_272cmp: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_273leg: !!perl/hash:RE_ast
+infix__S_272leg: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -12629,7 +12639,7 @@ infix__S_273leg: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_274but: !!perl/hash:RE_ast
+infix__S_273but: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -12642,7 +12652,7 @@ infix__S_274but: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_275does: !!perl/hash:RE_ast
+infix__S_274does: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -12655,7 +12665,7 @@ infix__S_275does: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_276DotDot: !!perl/hash:RE_ast
+infix__S_275DotDot: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -12679,16 +12689,16 @@ infix__S_276DotDot: !!perl/hash:RE_ast
               name: before
               nobind: 1
               re: &19 !!perl/hash:RE_any
-                altname: infix__S_276DotDot_0
+                altname: infix__S_275DotDot_0
                 dba: infix
                 dic: STD::P6
                 zyg:
                 - !!perl/hash:RE_string
-                  alt: infix__S_276DotDot_0 0
+                  alt: infix__S_275DotDot_0 0
                   i: 0
                   text: )
                 - !!perl/hash:RE_string
-                  alt: infix__S_276DotDot_0 1
+                  alt: infix__S_275DotDot_0 1
                   i: 0
                   text: ']'
           - !!perl/hash:RE_method
@@ -12699,8 +12709,8 @@ infix__S_276DotDot: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_276DotDot_0: *19
-infix__S_277CaretDotDot: !!perl/hash:RE_ast
+infix__S_275DotDot_0: *19
+infix__S_276CaretDotDot: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -12713,7 +12723,7 @@ infix__S_277CaretDotDot: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_278DotDotCaret: !!perl/hash:RE_ast
+infix__S_277DotDotCaret: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -12726,7 +12736,7 @@ infix__S_278DotDotCaret: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_279CaretDotDotCaret: !!perl/hash:RE_ast
+infix__S_278CaretDotDotCaret: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -12739,7 +12749,7 @@ infix__S_279CaretDotDotCaret: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_280EqualEqual: !!perl/hash:RE_ast
+infix__S_279EqualEqual: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -12760,7 +12770,7 @@ infix__S_280EqualEqual: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_281BangEqual: !!perl/hash:RE_ast
+infix__S_280BangEqual: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -12781,7 +12791,7 @@ infix__S_281BangEqual: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_282Lt: !!perl/hash:RE_ast
+infix__S_281Lt: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -12802,7 +12812,7 @@ infix__S_282Lt: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_283LtEqual: !!perl/hash:RE_ast
+infix__S_282LtEqual: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -12815,7 +12825,7 @@ infix__S_283LtEqual: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_284Gt: !!perl/hash:RE_ast
+infix__S_283Gt: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -12836,7 +12846,7 @@ infix__S_284Gt: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_285GtEqual: !!perl/hash:RE_ast
+infix__S_284GtEqual: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -12849,7 +12859,7 @@ infix__S_285GtEqual: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_286TildeTilde: !!perl/hash:RE_ast
+infix__S_285TildeTilde: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -12879,16 +12889,16 @@ infix__S_286TildeTilde: !!perl/hash:RE_ast
             - !!perl/hash:RE_bindpos
               atom: !!perl/hash:RE_paren
                 re: &20 !!perl/hash:RE_any
-                  altname: infix__S_286TildeTilde_0
+                  altname: infix__S_285TildeTilde_0
                   dba: infix
                   dic: STD::P6
                   zyg:
                   - !!perl/hash:RE_string
-                    alt: infix__S_286TildeTilde_0 0
+                    alt: infix__S_285TildeTilde_0 0
                     i: 0
                     text: True
                   - !!perl/hash:RE_string
-                    alt: infix__S_286TildeTilde_0 1
+                    alt: infix__S_285TildeTilde_0 1
                     i: 0
                     text: False
             - !!perl/hash:RE_meta
@@ -12898,8 +12908,8 @@ infix__S_286TildeTilde: !!perl/hash:RE_ast
               rest: 1
       quant:
       - '?'
-infix__S_286TildeTilde_0: *20
-infix__S_287BangTilde: !!perl/hash:RE_ast
+infix__S_285TildeTilde_0: *20
+infix__S_286BangTilde: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -12918,7 +12928,7 @@ infix__S_287BangTilde: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_288EqualTilde: !!perl/hash:RE_ast
+infix__S_287EqualTilde: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -12934,7 +12944,7 @@ infix__S_288EqualTilde: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_289eq: !!perl/hash:RE_ast
+infix__S_288eq: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -12947,7 +12957,7 @@ infix__S_289eq: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_290ne: !!perl/hash:RE_ast
+infix__S_289ne: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -12960,7 +12970,7 @@ infix__S_290ne: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_291lt: !!perl/hash:RE_ast
+infix__S_290lt: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -12973,7 +12983,7 @@ infix__S_291lt: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_292le: !!perl/hash:RE_ast
+infix__S_291le: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -12986,7 +12996,7 @@ infix__S_292le: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_293gt: !!perl/hash:RE_ast
+infix__S_292gt: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -12999,7 +13009,7 @@ infix__S_293gt: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_294ge: !!perl/hash:RE_ast
+infix__S_293ge: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -13012,7 +13022,7 @@ infix__S_294ge: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_295EqualColonEqual: !!perl/hash:RE_ast
+infix__S_294EqualColonEqual: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -13025,7 +13035,7 @@ infix__S_295EqualColonEqual: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_296EqualEqualEqual: !!perl/hash:RE_ast
+infix__S_295EqualEqualEqual: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -13038,7 +13048,7 @@ infix__S_296EqualEqualEqual: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_297eqv: !!perl/hash:RE_ast
+infix__S_296eqv: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -13051,7 +13061,7 @@ infix__S_297eqv: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_298before: !!perl/hash:RE_ast
+infix__S_297before: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -13064,7 +13074,7 @@ infix__S_298before: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_299after: !!perl/hash:RE_ast
+infix__S_298after: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -13077,7 +13087,7 @@ infix__S_299after: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_300AmpAmp: !!perl/hash:RE_ast
+infix__S_299AmpAmp: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -13090,7 +13100,7 @@ infix__S_300AmpAmp: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_301VertVert: !!perl/hash:RE_ast
+infix__S_300VertVert: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -13103,7 +13113,7 @@ infix__S_301VertVert: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_302CaretCaret: !!perl/hash:RE_ast
+infix__S_301CaretCaret: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -13116,7 +13126,7 @@ infix__S_302CaretCaret: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_303SlashSlash: !!perl/hash:RE_ast
+infix__S_302SlashSlash: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -13129,7 +13139,7 @@ infix__S_303SlashSlash: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_304min: !!perl/hash:RE_ast
+infix__S_303min: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -13142,7 +13152,7 @@ infix__S_304min: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_305max: !!perl/hash:RE_ast
+infix__S_304max: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -13155,7 +13165,7 @@ infix__S_305max: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_306QuestionQuestion_BangBang: !!perl/hash:RE_ast
+infix__S_305QuestionQuestion_BangBang: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -13249,7 +13259,7 @@ infix__S_306QuestionQuestion_BangBang: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_307BangBang: !!perl/hash:RE_ast
+infix__S_306BangBang: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -13278,7 +13288,7 @@ infix__S_307BangBang: !!perl/hash:RE_ast
         - !!perl/hash:RE_method
           name: panic
           rest: 1
-infix__S_308Question: !!perl/hash:RE_ast
+infix__S_307Question: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -13319,7 +13329,7 @@ infix__S_308Question: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_309ff: !!perl/hash:RE_ast
+infix__S_308ff: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -13332,7 +13342,7 @@ infix__S_309ff: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_310Caretff: !!perl/hash:RE_ast
+infix__S_309Caretff: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -13345,7 +13355,7 @@ infix__S_310Caretff: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_311ffCaret: !!perl/hash:RE_ast
+infix__S_310ffCaret: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -13358,7 +13368,7 @@ infix__S_311ffCaret: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_312CaretffCaret: !!perl/hash:RE_ast
+infix__S_311CaretffCaret: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -13371,7 +13381,7 @@ infix__S_312CaretffCaret: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_313fff: !!perl/hash:RE_ast
+infix__S_312fff: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -13384,7 +13394,7 @@ infix__S_313fff: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_314Caretfff: !!perl/hash:RE_ast
+infix__S_313Caretfff: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -13397,7 +13407,7 @@ infix__S_314Caretfff: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_315fffCaret: !!perl/hash:RE_ast
+infix__S_314fffCaret: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -13410,7 +13420,7 @@ infix__S_315fffCaret: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_316CaretfffCaret: !!perl/hash:RE_ast
+infix__S_315CaretfffCaret: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -13423,7 +13433,7 @@ infix__S_316CaretfffCaret: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_317Equal: !!perl/hash:RE_ast
+infix__S_316Equal: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -13448,7 +13458,7 @@ infix__S_317Equal: !!perl/hash:RE_ast
         - !!perl/hash:RE_method
           name: O
           rest: 1
-infix__S_318ColonEqual: !!perl/hash:RE_ast
+infix__S_317ColonEqual: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -13461,7 +13471,7 @@ infix__S_318ColonEqual: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_319ColonColonEqual: !!perl/hash:RE_ast
+infix__S_318ColonColonEqual: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -13474,7 +13484,7 @@ infix__S_319ColonColonEqual: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_320DotEqual: !!perl/hash:RE_ast
+infix__S_319DotEqual: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -13487,7 +13497,7 @@ infix__S_320DotEqual: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_321EqualGt: !!perl/hash:RE_ast
+infix__S_320EqualGt: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -13500,7 +13510,7 @@ infix__S_321EqualGt: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_324Comma: !!perl/hash:RE_ast
+infix__S_323Comma: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -13538,7 +13548,7 @@ infix__S_324Comma: !!perl/hash:RE_ast
             rest: 1
       quant:
       - '?'
-infix__S_325Colon: !!perl/hash:RE_ast
+infix__S_324Colon: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -13552,24 +13562,24 @@ infix__S_325Colon: !!perl/hash:RE_ast
         name: before
         nobind: 1
         re: &21 !!perl/hash:RE_any
-          altname: infix__S_325Colon_0
+          altname: infix__S_324Colon_0
           dba: infix
           dic: STD::P6
           zyg:
           - !!perl/hash:RE_meta
-            alt: infix__S_325Colon_0 0
+            alt: infix__S_324Colon_0 0
             min: 1
             text: \s
           - !!perl/hash:RE_method
-            alt: infix__S_325Colon_0 1
+            alt: infix__S_324Colon_0 1
             name: terminator
             rest: ''
     - !!perl/hash:RE_block {}
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_325Colon_0: *21
-infix__S_326X: !!perl/hash:RE_ast
+infix__S_324Colon_0: *21
+infix__S_325X: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -13582,7 +13592,7 @@ infix__S_326X: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_327Z: !!perl/hash:RE_ast
+infix__S_326Z: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -13595,7 +13605,7 @@ infix__S_327Z: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_328minmax: !!perl/hash:RE_ast
+infix__S_327minmax: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -13608,7 +13618,7 @@ infix__S_328minmax: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_329DotDotDot: !!perl/hash:RE_ast
+infix__S_328DotDotDot: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -13621,7 +13631,7 @@ infix__S_329DotDotDot: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_335and: !!perl/hash:RE_ast
+infix__S_334and: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -13634,7 +13644,7 @@ infix__S_335and: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_336andthen: !!perl/hash:RE_ast
+infix__S_335andthen: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -13647,7 +13657,7 @@ infix__S_336andthen: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_337or: !!perl/hash:RE_ast
+infix__S_336or: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -13660,7 +13670,7 @@ infix__S_337or: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_338orelse: !!perl/hash:RE_ast
+infix__S_337orelse: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -13673,7 +13683,7 @@ infix__S_338orelse: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_339xor: !!perl/hash:RE_ast
+infix__S_338xor: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -13686,7 +13696,7 @@ infix__S_339xor: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_340LtEqualEqual: !!perl/hash:RE_ast
+infix__S_339LtEqualEqual: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -13699,7 +13709,7 @@ infix__S_340LtEqualEqual: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_341EqualEqualGt: !!perl/hash:RE_ast
+infix__S_340EqualEqualGt: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -13712,7 +13722,7 @@ infix__S_341EqualEqualGt: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_342LtLtEqualEqual: !!perl/hash:RE_ast
+infix__S_341LtLtEqualEqual: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -13725,7 +13735,7 @@ infix__S_342LtLtEqualEqual: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_343EqualEqualGtGt: !!perl/hash:RE_ast
+infix__S_342EqualEqualGtGt: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -13738,23 +13748,23 @@ infix__S_343EqualEqualGtGt: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix_circumfix_meta_operator__S_205Fre_Nch: !!perl/hash:RE_ast
+infix_circumfix_meta_operator__S_204Fre_Nch: !!perl/hash:RE_ast
   dba: infix_circumfix_meta_operator
   dic: STD::P6
   re: !!perl/hash:RE_sequence
     zyg:
     - !!perl/hash:RE_bracket
       re: &22 !!perl/hash:RE_any
-        altname: infix_circumfix_meta_operator__S_205Fre_Nch_0
+        altname: infix_circumfix_meta_operator__S_204Fre_Nch_0
         dba: infix_circumfix_meta_operator
         dic: STD::P6
         zyg:
         - !!perl/hash:RE_string
-          alt: infix_circumfix_meta_operator__S_205Fre_Nch_0 0
+          alt: infix_circumfix_meta_operator__S_204Fre_Nch_0 0
           i: 0
           text: «
         - !!perl/hash:RE_string
-          alt: infix_circumfix_meta_operator__S_205Fre_Nch_0 1
+          alt: infix_circumfix_meta_operator__S_204Fre_Nch_0 1
           i: 0
           text: »
     - !!perl/hash:RE_block {}
@@ -13765,16 +13775,16 @@ infix_circumfix_meta_operator__S_205Fre_Nch: !!perl/hash:RE_ast
       re: !!perl/hash:RE_first
         zyg:
         - &23 !!perl/hash:RE_any
-          altname: infix_circumfix_meta_operator__S_205Fre_Nch_1
+          altname: infix_circumfix_meta_operator__S_204Fre_Nch_1
           dba: infix_circumfix_meta_operator
           dic: STD::P6
           zyg:
           - !!perl/hash:RE_string
-            alt: infix_circumfix_meta_operator__S_205Fre_Nch_1 0
+            alt: infix_circumfix_meta_operator__S_204Fre_Nch_1 0
             i: 0
             text: «
           - !!perl/hash:RE_string
-            alt: infix_circumfix_meta_operator__S_205Fre_Nch_1 1
+            alt: infix_circumfix_meta_operator__S_204Fre_Nch_1 1
             i: 0
             text: »
         - !!perl/hash:RE_method
@@ -13787,25 +13797,25 @@ infix_circumfix_meta_operator__S_205Fre_Nch: !!perl/hash:RE_ast
       assert: '?'
       re: !!perl/hash:RE_block
         nobind: 1
-infix_circumfix_meta_operator__S_205Fre_Nch_0: *22
-infix_circumfix_meta_operator__S_205Fre_Nch_1: *23
-infix_circumfix_meta_operator__S_206LtLt_GtGt: !!perl/hash:RE_ast
+infix_circumfix_meta_operator__S_204Fre_Nch_0: *22
+infix_circumfix_meta_operator__S_204Fre_Nch_1: *23
+infix_circumfix_meta_operator__S_205LtLt_GtGt: !!perl/hash:RE_ast
   dba: infix_circumfix_meta_operator
   dic: STD::P6
   re: !!perl/hash:RE_sequence
     zyg:
     - !!perl/hash:RE_bracket
       re: &24 !!perl/hash:RE_any
-        altname: infix_circumfix_meta_operator__S_206LtLt_GtGt_0
+        altname: infix_circumfix_meta_operator__S_205LtLt_GtGt_0
         dba: infix_circumfix_meta_operator
         dic: STD::P6
         zyg:
         - !!perl/hash:RE_string
-          alt: infix_circumfix_meta_operator__S_206LtLt_GtGt_0 0
+          alt: infix_circumfix_meta_operator__S_205LtLt_GtGt_0 0
           i: 0
           text: <<
         - !!perl/hash:RE_string
-          alt: infix_circumfix_meta_operator__S_206LtLt_GtGt_0 1
+          alt: infix_circumfix_meta_operator__S_205LtLt_GtGt_0 1
           i: 0
           text: '>>'
     - !!perl/hash:RE_block {}
@@ -13816,16 +13826,16 @@ infix_circumfix_meta_operator__S_206LtLt_GtGt: !!perl/hash:RE_ast
       re: !!perl/hash:RE_first
         zyg:
         - &25 !!perl/hash:RE_any
-          altname: infix_circumfix_meta_operator__S_206LtLt_GtGt_1
+          altname: infix_circumfix_meta_operator__S_205LtLt_GtGt_1
           dba: infix_circumfix_meta_operator
           dic: STD::P6
           zyg:
           - !!perl/hash:RE_string
-            alt: infix_circumfix_meta_operator__S_206LtLt_GtGt_1 0
+            alt: infix_circumfix_meta_operator__S_205LtLt_GtGt_1 0
             i: 0
             text: <<
           - !!perl/hash:RE_string
-            alt: infix_circumfix_meta_operator__S_206LtLt_GtGt_1 1
+            alt: infix_circumfix_meta_operator__S_205LtLt_GtGt_1 1
             i: 0
             text: '>>'
         - !!perl/hash:RE_method
@@ -13838,9 +13848,9 @@ infix_circumfix_meta_operator__S_206LtLt_GtGt: !!perl/hash:RE_ast
       assert: '?'
       re: !!perl/hash:RE_block
         nobind: 1
-infix_circumfix_meta_operator__S_206LtLt_GtGt_0: *24
-infix_circumfix_meta_operator__S_206LtLt_GtGt_1: *25
-infix_postfix_meta_operator__S_207Equal: !!perl/hash:RE_ast
+infix_circumfix_meta_operator__S_205LtLt_GtGt_0: *24
+infix_circumfix_meta_operator__S_205LtLt_GtGt_1: *25
+infix_postfix_meta_operator__S_206Equal: !!perl/hash:RE_ast
   dba: infix_postfix_meta_operator
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -13865,7 +13875,7 @@ infix_postfix_meta_operator__S_207Equal: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix_prefix_meta_operator__S_200Bang: !!perl/hash:RE_ast
+infix_prefix_meta_operator__S_199Bang: !!perl/hash:RE_ast
   dba: infix_prefix_meta_operator
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -13921,7 +13931,7 @@ infix_prefix_meta_operator__S_200Bang: !!perl/hash:RE_ast
         - !!perl/hash:RE_method
           name: panic
           rest: 1
-infix_prefix_meta_operator__S_201R: !!perl/hash:RE_ast
+infix_prefix_meta_operator__S_200R: !!perl/hash:RE_ast
   dba: infix_prefix_meta_operator
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -13942,7 +13952,7 @@ infix_prefix_meta_operator__S_201R: !!perl/hash:RE_ast
       assert: '?'
       re: !!perl/hash:RE_block
         nobind: 1
-infix_prefix_meta_operator__S_202S: !!perl/hash:RE_ast
+infix_prefix_meta_operator__S_201S: !!perl/hash:RE_ast
   dba: infix_prefix_meta_operator
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -13963,7 +13973,7 @@ infix_prefix_meta_operator__S_202S: !!perl/hash:RE_ast
       assert: '?'
       re: !!perl/hash:RE_block
         nobind: 1
-infix_prefix_meta_operator__S_203X: !!perl/hash:RE_ast
+infix_prefix_meta_operator__S_202X: !!perl/hash:RE_ast
   dba: infix_prefix_meta_operator
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -14001,7 +14011,7 @@ infix_prefix_meta_operator__S_203X: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix_prefix_meta_operator__S_204Z: !!perl/hash:RE_ast
+infix_prefix_meta_operator__S_203Z: !!perl/hash:RE_ast
   dba: infix_prefix_meta_operator
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -16267,7 +16277,7 @@ post_constraint: !!perl/hash:RE_ast
             name: ws
             rest: ''
 post_constraint_0: *55
-postcircumfix__S_208Paren_Thesis: !!perl/hash:RE_ast
+postcircumfix__S_207Paren_Thesis: !!perl/hash:RE_ast
   dba: argument list
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -16294,7 +16304,7 @@ postcircumfix__S_208Paren_Thesis: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-postcircumfix__S_209Bra_Ket: !!perl/hash:RE_ast
+postcircumfix__S_208Bra_Ket: !!perl/hash:RE_ast
   dba: subscript
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -16322,7 +16332,7 @@ postcircumfix__S_209Bra_Ket: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-postcircumfix__S_210Cur_Ly: !!perl/hash:RE_ast
+postcircumfix__S_209Cur_Ly: !!perl/hash:RE_ast
   dba: subscript
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -16352,7 +16362,7 @@ postcircumfix__S_210Cur_Ly: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: curlycheck
       rest: ''
-postcircumfix__S_211Lt_Gt: !!perl/hash:RE_ast
+postcircumfix__S_210Lt_Gt: !!perl/hash:RE_ast
   dba: postcircumfix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -16389,20 +16399,20 @@ postcircumfix__S_211Lt_Gt: !!perl/hash:RE_ast
                   - '*'
                 - !!perl/hash:RE_bracket
                   re: &56 !!perl/hash:RE_any
-                    altname: postcircumfix__S_211Lt_Gt_0
+                    altname: postcircumfix__S_210Lt_Gt_0
                     dba: postcircumfix
                     dic: STD::P6
                     zyg:
                     - !!perl/hash:RE_meta
-                      alt: postcircumfix__S_211Lt_Gt_0 0
+                      alt: postcircumfix__S_210Lt_Gt_0 0
                       min: 1
                       text: \d
                     - !!perl/hash:RE_method
-                      alt: postcircumfix__S_211Lt_Gt_0 1
+                      alt: postcircumfix__S_210Lt_Gt_0 1
                       name: sigil
                       rest: ''
                     - !!perl/hash:RE_string
-                      alt: postcircumfix__S_211Lt_Gt_0 2
+                      alt: postcircumfix__S_210Lt_Gt_0 2
                       i: 0
                       text: ':'
           - !!perl/hash:RE_block {}
@@ -16410,8 +16420,8 @@ postcircumfix__S_211Lt_Gt: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-postcircumfix__S_211Lt_Gt_0: *56
-postcircumfix__S_212LtLt_GtGt: !!perl/hash:RE_ast
+postcircumfix__S_210Lt_Gt_0: *56
+postcircumfix__S_211LtLt_GtGt: !!perl/hash:RE_ast
   dba: postcircumfix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -16434,7 +16444,7 @@ postcircumfix__S_212LtLt_GtGt: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-postcircumfix__S_213Fre_Nch: !!perl/hash:RE_ast
+postcircumfix__S_212Fre_Nch: !!perl/hash:RE_ast
   dba: postcircumfix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -16457,7 +16467,7 @@ postcircumfix__S_213Fre_Nch: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-postfix__S_216i: !!perl/hash:RE_ast
+postfix__S_215i: !!perl/hash:RE_ast
   dba: postfix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -16472,7 +16482,7 @@ postfix__S_216i: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-postfix__S_218MinusGt: !!perl/hash:RE_ast
+postfix__S_217MinusGt: !!perl/hash:RE_ast
   dba: postfix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -16482,12 +16492,12 @@ postfix__S_218MinusGt: !!perl/hash:RE_ast
       text: ->
     - !!perl/hash:RE_bracket
       re: &57 !!perl/hash:RE_any
-        altname: postfix__S_218MinusGt_0
+        altname: postfix__S_217MinusGt_0
         dba: postfix
         dic: STD::P6
         zyg:
         - !!perl/hash:RE_sequence
-          alt: postfix__S_218MinusGt_0 0
+          alt: postfix__S_217MinusGt_0 0
           zyg:
           - !!perl/hash:RE_bindnamed
             atom: !!perl/hash:RE_cclass
@@ -16497,11 +16507,11 @@ postfix__S_218MinusGt: !!perl/hash:RE_ast
             name: obs
             rest: 1
         - !!perl/hash:RE_method
-          alt: postfix__S_218MinusGt_0 1
+          alt: postfix__S_217MinusGt_0 1
           name: obs
           rest: 1
-postfix__S_218MinusGt_0: *57
-postfix__S_219PlusPlus: !!perl/hash:RE_ast
+postfix__S_217MinusGt_0: *57
+postfix__S_218PlusPlus: !!perl/hash:RE_ast
   dba: postfix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -16514,7 +16524,7 @@ postfix__S_219PlusPlus: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-postfix__S_220MinusMinus: !!perl/hash:RE_ast
+postfix__S_219MinusMinus: !!perl/hash:RE_ast
   dba: postfix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -16527,25 +16537,25 @@ postfix__S_220MinusMinus: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-postfix_prefix_meta_operator__S_199Nch: !!perl/hash:RE_ast
+postfix_prefix_meta_operator__S_198Nch: !!perl/hash:RE_ast
   dba: postfix_prefix_meta_operator
   dic: STD::P6
   re: !!perl/hash:RE_sequence
     zyg:
     - !!perl/hash:RE_bracket
       re: &58 !!perl/hash:RE_any
-        altname: postfix_prefix_meta_operator__S_199Nch_0
+        altname: postfix_prefix_meta_operator__S_198Nch_0
         dba: postfix_prefix_meta_operator
         dic: STD::P6
         zyg:
         - !!perl/hash:RE_method
-          alt: postfix_prefix_meta_operator__S_199Nch_0 0
+          alt: postfix_prefix_meta_operator__S_198Nch_0 0
           i: 0
           name: sym
           rest: ''
           sym: »
         - !!perl/hash:RE_string
-          alt: postfix_prefix_meta_operator__S_199Nch_0 1
+          alt: postfix_prefix_meta_operator__S_198Nch_0 1
           i: 0
           text: '>>'
     - !!perl/hash:RE_bracket
@@ -16563,7 +16573,7 @@ postfix_prefix_meta_operator__S_199Nch: !!perl/hash:RE_ast
             re: !!perl/hash:RE_string
               i: 0
               text: (
-postfix_prefix_meta_operator__S_199Nch_0: *58
+postfix_prefix_meta_operator__S_198Nch_0: *58
 postop: !!perl/hash:RE_ast
   dba: postop
   dic: STD::P6
@@ -16587,7 +16597,7 @@ postop: !!perl/hash:RE_ast
         rest: ''
       - !!perl/hash:RE_block {}
 postop_0: *59
-prefix__S_221PlusPlus: !!perl/hash:RE_ast
+prefix__S_220PlusPlus: !!perl/hash:RE_ast
   dba: prefix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -16600,7 +16610,7 @@ prefix__S_221PlusPlus: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-prefix__S_222MinusMinus: !!perl/hash:RE_ast
+prefix__S_221MinusMinus: !!perl/hash:RE_ast
   dba: prefix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -16613,7 +16623,7 @@ prefix__S_222MinusMinus: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-prefix__S_224Bang: !!perl/hash:RE_ast
+prefix__S_223Bang: !!perl/hash:RE_ast
   dba: prefix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -16626,7 +16636,7 @@ prefix__S_224Bang: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-prefix__S_225Plus: !!perl/hash:RE_ast
+prefix__S_224Plus: !!perl/hash:RE_ast
   dba: prefix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -16639,7 +16649,7 @@ prefix__S_225Plus: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-prefix__S_226Minus: !!perl/hash:RE_ast
+prefix__S_225Minus: !!perl/hash:RE_ast
   dba: prefix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -16652,7 +16662,7 @@ prefix__S_226Minus: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-prefix__S_227TildeTilde: !!perl/hash:RE_ast
+prefix__S_226TildeTilde: !!perl/hash:RE_ast
   dba: prefix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -16668,7 +16678,7 @@ prefix__S_227TildeTilde: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-prefix__S_228Tilde: !!perl/hash:RE_ast
+prefix__S_227Tilde: !!perl/hash:RE_ast
   dba: prefix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -16681,7 +16691,7 @@ prefix__S_228Tilde: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-prefix__S_229QuestionQuestion: !!perl/hash:RE_ast
+prefix__S_228QuestionQuestion: !!perl/hash:RE_ast
   dba: prefix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -16697,7 +16707,7 @@ prefix__S_229QuestionQuestion: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-prefix__S_230Question: !!perl/hash:RE_ast
+prefix__S_229Question: !!perl/hash:RE_ast
   dba: prefix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -16710,7 +16720,7 @@ prefix__S_230Question: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-prefix__S_231TildeCaret: !!perl/hash:RE_ast
+prefix__S_230TildeCaret: !!perl/hash:RE_ast
   dba: prefix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -16723,7 +16733,7 @@ prefix__S_231TildeCaret: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-prefix__S_232PlusCaret: !!perl/hash:RE_ast
+prefix__S_231PlusCaret: !!perl/hash:RE_ast
   dba: prefix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -16736,7 +16746,7 @@ prefix__S_232PlusCaret: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-prefix__S_233QuestionCaret: !!perl/hash:RE_ast
+prefix__S_232QuestionCaret: !!perl/hash:RE_ast
   dba: prefix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -16749,7 +16759,7 @@ prefix__S_233QuestionCaret: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-prefix__S_234CaretCaret: !!perl/hash:RE_ast
+prefix__S_233CaretCaret: !!perl/hash:RE_ast
   dba: prefix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -16765,7 +16775,7 @@ prefix__S_234CaretCaret: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-prefix__S_235Caret: !!perl/hash:RE_ast
+prefix__S_234Caret: !!perl/hash:RE_ast
   dba: prefix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -16778,7 +16788,7 @@ prefix__S_235Caret: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-prefix__S_236VertVert: !!perl/hash:RE_ast
+prefix__S_235VertVert: !!perl/hash:RE_ast
   dba: prefix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -16791,7 +16801,7 @@ prefix__S_236VertVert: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-prefix__S_237Vert: !!perl/hash:RE_ast
+prefix__S_236Vert: !!perl/hash:RE_ast
   dba: prefix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -16804,7 +16814,7 @@ prefix__S_237Vert: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-prefix__S_267sleep: !!perl/hash:RE_ast
+prefix__S_266sleep: !!perl/hash:RE_ast
   dba: prefix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -16830,7 +16840,7 @@ prefix__S_267sleep: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-prefix__S_268abs: !!perl/hash:RE_ast
+prefix__S_267abs: !!perl/hash:RE_ast
   dba: prefix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -16856,7 +16866,7 @@ prefix__S_268abs: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-prefix__S_269let: !!perl/hash:RE_ast
+prefix__S_268let: !!perl/hash:RE_ast
   dba: prefix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -16882,7 +16892,7 @@ prefix__S_269let: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-prefix__S_270temp: !!perl/hash:RE_ast
+prefix__S_269temp: !!perl/hash:RE_ast
   dba: prefix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -16908,7 +16918,7 @@ prefix__S_270temp: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-prefix__S_322so: !!perl/hash:RE_ast
+prefix__S_321so: !!perl/hash:RE_ast
   dba: prefix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -16923,7 +16933,7 @@ prefix__S_322so: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-prefix__S_323not: !!perl/hash:RE_ast
+prefix__S_322not: !!perl/hash:RE_ast
   dba: prefix
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -16938,7 +16948,7 @@ prefix__S_323not: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-prefix_circumfix_meta_operator__S_197reduce: !!perl/hash:RE_ast
+prefix_circumfix_meta_operator__S_196reduce: !!perl/hash:RE_ast
   dba: prefix_circumfix_meta_operator
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -17012,16 +17022,16 @@ prefix_circumfix_meta_operator__S_197reduce: !!perl/hash:RE_ast
             text: ']'
           - !!perl/hash:RE_bracket
             re: &60 !!perl/hash:RE_any
-              altname: prefix_circumfix_meta_operator__S_197reduce_0
+              altname: prefix_circumfix_meta_operator__S_196reduce_0
               dba: prefix_circumfix_meta_operator
               dic: STD::P6
               zyg:
               - !!perl/hash:RE_string
-                alt: prefix_circumfix_meta_operator__S_197reduce_0 0
+                alt: prefix_circumfix_meta_operator__S_196reduce_0 0
                 i: 0
                 text: «
               - !!perl/hash:RE_assertion
-                alt: prefix_circumfix_meta_operator__S_197reduce_0 1
+                alt: prefix_circumfix_meta_operator__S_196reduce_0 1
                 assert: '?'
                 re: !!perl/hash:RE_noop
                   nobind: 1
@@ -17084,26 +17094,26 @@ prefix_circumfix_meta_operator__S_197reduce: !!perl/hash:RE_ast
                 quant:
                 - '?'
         - !!perl/hash:RE_block {}
-prefix_circumfix_meta_operator__S_197reduce_0: *60
-prefix_postfix_meta_operator__S_198Fre: !!perl/hash:RE_ast
+prefix_circumfix_meta_operator__S_196reduce_0: *60
+prefix_postfix_meta_operator__S_197Fre: !!perl/hash:RE_ast
   dba: prefix_postfix_meta_operator
   dic: STD::P6
   re: &61 !!perl/hash:RE_any
-    altname: prefix_postfix_meta_operator__S_198Fre_0
+    altname: prefix_postfix_meta_operator__S_197Fre_0
     dba: prefix_postfix_meta_operator
     dic: STD::P6
     zyg:
     - !!perl/hash:RE_method
-      alt: prefix_postfix_meta_operator__S_198Fre_0 0
+      alt: prefix_postfix_meta_operator__S_197Fre_0 0
       i: 0
       name: sym
       rest: ''
       sym: «
     - !!perl/hash:RE_string
-      alt: prefix_postfix_meta_operator__S_198Fre_0 1
+      alt: prefix_postfix_meta_operator__S_197Fre_0 1
       i: 0
       text: <<
-prefix_postfix_meta_operator__S_198Fre_0: *61
+prefix_postfix_meta_operator__S_197Fre_0: *61
 privop: !!perl/hash:RE_ast
   dba: privop
   dic: STD::P6
@@ -20218,6 +20228,11 @@ statement: !!perl/hash:RE_ast
           text: '[\)\]\}]'
     - !!perl/hash:RE_assertion
       assert: '!'
+      re: !!perl/hash:RE_method
+        name: stopper
+        rest: ''
+    - !!perl/hash:RE_assertion
+      assert: '!'
       re: !!perl/hash:RE_assertion
         assert: '!'
         nobind: 1
@@ -22244,23 +22259,7 @@ term__S_090colonpair: !!perl/hash:RE_ast
           rest: ''
     quant:
     - +
-term__S_178YOU_ARE_HERE: !!perl/hash:RE_ast
-  dba: term
-  dic: STD::P6
-  re: !!perl/hash:RE_sequence
-    zyg:
-    - !!perl/hash:RE_method
-      i: 0
-      name: sym
-      rest: ''
-      sym: YOU_ARE_HERE
-    - !!perl/hash:RE_method
-      name: you_are_here
-      rest: ''
-    - !!perl/hash:RE_method
-      name: O
-      rest: 1
-term__S_179new: !!perl/hash:RE_ast
+term__S_178new: !!perl/hash:RE_ast
   dba: term
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -22294,7 +22293,7 @@ term__S_179new: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: obs
       rest: 1
-term__S_180ColonColonQuestionIDENT: !!perl/hash:RE_ast
+term__S_179ColonColonQuestionIDENT: !!perl/hash:RE_ast
   dba: term
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -22314,7 +22313,7 @@ term__S_180ColonColonQuestionIDENT: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-term__S_181Object: !!perl/hash:RE_ast
+term__S_180Object: !!perl/hash:RE_ast
   dba: term
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -22330,7 +22329,7 @@ term__S_181Object: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: obs
       rest: 1
-term__S_182undef: !!perl/hash:RE_ast
+term__S_181undef: !!perl/hash:RE_ast
   dba: term
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -22411,7 +22410,7 @@ term__S_182undef: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: obs
       rest: 1
-term__S_183proceed: !!perl/hash:RE_ast
+term__S_182proceed: !!perl/hash:RE_ast
   dba: term
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -22426,7 +22425,7 @@ term__S_183proceed: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-term__S_184time: !!perl/hash:RE_ast
+term__S_183time: !!perl/hash:RE_ast
   dba: term
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -22441,7 +22440,7 @@ term__S_184time: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-term__S_185now: !!perl/hash:RE_ast
+term__S_184now: !!perl/hash:RE_ast
   dba: term
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -22456,7 +22455,7 @@ term__S_185now: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-term__S_186self: !!perl/hash:RE_ast
+term__S_185self: !!perl/hash:RE_ast
   dba: term
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -22471,7 +22470,7 @@ term__S_186self: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-term__S_187defer: !!perl/hash:RE_ast
+term__S_186defer: !!perl/hash:RE_ast
   dba: term
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -22486,7 +22485,7 @@ term__S_187defer: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-term__S_188rand: !!perl/hash:RE_ast
+term__S_187rand: !!perl/hash:RE_ast
   dba: term
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -22523,16 +22522,16 @@ term__S_188rand: !!perl/hash:RE_ast
                   - '*'
                 - !!perl/hash:RE_bracket
                   re: &116 !!perl/hash:RE_any
-                    altname: term__S_188rand_0
+                    altname: term__S_187rand_0
                     dba: term
                     dic: STD::P6
                     zyg:
                     - !!perl/hash:RE_meta
-                      alt: term__S_188rand_0 0
+                      alt: term__S_187rand_0 0
                       min: 1
                       text: \d
                     - !!perl/hash:RE_string
-                      alt: term__S_188rand_0 1
+                      alt: term__S_187rand_0 1
                       i: 0
                       text: $
           - !!perl/hash:RE_method
@@ -22560,8 +22559,8 @@ term__S_188rand: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-term__S_188rand_0: *116
-term__S_189Star: !!perl/hash:RE_ast
+term__S_187rand_0: *116
+term__S_188Star: !!perl/hash:RE_ast
   dba: term
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -22574,7 +22573,7 @@ term__S_189Star: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-term__S_190StarStar: !!perl/hash:RE_ast
+term__S_189StarStar: !!perl/hash:RE_ast
   dba: term
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -22587,7 +22586,7 @@ term__S_190StarStar: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-term__S_214lambda: !!perl/hash:RE_ast
+term__S_213lambda: !!perl/hash:RE_ast
   dba: term
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -22607,7 +22606,7 @@ term__S_214lambda: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-term__S_330DotDotDot: !!perl/hash:RE_ast
+term__S_329DotDotDot: !!perl/hash:RE_ast
   dba: term
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -22626,7 +22625,7 @@ term__S_330DotDotDot: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-term__S_331QuestionQuestionQuestion: !!perl/hash:RE_ast
+term__S_330QuestionQuestionQuestion: !!perl/hash:RE_ast
   dba: term
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -22645,7 +22644,7 @@ term__S_331QuestionQuestionQuestion: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-term__S_332BangBangBang: !!perl/hash:RE_ast
+term__S_331BangBangBang: !!perl/hash:RE_ast
   dba: term
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -22664,7 +22663,7 @@ term__S_332BangBangBang: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-term__S_333identifier: !!perl/hash:RE_ast
+term__S_332identifier: !!perl/hash:RE_ast
   dba: term
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -22680,16 +22679,16 @@ term__S_333identifier: !!perl/hash:RE_ast
         re: !!perl/hash:RE_quantified_atom
           atom: !!perl/hash:RE_bracket
             re: &117 !!perl/hash:RE_any
-              altname: term__S_333identifier_0
+              altname: term__S_332identifier_0
               dba: term
               dic: STD::P6
               zyg:
               - !!perl/hash:RE_method
-                alt: term__S_333identifier_0 0
+                alt: term__S_332identifier_0 0
                 name: unsp
                 rest: ''
               - !!perl/hash:RE_string
-                alt: term__S_333identifier_0 1
+                alt: term__S_332identifier_0 1
                 i: 0
                 text: (
           quant:
@@ -22709,8 +22708,8 @@ term__S_333identifier: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-term__S_333identifier_0: *117
-term__S_334name: !!perl/hash:RE_ast
+term__S_332identifier_0: *117
+term__S_333name: !!perl/hash:RE_ast
   dba: term
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -22771,24 +22770,24 @@ term__S_334name: !!perl/hash:RE_ast
                     nobind: 1
                     re: !!perl/hash:RE_bracket
                       re: &118 !!perl/hash:RE_any
-                        altname: term__S_334name_0
+                        altname: term__S_333name_0
                         dba: namespace variable lookup
                         dic: STD::P6
                         zyg:
                         - !!perl/hash:RE_string
-                          alt: term__S_334name_0 0
+                          alt: term__S_333name_0 0
                           i: 0
                           text: «
                         - !!perl/hash:RE_string
-                          alt: term__S_334name_0 1
+                          alt: term__S_333name_0 1
                           i: 0
                           text: <
                         - !!perl/hash:RE_string
-                          alt: term__S_334name_0 2
+                          alt: term__S_333name_0 2
                           i: 0
                           text: '{'
                         - !!perl/hash:RE_string
-                          alt: term__S_334name_0 3
+                          alt: term__S_333name_0 3
                           i: 0
                           text: <<
                 - !!perl/hash:RE_method
@@ -22807,8 +22806,8 @@ term__S_334name: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-term__S_334name_0: *118
-terminator__S_344Semi: !!perl/hash:RE_ast
+term__S_333name_0: *118
+terminator__S_343Semi: !!perl/hash:RE_ast
   dba: terminator
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -22819,7 +22818,7 @@ terminator__S_344Semi: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-terminator__S_345if: !!perl/hash:RE_ast
+terminator__S_344if: !!perl/hash:RE_ast
   dba: terminator
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -22835,7 +22834,7 @@ terminator__S_345if: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-terminator__S_346unless: !!perl/hash:RE_ast
+terminator__S_345unless: !!perl/hash:RE_ast
   dba: terminator
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -22851,7 +22850,7 @@ terminator__S_346unless: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-terminator__S_347while: !!perl/hash:RE_ast
+terminator__S_346while: !!perl/hash:RE_ast
   dba: terminator
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -22867,7 +22866,7 @@ terminator__S_347while: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-terminator__S_348until: !!perl/hash:RE_ast
+terminator__S_347until: !!perl/hash:RE_ast
   dba: terminator
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -22883,7 +22882,7 @@ terminator__S_348until: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-terminator__S_349for: !!perl/hash:RE_ast
+terminator__S_348for: !!perl/hash:RE_ast
   dba: terminator
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -22899,7 +22898,7 @@ terminator__S_349for: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-terminator__S_350given: !!perl/hash:RE_ast
+terminator__S_349given: !!perl/hash:RE_ast
   dba: terminator
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -22915,7 +22914,7 @@ terminator__S_350given: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-terminator__S_351when: !!perl/hash:RE_ast
+terminator__S_350when: !!perl/hash:RE_ast
   dba: terminator
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -22931,7 +22930,7 @@ terminator__S_351when: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-terminator__S_352MinusMinusGt: !!perl/hash:RE_ast
+terminator__S_351MinusMinusGt: !!perl/hash:RE_ast
   dba: terminator
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -22942,7 +22941,7 @@ terminator__S_352MinusMinusGt: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-terminator__S_353BangBang: !!perl/hash:RE_ast
+terminator__S_352BangBang: !!perl/hash:RE_ast
   dba: terminator
   dic: STD::P6
   re: !!perl/hash:RE_sequence
@@ -24775,6 +24774,13 @@ do {
         push @gather, ((
 sub {
 my $C=shift;
+if (($C) = ($C->_EXACT("\{YOU_ARE_HERE\}"))
+and ($C) = ($C->you_are_here)) {
+$C
+} else { () }
+},
+sub {
+my $C=shift;
 if (($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 local $::GOAL = "\}";
@@ -25326,6 +25332,10 @@ if (my ($C) = ($C->before(sub {
 my $C=shift;
 $C->_PATTERN(qr/\G[\)\]\}]/)
 }))) { ($C) } else { () }
+}))
+and ($C) = ($C->_NOTBEFORE(sub {
+my $C=shift;
+if (my ($C) = ($C->stopper)) { ($C) } else { () }
 }))
 and ($C) = ($C->_NOTBEFORE(sub {
 my $C=shift;
@@ -40764,46 +40774,20 @@ $C
 });
 }
 ;
-## token term:YOU_ARE_HERE {
-sub term__S_178YOU_ARE_HERE__PEEK { $_[0]->_AUTOLEXpeek('term__S_178YOU_ARE_HERE', $retree) }
-sub term__S_178YOU_ARE_HERE {
-no warnings 'recursion';
-my $self = shift;
-
-
-local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
-
-my $C = $self->cursor_xact("RULE term__S_178YOU_ARE_HERE");
-my $xact = $C->xact;
-my $S = $C->{'_pos'};
-$C->{sym} = "YOU_ARE_HERE";
-$self->_MATCHIFYr($S, "term__S_178YOU_ARE_HERE", do {
-my $C = $C;
-if (($C) = ($C->_EXACT("YOU_ARE_HERE"))
-and ($C) = ($C->you_are_here)) {
-$C->_SUBSUMEr(['O'], sub {
-my $C = shift;
-$C->O(%term)
-})
-} else { () }
-
-});
-}
-;
 ## token term:new {
-sub term__S_179new__PEEK { $_[0]->_AUTOLEXpeek('term__S_179new', $retree) }
-sub term__S_179new {
+sub term__S_178new__PEEK { $_[0]->_AUTOLEXpeek('term__S_178new', $retree) }
+sub term__S_178new {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE term__S_179new");
+my $C = $self->cursor_xact("RULE term__S_178new");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "new";
-$self->_MATCHIFYr($S, "term__S_179new", do {
+$self->_MATCHIFYr($S, "term__S_178new", do {
 my $C = $C;
 if (($C) = ($C->_PATTERN(qr/\Gnew[\x20\t\r]++/))
 and ($C) = ($C->_SUBSUMEr(['longname'], sub {
@@ -40826,19 +40810,19 @@ $C
 }
 ;
 ## token term:sym<::?IDENT> {
-sub term__S_180ColonColonQuestionIDENT__PEEK { $_[0]->_AUTOLEXpeek('term__S_180ColonColonQuestionIDENT', $retree) }
-sub term__S_180ColonColonQuestionIDENT {
+sub term__S_179ColonColonQuestionIDENT__PEEK { $_[0]->_AUTOLEXpeek('term__S_179ColonColonQuestionIDENT', $retree) }
+sub term__S_179ColonColonQuestionIDENT {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE term__S_180ColonColonQuestionIDENT");
+my $C = $self->cursor_xact("RULE term__S_179ColonColonQuestionIDENT");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\:\:\?IDENT";
-$self->_MATCHIFYr($S, "term__S_180ColonColonQuestionIDENT", do {
+$self->_MATCHIFYr($S, "term__S_179ColonColonQuestionIDENT", do {
 my $C = $C;
 if (($C) = ($C->_SUBSUMEr(['sym'], sub {
 my $C = shift;
@@ -40863,19 +40847,19 @@ $C->O(%term)
 }
 ;
 ## token term:sym<Object> {
-sub term__S_181Object__PEEK { $_[0]->_AUTOLEXpeek('term__S_181Object', $retree) }
-sub term__S_181Object {
+sub term__S_180Object__PEEK { $_[0]->_AUTOLEXpeek('term__S_180Object', $retree) }
+sub term__S_180Object {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE term__S_181Object");
+my $C = $self->cursor_xact("RULE term__S_180Object");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "Object";
-$self->_MATCHIFYr($S, "term__S_181Object", do {
+$self->_MATCHIFYr($S, "term__S_180Object", do {
 my $C = $C;
 if (($C) = ($C->_PATTERN(qr/\GObject\b/))
 and ($C) = (scalar(do {
@@ -40888,19 +40872,19 @@ $C
 }
 ;
 ## token term:sym<undef> {
-sub term__S_182undef__PEEK { $_[0]->_AUTOLEXpeek('term__S_182undef', $retree) }
-sub term__S_182undef {
+sub term__S_181undef__PEEK { $_[0]->_AUTOLEXpeek('term__S_181undef', $retree) }
+sub term__S_181undef {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE term__S_182undef");
+my $C = $self->cursor_xact("RULE term__S_181undef");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "undef";
-$self->_MATCHIFYr($S, "term__S_182undef", do {
+$self->_MATCHIFYr($S, "term__S_181undef", do {
 my $C = $C;
 if (($C) = ($C->_PATTERN(qr/\Gundef\b/))
 and ($C) = (scalar(do {
@@ -40979,19 +40963,19 @@ $C
 }
 ;
 ## token term:sym<proceed>
-sub term__S_183proceed__PEEK { $_[0]->_AUTOLEXpeek('term__S_183proceed', $retree) }
-sub term__S_183proceed {
+sub term__S_182proceed__PEEK { $_[0]->_AUTOLEXpeek('term__S_182proceed', $retree) }
+sub term__S_182proceed {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE term__S_183proceed");
+my $C = $self->cursor_xact("RULE term__S_182proceed");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "proceed";
-$self->_MATCHIFYr($S, "term__S_183proceed", do {
+$self->_MATCHIFYr($S, "term__S_182proceed", do {
 if (my ($C) = ($C->_PATTERN(qr/\Gproceed\b/))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -41003,19 +40987,19 @@ $C->O(%term)
 }
 ;
 ## token term:sym<time>
-sub term__S_184time__PEEK { $_[0]->_AUTOLEXpeek('term__S_184time', $retree) }
-sub term__S_184time {
+sub term__S_183time__PEEK { $_[0]->_AUTOLEXpeek('term__S_183time', $retree) }
+sub term__S_183time {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE term__S_184time");
+my $C = $self->cursor_xact("RULE term__S_183time");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "time";
-$self->_MATCHIFYr($S, "term__S_184time", do {
+$self->_MATCHIFYr($S, "term__S_183time", do {
 if (my ($C) = ($C->_PATTERN(qr/\Gtime\b/))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -41027,19 +41011,19 @@ $C->O(%term)
 }
 ;
 ## token term:sym<now>
-sub term__S_185now__PEEK { $_[0]->_AUTOLEXpeek('term__S_185now', $retree) }
-sub term__S_185now {
+sub term__S_184now__PEEK { $_[0]->_AUTOLEXpeek('term__S_184now', $retree) }
+sub term__S_184now {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE term__S_185now");
+my $C = $self->cursor_xact("RULE term__S_184now");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "now";
-$self->_MATCHIFYr($S, "term__S_185now", do {
+$self->_MATCHIFYr($S, "term__S_184now", do {
 if (my ($C) = ($C->_PATTERN(qr/\Gnow\b/))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -41051,19 +41035,19 @@ $C->O(%term)
 }
 ;
 ## token term:sym<self>
-sub term__S_186self__PEEK { $_[0]->_AUTOLEXpeek('term__S_186self', $retree) }
-sub term__S_186self {
+sub term__S_185self__PEEK { $_[0]->_AUTOLEXpeek('term__S_185self', $retree) }
+sub term__S_185self {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE term__S_186self");
+my $C = $self->cursor_xact("RULE term__S_185self");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "self";
-$self->_MATCHIFYr($S, "term__S_186self", do {
+$self->_MATCHIFYr($S, "term__S_185self", do {
 if (my ($C) = ($C->_PATTERN(qr/\Gself\b/))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -41075,19 +41059,19 @@ $C->O(%term)
 }
 ;
 ## token term:sym<defer>
-sub term__S_187defer__PEEK { $_[0]->_AUTOLEXpeek('term__S_187defer', $retree) }
-sub term__S_187defer {
+sub term__S_186defer__PEEK { $_[0]->_AUTOLEXpeek('term__S_186defer', $retree) }
+sub term__S_186defer {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE term__S_187defer");
+my $C = $self->cursor_xact("RULE term__S_186defer");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "defer";
-$self->_MATCHIFYr($S, "term__S_187defer", do {
+$self->_MATCHIFYr($S, "term__S_186defer", do {
 if (my ($C) = ($C->_PATTERN(qr/\Gdefer\b/))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -41099,19 +41083,19 @@ $C->O(%term)
 }
 ;
 ## token term:rand {
-sub term__S_188rand__PEEK { $_[0]->_AUTOLEXpeek('term__S_188rand', $retree) }
-sub term__S_188rand {
+sub term__S_187rand__PEEK { $_[0]->_AUTOLEXpeek('term__S_187rand', $retree) }
+sub term__S_187rand {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE term__S_188rand");
+my $C = $self->cursor_xact("RULE term__S_187rand");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "rand";
-$self->_MATCHIFYr($S, "term__S_188rand", do {
+$self->_MATCHIFYr($S, "term__S_187rand", do {
 my $C = $C;
 if (($C) = ($C->_PATTERN(qr/\Grand\b/))
 and ($C) = ($C->_OPTr(sub {
@@ -41134,14 +41118,14 @@ do {
 
     my $fate;
     my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'term__S_188rand_0') {
-        $C->deb("Fate passed to term__S_188rand_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+    if ($fate = $C->{'_fate'} and $fate->[1] eq 'term__S_187rand_0') {
+        $C->deb("Fate passed to term__S_187rand_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
         ($C->{'_fate'}, $tag, $try) = @$fate;
         @try = ($try);
-        $x = 'ALT term__S_188rand_0';    # some outer ltm is controlling us
+        $x = 'ALT term__S_187rand_0';    # some outer ltm is controlling us
     }
     else {
-        $x = 'ALTLTM term__S_188rand_0'; # we are top level ltm
+        $x = 'ALTLTM term__S_187rand_0'; # we are top level ltm
     }
     my $C = $C->cursor_xact($x);
     my $xact = $C->{_xact};
@@ -41149,7 +41133,7 @@ do {
     my @gather = ();
     for (;;) {
         unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'term__S_188rand_0', $retree);
+            $relex //= $C->cursor_fate('STD::P6', 'term__S_187rand_0', $retree);
             @try = $relex->($C) or last;
         }
         $try = shift(@try) // next;
@@ -41158,7 +41142,7 @@ do {
             ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
         }
 
-        $C->deb("term__S_188rand_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+        $C->deb("term__S_187rand_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
         push @gather, ((
 sub {
 my $C=shift;
@@ -41211,19 +41195,19 @@ $C->O(%term)
 }
 ;
 ## token term:sym<*>
-sub term__S_189Star__PEEK { $_[0]->_AUTOLEXpeek('term__S_189Star', $retree) }
-sub term__S_189Star {
+sub term__S_188Star__PEEK { $_[0]->_AUTOLEXpeek('term__S_188Star', $retree) }
+sub term__S_188Star {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE term__S_189Star");
+my $C = $self->cursor_xact("RULE term__S_188Star");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\*";
-$self->_MATCHIFYr($S, "term__S_189Star", do {
+$self->_MATCHIFYr($S, "term__S_188Star", do {
 if (my ($C) = ($C->_EXACT("\*"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -41235,19 +41219,19 @@ $C->O(%term)
 }
 ;
 ## token term:sym<**>
-sub term__S_190StarStar__PEEK { $_[0]->_AUTOLEXpeek('term__S_190StarStar', $retree) }
-sub term__S_190StarStar {
+sub term__S_189StarStar__PEEK { $_[0]->_AUTOLEXpeek('term__S_189StarStar', $retree) }
+sub term__S_189StarStar {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE term__S_190StarStar");
+my $C = $self->cursor_xact("RULE term__S_189StarStar");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\*\*";
-$self->_MATCHIFYr($S, "term__S_190StarStar", do {
+$self->_MATCHIFYr($S, "term__S_189StarStar", do {
 if (my ($C) = ($C->_EXACT("\*\*"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -41259,19 +41243,19 @@ $C->O(%term)
 }
 ;
 ## token infix:lambda {
-sub infix__S_191lambda__PEEK { $_[0]->_AUTOLEXpeek('infix__S_191lambda', $retree) }
-sub infix__S_191lambda {
+sub infix__S_190lambda__PEEK { $_[0]->_AUTOLEXpeek('infix__S_190lambda', $retree) }
+sub infix__S_190lambda {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_191lambda");
+my $C = $self->cursor_xact("RULE infix__S_190lambda");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "lambda";
-$self->_MATCHIFYr($S, "infix__S_191lambda", do {
+$self->_MATCHIFYr($S, "infix__S_190lambda", do {
 my $C = $C;
 if (($C) = ($C->before(sub {
 my $C=shift;
@@ -41285,14 +41269,14 @@ do {
 
     my $fate;
     my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'infix__S_191lambda_0') {
-        $C->deb("Fate passed to infix__S_191lambda_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+    if ($fate = $C->{'_fate'} and $fate->[1] eq 'infix__S_190lambda_0') {
+        $C->deb("Fate passed to infix__S_190lambda_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
         ($C->{'_fate'}, $tag, $try) = @$fate;
         @try = ($try);
-        $x = 'ALT infix__S_191lambda_0';    # some outer ltm is controlling us
+        $x = 'ALT infix__S_190lambda_0';    # some outer ltm is controlling us
     }
     else {
-        $x = 'ALTLTM infix__S_191lambda_0'; # we are top level ltm
+        $x = 'ALTLTM infix__S_190lambda_0'; # we are top level ltm
     }
     my $C = $C->cursor_xact($x);
     my $xact = $C->{_xact};
@@ -41300,7 +41284,7 @@ do {
     my @gather = ();
     for (;;) {
         unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'infix__S_191lambda_0', $retree);
+            $relex //= $C->cursor_fate('STD::P6', 'infix__S_190lambda_0', $retree);
             @try = $relex->($C) or last;
         }
         $try = shift(@try) // next;
@@ -41309,7 +41293,7 @@ do {
             ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
         }
 
-        $C->deb("infix__S_191lambda_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+        $C->deb("infix__S_190lambda_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
         push @gather, ((
 sub {
 my $C=shift;
@@ -41372,19 +41356,19 @@ $C->O(%term)
 }
 ;
 ## token circumfix:sigil
-sub circumfix__S_192sigil__PEEK { $_[0]->_AUTOLEXpeek('circumfix__S_192sigil', $retree) }
-sub circumfix__S_192sigil {
+sub circumfix__S_191sigil__PEEK { $_[0]->_AUTOLEXpeek('circumfix__S_191sigil', $retree) }
+sub circumfix__S_191sigil {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE circumfix__S_192sigil");
+my $C = $self->cursor_xact("RULE circumfix__S_191sigil");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "sigil";
-$self->_MATCHIFYr($S, "circumfix__S_192sigil", do {
+$self->_MATCHIFYr($S, "circumfix__S_191sigil", do {
 my $C = $C;
 if (($C) = ($C->_SUBSUMEr(['sigil'], sub {
 my $C = shift;
@@ -41435,19 +41419,19 @@ $C->O(%term)
 }
 ;
 ## token circumfix:sym<( )>
-sub circumfix__S_193Paren_Thesis__PEEK { $_[0]->_AUTOLEXpeek('circumfix__S_193Paren_Thesis', $retree) }
-sub circumfix__S_193Paren_Thesis {
+sub circumfix__S_192Paren_Thesis__PEEK { $_[0]->_AUTOLEXpeek('circumfix__S_192Paren_Thesis', $retree) }
+sub circumfix__S_192Paren_Thesis {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE circumfix__S_193Paren_Thesis");
+my $C = $self->cursor_xact("RULE circumfix__S_192Paren_Thesis");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\(\ \)";
-$self->_MATCHIFYr($S, "circumfix__S_193Paren_Thesis", do {
+$self->_MATCHIFYr($S, "circumfix__S_192Paren_Thesis", do {
 if (my ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 local $::GOAL = "\)";
@@ -41490,19 +41474,19 @@ $C->O(%term)
 }
 ;
 ## token circumfix:sym<[ ]>
-sub circumfix__S_194Bra_Ket__PEEK { $_[0]->_AUTOLEXpeek('circumfix__S_194Bra_Ket', $retree) }
-sub circumfix__S_194Bra_Ket {
+sub circumfix__S_193Bra_Ket__PEEK { $_[0]->_AUTOLEXpeek('circumfix__S_193Bra_Ket', $retree) }
+sub circumfix__S_193Bra_Ket {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE circumfix__S_194Bra_Ket");
+my $C = $self->cursor_xact("RULE circumfix__S_193Bra_Ket");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\[\ \]";
-$self->_MATCHIFYr($S, "circumfix__S_194Bra_Ket", do {
+$self->_MATCHIFYr($S, "circumfix__S_193Bra_Ket", do {
 my $C = $C;
 if (($C) = ($C->_BRACKETr(sub {
 my $C=shift;
@@ -41912,8 +41896,8 @@ $C
 }
 ;
 ## token dotty:sym<.*> {
-sub dotty__S_195DotStar__PEEK { $_[0]->_AUTOLEXpeek('dotty__S_195DotStar', $retree) }
-sub dotty__S_195DotStar {
+sub dotty__S_194DotStar__PEEK { $_[0]->_AUTOLEXpeek('dotty__S_194DotStar', $retree) }
+sub dotty__S_194DotStar {
 no warnings 'recursion';
 my $self = shift;
 
@@ -41921,11 +41905,11 @@ my $self = shift;
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE dotty__S_195DotStar");
+my $C = $self->cursor_xact("RULE dotty__S_194DotStar");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\.\*";
-$self->_MATCHIFYr($S, "dotty__S_195DotStar", do {
+$self->_MATCHIFYr($S, "dotty__S_194DotStar", do {
 my $C = $C;
 if (($C) = ($C->_SUBSUMEr(['0'], sub {
 my $C = shift;
@@ -41943,14 +41927,14 @@ do {
 
     my $fate;
     my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'dotty__S_195DotStar_0') {
-        $C->deb("Fate passed to dotty__S_195DotStar_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+    if ($fate = $C->{'_fate'} and $fate->[1] eq 'dotty__S_194DotStar_0') {
+        $C->deb("Fate passed to dotty__S_194DotStar_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
         ($C->{'_fate'}, $tag, $try) = @$fate;
         @try = ($try);
-        $x = 'ALT dotty__S_195DotStar_0';    # some outer ltm is controlling us
+        $x = 'ALT dotty__S_194DotStar_0';    # some outer ltm is controlling us
     }
     else {
-        $x = 'ALTLTM dotty__S_195DotStar_0'; # we are top level ltm
+        $x = 'ALTLTM dotty__S_194DotStar_0'; # we are top level ltm
     }
     my $C = $C->cursor_xact($x);
     my $xact = $C->{_xact};
@@ -41958,7 +41942,7 @@ do {
     my @gather = ();
     for (;;) {
         unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'dotty__S_195DotStar_0', $retree);
+            $relex //= $C->cursor_fate('STD::P6', 'dotty__S_194DotStar_0', $retree);
             @try = $relex->($C) or last;
         }
         $try = shift(@try) // next;
@@ -41967,7 +41951,7 @@ do {
             ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
         }
 
-        $C->deb("dotty__S_195DotStar_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+        $C->deb("dotty__S_194DotStar_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
         push @gather, ((
 sub {
 my $C=shift;
@@ -42009,8 +41993,8 @@ $C->O(%methodcall)
 }
 ;
 ## token dotty:sym<.> {
-sub dotty__S_196Dot__PEEK { $_[0]->_AUTOLEXpeek('dotty__S_196Dot', $retree) }
-sub dotty__S_196Dot {
+sub dotty__S_195Dot__PEEK { $_[0]->_AUTOLEXpeek('dotty__S_195Dot', $retree) }
+sub dotty__S_195Dot {
 no warnings 'recursion';
 my $self = shift;
 
@@ -42018,11 +42002,11 @@ my $self = shift;
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE dotty__S_196Dot");
+my $C = $self->cursor_xact("RULE dotty__S_195Dot");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\.";
-$self->_MATCHIFYr($S, "dotty__S_196Dot", do {
+$self->_MATCHIFYr($S, "dotty__S_195Dot", do {
 my $C = $C;
 if (($C) = ($C->_EXACT("\."))
 and ($C) = ($C->unspacey)
@@ -42380,19 +42364,19 @@ my $meta = @_ ? shift() : undef;
 $self;
 };
 ## regex prefix_circumfix_meta_operator:reduce {
-sub prefix_circumfix_meta_operator__S_197reduce__PEEK { $_[0]->_AUTOLEXpeek('prefix_circumfix_meta_operator__S_197reduce', $retree) }
-sub prefix_circumfix_meta_operator__S_197reduce {
+sub prefix_circumfix_meta_operator__S_196reduce__PEEK { $_[0]->_AUTOLEXpeek('prefix_circumfix_meta_operator__S_196reduce', $retree) }
+sub prefix_circumfix_meta_operator__S_196reduce {
 no warnings 'recursion';
 my $self = shift;
 
 local $::IN_REDUCE = 1;my $op;
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE prefix_circumfix_meta_operator__S_197reduce");
+my $C = $self->cursor_xact("RULE prefix_circumfix_meta_operator__S_196reduce");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "reduce";
-$self->_MATCHIFY($S, "prefix_circumfix_meta_operator__S_197reduce", LazyMap::lazymap(sub {
+$self->_MATCHIFY($S, "prefix_circumfix_meta_operator__S_196reduce", LazyMap::lazymap(sub {
 my $C=shift;
 LazyMap::lazymap(sub {
 my $C=shift;
@@ -42512,14 +42496,14 @@ do {
 
     my $fate;
     my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'prefix_circumfix_meta_operator__S_197reduce_0') {
-        $C->deb("Fate passed to prefix_circumfix_meta_operator__S_197reduce_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+    if ($fate = $C->{'_fate'} and $fate->[1] eq 'prefix_circumfix_meta_operator__S_196reduce_0') {
+        $C->deb("Fate passed to prefix_circumfix_meta_operator__S_196reduce_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
         ($C->{'_fate'}, $tag, $try) = @$fate;
         @try = ($try);
-        $x = 'ALT prefix_circumfix_meta_operator__S_197reduce_0';    # some outer ltm is controlling us
+        $x = 'ALT prefix_circumfix_meta_operator__S_196reduce_0';    # some outer ltm is controlling us
     }
     else {
-        $x = 'ALTLTM prefix_circumfix_meta_operator__S_197reduce_0'; # we are top level ltm
+        $x = 'ALTLTM prefix_circumfix_meta_operator__S_196reduce_0'; # we are top level ltm
     }
     my $C = $C->cursor_xact($x);
     my $xact = $C->{_xact};
@@ -42527,7 +42511,7 @@ do {
     my @gather = ();
     for (;;) {
         unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'prefix_circumfix_meta_operator__S_197reduce_0', $retree);
+            $relex //= $C->cursor_fate('STD::P6', 'prefix_circumfix_meta_operator__S_196reduce_0', $retree);
             @try = $relex->($C) or last;
         }
         $try = shift(@try) // next;
@@ -42536,7 +42520,7 @@ do {
             ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
         }
 
-        $C->deb("prefix_circumfix_meta_operator__S_197reduce_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+        $C->deb("prefix_circumfix_meta_operator__S_196reduce_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
         push @gather, ((
 sub {
 my $C=shift;
@@ -42626,19 +42610,19 @@ $C->_PATTERN(qr/\G\S/)
 }
 ;
 ## token prefix_postfix_meta_operator:sym< « >    { <sym> | '<<' }
-sub prefix_postfix_meta_operator__S_198Fre__PEEK { $_[0]->_AUTOLEXpeek('prefix_postfix_meta_operator__S_198Fre', $retree) }
-sub prefix_postfix_meta_operator__S_198Fre {
+sub prefix_postfix_meta_operator__S_197Fre__PEEK { $_[0]->_AUTOLEXpeek('prefix_postfix_meta_operator__S_197Fre', $retree) }
+sub prefix_postfix_meta_operator__S_197Fre {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE prefix_postfix_meta_operator__S_198Fre");
+my $C = $self->cursor_xact("RULE prefix_postfix_meta_operator__S_197Fre");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "«";
-$self->_MATCHIFYr($S, "prefix_postfix_meta_operator__S_198Fre", do {
+$self->_MATCHIFYr($S, "prefix_postfix_meta_operator__S_197Fre", do {
 do {
     my ($tag, $try);
     my @try;
@@ -42646,14 +42630,14 @@ do {
 
     my $fate;
     my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'prefix_postfix_meta_operator__S_198Fre_0') {
-        $C->deb("Fate passed to prefix_postfix_meta_operator__S_198Fre_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+    if ($fate = $C->{'_fate'} and $fate->[1] eq 'prefix_postfix_meta_operator__S_197Fre_0') {
+        $C->deb("Fate passed to prefix_postfix_meta_operator__S_197Fre_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
         ($C->{'_fate'}, $tag, $try) = @$fate;
         @try = ($try);
-        $x = 'ALT prefix_postfix_meta_operator__S_198Fre_0';    # some outer ltm is controlling us
+        $x = 'ALT prefix_postfix_meta_operator__S_197Fre_0';    # some outer ltm is controlling us
     }
     else {
-        $x = 'ALTLTM prefix_postfix_meta_operator__S_198Fre_0'; # we are top level ltm
+        $x = 'ALTLTM prefix_postfix_meta_operator__S_197Fre_0'; # we are top level ltm
     }
     my $C = $C->cursor_xact($x);
     my $xact = $C->{_xact};
@@ -42661,7 +42645,7 @@ do {
     my @gather = ();
     for (;;) {
         unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'prefix_postfix_meta_operator__S_198Fre_0', $retree);
+            $relex //= $C->cursor_fate('STD::P6', 'prefix_postfix_meta_operator__S_197Fre_0', $retree);
             @try = $relex->($C) or last;
         }
         $try = shift(@try) // next;
@@ -42670,7 +42654,7 @@ do {
             ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
         }
 
-        $C->deb("prefix_postfix_meta_operator__S_198Fre_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+        $C->deb("prefix_postfix_meta_operator__S_197Fre_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
         push @gather, ((
 sub {
 my $C=shift;
@@ -42691,19 +42675,19 @@ $C->_EXACT("\<\<")
 }
 ;
 ## token postfix_prefix_meta_operator:sym< » >    {
-sub postfix_prefix_meta_operator__S_199Nch__PEEK { $_[0]->_AUTOLEXpeek('postfix_prefix_meta_operator__S_199Nch', $retree) }
-sub postfix_prefix_meta_operator__S_199Nch {
+sub postfix_prefix_meta_operator__S_198Nch__PEEK { $_[0]->_AUTOLEXpeek('postfix_prefix_meta_operator__S_198Nch', $retree) }
+sub postfix_prefix_meta_operator__S_198Nch {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE postfix_prefix_meta_operator__S_199Nch");
+my $C = $self->cursor_xact("RULE postfix_prefix_meta_operator__S_198Nch");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "»";
-$self->_MATCHIFYr($S, "postfix_prefix_meta_operator__S_199Nch", do {
+$self->_MATCHIFYr($S, "postfix_prefix_meta_operator__S_198Nch", do {
 my $C = $C;
 if (($C) = ($C->_BRACKETr(sub {
 my $C=shift;
@@ -42714,14 +42698,14 @@ do {
 
     my $fate;
     my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'postfix_prefix_meta_operator__S_199Nch_0') {
-        $C->deb("Fate passed to postfix_prefix_meta_operator__S_199Nch_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+    if ($fate = $C->{'_fate'} and $fate->[1] eq 'postfix_prefix_meta_operator__S_198Nch_0') {
+        $C->deb("Fate passed to postfix_prefix_meta_operator__S_198Nch_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
         ($C->{'_fate'}, $tag, $try) = @$fate;
         @try = ($try);
-        $x = 'ALT postfix_prefix_meta_operator__S_199Nch_0';    # some outer ltm is controlling us
+        $x = 'ALT postfix_prefix_meta_operator__S_198Nch_0';    # some outer ltm is controlling us
     }
     else {
-        $x = 'ALTLTM postfix_prefix_meta_operator__S_199Nch_0'; # we are top level ltm
+        $x = 'ALTLTM postfix_prefix_meta_operator__S_198Nch_0'; # we are top level ltm
     }
     my $C = $C->cursor_xact($x);
     my $xact = $C->{_xact};
@@ -42729,7 +42713,7 @@ do {
     my @gather = ();
     for (;;) {
         unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'postfix_prefix_meta_operator__S_199Nch_0', $retree);
+            $relex //= $C->cursor_fate('STD::P6', 'postfix_prefix_meta_operator__S_198Nch_0', $retree);
             @try = $relex->($C) or last;
         }
         $try = shift(@try) // next;
@@ -42738,7 +42722,7 @@ do {
             ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
         }
 
-        $C->deb("postfix_prefix_meta_operator__S_199Nch_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+        $C->deb("postfix_prefix_meta_operator__S_198Nch_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
         push @gather, ((
 sub {
 my $C=shift;
@@ -42793,19 +42777,19 @@ $C
 }
 ;
 ## token infix_prefix_meta_operator:sym<!> {
-sub infix_prefix_meta_operator__S_200Bang__PEEK { $_[0]->_AUTOLEXpeek('infix_prefix_meta_operator__S_200Bang', $retree) }
-sub infix_prefix_meta_operator__S_200Bang {
+sub infix_prefix_meta_operator__S_199Bang__PEEK { $_[0]->_AUTOLEXpeek('infix_prefix_meta_operator__S_199Bang', $retree) }
+sub infix_prefix_meta_operator__S_199Bang {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix_prefix_meta_operator__S_200Bang");
+my $C = $self->cursor_xact("RULE infix_prefix_meta_operator__S_199Bang");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\!";
-$self->_MATCHIFYr($S, "infix_prefix_meta_operator__S_200Bang", do {
+$self->_MATCHIFYr($S, "infix_prefix_meta_operator__S_199Bang", do {
 my $C = $C;
 if (($C) = ($C->_EXACT("\!"))
 and ($C) = ($C->_NOTBEFORE(sub {
@@ -42904,19 +42888,19 @@ $C
 }
 ;
 ## token infix_prefix_meta_operator:sym<R> {
-sub infix_prefix_meta_operator__S_201R__PEEK { $_[0]->_AUTOLEXpeek('infix_prefix_meta_operator__S_201R', $retree) }
-sub infix_prefix_meta_operator__S_201R {
+sub infix_prefix_meta_operator__S_200R__PEEK { $_[0]->_AUTOLEXpeek('infix_prefix_meta_operator__S_200R', $retree) }
+sub infix_prefix_meta_operator__S_200R {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix_prefix_meta_operator__S_201R");
+my $C = $self->cursor_xact("RULE infix_prefix_meta_operator__S_200R");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "R";
-$self->_MATCHIFYr($S, "infix_prefix_meta_operator__S_201R", do {
+$self->_MATCHIFYr($S, "infix_prefix_meta_operator__S_200R", do {
 my $C = $C;
 if (($C) = ($C->_EXACT("R"))
 and ($C) = (scalar(do {
@@ -42942,19 +42926,19 @@ $C
 }
 ;
 ## token infix_prefix_meta_operator:sym<S> {
-sub infix_prefix_meta_operator__S_202S__PEEK { $_[0]->_AUTOLEXpeek('infix_prefix_meta_operator__S_202S', $retree) }
-sub infix_prefix_meta_operator__S_202S {
+sub infix_prefix_meta_operator__S_201S__PEEK { $_[0]->_AUTOLEXpeek('infix_prefix_meta_operator__S_201S', $retree) }
+sub infix_prefix_meta_operator__S_201S {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix_prefix_meta_operator__S_202S");
+my $C = $self->cursor_xact("RULE infix_prefix_meta_operator__S_201S");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "S";
-$self->_MATCHIFYr($S, "infix_prefix_meta_operator__S_202S", do {
+$self->_MATCHIFYr($S, "infix_prefix_meta_operator__S_201S", do {
 my $C = $C;
 if (($C) = ($C->_EXACT("S"))
 and ($C) = (scalar(do {
@@ -42980,20 +42964,20 @@ $C
 }
 ;
 ## token infix_prefix_meta_operator:sym<X> {
-sub infix_prefix_meta_operator__S_203X__PEEK { $_[0]->_AUTOLEXpeek('infix_prefix_meta_operator__S_203X', $retree) }
-sub infix_prefix_meta_operator__S_203X {
+sub infix_prefix_meta_operator__S_202X__PEEK { $_[0]->_AUTOLEXpeek('infix_prefix_meta_operator__S_202X', $retree) }
+sub infix_prefix_meta_operator__S_202X {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix_prefix_meta_operator__S_203X");
+my $C = $self->cursor_xact("RULE infix_prefix_meta_operator__S_202X");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{'infixish'} = [];
 $C->{sym} = "X";
-$self->_MATCHIFYr($S, "infix_prefix_meta_operator__S_203X", do {
+$self->_MATCHIFYr($S, "infix_prefix_meta_operator__S_202X", do {
 my $C = $C;
 if (($C) = ($C->_EXACT("X"))
 and ($C) = ($C->before(sub {
@@ -43040,20 +43024,20 @@ $C->O(%list_infix, $self->Opairs)
 }
 ;
 ## token infix_prefix_meta_operator:sym<Z> {
-sub infix_prefix_meta_operator__S_204Z__PEEK { $_[0]->_AUTOLEXpeek('infix_prefix_meta_operator__S_204Z', $retree) }
-sub infix_prefix_meta_operator__S_204Z {
+sub infix_prefix_meta_operator__S_203Z__PEEK { $_[0]->_AUTOLEXpeek('infix_prefix_meta_operator__S_203Z', $retree) }
+sub infix_prefix_meta_operator__S_203Z {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix_prefix_meta_operator__S_204Z");
+my $C = $self->cursor_xact("RULE infix_prefix_meta_operator__S_203Z");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{'infixish'} = [];
 $C->{sym} = "Z";
-$self->_MATCHIFYr($S, "infix_prefix_meta_operator__S_204Z", do {
+$self->_MATCHIFYr($S, "infix_prefix_meta_operator__S_203Z", do {
 my $C = $C;
 if (($C) = ($C->_EXACT("Z"))
 and ($C) = ($C->before(sub {
@@ -43100,19 +43084,19 @@ $C->O(%list_infix, $self->Opairs)
 }
 ;
 ## token infix_circumfix_meta_operator:sym<« »> {
-sub infix_circumfix_meta_operator__S_205Fre_Nch__PEEK { $_[0]->_AUTOLEXpeek('infix_circumfix_meta_operator__S_205Fre_Nch', $retree) }
-sub infix_circumfix_meta_operator__S_205Fre_Nch {
+sub infix_circumfix_meta_operator__S_204Fre_Nch__PEEK { $_[0]->_AUTOLEXpeek('infix_circumfix_meta_operator__S_204Fre_Nch', $retree) }
+sub infix_circumfix_meta_operator__S_204Fre_Nch {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix_circumfix_meta_operator__S_205Fre_Nch");
+my $C = $self->cursor_xact("RULE infix_circumfix_meta_operator__S_204Fre_Nch");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "«\ »";
-$self->_MATCHIFYr($S, "infix_circumfix_meta_operator__S_205Fre_Nch", do {
+$self->_MATCHIFYr($S, "infix_circumfix_meta_operator__S_204Fre_Nch", do {
 my $C = $C;
 if (($C) = ($C->_BRACKETr(sub {
 my $C=shift;
@@ -43123,14 +43107,14 @@ do {
 
     my $fate;
     my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'infix_circumfix_meta_operator__S_205Fre_Nch_0') {
-        $C->deb("Fate passed to infix_circumfix_meta_operator__S_205Fre_Nch_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+    if ($fate = $C->{'_fate'} and $fate->[1] eq 'infix_circumfix_meta_operator__S_204Fre_Nch_0') {
+        $C->deb("Fate passed to infix_circumfix_meta_operator__S_204Fre_Nch_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
         ($C->{'_fate'}, $tag, $try) = @$fate;
         @try = ($try);
-        $x = 'ALT infix_circumfix_meta_operator__S_205Fre_Nch_0';    # some outer ltm is controlling us
+        $x = 'ALT infix_circumfix_meta_operator__S_204Fre_Nch_0';    # some outer ltm is controlling us
     }
     else {
-        $x = 'ALTLTM infix_circumfix_meta_operator__S_205Fre_Nch_0'; # we are top level ltm
+        $x = 'ALTLTM infix_circumfix_meta_operator__S_204Fre_Nch_0'; # we are top level ltm
     }
     my $C = $C->cursor_xact($x);
     my $xact = $C->{_xact};
@@ -43138,7 +43122,7 @@ do {
     my @gather = ();
     for (;;) {
         unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'infix_circumfix_meta_operator__S_205Fre_Nch_0', $retree);
+            $relex //= $C->cursor_fate('STD::P6', 'infix_circumfix_meta_operator__S_204Fre_Nch_0', $retree);
             @try = $relex->($C) or last;
         }
         $try = shift(@try) // next;
@@ -43147,7 +43131,7 @@ do {
             ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
         }
 
-        $C->deb("infix_circumfix_meta_operator__S_205Fre_Nch_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+        $C->deb("infix_circumfix_meta_operator__S_204Fre_Nch_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
         push @gather, ((
 sub {
 my $C=shift;
@@ -43185,14 +43169,14 @@ do {
 
     my $fate;
     my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'infix_circumfix_meta_operator__S_205Fre_Nch_1') {
-        $C->deb("Fate passed to infix_circumfix_meta_operator__S_205Fre_Nch_1: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+    if ($fate = $C->{'_fate'} and $fate->[1] eq 'infix_circumfix_meta_operator__S_204Fre_Nch_1') {
+        $C->deb("Fate passed to infix_circumfix_meta_operator__S_204Fre_Nch_1: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
         ($C->{'_fate'}, $tag, $try) = @$fate;
         @try = ($try);
-        $x = 'ALT infix_circumfix_meta_operator__S_205Fre_Nch_1';    # some outer ltm is controlling us
+        $x = 'ALT infix_circumfix_meta_operator__S_204Fre_Nch_1';    # some outer ltm is controlling us
     }
     else {
-        $x = 'ALTLTM infix_circumfix_meta_operator__S_205Fre_Nch_1'; # we are top level ltm
+        $x = 'ALTLTM infix_circumfix_meta_operator__S_204Fre_Nch_1'; # we are top level ltm
     }
     my $C = $C->cursor_xact($x);
     my $xact = $C->{_xact};
@@ -43200,7 +43184,7 @@ do {
     my @gather = ();
     for (;;) {
         unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'infix_circumfix_meta_operator__S_205Fre_Nch_1', $retree);
+            $relex //= $C->cursor_fate('STD::P6', 'infix_circumfix_meta_operator__S_204Fre_Nch_1', $retree);
             @try = $relex->($C) or last;
         }
         $try = shift(@try) // next;
@@ -43209,7 +43193,7 @@ do {
             ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
         }
 
-        $C->deb("infix_circumfix_meta_operator__S_205Fre_Nch_1 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+        $C->deb("infix_circumfix_meta_operator__S_204Fre_Nch_1 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
         push @gather, ((
 sub {
 my $C=shift;
@@ -43257,19 +43241,19 @@ $C
 }
 ;
 ## token infix_circumfix_meta_operator:sym«<< >>» {
-sub infix_circumfix_meta_operator__S_206LtLt_GtGt__PEEK { $_[0]->_AUTOLEXpeek('infix_circumfix_meta_operator__S_206LtLt_GtGt', $retree) }
-sub infix_circumfix_meta_operator__S_206LtLt_GtGt {
+sub infix_circumfix_meta_operator__S_205LtLt_GtGt__PEEK { $_[0]->_AUTOLEXpeek('infix_circumfix_meta_operator__S_205LtLt_GtGt', $retree) }
+sub infix_circumfix_meta_operator__S_205LtLt_GtGt {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix_circumfix_meta_operator__S_206LtLt_GtGt");
+my $C = $self->cursor_xact("RULE infix_circumfix_meta_operator__S_205LtLt_GtGt");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\<\<\ \>\>";
-$self->_MATCHIFYr($S, "infix_circumfix_meta_operator__S_206LtLt_GtGt", do {
+$self->_MATCHIFYr($S, "infix_circumfix_meta_operator__S_205LtLt_GtGt", do {
 my $C = $C;
 if (($C) = ($C->_BRACKETr(sub {
 my $C=shift;
@@ -43280,14 +43264,14 @@ do {
 
     my $fate;
     my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'infix_circumfix_meta_operator__S_206LtLt_GtGt_0') {
-        $C->deb("Fate passed to infix_circumfix_meta_operator__S_206LtLt_GtGt_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+    if ($fate = $C->{'_fate'} and $fate->[1] eq 'infix_circumfix_meta_operator__S_205LtLt_GtGt_0') {
+        $C->deb("Fate passed to infix_circumfix_meta_operator__S_205LtLt_GtGt_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
         ($C->{'_fate'}, $tag, $try) = @$fate;
         @try = ($try);
-        $x = 'ALT infix_circumfix_meta_operator__S_206LtLt_GtGt_0';    # some outer ltm is controlling us
+        $x = 'ALT infix_circumfix_meta_operator__S_205LtLt_GtGt_0';    # some outer ltm is controlling us
     }
     else {
-        $x = 'ALTLTM infix_circumfix_meta_operator__S_206LtLt_GtGt_0'; # we are top level ltm
+        $x = 'ALTLTM infix_circumfix_meta_operator__S_205LtLt_GtGt_0'; # we are top level ltm
     }
     my $C = $C->cursor_xact($x);
     my $xact = $C->{_xact};
@@ -43295,7 +43279,7 @@ do {
     my @gather = ();
     for (;;) {
         unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'infix_circumfix_meta_operator__S_206LtLt_GtGt_0', $retree);
+            $relex //= $C->cursor_fate('STD::P6', 'infix_circumfix_meta_operator__S_205LtLt_GtGt_0', $retree);
             @try = $relex->($C) or last;
         }
         $try = shift(@try) // next;
@@ -43304,7 +43288,7 @@ do {
             ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
         }
 
-        $C->deb("infix_circumfix_meta_operator__S_206LtLt_GtGt_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+        $C->deb("infix_circumfix_meta_operator__S_205LtLt_GtGt_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
         push @gather, ((
 sub {
 my $C=shift;
@@ -43342,14 +43326,14 @@ do {
 
     my $fate;
     my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'infix_circumfix_meta_operator__S_206LtLt_GtGt_1') {
-        $C->deb("Fate passed to infix_circumfix_meta_operator__S_206LtLt_GtGt_1: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+    if ($fate = $C->{'_fate'} and $fate->[1] eq 'infix_circumfix_meta_operator__S_205LtLt_GtGt_1') {
+        $C->deb("Fate passed to infix_circumfix_meta_operator__S_205LtLt_GtGt_1: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
         ($C->{'_fate'}, $tag, $try) = @$fate;
         @try = ($try);
-        $x = 'ALT infix_circumfix_meta_operator__S_206LtLt_GtGt_1';    # some outer ltm is controlling us
+        $x = 'ALT infix_circumfix_meta_operator__S_205LtLt_GtGt_1';    # some outer ltm is controlling us
     }
     else {
-        $x = 'ALTLTM infix_circumfix_meta_operator__S_206LtLt_GtGt_1'; # we are top level ltm
+        $x = 'ALTLTM infix_circumfix_meta_operator__S_205LtLt_GtGt_1'; # we are top level ltm
     }
     my $C = $C->cursor_xact($x);
     my $xact = $C->{_xact};
@@ -43357,7 +43341,7 @@ do {
     my @gather = ();
     for (;;) {
         unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'infix_circumfix_meta_operator__S_206LtLt_GtGt_1', $retree);
+            $relex //= $C->cursor_fate('STD::P6', 'infix_circumfix_meta_operator__S_205LtLt_GtGt_1', $retree);
             @try = $relex->($C) or last;
         }
         $try = shift(@try) // next;
@@ -43366,7 +43350,7 @@ do {
             ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
         }
 
-        $C->deb("infix_circumfix_meta_operator__S_206LtLt_GtGt_1 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+        $C->deb("infix_circumfix_meta_operator__S_205LtLt_GtGt_1 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
         push @gather, ((
 sub {
 my $C=shift;
@@ -43414,8 +43398,8 @@ $C
 }
 ;
 ## token infix_postfix_meta_operator:sym<=> ($op) {
-sub infix_postfix_meta_operator__S_207Equal__PEEK { $_[0]->_AUTOLEXpeek('infix_postfix_meta_operator__S_207Equal', $retree) }
-sub infix_postfix_meta_operator__S_207Equal {
+sub infix_postfix_meta_operator__S_206Equal__PEEK { $_[0]->_AUTOLEXpeek('infix_postfix_meta_operator__S_206Equal', $retree) }
+sub infix_postfix_meta_operator__S_206Equal {
 no warnings 'recursion';
 my $self = shift;
 
@@ -43424,11 +43408,11 @@ my $op = @_ ? shift() : undef;
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix_postfix_meta_operator__S_207Equal");
+my $C = $self->cursor_xact("RULE infix_postfix_meta_operator__S_206Equal");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\=";
-$self->_MATCHIFYr($S, "infix_postfix_meta_operator__S_207Equal", do {
+$self->_MATCHIFYr($S, "infix_postfix_meta_operator__S_206Equal", do {
 my $C = $C;
 if (($C) = ($C->_EXACT("\="))
 and ($C) = ($C->can_meta($op, "make assignment out of"))
@@ -43470,19 +43454,19 @@ $C->O(%item_assignment, $op->Opairs, dba => 'item assignment', iffy => 0)
 }
 ;
 ## token postcircumfix:sym<( )>
-sub postcircumfix__S_208Paren_Thesis__PEEK { $_[0]->_AUTOLEXpeek('postcircumfix__S_208Paren_Thesis', $retree) }
-sub postcircumfix__S_208Paren_Thesis {
+sub postcircumfix__S_207Paren_Thesis__PEEK { $_[0]->_AUTOLEXpeek('postcircumfix__S_207Paren_Thesis', $retree) }
+sub postcircumfix__S_207Paren_Thesis {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE postcircumfix__S_208Paren_Thesis");
+my $C = $self->cursor_xact("RULE postcircumfix__S_207Paren_Thesis");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\(\ \)";
-$self->_MATCHIFYr($S, "postcircumfix__S_208Paren_Thesis", do {
+$self->_MATCHIFYr($S, "postcircumfix__S_207Paren_Thesis", do {
 if (my ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 local $::GOAL = "\)";
@@ -43525,19 +43509,19 @@ $C->O(%methodcall)
 }
 ;
 ## token postcircumfix:sym<[ ]>
-sub postcircumfix__S_209Bra_Ket__PEEK { $_[0]->_AUTOLEXpeek('postcircumfix__S_209Bra_Ket', $retree) }
-sub postcircumfix__S_209Bra_Ket {
+sub postcircumfix__S_208Bra_Ket__PEEK { $_[0]->_AUTOLEXpeek('postcircumfix__S_208Bra_Ket', $retree) }
+sub postcircumfix__S_208Bra_Ket {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE postcircumfix__S_209Bra_Ket");
+my $C = $self->cursor_xact("RULE postcircumfix__S_208Bra_Ket");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\[\ \]";
-$self->_MATCHIFYr($S, "postcircumfix__S_209Bra_Ket", do {
+$self->_MATCHIFYr($S, "postcircumfix__S_208Bra_Ket", do {
 my $C = $C;
 if (($C) = ($C->_BRACKETr(sub {
 my $C=shift;
@@ -43584,19 +43568,19 @@ $C->O(%methodcall)
 }
 ;
 ## token postcircumfix:sym<{ }>
-sub postcircumfix__S_210Cur_Ly__PEEK { $_[0]->_AUTOLEXpeek('postcircumfix__S_210Cur_Ly', $retree) }
-sub postcircumfix__S_210Cur_Ly {
+sub postcircumfix__S_209Cur_Ly__PEEK { $_[0]->_AUTOLEXpeek('postcircumfix__S_209Cur_Ly', $retree) }
+sub postcircumfix__S_209Cur_Ly {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE postcircumfix__S_210Cur_Ly");
+my $C = $self->cursor_xact("RULE postcircumfix__S_209Cur_Ly");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\{\ \}";
-$self->_MATCHIFYr($S, "postcircumfix__S_210Cur_Ly", do {
+$self->_MATCHIFYr($S, "postcircumfix__S_209Cur_Ly", do {
 my $C = $C;
 if (($C) = ($C->_BRACKETr(sub {
 my $C=shift;
@@ -43642,19 +43626,19 @@ $C
 }
 ;
 ## token postcircumfix:sym«< >» {
-sub postcircumfix__S_211Lt_Gt__PEEK { $_[0]->_AUTOLEXpeek('postcircumfix__S_211Lt_Gt', $retree) }
-sub postcircumfix__S_211Lt_Gt {
+sub postcircumfix__S_210Lt_Gt__PEEK { $_[0]->_AUTOLEXpeek('postcircumfix__S_210Lt_Gt', $retree) }
+sub postcircumfix__S_210Lt_Gt {
 no warnings 'recursion';
 my $self = shift;
 
 my $pos;
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE postcircumfix__S_211Lt_Gt");
+my $C = $self->cursor_xact("RULE postcircumfix__S_210Lt_Gt");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\<\ \>";
-$self->_MATCHIFYr($S, "postcircumfix__S_211Lt_Gt", do {
+$self->_MATCHIFYr($S, "postcircumfix__S_210Lt_Gt", do {
 my $C = $C;
 if (($C) = ($C->_EXACT("\<"))
 and ($C) = (scalar(do {
@@ -43694,14 +43678,14 @@ do {
 
     my $fate;
     my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'postcircumfix__S_211Lt_Gt_0') {
-        $C->deb("Fate passed to postcircumfix__S_211Lt_Gt_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+    if ($fate = $C->{'_fate'} and $fate->[1] eq 'postcircumfix__S_210Lt_Gt_0') {
+        $C->deb("Fate passed to postcircumfix__S_210Lt_Gt_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
         ($C->{'_fate'}, $tag, $try) = @$fate;
         @try = ($try);
-        $x = 'ALT postcircumfix__S_211Lt_Gt_0';    # some outer ltm is controlling us
+        $x = 'ALT postcircumfix__S_210Lt_Gt_0';    # some outer ltm is controlling us
     }
     else {
-        $x = 'ALTLTM postcircumfix__S_211Lt_Gt_0'; # we are top level ltm
+        $x = 'ALTLTM postcircumfix__S_210Lt_Gt_0'; # we are top level ltm
     }
     my $C = $C->cursor_xact($x);
     my $xact = $C->{_xact};
@@ -43709,7 +43693,7 @@ do {
     my @gather = ();
     for (;;) {
         unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'postcircumfix__S_211Lt_Gt_0', $retree);
+            $relex //= $C->cursor_fate('STD::P6', 'postcircumfix__S_210Lt_Gt_0', $retree);
             @try = $relex->($C) or last;
         }
         $try = shift(@try) // next;
@@ -43718,7 +43702,7 @@ do {
             ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
         }
 
-        $C->deb("postcircumfix__S_211Lt_Gt_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+        $C->deb("postcircumfix__S_210Lt_Gt_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
         push @gather, ((
 sub {
 my $C=shift;
@@ -43771,19 +43755,19 @@ $C->O(%methodcall)
 }
 ;
 ## token postcircumfix:sym«<< >>»
-sub postcircumfix__S_212LtLt_GtGt__PEEK { $_[0]->_AUTOLEXpeek('postcircumfix__S_212LtLt_GtGt', $retree) }
-sub postcircumfix__S_212LtLt_GtGt {
+sub postcircumfix__S_211LtLt_GtGt__PEEK { $_[0]->_AUTOLEXpeek('postcircumfix__S_211LtLt_GtGt', $retree) }
+sub postcircumfix__S_211LtLt_GtGt {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE postcircumfix__S_212LtLt_GtGt");
+my $C = $self->cursor_xact("RULE postcircumfix__S_211LtLt_GtGt");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\<\<\ \>\>";
-$self->_MATCHIFYr($S, "postcircumfix__S_212LtLt_GtGt", do {
+$self->_MATCHIFYr($S, "postcircumfix__S_211LtLt_GtGt", do {
 my $C = $C;
 if (($C) = ($C->_EXACT("\<\<"))
 and ($C) = ($C->_SUBSUMEr(['nibble'], sub {
@@ -43818,19 +43802,19 @@ $C->O(%methodcall)
 }
 ;
 ## token postcircumfix:sym<« »>
-sub postcircumfix__S_213Fre_Nch__PEEK { $_[0]->_AUTOLEXpeek('postcircumfix__S_213Fre_Nch', $retree) }
-sub postcircumfix__S_213Fre_Nch {
+sub postcircumfix__S_212Fre_Nch__PEEK { $_[0]->_AUTOLEXpeek('postcircumfix__S_212Fre_Nch', $retree) }
+sub postcircumfix__S_212Fre_Nch {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE postcircumfix__S_213Fre_Nch");
+my $C = $self->cursor_xact("RULE postcircumfix__S_212Fre_Nch");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "«\ »";
-$self->_MATCHIFYr($S, "postcircumfix__S_213Fre_Nch", do {
+$self->_MATCHIFYr($S, "postcircumfix__S_212Fre_Nch", do {
 my $C = $C;
 if (($C) = ($C->_EXACT("«"))
 and ($C) = ($C->_SUBSUMEr(['nibble'], sub {
@@ -44487,19 +44471,19 @@ $C
 }
 ;
 ## token term:lambda {
-sub term__S_214lambda__PEEK { $_[0]->_AUTOLEXpeek('term__S_214lambda', $retree) }
-sub term__S_214lambda {
+sub term__S_213lambda__PEEK { $_[0]->_AUTOLEXpeek('term__S_213lambda', $retree) }
+sub term__S_213lambda {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE term__S_214lambda");
+my $C = $self->cursor_xact("RULE term__S_213lambda");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "lambda";
-$self->_MATCHIFYr($S, "term__S_214lambda", do {
+$self->_MATCHIFYr($S, "term__S_213lambda", do {
 my $C = $C;
 if (($C) = ($C->before(sub {
 my $C=shift;
@@ -44527,19 +44511,19 @@ $C->O(%term)
 }
 ;
 ## token circumfix:sym<{ }> {
-sub circumfix__S_215Cur_Ly__PEEK { $_[0]->_AUTOLEXpeek('circumfix__S_215Cur_Ly', $retree) }
-sub circumfix__S_215Cur_Ly {
+sub circumfix__S_214Cur_Ly__PEEK { $_[0]->_AUTOLEXpeek('circumfix__S_214Cur_Ly', $retree) }
+sub circumfix__S_214Cur_Ly {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE circumfix__S_215Cur_Ly");
+my $C = $self->cursor_xact("RULE circumfix__S_214Cur_Ly");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\{\ \}";
-$self->_MATCHIFYr($S, "circumfix__S_215Cur_Ly", do {
+$self->_MATCHIFYr($S, "circumfix__S_214Cur_Ly", do {
 my $C = $C;
 if (($C) = ($C->before(sub {
 my $C=shift;
@@ -44567,19 +44551,19 @@ $C->O(%term)
 }
 ;
 ## token postfix:sym<i>
-sub postfix__S_216i__PEEK { $_[0]->_AUTOLEXpeek('postfix__S_216i', $retree) }
-sub postfix__S_216i {
+sub postfix__S_215i__PEEK { $_[0]->_AUTOLEXpeek('postfix__S_215i', $retree) }
+sub postfix__S_215i {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE postfix__S_216i");
+my $C = $self->cursor_xact("RULE postfix__S_215i");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "i";
-$self->_MATCHIFYr($S, "postfix__S_216i", do {
+$self->_MATCHIFYr($S, "postfix__S_215i", do {
 if (my ($C) = ($C->_PATTERN(qr/\Gi\b/))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -44591,19 +44575,19 @@ $C->O(%methodcall)
 }
 ;
 ## token infix:sym<.> ()
-sub infix__S_217Dot__PEEK { $_[0]->_AUTOLEXpeek('infix__S_217Dot', $retree) }
-sub infix__S_217Dot {
+sub infix__S_216Dot__PEEK { $_[0]->_AUTOLEXpeek('infix__S_216Dot', $retree) }
+sub infix__S_216Dot {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_217Dot");
+my $C = $self->cursor_xact("RULE infix__S_216Dot");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\.";
-$self->_MATCHIFYr($S, "infix__S_217Dot", do {
+$self->_MATCHIFYr($S, "infix__S_216Dot", do {
 my $C = $C;
 if (($C) = ($C->_PATTERN(qr/\G\.[\]\)\},:\s\$"']/))
 and ($C) = ($C->obs('. to concatenate strings', '~'))) {
@@ -44614,19 +44598,19 @@ $C
 }
 ;
 ## token postfix:sym['->'] () {
-sub postfix__S_218MinusGt__PEEK { $_[0]->_AUTOLEXpeek('postfix__S_218MinusGt', $retree) }
-sub postfix__S_218MinusGt {
+sub postfix__S_217MinusGt__PEEK { $_[0]->_AUTOLEXpeek('postfix__S_217MinusGt', $retree) }
+sub postfix__S_217MinusGt {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE postfix__S_218MinusGt");
+my $C = $self->cursor_xact("RULE postfix__S_217MinusGt");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\-\>";
-$self->_MATCHIFYr($S, "postfix__S_218MinusGt", do {
+$self->_MATCHIFYr($S, "postfix__S_217MinusGt", do {
 my $C = $C;
 if (($C) = ($C->_EXACT("\-\>"))
 and ($C) = ($C->_BRACKETr(sub {
@@ -44638,14 +44622,14 @@ do {
 
     my $fate;
     my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'postfix__S_218MinusGt_0') {
-        $C->deb("Fate passed to postfix__S_218MinusGt_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+    if ($fate = $C->{'_fate'} and $fate->[1] eq 'postfix__S_217MinusGt_0') {
+        $C->deb("Fate passed to postfix__S_217MinusGt_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
         ($C->{'_fate'}, $tag, $try) = @$fate;
         @try = ($try);
-        $x = 'ALT postfix__S_218MinusGt_0';    # some outer ltm is controlling us
+        $x = 'ALT postfix__S_217MinusGt_0';    # some outer ltm is controlling us
     }
     else {
-        $x = 'ALTLTM postfix__S_218MinusGt_0'; # we are top level ltm
+        $x = 'ALTLTM postfix__S_217MinusGt_0'; # we are top level ltm
     }
     my $C = $C->cursor_xact($x);
     my $xact = $C->{_xact};
@@ -44653,7 +44637,7 @@ do {
     my @gather = ();
     for (;;) {
         unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'postfix__S_218MinusGt_0', $retree);
+            $relex //= $C->cursor_fate('STD::P6', 'postfix__S_217MinusGt_0', $retree);
             @try = $relex->($C) or last;
         }
         $try = shift(@try) // next;
@@ -44662,7 +44646,7 @@ do {
             ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
         }
 
-        $C->deb("postfix__S_218MinusGt_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+        $C->deb("postfix__S_217MinusGt_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
         push @gather, ((
 sub {
 my $C=shift;
@@ -44695,19 +44679,19 @@ $C
 }
 ;
 ## token postfix:sym<++>
-sub postfix__S_219PlusPlus__PEEK { $_[0]->_AUTOLEXpeek('postfix__S_219PlusPlus', $retree) }
-sub postfix__S_219PlusPlus {
+sub postfix__S_218PlusPlus__PEEK { $_[0]->_AUTOLEXpeek('postfix__S_218PlusPlus', $retree) }
+sub postfix__S_218PlusPlus {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE postfix__S_219PlusPlus");
+my $C = $self->cursor_xact("RULE postfix__S_218PlusPlus");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\+\+";
-$self->_MATCHIFYr($S, "postfix__S_219PlusPlus", do {
+$self->_MATCHIFYr($S, "postfix__S_218PlusPlus", do {
 if (my ($C) = ($C->_EXACT("\+\+"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -44719,19 +44703,19 @@ $C->O(%autoincrement)
 }
 ;
 ## token postfix:sym«--» ()
-sub postfix__S_220MinusMinus__PEEK { $_[0]->_AUTOLEXpeek('postfix__S_220MinusMinus', $retree) }
-sub postfix__S_220MinusMinus {
+sub postfix__S_219MinusMinus__PEEK { $_[0]->_AUTOLEXpeek('postfix__S_219MinusMinus', $retree) }
+sub postfix__S_219MinusMinus {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE postfix__S_220MinusMinus");
+my $C = $self->cursor_xact("RULE postfix__S_219MinusMinus");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\-\-";
-$self->_MATCHIFYr($S, "postfix__S_220MinusMinus", do {
+$self->_MATCHIFYr($S, "postfix__S_219MinusMinus", do {
 if (my ($C) = ($C->_EXACT("\-\-"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -44743,19 +44727,19 @@ $C->O(%autoincrement)
 }
 ;
 ## token prefix:sym<++>
-sub prefix__S_221PlusPlus__PEEK { $_[0]->_AUTOLEXpeek('prefix__S_221PlusPlus', $retree) }
-sub prefix__S_221PlusPlus {
+sub prefix__S_220PlusPlus__PEEK { $_[0]->_AUTOLEXpeek('prefix__S_220PlusPlus', $retree) }
+sub prefix__S_220PlusPlus {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE prefix__S_221PlusPlus");
+my $C = $self->cursor_xact("RULE prefix__S_220PlusPlus");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\+\+";
-$self->_MATCHIFYr($S, "prefix__S_221PlusPlus", do {
+$self->_MATCHIFYr($S, "prefix__S_220PlusPlus", do {
 if (my ($C) = ($C->_EXACT("\+\+"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -44767,19 +44751,19 @@ $C->O(%autoincrement)
 }
 ;
 ## token prefix:sym«--» ()
-sub prefix__S_222MinusMinus__PEEK { $_[0]->_AUTOLEXpeek('prefix__S_222MinusMinus', $retree) }
-sub prefix__S_222MinusMinus {
+sub prefix__S_221MinusMinus__PEEK { $_[0]->_AUTOLEXpeek('prefix__S_221MinusMinus', $retree) }
+sub prefix__S_221MinusMinus {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE prefix__S_222MinusMinus");
+my $C = $self->cursor_xact("RULE prefix__S_221MinusMinus");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\-\-";
-$self->_MATCHIFYr($S, "prefix__S_222MinusMinus", do {
+$self->_MATCHIFYr($S, "prefix__S_221MinusMinus", do {
 if (my ($C) = ($C->_EXACT("\-\-"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -44791,19 +44775,19 @@ $C->O(%autoincrement)
 }
 ;
 ## token infix:sym<**>
-sub infix__S_223StarStar__PEEK { $_[0]->_AUTOLEXpeek('infix__S_223StarStar', $retree) }
-sub infix__S_223StarStar {
+sub infix__S_222StarStar__PEEK { $_[0]->_AUTOLEXpeek('infix__S_222StarStar', $retree) }
+sub infix__S_222StarStar {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_223StarStar");
+my $C = $self->cursor_xact("RULE infix__S_222StarStar");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\*\*";
-$self->_MATCHIFYr($S, "infix__S_223StarStar", do {
+$self->_MATCHIFYr($S, "infix__S_222StarStar", do {
 if (my ($C) = ($C->_EXACT("\*\*"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -44815,19 +44799,19 @@ $C->O(%exponentiation)
 }
 ;
 ## token prefix:sym<!>
-sub prefix__S_224Bang__PEEK { $_[0]->_AUTOLEXpeek('prefix__S_224Bang', $retree) }
-sub prefix__S_224Bang {
+sub prefix__S_223Bang__PEEK { $_[0]->_AUTOLEXpeek('prefix__S_223Bang', $retree) }
+sub prefix__S_223Bang {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE prefix__S_224Bang");
+my $C = $self->cursor_xact("RULE prefix__S_223Bang");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\!";
-$self->_MATCHIFYr($S, "prefix__S_224Bang", do {
+$self->_MATCHIFYr($S, "prefix__S_223Bang", do {
 if (my ($C) = ($C->_EXACT("\!"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -44839,19 +44823,19 @@ $C->O(%symbolic_unary)
 }
 ;
 ## token prefix:sym<+>
-sub prefix__S_225Plus__PEEK { $_[0]->_AUTOLEXpeek('prefix__S_225Plus', $retree) }
-sub prefix__S_225Plus {
+sub prefix__S_224Plus__PEEK { $_[0]->_AUTOLEXpeek('prefix__S_224Plus', $retree) }
+sub prefix__S_224Plus {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE prefix__S_225Plus");
+my $C = $self->cursor_xact("RULE prefix__S_224Plus");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\+";
-$self->_MATCHIFYr($S, "prefix__S_225Plus", do {
+$self->_MATCHIFYr($S, "prefix__S_224Plus", do {
 if (my ($C) = ($C->_EXACT("\+"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -44863,19 +44847,19 @@ $C->O(%symbolic_unary)
 }
 ;
 ## token prefix:sym<->
-sub prefix__S_226Minus__PEEK { $_[0]->_AUTOLEXpeek('prefix__S_226Minus', $retree) }
-sub prefix__S_226Minus {
+sub prefix__S_225Minus__PEEK { $_[0]->_AUTOLEXpeek('prefix__S_225Minus', $retree) }
+sub prefix__S_225Minus {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE prefix__S_226Minus");
+my $C = $self->cursor_xact("RULE prefix__S_225Minus");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\-";
-$self->_MATCHIFYr($S, "prefix__S_226Minus", do {
+$self->_MATCHIFYr($S, "prefix__S_225Minus", do {
 if (my ($C) = ($C->_EXACT("\-"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -44887,19 +44871,19 @@ $C->O(%symbolic_unary)
 }
 ;
 ## token prefix:sym<~~>
-sub prefix__S_227TildeTilde__PEEK { $_[0]->_AUTOLEXpeek('prefix__S_227TildeTilde', $retree) }
-sub prefix__S_227TildeTilde {
+sub prefix__S_226TildeTilde__PEEK { $_[0]->_AUTOLEXpeek('prefix__S_226TildeTilde', $retree) }
+sub prefix__S_226TildeTilde {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE prefix__S_227TildeTilde");
+my $C = $self->cursor_xact("RULE prefix__S_226TildeTilde");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\~\~";
-$self->_MATCHIFYr($S, "prefix__S_227TildeTilde", do {
+$self->_MATCHIFYr($S, "prefix__S_226TildeTilde", do {
 my $C = $C;
 if (($C) = ($C->_EXACT("\~\~"))
 and ($C) = ($C->dupprefix('~~'))) {
@@ -44913,19 +44897,19 @@ $C->O(%symbolic_unary)
 }
 ;
 ## token prefix:sym<~>
-sub prefix__S_228Tilde__PEEK { $_[0]->_AUTOLEXpeek('prefix__S_228Tilde', $retree) }
-sub prefix__S_228Tilde {
+sub prefix__S_227Tilde__PEEK { $_[0]->_AUTOLEXpeek('prefix__S_227Tilde', $retree) }
+sub prefix__S_227Tilde {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE prefix__S_228Tilde");
+my $C = $self->cursor_xact("RULE prefix__S_227Tilde");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\~";
-$self->_MATCHIFYr($S, "prefix__S_228Tilde", do {
+$self->_MATCHIFYr($S, "prefix__S_227Tilde", do {
 if (my ($C) = ($C->_EXACT("\~"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -44937,19 +44921,19 @@ $C->O(%symbolic_unary)
 }
 ;
 ## token prefix:sym<??>
-sub prefix__S_229QuestionQuestion__PEEK { $_[0]->_AUTOLEXpeek('prefix__S_229QuestionQuestion', $retree) }
-sub prefix__S_229QuestionQuestion {
+sub prefix__S_228QuestionQuestion__PEEK { $_[0]->_AUTOLEXpeek('prefix__S_228QuestionQuestion', $retree) }
+sub prefix__S_228QuestionQuestion {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE prefix__S_229QuestionQuestion");
+my $C = $self->cursor_xact("RULE prefix__S_228QuestionQuestion");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\?\?";
-$self->_MATCHIFYr($S, "prefix__S_229QuestionQuestion", do {
+$self->_MATCHIFYr($S, "prefix__S_228QuestionQuestion", do {
 my $C = $C;
 if (($C) = ($C->_EXACT("\?\?"))
 and ($C) = ($C->dupprefix('??'))) {
@@ -44963,19 +44947,19 @@ $C->O(%symbolic_unary)
 }
 ;
 ## token prefix:sym<?>
-sub prefix__S_230Question__PEEK { $_[0]->_AUTOLEXpeek('prefix__S_230Question', $retree) }
-sub prefix__S_230Question {
+sub prefix__S_229Question__PEEK { $_[0]->_AUTOLEXpeek('prefix__S_229Question', $retree) }
+sub prefix__S_229Question {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE prefix__S_230Question");
+my $C = $self->cursor_xact("RULE prefix__S_229Question");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\?";
-$self->_MATCHIFYr($S, "prefix__S_230Question", do {
+$self->_MATCHIFYr($S, "prefix__S_229Question", do {
 if (my ($C) = ($C->_EXACT("\?"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -44987,19 +44971,19 @@ $C->O(%symbolic_unary)
 }
 ;
 ## token prefix:sym<~^>
-sub prefix__S_231TildeCaret__PEEK { $_[0]->_AUTOLEXpeek('prefix__S_231TildeCaret', $retree) }
-sub prefix__S_231TildeCaret {
+sub prefix__S_230TildeCaret__PEEK { $_[0]->_AUTOLEXpeek('prefix__S_230TildeCaret', $retree) }
+sub prefix__S_230TildeCaret {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE prefix__S_231TildeCaret");
+my $C = $self->cursor_xact("RULE prefix__S_230TildeCaret");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\~\^";
-$self->_MATCHIFYr($S, "prefix__S_231TildeCaret", do {
+$self->_MATCHIFYr($S, "prefix__S_230TildeCaret", do {
 if (my ($C) = ($C->_EXACT("\~\^"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -45011,19 +44995,19 @@ $C->O(%symbolic_unary)
 }
 ;
 ## token prefix:sym<+^>
-sub prefix__S_232PlusCaret__PEEK { $_[0]->_AUTOLEXpeek('prefix__S_232PlusCaret', $retree) }
-sub prefix__S_232PlusCaret {
+sub prefix__S_231PlusCaret__PEEK { $_[0]->_AUTOLEXpeek('prefix__S_231PlusCaret', $retree) }
+sub prefix__S_231PlusCaret {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE prefix__S_232PlusCaret");
+my $C = $self->cursor_xact("RULE prefix__S_231PlusCaret");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\+\^";
-$self->_MATCHIFYr($S, "prefix__S_232PlusCaret", do {
+$self->_MATCHIFYr($S, "prefix__S_231PlusCaret", do {
 if (my ($C) = ($C->_EXACT("\+\^"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -45035,19 +45019,19 @@ $C->O(%symbolic_unary)
 }
 ;
 ## token prefix:sym<?^>
-sub prefix__S_233QuestionCaret__PEEK { $_[0]->_AUTOLEXpeek('prefix__S_233QuestionCaret', $retree) }
-sub prefix__S_233QuestionCaret {
+sub prefix__S_232QuestionCaret__PEEK { $_[0]->_AUTOLEXpeek('prefix__S_232QuestionCaret', $retree) }
+sub prefix__S_232QuestionCaret {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE prefix__S_233QuestionCaret");
+my $C = $self->cursor_xact("RULE prefix__S_232QuestionCaret");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\?\^";
-$self->_MATCHIFYr($S, "prefix__S_233QuestionCaret", do {
+$self->_MATCHIFYr($S, "prefix__S_232QuestionCaret", do {
 if (my ($C) = ($C->_EXACT("\?\^"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -45059,19 +45043,19 @@ $C->O(%symbolic_unary)
 }
 ;
 ## token prefix:sym<^^>
-sub prefix__S_234CaretCaret__PEEK { $_[0]->_AUTOLEXpeek('prefix__S_234CaretCaret', $retree) }
-sub prefix__S_234CaretCaret {
+sub prefix__S_233CaretCaret__PEEK { $_[0]->_AUTOLEXpeek('prefix__S_233CaretCaret', $retree) }
+sub prefix__S_233CaretCaret {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE prefix__S_234CaretCaret");
+my $C = $self->cursor_xact("RULE prefix__S_233CaretCaret");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\^\^";
-$self->_MATCHIFYr($S, "prefix__S_234CaretCaret", do {
+$self->_MATCHIFYr($S, "prefix__S_233CaretCaret", do {
 my $C = $C;
 if (($C) = ($C->_EXACT("\^\^"))
 and ($C) = ($C->dupprefix('^^'))) {
@@ -45085,19 +45069,19 @@ $C->O(%symbolic_unary)
 }
 ;
 ## token prefix:sym<^>
-sub prefix__S_235Caret__PEEK { $_[0]->_AUTOLEXpeek('prefix__S_235Caret', $retree) }
-sub prefix__S_235Caret {
+sub prefix__S_234Caret__PEEK { $_[0]->_AUTOLEXpeek('prefix__S_234Caret', $retree) }
+sub prefix__S_234Caret {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE prefix__S_235Caret");
+my $C = $self->cursor_xact("RULE prefix__S_234Caret");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\^";
-$self->_MATCHIFYr($S, "prefix__S_235Caret", do {
+$self->_MATCHIFYr($S, "prefix__S_234Caret", do {
 if (my ($C) = ($C->_EXACT("\^"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -45109,19 +45093,19 @@ $C->O(%symbolic_unary)
 }
 ;
 ## token prefix:sym<||>
-sub prefix__S_236VertVert__PEEK { $_[0]->_AUTOLEXpeek('prefix__S_236VertVert', $retree) }
-sub prefix__S_236VertVert {
+sub prefix__S_235VertVert__PEEK { $_[0]->_AUTOLEXpeek('prefix__S_235VertVert', $retree) }
+sub prefix__S_235VertVert {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE prefix__S_236VertVert");
+my $C = $self->cursor_xact("RULE prefix__S_235VertVert");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\|\|";
-$self->_MATCHIFYr($S, "prefix__S_236VertVert", do {
+$self->_MATCHIFYr($S, "prefix__S_235VertVert", do {
 if (my ($C) = ($C->_EXACT("\|\|"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -45133,19 +45117,19 @@ $C->O(%symbolic_unary)
 }
 ;
 ## token prefix:sym<|>
-sub prefix__S_237Vert__PEEK { $_[0]->_AUTOLEXpeek('prefix__S_237Vert', $retree) }
-sub prefix__S_237Vert {
+sub prefix__S_236Vert__PEEK { $_[0]->_AUTOLEXpeek('prefix__S_236Vert', $retree) }
+sub prefix__S_236Vert {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE prefix__S_237Vert");
+my $C = $self->cursor_xact("RULE prefix__S_236Vert");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\|";
-$self->_MATCHIFYr($S, "prefix__S_237Vert", do {
+$self->_MATCHIFYr($S, "prefix__S_236Vert", do {
 if (my ($C) = ($C->_EXACT("\|"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -45157,19 +45141,19 @@ $C->O(%symbolic_unary)
 }
 ;
 ## token infix:sym<*>
-sub infix__S_238Star__PEEK { $_[0]->_AUTOLEXpeek('infix__S_238Star', $retree) }
-sub infix__S_238Star {
+sub infix__S_237Star__PEEK { $_[0]->_AUTOLEXpeek('infix__S_237Star', $retree) }
+sub infix__S_237Star {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_238Star");
+my $C = $self->cursor_xact("RULE infix__S_237Star");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\*";
-$self->_MATCHIFYr($S, "infix__S_238Star", do {
+$self->_MATCHIFYr($S, "infix__S_237Star", do {
 if (my ($C) = ($C->_EXACT("\*"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -45181,19 +45165,19 @@ $C->O(%multiplicative)
 }
 ;
 ## token infix:sym</>
-sub infix__S_239Slash__PEEK { $_[0]->_AUTOLEXpeek('infix__S_239Slash', $retree) }
-sub infix__S_239Slash {
+sub infix__S_238Slash__PEEK { $_[0]->_AUTOLEXpeek('infix__S_238Slash', $retree) }
+sub infix__S_238Slash {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_239Slash");
+my $C = $self->cursor_xact("RULE infix__S_238Slash");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\/";
-$self->_MATCHIFYr($S, "infix__S_239Slash", do {
+$self->_MATCHIFYr($S, "infix__S_238Slash", do {
 if (my ($C) = ($C->_EXACT("\/"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -45205,19 +45189,19 @@ $C->O(%multiplicative)
 }
 ;
 ## token infix:sym<div>
-sub infix__S_240div__PEEK { $_[0]->_AUTOLEXpeek('infix__S_240div', $retree) }
-sub infix__S_240div {
+sub infix__S_239div__PEEK { $_[0]->_AUTOLEXpeek('infix__S_239div', $retree) }
+sub infix__S_239div {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_240div");
+my $C = $self->cursor_xact("RULE infix__S_239div");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "div";
-$self->_MATCHIFYr($S, "infix__S_240div", do {
+$self->_MATCHIFYr($S, "infix__S_239div", do {
 if (my ($C) = ($C->_EXACT("div"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -45229,19 +45213,19 @@ $C->O(%multiplicative)
 }
 ;
 ## token infix:sym<%>
-sub infix__S_241Percent__PEEK { $_[0]->_AUTOLEXpeek('infix__S_241Percent', $retree) }
-sub infix__S_241Percent {
+sub infix__S_240Percent__PEEK { $_[0]->_AUTOLEXpeek('infix__S_240Percent', $retree) }
+sub infix__S_240Percent {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_241Percent");
+my $C = $self->cursor_xact("RULE infix__S_240Percent");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\%";
-$self->_MATCHIFYr($S, "infix__S_241Percent", do {
+$self->_MATCHIFYr($S, "infix__S_240Percent", do {
 if (my ($C) = ($C->_EXACT("\%"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -45253,19 +45237,19 @@ $C->O(%multiplicative)
 }
 ;
 ## token infix:sym<%%>
-sub infix__S_242PercentPercent__PEEK { $_[0]->_AUTOLEXpeek('infix__S_242PercentPercent', $retree) }
-sub infix__S_242PercentPercent {
+sub infix__S_241PercentPercent__PEEK { $_[0]->_AUTOLEXpeek('infix__S_241PercentPercent', $retree) }
+sub infix__S_241PercentPercent {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_242PercentPercent");
+my $C = $self->cursor_xact("RULE infix__S_241PercentPercent");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\%\%";
-$self->_MATCHIFYr($S, "infix__S_242PercentPercent", do {
+$self->_MATCHIFYr($S, "infix__S_241PercentPercent", do {
 if (my ($C) = ($C->_EXACT("\%\%"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -45277,19 +45261,19 @@ $C->O(%multiplicative, iffy => 1)
 }
 ;
 ## token infix:sym<mod>
-sub infix__S_243mod__PEEK { $_[0]->_AUTOLEXpeek('infix__S_243mod', $retree) }
-sub infix__S_243mod {
+sub infix__S_242mod__PEEK { $_[0]->_AUTOLEXpeek('infix__S_242mod', $retree) }
+sub infix__S_242mod {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_243mod");
+my $C = $self->cursor_xact("RULE infix__S_242mod");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "mod";
-$self->_MATCHIFYr($S, "infix__S_243mod", do {
+$self->_MATCHIFYr($S, "infix__S_242mod", do {
 if (my ($C) = ($C->_EXACT("mod"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -45301,19 +45285,19 @@ $C->O(%multiplicative)
 }
 ;
 ## token infix:sym<+&>
-sub infix__S_244PlusAmp__PEEK { $_[0]->_AUTOLEXpeek('infix__S_244PlusAmp', $retree) }
-sub infix__S_244PlusAmp {
+sub infix__S_243PlusAmp__PEEK { $_[0]->_AUTOLEXpeek('infix__S_243PlusAmp', $retree) }
+sub infix__S_243PlusAmp {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_244PlusAmp");
+my $C = $self->cursor_xact("RULE infix__S_243PlusAmp");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\+\&";
-$self->_MATCHIFYr($S, "infix__S_244PlusAmp", do {
+$self->_MATCHIFYr($S, "infix__S_243PlusAmp", do {
 if (my ($C) = ($C->_EXACT("\+\&"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -45325,19 +45309,19 @@ $C->O(%multiplicative)
 }
 ;
 ## token infix:sym« << »
-sub infix__S_245LtLt__PEEK { $_[0]->_AUTOLEXpeek('infix__S_245LtLt', $retree) }
-sub infix__S_245LtLt {
+sub infix__S_244LtLt__PEEK { $_[0]->_AUTOLEXpeek('infix__S_244LtLt', $retree) }
+sub infix__S_244LtLt {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_245LtLt");
+my $C = $self->cursor_xact("RULE infix__S_244LtLt");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\<\<";
-$self->_MATCHIFYr($S, "infix__S_245LtLt", do {
+$self->_MATCHIFYr($S, "infix__S_244LtLt", do {
 my $C = $C;
 if (($C) = ($C->_EXACT("\<\<"))
 and ($C) = ($C->_NOTBEFORE(sub {
@@ -45363,19 +45347,19 @@ $C->O(%multiplicative)
 }
 ;
 ## token infix:sym« >> »
-sub infix__S_246GtGt__PEEK { $_[0]->_AUTOLEXpeek('infix__S_246GtGt', $retree) }
-sub infix__S_246GtGt {
+sub infix__S_245GtGt__PEEK { $_[0]->_AUTOLEXpeek('infix__S_245GtGt', $retree) }
+sub infix__S_245GtGt {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_246GtGt");
+my $C = $self->cursor_xact("RULE infix__S_245GtGt");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\>\>";
-$self->_MATCHIFYr($S, "infix__S_246GtGt", do {
+$self->_MATCHIFYr($S, "infix__S_245GtGt", do {
 my $C = $C;
 if (($C) = ($C->_EXACT("\>\>"))
 and ($C) = ($C->_NOTBEFORE(sub {
@@ -45401,19 +45385,19 @@ $C->O(%multiplicative)
 }
 ;
 ## token infix:sym<~&>
-sub infix__S_247TildeAmp__PEEK { $_[0]->_AUTOLEXpeek('infix__S_247TildeAmp', $retree) }
-sub infix__S_247TildeAmp {
+sub infix__S_246TildeAmp__PEEK { $_[0]->_AUTOLEXpeek('infix__S_246TildeAmp', $retree) }
+sub infix__S_246TildeAmp {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_247TildeAmp");
+my $C = $self->cursor_xact("RULE infix__S_246TildeAmp");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\~\&";
-$self->_MATCHIFYr($S, "infix__S_247TildeAmp", do {
+$self->_MATCHIFYr($S, "infix__S_246TildeAmp", do {
 if (my ($C) = ($C->_EXACT("\~\&"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -45425,19 +45409,19 @@ $C->O(%multiplicative)
 }
 ;
 ## token infix:sym<?&>
-sub infix__S_248QuestionAmp__PEEK { $_[0]->_AUTOLEXpeek('infix__S_248QuestionAmp', $retree) }
-sub infix__S_248QuestionAmp {
+sub infix__S_247QuestionAmp__PEEK { $_[0]->_AUTOLEXpeek('infix__S_247QuestionAmp', $retree) }
+sub infix__S_247QuestionAmp {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_248QuestionAmp");
+my $C = $self->cursor_xact("RULE infix__S_247QuestionAmp");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\?\&";
-$self->_MATCHIFYr($S, "infix__S_248QuestionAmp", do {
+$self->_MATCHIFYr($S, "infix__S_247QuestionAmp", do {
 if (my ($C) = ($C->_EXACT("\?\&"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -45449,19 +45433,19 @@ $C->O(%multiplicative, iffy => 1)
 }
 ;
 ## token infix:sym« ~< »
-sub infix__S_249TildeLt__PEEK { $_[0]->_AUTOLEXpeek('infix__S_249TildeLt', $retree) }
-sub infix__S_249TildeLt {
+sub infix__S_248TildeLt__PEEK { $_[0]->_AUTOLEXpeek('infix__S_248TildeLt', $retree) }
+sub infix__S_248TildeLt {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_249TildeLt");
+my $C = $self->cursor_xact("RULE infix__S_248TildeLt");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\~\<";
-$self->_MATCHIFYr($S, "infix__S_249TildeLt", do {
+$self->_MATCHIFYr($S, "infix__S_248TildeLt", do {
 my $C = $C;
 if (($C) = ($C->_EXACT("\~\<"))
 and ($C) = ($C->_BRACKETr(sub {
@@ -45518,19 +45502,19 @@ $C->O(%multiplicative)
 }
 ;
 ## token infix:sym« ~> »
-sub infix__S_250TildeGt__PEEK { $_[0]->_AUTOLEXpeek('infix__S_250TildeGt', $retree) }
-sub infix__S_250TildeGt {
+sub infix__S_249TildeGt__PEEK { $_[0]->_AUTOLEXpeek('infix__S_249TildeGt', $retree) }
+sub infix__S_249TildeGt {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_250TildeGt");
+my $C = $self->cursor_xact("RULE infix__S_249TildeGt");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\~\>";
-$self->_MATCHIFYr($S, "infix__S_250TildeGt", do {
+$self->_MATCHIFYr($S, "infix__S_249TildeGt", do {
 my $C = $C;
 if (($C) = ($C->_EXACT("\~\>"))
 and ($C) = ($C->_BRACKETr(sub {
@@ -45587,19 +45571,19 @@ $C->O(%multiplicative)
 }
 ;
 ## token infix:sym« +< »
-sub infix__S_251PlusLt__PEEK { $_[0]->_AUTOLEXpeek('infix__S_251PlusLt', $retree) }
-sub infix__S_251PlusLt {
+sub infix__S_250PlusLt__PEEK { $_[0]->_AUTOLEXpeek('infix__S_250PlusLt', $retree) }
+sub infix__S_250PlusLt {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_251PlusLt");
+my $C = $self->cursor_xact("RULE infix__S_250PlusLt");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\+\<";
-$self->_MATCHIFYr($S, "infix__S_251PlusLt", do {
+$self->_MATCHIFYr($S, "infix__S_250PlusLt", do {
 my $C = $C;
 if (($C) = ($C->_EXACT("\+\<"))
 and ($C) = ($C->_BRACKETr(sub {
@@ -45656,19 +45640,19 @@ $C->O(%multiplicative)
 }
 ;
 ## token infix:sym« +> »
-sub infix__S_252PlusGt__PEEK { $_[0]->_AUTOLEXpeek('infix__S_252PlusGt', $retree) }
-sub infix__S_252PlusGt {
+sub infix__S_251PlusGt__PEEK { $_[0]->_AUTOLEXpeek('infix__S_251PlusGt', $retree) }
+sub infix__S_251PlusGt {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_252PlusGt");
+my $C = $self->cursor_xact("RULE infix__S_251PlusGt");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\+\>";
-$self->_MATCHIFYr($S, "infix__S_252PlusGt", do {
+$self->_MATCHIFYr($S, "infix__S_251PlusGt", do {
 my $C = $C;
 if (($C) = ($C->_EXACT("\+\>"))
 and ($C) = ($C->_BRACKETr(sub {
@@ -45725,19 +45709,19 @@ $C->O(%multiplicative)
 }
 ;
 ## token infix:sym<+>
-sub infix__S_253Plus__PEEK { $_[0]->_AUTOLEXpeek('infix__S_253Plus', $retree) }
-sub infix__S_253Plus {
+sub infix__S_252Plus__PEEK { $_[0]->_AUTOLEXpeek('infix__S_252Plus', $retree) }
+sub infix__S_252Plus {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_253Plus");
+my $C = $self->cursor_xact("RULE infix__S_252Plus");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\+";
-$self->_MATCHIFYr($S, "infix__S_253Plus", do {
+$self->_MATCHIFYr($S, "infix__S_252Plus", do {
 my $C = $C;
 if (($C) = ($C->_EXACT("\+"))
 and ($C) = ($C->_NOTBEFORE(sub {
@@ -45757,19 +45741,19 @@ $C->O(%additive)
 }
 ;
 ## token infix:sym<->
-sub infix__S_254Minus__PEEK { $_[0]->_AUTOLEXpeek('infix__S_254Minus', $retree) }
-sub infix__S_254Minus {
+sub infix__S_253Minus__PEEK { $_[0]->_AUTOLEXpeek('infix__S_253Minus', $retree) }
+sub infix__S_253Minus {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_254Minus");
+my $C = $self->cursor_xact("RULE infix__S_253Minus");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\-";
-$self->_MATCHIFYr($S, "infix__S_254Minus", do {
+$self->_MATCHIFYr($S, "infix__S_253Minus", do {
 my $C = $C;
 if (($C) = ($C->_EXACT("\-"))
 and ($C) = ($C->_NOTBEFORE(sub {
@@ -45789,19 +45773,19 @@ $C->O(%additive)
 }
 ;
 ## token infix:sym<+|>
-sub infix__S_255PlusVert__PEEK { $_[0]->_AUTOLEXpeek('infix__S_255PlusVert', $retree) }
-sub infix__S_255PlusVert {
+sub infix__S_254PlusVert__PEEK { $_[0]->_AUTOLEXpeek('infix__S_254PlusVert', $retree) }
+sub infix__S_254PlusVert {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_255PlusVert");
+my $C = $self->cursor_xact("RULE infix__S_254PlusVert");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\+\|";
-$self->_MATCHIFYr($S, "infix__S_255PlusVert", do {
+$self->_MATCHIFYr($S, "infix__S_254PlusVert", do {
 if (my ($C) = ($C->_EXACT("\+\|"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -45813,19 +45797,19 @@ $C->O(%additive)
 }
 ;
 ## token infix:sym<+^>
-sub infix__S_256PlusCaret__PEEK { $_[0]->_AUTOLEXpeek('infix__S_256PlusCaret', $retree) }
-sub infix__S_256PlusCaret {
+sub infix__S_255PlusCaret__PEEK { $_[0]->_AUTOLEXpeek('infix__S_255PlusCaret', $retree) }
+sub infix__S_255PlusCaret {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_256PlusCaret");
+my $C = $self->cursor_xact("RULE infix__S_255PlusCaret");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\+\^";
-$self->_MATCHIFYr($S, "infix__S_256PlusCaret", do {
+$self->_MATCHIFYr($S, "infix__S_255PlusCaret", do {
 if (my ($C) = ($C->_EXACT("\+\^"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -45837,19 +45821,19 @@ $C->O(%additive)
 }
 ;
 ## token infix:sym<~|>
-sub infix__S_257TildeVert__PEEK { $_[0]->_AUTOLEXpeek('infix__S_257TildeVert', $retree) }
-sub infix__S_257TildeVert {
+sub infix__S_256TildeVert__PEEK { $_[0]->_AUTOLEXpeek('infix__S_256TildeVert', $retree) }
+sub infix__S_256TildeVert {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_257TildeVert");
+my $C = $self->cursor_xact("RULE infix__S_256TildeVert");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\~\|";
-$self->_MATCHIFYr($S, "infix__S_257TildeVert", do {
+$self->_MATCHIFYr($S, "infix__S_256TildeVert", do {
 if (my ($C) = ($C->_EXACT("\~\|"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -45861,19 +45845,19 @@ $C->O(%additive)
 }
 ;
 ## token infix:sym<~^>
-sub infix__S_258TildeCaret__PEEK { $_[0]->_AUTOLEXpeek('infix__S_258TildeCaret', $retree) }
-sub infix__S_258TildeCaret {
+sub infix__S_257TildeCaret__PEEK { $_[0]->_AUTOLEXpeek('infix__S_257TildeCaret', $retree) }
+sub infix__S_257TildeCaret {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_258TildeCaret");
+my $C = $self->cursor_xact("RULE infix__S_257TildeCaret");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\~\^";
-$self->_MATCHIFYr($S, "infix__S_258TildeCaret", do {
+$self->_MATCHIFYr($S, "infix__S_257TildeCaret", do {
 if (my ($C) = ($C->_EXACT("\~\^"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -45885,19 +45869,19 @@ $C->O(%additive)
 }
 ;
 ## token infix:sym<?|>
-sub infix__S_259QuestionVert__PEEK { $_[0]->_AUTOLEXpeek('infix__S_259QuestionVert', $retree) }
-sub infix__S_259QuestionVert {
+sub infix__S_258QuestionVert__PEEK { $_[0]->_AUTOLEXpeek('infix__S_258QuestionVert', $retree) }
+sub infix__S_258QuestionVert {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_259QuestionVert");
+my $C = $self->cursor_xact("RULE infix__S_258QuestionVert");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\?\|";
-$self->_MATCHIFYr($S, "infix__S_259QuestionVert", do {
+$self->_MATCHIFYr($S, "infix__S_258QuestionVert", do {
 if (my ($C) = ($C->_EXACT("\?\|"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -45909,19 +45893,19 @@ $C->O(%additive, iffy => 1)
 }
 ;
 ## token infix:sym<?^>
-sub infix__S_260QuestionCaret__PEEK { $_[0]->_AUTOLEXpeek('infix__S_260QuestionCaret', $retree) }
-sub infix__S_260QuestionCaret {
+sub infix__S_259QuestionCaret__PEEK { $_[0]->_AUTOLEXpeek('infix__S_259QuestionCaret', $retree) }
+sub infix__S_259QuestionCaret {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_260QuestionCaret");
+my $C = $self->cursor_xact("RULE infix__S_259QuestionCaret");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\?\^";
-$self->_MATCHIFYr($S, "infix__S_260QuestionCaret", do {
+$self->_MATCHIFYr($S, "infix__S_259QuestionCaret", do {
 if (my ($C) = ($C->_EXACT("\?\^"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -45933,19 +45917,19 @@ $C->O(%additive)
 }
 ;
 ## token infix:sym<x>
-sub infix__S_261x__PEEK { $_[0]->_AUTOLEXpeek('infix__S_261x', $retree) }
-sub infix__S_261x {
+sub infix__S_260x__PEEK { $_[0]->_AUTOLEXpeek('infix__S_260x', $retree) }
+sub infix__S_260x {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_261x");
+my $C = $self->cursor_xact("RULE infix__S_260x");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "x";
-$self->_MATCHIFYr($S, "infix__S_261x", do {
+$self->_MATCHIFYr($S, "infix__S_260x", do {
 if (my ($C) = ($C->_EXACT("x"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -45957,19 +45941,19 @@ $C->O(%replication)
 }
 ;
 ## token infix:sym<xx>
-sub infix__S_262xx__PEEK { $_[0]->_AUTOLEXpeek('infix__S_262xx', $retree) }
-sub infix__S_262xx {
+sub infix__S_261xx__PEEK { $_[0]->_AUTOLEXpeek('infix__S_261xx', $retree) }
+sub infix__S_261xx {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_262xx");
+my $C = $self->cursor_xact("RULE infix__S_261xx");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "xx";
-$self->_MATCHIFYr($S, "infix__S_262xx", do {
+$self->_MATCHIFYr($S, "infix__S_261xx", do {
 if (my ($C) = ($C->_EXACT("xx"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -45981,19 +45965,19 @@ $C->O(%replication)
 }
 ;
 ## token infix:sym<~>
-sub infix__S_263Tilde__PEEK { $_[0]->_AUTOLEXpeek('infix__S_263Tilde', $retree) }
-sub infix__S_263Tilde {
+sub infix__S_262Tilde__PEEK { $_[0]->_AUTOLEXpeek('infix__S_262Tilde', $retree) }
+sub infix__S_262Tilde {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_263Tilde");
+my $C = $self->cursor_xact("RULE infix__S_262Tilde");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\~";
-$self->_MATCHIFYr($S, "infix__S_263Tilde", do {
+$self->_MATCHIFYr($S, "infix__S_262Tilde", do {
 if (my ($C) = ($C->_EXACT("\~"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -46005,19 +45989,19 @@ $C->O(%concatenation)
 }
 ;
 ## token infix:sym<&>
-sub infix__S_264Amp__PEEK { $_[0]->_AUTOLEXpeek('infix__S_264Amp', $retree) }
-sub infix__S_264Amp {
+sub infix__S_263Amp__PEEK { $_[0]->_AUTOLEXpeek('infix__S_263Amp', $retree) }
+sub infix__S_263Amp {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_264Amp");
+my $C = $self->cursor_xact("RULE infix__S_263Amp");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\&";
-$self->_MATCHIFYr($S, "infix__S_264Amp", do {
+$self->_MATCHIFYr($S, "infix__S_263Amp", do {
 if (my ($C) = ($C->_EXACT("\&"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -46029,19 +46013,19 @@ $C->O(%junctive_and, iffy => 1)
 }
 ;
 ## token infix:sym<|>
-sub infix__S_265Vert__PEEK { $_[0]->_AUTOLEXpeek('infix__S_265Vert', $retree) }
-sub infix__S_265Vert {
+sub infix__S_264Vert__PEEK { $_[0]->_AUTOLEXpeek('infix__S_264Vert', $retree) }
+sub infix__S_264Vert {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_265Vert");
+my $C = $self->cursor_xact("RULE infix__S_264Vert");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\|";
-$self->_MATCHIFYr($S, "infix__S_265Vert", do {
+$self->_MATCHIFYr($S, "infix__S_264Vert", do {
 if (my ($C) = ($C->_EXACT("\|"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -46053,19 +46037,19 @@ $C->O(%junctive_or, iffy => 1)
 }
 ;
 ## token infix:sym<^>
-sub infix__S_266Caret__PEEK { $_[0]->_AUTOLEXpeek('infix__S_266Caret', $retree) }
-sub infix__S_266Caret {
+sub infix__S_265Caret__PEEK { $_[0]->_AUTOLEXpeek('infix__S_265Caret', $retree) }
+sub infix__S_265Caret {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_266Caret");
+my $C = $self->cursor_xact("RULE infix__S_265Caret");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\^";
-$self->_MATCHIFYr($S, "infix__S_266Caret", do {
+$self->_MATCHIFYr($S, "infix__S_265Caret", do {
 if (my ($C) = ($C->_EXACT("\^"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -46077,19 +46061,19 @@ $C->O(%junctive_or, iffy => 1)
 }
 ;
 ## token prefix:sleep
-sub prefix__S_267sleep__PEEK { $_[0]->_AUTOLEXpeek('prefix__S_267sleep', $retree) }
-sub prefix__S_267sleep {
+sub prefix__S_266sleep__PEEK { $_[0]->_AUTOLEXpeek('prefix__S_266sleep', $retree) }
+sub prefix__S_266sleep {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE prefix__S_267sleep");
+my $C = $self->cursor_xact("RULE prefix__S_266sleep");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "sleep";
-$self->_MATCHIFYr($S, "prefix__S_267sleep", do {
+$self->_MATCHIFYr($S, "prefix__S_266sleep", do {
 my $C = $C;
 if (($C) = ($C->_PATTERN(qr/\Gsleep\b/))
 and ($C) = ($C->before(sub {
@@ -46109,19 +46093,19 @@ $C->O(%named_unary)
 }
 ;
 ## token prefix:abs
-sub prefix__S_268abs__PEEK { $_[0]->_AUTOLEXpeek('prefix__S_268abs', $retree) }
-sub prefix__S_268abs {
+sub prefix__S_267abs__PEEK { $_[0]->_AUTOLEXpeek('prefix__S_267abs', $retree) }
+sub prefix__S_267abs {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE prefix__S_268abs");
+my $C = $self->cursor_xact("RULE prefix__S_267abs");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "abs";
-$self->_MATCHIFYr($S, "prefix__S_268abs", do {
+$self->_MATCHIFYr($S, "prefix__S_267abs", do {
 my $C = $C;
 if (($C) = ($C->_PATTERN(qr/\Gabs\b/))
 and ($C) = ($C->before(sub {
@@ -46141,19 +46125,19 @@ $C->O(%named_unary)
 }
 ;
 ## token prefix:let
-sub prefix__S_269let__PEEK { $_[0]->_AUTOLEXpeek('prefix__S_269let', $retree) }
-sub prefix__S_269let {
+sub prefix__S_268let__PEEK { $_[0]->_AUTOLEXpeek('prefix__S_268let', $retree) }
+sub prefix__S_268let {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE prefix__S_269let");
+my $C = $self->cursor_xact("RULE prefix__S_268let");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "let";
-$self->_MATCHIFYr($S, "prefix__S_269let", do {
+$self->_MATCHIFYr($S, "prefix__S_268let", do {
 my $C = $C;
 if (($C) = ($C->_PATTERN(qr/\Glet\b/))
 and ($C) = ($C->before(sub {
@@ -46173,19 +46157,19 @@ $C->O(%named_unary)
 }
 ;
 ## token prefix:temp
-sub prefix__S_270temp__PEEK { $_[0]->_AUTOLEXpeek('prefix__S_270temp', $retree) }
-sub prefix__S_270temp {
+sub prefix__S_269temp__PEEK { $_[0]->_AUTOLEXpeek('prefix__S_269temp', $retree) }
+sub prefix__S_269temp {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE prefix__S_270temp");
+my $C = $self->cursor_xact("RULE prefix__S_269temp");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "temp";
-$self->_MATCHIFYr($S, "prefix__S_270temp", do {
+$self->_MATCHIFYr($S, "prefix__S_269temp", do {
 my $C = $C;
 if (($C) = ($C->_PATTERN(qr/\Gtemp\b/))
 and ($C) = ($C->before(sub {
@@ -46205,19 +46189,19 @@ $C->O(%named_unary)
 }
 ;
 ## token infix:sym« <=> »
-sub infix__S_271LtEqualGt__PEEK { $_[0]->_AUTOLEXpeek('infix__S_271LtEqualGt', $retree) }
-sub infix__S_271LtEqualGt {
+sub infix__S_270LtEqualGt__PEEK { $_[0]->_AUTOLEXpeek('infix__S_270LtEqualGt', $retree) }
+sub infix__S_270LtEqualGt {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_271LtEqualGt");
+my $C = $self->cursor_xact("RULE infix__S_270LtEqualGt");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\<\=\>";
-$self->_MATCHIFYr($S, "infix__S_271LtEqualGt", do {
+$self->_MATCHIFYr($S, "infix__S_270LtEqualGt", do {
 if (my ($C) = ($C->_EXACT("\<\=\>"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -46229,19 +46213,19 @@ $C->O(%structural, returns => 'Order')
 }
 ;
 ## token infix:cmp
-sub infix__S_272cmp__PEEK { $_[0]->_AUTOLEXpeek('infix__S_272cmp', $retree) }
-sub infix__S_272cmp {
+sub infix__S_271cmp__PEEK { $_[0]->_AUTOLEXpeek('infix__S_271cmp', $retree) }
+sub infix__S_271cmp {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_272cmp");
+my $C = $self->cursor_xact("RULE infix__S_271cmp");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "cmp";
-$self->_MATCHIFYr($S, "infix__S_272cmp", do {
+$self->_MATCHIFYr($S, "infix__S_271cmp", do {
 if (my ($C) = ($C->_EXACT("cmp"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -46253,19 +46237,19 @@ $C->O(%structural, returns => 'Order')
 }
 ;
 ## token infix:leg
-sub infix__S_273leg__PEEK { $_[0]->_AUTOLEXpeek('infix__S_273leg', $retree) }
-sub infix__S_273leg {
+sub infix__S_272leg__PEEK { $_[0]->_AUTOLEXpeek('infix__S_272leg', $retree) }
+sub infix__S_272leg {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_273leg");
+my $C = $self->cursor_xact("RULE infix__S_272leg");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "leg";
-$self->_MATCHIFYr($S, "infix__S_273leg", do {
+$self->_MATCHIFYr($S, "infix__S_272leg", do {
 if (my ($C) = ($C->_EXACT("leg"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -46277,19 +46261,19 @@ $C->O(%structural, returns => 'Order')
 }
 ;
 ## token infix:but
-sub infix__S_274but__PEEK { $_[0]->_AUTOLEXpeek('infix__S_274but', $retree) }
-sub infix__S_274but {
+sub infix__S_273but__PEEK { $_[0]->_AUTOLEXpeek('infix__S_273but', $retree) }
+sub infix__S_273but {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_274but");
+my $C = $self->cursor_xact("RULE infix__S_273but");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "but";
-$self->_MATCHIFYr($S, "infix__S_274but", do {
+$self->_MATCHIFYr($S, "infix__S_273but", do {
 if (my ($C) = ($C->_EXACT("but"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -46301,19 +46285,19 @@ $C->O(%structural)
 }
 ;
 ## token infix:does
-sub infix__S_275does__PEEK { $_[0]->_AUTOLEXpeek('infix__S_275does', $retree) }
-sub infix__S_275does {
+sub infix__S_274does__PEEK { $_[0]->_AUTOLEXpeek('infix__S_274does', $retree) }
+sub infix__S_274does {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_275does");
+my $C = $self->cursor_xact("RULE infix__S_274does");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "does";
-$self->_MATCHIFYr($S, "infix__S_275does", do {
+$self->_MATCHIFYr($S, "infix__S_274does", do {
 if (my ($C) = ($C->_EXACT("does"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -46325,19 +46309,19 @@ $C->O(%structural)
 }
 ;
 ## token infix:sym<..>
-sub infix__S_276DotDot__PEEK { $_[0]->_AUTOLEXpeek('infix__S_276DotDot', $retree) }
-sub infix__S_276DotDot {
+sub infix__S_275DotDot__PEEK { $_[0]->_AUTOLEXpeek('infix__S_275DotDot', $retree) }
+sub infix__S_275DotDot {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_276DotDot");
+my $C = $self->cursor_xact("RULE infix__S_275DotDot");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\.\.";
-$self->_MATCHIFYr($S, "infix__S_276DotDot", do {
+$self->_MATCHIFYr($S, "infix__S_275DotDot", do {
 my $C = $C;
 if (($C) = ($C->_EXACT("\.\."))
 and ($C) = ($C->_OPTr(sub {
@@ -46361,14 +46345,14 @@ do {
 
     my $fate;
     my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'infix__S_276DotDot_0') {
-        $C->deb("Fate passed to infix__S_276DotDot_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+    if ($fate = $C->{'_fate'} and $fate->[1] eq 'infix__S_275DotDot_0') {
+        $C->deb("Fate passed to infix__S_275DotDot_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
         ($C->{'_fate'}, $tag, $try) = @$fate;
         @try = ($try);
-        $x = 'ALT infix__S_276DotDot_0';    # some outer ltm is controlling us
+        $x = 'ALT infix__S_275DotDot_0';    # some outer ltm is controlling us
     }
     else {
-        $x = 'ALTLTM infix__S_276DotDot_0'; # we are top level ltm
+        $x = 'ALTLTM infix__S_275DotDot_0'; # we are top level ltm
     }
     my $C = $C->cursor_xact($x);
     my $xact = $C->{_xact};
@@ -46376,7 +46360,7 @@ do {
     my @gather = ();
     for (;;) {
         unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'infix__S_276DotDot_0', $retree);
+            $relex //= $C->cursor_fate('STD::P6', 'infix__S_275DotDot_0', $retree);
             @try = $relex->($C) or last;
         }
         $try = shift(@try) // next;
@@ -46385,7 +46369,7 @@ do {
             ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
         }
 
-        $C->deb("infix__S_276DotDot_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+        $C->deb("infix__S_275DotDot_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
         push @gather, ((
 sub {
 my $C=shift;
@@ -46420,19 +46404,19 @@ $C->O(%structural)
 }
 ;
 ## token infix:sym<^..>
-sub infix__S_277CaretDotDot__PEEK { $_[0]->_AUTOLEXpeek('infix__S_277CaretDotDot', $retree) }
-sub infix__S_277CaretDotDot {
+sub infix__S_276CaretDotDot__PEEK { $_[0]->_AUTOLEXpeek('infix__S_276CaretDotDot', $retree) }
+sub infix__S_276CaretDotDot {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_277CaretDotDot");
+my $C = $self->cursor_xact("RULE infix__S_276CaretDotDot");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\^\.\.";
-$self->_MATCHIFYr($S, "infix__S_277CaretDotDot", do {
+$self->_MATCHIFYr($S, "infix__S_276CaretDotDot", do {
 if (my ($C) = ($C->_EXACT("\^\.\."))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -46444,19 +46428,19 @@ $C->O(%structural)
 }
 ;
 ## token infix:sym<..^>
-sub infix__S_278DotDotCaret__PEEK { $_[0]->_AUTOLEXpeek('infix__S_278DotDotCaret', $retree) }
-sub infix__S_278DotDotCaret {
+sub infix__S_277DotDotCaret__PEEK { $_[0]->_AUTOLEXpeek('infix__S_277DotDotCaret', $retree) }
+sub infix__S_277DotDotCaret {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_278DotDotCaret");
+my $C = $self->cursor_xact("RULE infix__S_277DotDotCaret");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\.\.\^";
-$self->_MATCHIFYr($S, "infix__S_278DotDotCaret", do {
+$self->_MATCHIFYr($S, "infix__S_277DotDotCaret", do {
 if (my ($C) = ($C->_EXACT("\.\.\^"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -46468,19 +46452,19 @@ $C->O(%structural)
 }
 ;
 ## token infix:sym<^..^>
-sub infix__S_279CaretDotDotCaret__PEEK { $_[0]->_AUTOLEXpeek('infix__S_279CaretDotDotCaret', $retree) }
-sub infix__S_279CaretDotDotCaret {
+sub infix__S_278CaretDotDotCaret__PEEK { $_[0]->_AUTOLEXpeek('infix__S_278CaretDotDotCaret', $retree) }
+sub infix__S_278CaretDotDotCaret {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_279CaretDotDotCaret");
+my $C = $self->cursor_xact("RULE infix__S_278CaretDotDotCaret");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\^\.\.\^";
-$self->_MATCHIFYr($S, "infix__S_279CaretDotDotCaret", do {
+$self->_MATCHIFYr($S, "infix__S_278CaretDotDotCaret", do {
 if (my ($C) = ($C->_EXACT("\^\.\.\^"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -46492,19 +46476,19 @@ $C->O(%structural)
 }
 ;
 ## token infix:sym<==>
-sub infix__S_280EqualEqual__PEEK { $_[0]->_AUTOLEXpeek('infix__S_280EqualEqual', $retree) }
-sub infix__S_280EqualEqual {
+sub infix__S_279EqualEqual__PEEK { $_[0]->_AUTOLEXpeek('infix__S_279EqualEqual', $retree) }
+sub infix__S_279EqualEqual {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_280EqualEqual");
+my $C = $self->cursor_xact("RULE infix__S_279EqualEqual");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\=\=";
-$self->_MATCHIFYr($S, "infix__S_280EqualEqual", do {
+$self->_MATCHIFYr($S, "infix__S_279EqualEqual", do {
 my $C = $C;
 if (($C) = ($C->_EXACT("\=\="))
 and ($C) = ($C->_NOTBEFORE(sub {
@@ -46524,19 +46508,19 @@ $C->O(%chaining)
 }
 ;
 ## token infix:sym<!=>
-sub infix__S_281BangEqual__PEEK { $_[0]->_AUTOLEXpeek('infix__S_281BangEqual', $retree) }
-sub infix__S_281BangEqual {
+sub infix__S_280BangEqual__PEEK { $_[0]->_AUTOLEXpeek('infix__S_280BangEqual', $retree) }
+sub infix__S_280BangEqual {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_281BangEqual");
+my $C = $self->cursor_xact("RULE infix__S_280BangEqual");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\!\=";
-$self->_MATCHIFYr($S, "infix__S_281BangEqual", do {
+$self->_MATCHIFYr($S, "infix__S_280BangEqual", do {
 my $C = $C;
 if (($C) = ($C->_EXACT("\!\="))
 and ($C) = ($C->before(sub {
@@ -46556,19 +46540,19 @@ $C->O(%chaining)
 }
 ;
 ## token infix:sym« < »
-sub infix__S_282Lt__PEEK { $_[0]->_AUTOLEXpeek('infix__S_282Lt', $retree) }
-sub infix__S_282Lt {
+sub infix__S_281Lt__PEEK { $_[0]->_AUTOLEXpeek('infix__S_281Lt', $retree) }
+sub infix__S_281Lt {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_282Lt");
+my $C = $self->cursor_xact("RULE infix__S_281Lt");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\<";
-$self->_MATCHIFYr($S, "infix__S_282Lt", do {
+$self->_MATCHIFYr($S, "infix__S_281Lt", do {
 my $C = $C;
 if (($C) = ($C->_EXACT("\<"))
 and ($C) = ($C->_NOTBEFORE(sub {
@@ -46588,19 +46572,19 @@ $C->O(%chaining)
 }
 ;
 ## token infix:sym« <= »
-sub infix__S_283LtEqual__PEEK { $_[0]->_AUTOLEXpeek('infix__S_283LtEqual', $retree) }
-sub infix__S_283LtEqual {
+sub infix__S_282LtEqual__PEEK { $_[0]->_AUTOLEXpeek('infix__S_282LtEqual', $retree) }
+sub infix__S_282LtEqual {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_283LtEqual");
+my $C = $self->cursor_xact("RULE infix__S_282LtEqual");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\<\=";
-$self->_MATCHIFYr($S, "infix__S_283LtEqual", do {
+$self->_MATCHIFYr($S, "infix__S_282LtEqual", do {
 if (my ($C) = ($C->_EXACT("\<\="))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -46612,19 +46596,19 @@ $C->O(%chaining)
 }
 ;
 ## token infix:sym« > »
-sub infix__S_284Gt__PEEK { $_[0]->_AUTOLEXpeek('infix__S_284Gt', $retree) }
-sub infix__S_284Gt {
+sub infix__S_283Gt__PEEK { $_[0]->_AUTOLEXpeek('infix__S_283Gt', $retree) }
+sub infix__S_283Gt {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_284Gt");
+my $C = $self->cursor_xact("RULE infix__S_283Gt");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\>";
-$self->_MATCHIFYr($S, "infix__S_284Gt", do {
+$self->_MATCHIFYr($S, "infix__S_283Gt", do {
 my $C = $C;
 if (($C) = ($C->_EXACT("\>"))
 and ($C) = ($C->_NOTBEFORE(sub {
@@ -46644,19 +46628,19 @@ $C->O(%chaining)
 }
 ;
 ## token infix:sym« >= »
-sub infix__S_285GtEqual__PEEK { $_[0]->_AUTOLEXpeek('infix__S_285GtEqual', $retree) }
-sub infix__S_285GtEqual {
+sub infix__S_284GtEqual__PEEK { $_[0]->_AUTOLEXpeek('infix__S_284GtEqual', $retree) }
+sub infix__S_284GtEqual {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_285GtEqual");
+my $C = $self->cursor_xact("RULE infix__S_284GtEqual");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\>\=";
-$self->_MATCHIFYr($S, "infix__S_285GtEqual", do {
+$self->_MATCHIFYr($S, "infix__S_284GtEqual", do {
 if (my ($C) = ($C->_EXACT("\>\="))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -46668,19 +46652,19 @@ $C->O(%chaining)
 }
 ;
 ## token infix:sym<~~>
-sub infix__S_286TildeTilde__PEEK { $_[0]->_AUTOLEXpeek('infix__S_286TildeTilde', $retree) }
-sub infix__S_286TildeTilde {
+sub infix__S_285TildeTilde__PEEK { $_[0]->_AUTOLEXpeek('infix__S_285TildeTilde', $retree) }
+sub infix__S_285TildeTilde {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_286TildeTilde");
+my $C = $self->cursor_xact("RULE infix__S_285TildeTilde");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\~\~";
-$self->_MATCHIFYr($S, "infix__S_286TildeTilde", do {
+$self->_MATCHIFYr($S, "infix__S_285TildeTilde", do {
 my $C = $C;
 if (($C) = ($C->_EXACT("\~\~"))
 and ($C) = ($C->_SUBSUMEr(['O'], sub {
@@ -46709,14 +46693,14 @@ do {
 
     my $fate;
     my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'infix__S_286TildeTilde_0') {
-        $C->deb("Fate passed to infix__S_286TildeTilde_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+    if ($fate = $C->{'_fate'} and $fate->[1] eq 'infix__S_285TildeTilde_0') {
+        $C->deb("Fate passed to infix__S_285TildeTilde_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
         ($C->{'_fate'}, $tag, $try) = @$fate;
         @try = ($try);
-        $x = 'ALT infix__S_286TildeTilde_0';    # some outer ltm is controlling us
+        $x = 'ALT infix__S_285TildeTilde_0';    # some outer ltm is controlling us
     }
     else {
-        $x = 'ALTLTM infix__S_286TildeTilde_0'; # we are top level ltm
+        $x = 'ALTLTM infix__S_285TildeTilde_0'; # we are top level ltm
     }
     my $C = $C->cursor_xact($x);
     my $xact = $C->{_xact};
@@ -46724,7 +46708,7 @@ do {
     my @gather = ();
     for (;;) {
         unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'infix__S_286TildeTilde_0', $retree);
+            $relex //= $C->cursor_fate('STD::P6', 'infix__S_285TildeTilde_0', $retree);
             @try = $relex->($C) or last;
         }
         $try = shift(@try) // next;
@@ -46733,7 +46717,7 @@ do {
             ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
         }
 
-        $C->deb("infix__S_286TildeTilde_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+        $C->deb("infix__S_285TildeTilde_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
         push @gather, ((
 sub {
 my $C=shift;
@@ -46784,19 +46768,19 @@ $self->worry("Smartmatch against $litbool always " .
 $self;
 };
 ## token infix:sym<!~>
-sub infix__S_287BangTilde__PEEK { $_[0]->_AUTOLEXpeek('infix__S_287BangTilde', $retree) }
-sub infix__S_287BangTilde {
+sub infix__S_286BangTilde__PEEK { $_[0]->_AUTOLEXpeek('infix__S_286BangTilde', $retree) }
+sub infix__S_286BangTilde {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_287BangTilde");
+my $C = $self->cursor_xact("RULE infix__S_286BangTilde");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\!\~";
-$self->_MATCHIFYr($S, "infix__S_287BangTilde", do {
+$self->_MATCHIFYr($S, "infix__S_286BangTilde", do {
 my $C = $C;
 if (($C) = ($C->_PATTERN(qr/\G\!\~\s/))
 and ($C) = ($C->obs('!~ to do negated pattern matching', '!~~'))) {
@@ -46810,19 +46794,19 @@ $C->O(%chaining)
 }
 ;
 ## token infix:sym<=~>
-sub infix__S_288EqualTilde__PEEK { $_[0]->_AUTOLEXpeek('infix__S_288EqualTilde', $retree) }
-sub infix__S_288EqualTilde {
+sub infix__S_287EqualTilde__PEEK { $_[0]->_AUTOLEXpeek('infix__S_287EqualTilde', $retree) }
+sub infix__S_287EqualTilde {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_288EqualTilde");
+my $C = $self->cursor_xact("RULE infix__S_287EqualTilde");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\=\~";
-$self->_MATCHIFYr($S, "infix__S_288EqualTilde", do {
+$self->_MATCHIFYr($S, "infix__S_287EqualTilde", do {
 my $C = $C;
 if (($C) = ($C->_EXACT("\=\~"))
 and ($C) = ($C->obs('=~ to do pattern matching', '~~'))) {
@@ -46836,19 +46820,19 @@ $C->O(%chaining)
 }
 ;
 ## token infix:sym<eq>
-sub infix__S_289eq__PEEK { $_[0]->_AUTOLEXpeek('infix__S_289eq', $retree) }
-sub infix__S_289eq {
+sub infix__S_288eq__PEEK { $_[0]->_AUTOLEXpeek('infix__S_288eq', $retree) }
+sub infix__S_288eq {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_289eq");
+my $C = $self->cursor_xact("RULE infix__S_288eq");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "eq";
-$self->_MATCHIFYr($S, "infix__S_289eq", do {
+$self->_MATCHIFYr($S, "infix__S_288eq", do {
 if (my ($C) = ($C->_EXACT("eq"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -46860,19 +46844,19 @@ $C->O(%chaining)
 }
 ;
 ## token infix:sym<ne>
-sub infix__S_290ne__PEEK { $_[0]->_AUTOLEXpeek('infix__S_290ne', $retree) }
-sub infix__S_290ne {
+sub infix__S_289ne__PEEK { $_[0]->_AUTOLEXpeek('infix__S_289ne', $retree) }
+sub infix__S_289ne {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_290ne");
+my $C = $self->cursor_xact("RULE infix__S_289ne");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "ne";
-$self->_MATCHIFYr($S, "infix__S_290ne", do {
+$self->_MATCHIFYr($S, "infix__S_289ne", do {
 if (my ($C) = ($C->_EXACT("ne"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -46884,19 +46868,19 @@ $C->O(%chaining)
 }
 ;
 ## token infix:sym<lt>
-sub infix__S_291lt__PEEK { $_[0]->_AUTOLEXpeek('infix__S_291lt', $retree) }
-sub infix__S_291lt {
+sub infix__S_290lt__PEEK { $_[0]->_AUTOLEXpeek('infix__S_290lt', $retree) }
+sub infix__S_290lt {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_291lt");
+my $C = $self->cursor_xact("RULE infix__S_290lt");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "lt";
-$self->_MATCHIFYr($S, "infix__S_291lt", do {
+$self->_MATCHIFYr($S, "infix__S_290lt", do {
 if (my ($C) = ($C->_EXACT("lt"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -46908,19 +46892,19 @@ $C->O(%chaining)
 }
 ;
 ## token infix:sym<le>
-sub infix__S_292le__PEEK { $_[0]->_AUTOLEXpeek('infix__S_292le', $retree) }
-sub infix__S_292le {
+sub infix__S_291le__PEEK { $_[0]->_AUTOLEXpeek('infix__S_291le', $retree) }
+sub infix__S_291le {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_292le");
+my $C = $self->cursor_xact("RULE infix__S_291le");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "le";
-$self->_MATCHIFYr($S, "infix__S_292le", do {
+$self->_MATCHIFYr($S, "infix__S_291le", do {
 if (my ($C) = ($C->_EXACT("le"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -46932,19 +46916,19 @@ $C->O(%chaining)
 }
 ;
 ## token infix:sym<gt>
-sub infix__S_293gt__PEEK { $_[0]->_AUTOLEXpeek('infix__S_293gt', $retree) }
-sub infix__S_293gt {
+sub infix__S_292gt__PEEK { $_[0]->_AUTOLEXpeek('infix__S_292gt', $retree) }
+sub infix__S_292gt {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_293gt");
+my $C = $self->cursor_xact("RULE infix__S_292gt");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "gt";
-$self->_MATCHIFYr($S, "infix__S_293gt", do {
+$self->_MATCHIFYr($S, "infix__S_292gt", do {
 if (my ($C) = ($C->_EXACT("gt"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -46956,19 +46940,19 @@ $C->O(%chaining)
 }
 ;
 ## token infix:sym<ge>
-sub infix__S_294ge__PEEK { $_[0]->_AUTOLEXpeek('infix__S_294ge', $retree) }
-sub infix__S_294ge {
+sub infix__S_293ge__PEEK { $_[0]->_AUTOLEXpeek('infix__S_293ge', $retree) }
+sub infix__S_293ge {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_294ge");
+my $C = $self->cursor_xact("RULE infix__S_293ge");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "ge";
-$self->_MATCHIFYr($S, "infix__S_294ge", do {
+$self->_MATCHIFYr($S, "infix__S_293ge", do {
 if (my ($C) = ($C->_EXACT("ge"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -46980,19 +46964,19 @@ $C->O(%chaining)
 }
 ;
 ## token infix:sym<=:=>
-sub infix__S_295EqualColonEqual__PEEK { $_[0]->_AUTOLEXpeek('infix__S_295EqualColonEqual', $retree) }
-sub infix__S_295EqualColonEqual {
+sub infix__S_294EqualColonEqual__PEEK { $_[0]->_AUTOLEXpeek('infix__S_294EqualColonEqual', $retree) }
+sub infix__S_294EqualColonEqual {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_295EqualColonEqual");
+my $C = $self->cursor_xact("RULE infix__S_294EqualColonEqual");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\=\:\=";
-$self->_MATCHIFYr($S, "infix__S_295EqualColonEqual", do {
+$self->_MATCHIFYr($S, "infix__S_294EqualColonEqual", do {
 if (my ($C) = ($C->_EXACT("\=\:\="))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -47004,19 +46988,19 @@ $C->O(%chaining)
 }
 ;
 ## token infix:sym<===>
-sub infix__S_296EqualEqualEqual__PEEK { $_[0]->_AUTOLEXpeek('infix__S_296EqualEqualEqual', $retree) }
-sub infix__S_296EqualEqualEqual {
+sub infix__S_295EqualEqualEqual__PEEK { $_[0]->_AUTOLEXpeek('infix__S_295EqualEqualEqual', $retree) }
+sub infix__S_295EqualEqualEqual {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_296EqualEqualEqual");
+my $C = $self->cursor_xact("RULE infix__S_295EqualEqualEqual");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\=\=\=";
-$self->_MATCHIFYr($S, "infix__S_296EqualEqualEqual", do {
+$self->_MATCHIFYr($S, "infix__S_295EqualEqualEqual", do {
 if (my ($C) = ($C->_EXACT("\=\=\="))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -47028,19 +47012,19 @@ $C->O(%chaining)
 }
 ;
 ## token infix:sym<eqv>
-sub infix__S_297eqv__PEEK { $_[0]->_AUTOLEXpeek('infix__S_297eqv', $retree) }
-sub infix__S_297eqv {
+sub infix__S_296eqv__PEEK { $_[0]->_AUTOLEXpeek('infix__S_296eqv', $retree) }
+sub infix__S_296eqv {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_297eqv");
+my $C = $self->cursor_xact("RULE infix__S_296eqv");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "eqv";
-$self->_MATCHIFYr($S, "infix__S_297eqv", do {
+$self->_MATCHIFYr($S, "infix__S_296eqv", do {
 if (my ($C) = ($C->_EXACT("eqv"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -47052,19 +47036,19 @@ $C->O(%chaining)
 }
 ;
 ## token infix:sym<before>
-sub infix__S_298before__PEEK { $_[0]->_AUTOLEXpeek('infix__S_298before', $retree) }
-sub infix__S_298before {
+sub infix__S_297before__PEEK { $_[0]->_AUTOLEXpeek('infix__S_297before', $retree) }
+sub infix__S_297before {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_298before");
+my $C = $self->cursor_xact("RULE infix__S_297before");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "before";
-$self->_MATCHIFYr($S, "infix__S_298before", do {
+$self->_MATCHIFYr($S, "infix__S_297before", do {
 if (my ($C) = ($C->_EXACT("before"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -47076,19 +47060,19 @@ $C->O(%chaining)
 }
 ;
 ## token infix:sym<after>
-sub infix__S_299after__PEEK { $_[0]->_AUTOLEXpeek('infix__S_299after', $retree) }
-sub infix__S_299after {
+sub infix__S_298after__PEEK { $_[0]->_AUTOLEXpeek('infix__S_298after', $retree) }
+sub infix__S_298after {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_299after");
+my $C = $self->cursor_xact("RULE infix__S_298after");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "after";
-$self->_MATCHIFYr($S, "infix__S_299after", do {
+$self->_MATCHIFYr($S, "infix__S_298after", do {
 if (my ($C) = ($C->_EXACT("after"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -47100,19 +47084,19 @@ $C->O(%chaining)
 }
 ;
 ## token infix:sym<&&>
-sub infix__S_300AmpAmp__PEEK { $_[0]->_AUTOLEXpeek('infix__S_300AmpAmp', $retree) }
-sub infix__S_300AmpAmp {
+sub infix__S_299AmpAmp__PEEK { $_[0]->_AUTOLEXpeek('infix__S_299AmpAmp', $retree) }
+sub infix__S_299AmpAmp {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_300AmpAmp");
+my $C = $self->cursor_xact("RULE infix__S_299AmpAmp");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\&\&";
-$self->_MATCHIFYr($S, "infix__S_300AmpAmp", do {
+$self->_MATCHIFYr($S, "infix__S_299AmpAmp", do {
 if (my ($C) = ($C->_EXACT("\&\&"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -47124,19 +47108,19 @@ $C->O(%tight_and, iffy => 1)
 }
 ;
 ## token infix:sym<||>
-sub infix__S_301VertVert__PEEK { $_[0]->_AUTOLEXpeek('infix__S_301VertVert', $retree) }
-sub infix__S_301VertVert {
+sub infix__S_300VertVert__PEEK { $_[0]->_AUTOLEXpeek('infix__S_300VertVert', $retree) }
+sub infix__S_300VertVert {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_301VertVert");
+my $C = $self->cursor_xact("RULE infix__S_300VertVert");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\|\|";
-$self->_MATCHIFYr($S, "infix__S_301VertVert", do {
+$self->_MATCHIFYr($S, "infix__S_300VertVert", do {
 if (my ($C) = ($C->_EXACT("\|\|"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -47148,19 +47132,19 @@ $C->O(%tight_or, iffy => 1)
 }
 ;
 ## token infix:sym<^^>
-sub infix__S_302CaretCaret__PEEK { $_[0]->_AUTOLEXpeek('infix__S_302CaretCaret', $retree) }
-sub infix__S_302CaretCaret {
+sub infix__S_301CaretCaret__PEEK { $_[0]->_AUTOLEXpeek('infix__S_301CaretCaret', $retree) }
+sub infix__S_301CaretCaret {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_302CaretCaret");
+my $C = $self->cursor_xact("RULE infix__S_301CaretCaret");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\^\^";
-$self->_MATCHIFYr($S, "infix__S_302CaretCaret", do {
+$self->_MATCHIFYr($S, "infix__S_301CaretCaret", do {
 if (my ($C) = ($C->_EXACT("\^\^"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -47172,19 +47156,19 @@ $C->O(%tight_or, iffy => 1)
 }
 ;
 ## token infix:sym<//>
-sub infix__S_303SlashSlash__PEEK { $_[0]->_AUTOLEXpeek('infix__S_303SlashSlash', $retree) }
-sub infix__S_303SlashSlash {
+sub infix__S_302SlashSlash__PEEK { $_[0]->_AUTOLEXpeek('infix__S_302SlashSlash', $retree) }
+sub infix__S_302SlashSlash {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_303SlashSlash");
+my $C = $self->cursor_xact("RULE infix__S_302SlashSlash");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\/\/";
-$self->_MATCHIFYr($S, "infix__S_303SlashSlash", do {
+$self->_MATCHIFYr($S, "infix__S_302SlashSlash", do {
 if (my ($C) = ($C->_EXACT("\/\/"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -47196,19 +47180,19 @@ $C->O(%tight_or)
 }
 ;
 ## token infix:sym<min>
-sub infix__S_304min__PEEK { $_[0]->_AUTOLEXpeek('infix__S_304min', $retree) }
-sub infix__S_304min {
+sub infix__S_303min__PEEK { $_[0]->_AUTOLEXpeek('infix__S_303min', $retree) }
+sub infix__S_303min {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_304min");
+my $C = $self->cursor_xact("RULE infix__S_303min");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "min";
-$self->_MATCHIFYr($S, "infix__S_304min", do {
+$self->_MATCHIFYr($S, "infix__S_303min", do {
 if (my ($C) = ($C->_EXACT("min"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -47220,19 +47204,19 @@ $C->O(%tight_or)
 }
 ;
 ## token infix:sym<max>
-sub infix__S_305max__PEEK { $_[0]->_AUTOLEXpeek('infix__S_305max', $retree) }
-sub infix__S_305max {
+sub infix__S_304max__PEEK { $_[0]->_AUTOLEXpeek('infix__S_304max', $retree) }
+sub infix__S_304max {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_305max");
+my $C = $self->cursor_xact("RULE infix__S_304max");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "max";
-$self->_MATCHIFYr($S, "infix__S_305max", do {
+$self->_MATCHIFYr($S, "infix__S_304max", do {
 if (my ($C) = ($C->_EXACT("max"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -47244,19 +47228,19 @@ $C->O(%tight_or)
 }
 ;
 ## token infix:sym<?? !!> {
-sub infix__S_306QuestionQuestion_BangBang__PEEK { $_[0]->_AUTOLEXpeek('infix__S_306QuestionQuestion_BangBang', $retree) }
-sub infix__S_306QuestionQuestion_BangBang {
+sub infix__S_305QuestionQuestion_BangBang__PEEK { $_[0]->_AUTOLEXpeek('infix__S_305QuestionQuestion_BangBang', $retree) }
+sub infix__S_305QuestionQuestion_BangBang {
 no warnings 'recursion';
 my $self = shift;
 
 local $::GOAL = '!!';
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_306QuestionQuestion_BangBang");
+my $C = $self->cursor_xact("RULE infix__S_305QuestionQuestion_BangBang");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\?\?\ \!\!";
-$self->_MATCHIFYr($S, "infix__S_306QuestionQuestion_BangBang", do {
+$self->_MATCHIFYr($S, "infix__S_305QuestionQuestion_BangBang", do {
 my $C = $C;
 if (($C) = ($C->_EXACT("\?\?"))
 and ($C) = ($C->ws)
@@ -47374,19 +47358,19 @@ $C->O(%conditional, _reducecheck => 'raise_middle')
 }
 ;
 ## token infix:sym<!!> {
-sub infix__S_307BangBang__PEEK { $_[0]->_AUTOLEXpeek('infix__S_307BangBang', $retree) }
-sub infix__S_307BangBang {
+sub infix__S_306BangBang__PEEK { $_[0]->_AUTOLEXpeek('infix__S_306BangBang', $retree) }
+sub infix__S_306BangBang {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_307BangBang");
+my $C = $self->cursor_xact("RULE infix__S_306BangBang");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\!\!";
-$self->_MATCHIFYr($S, "infix__S_307BangBang", do {
+$self->_MATCHIFYr($S, "infix__S_306BangBang", do {
 my $C = $C;
 if (($C) = ($C->_EXACT("\!\!"))
 and ($C) = ($C->_COMMITLTM())
@@ -47435,19 +47419,19 @@ $self->{'middle'} = $self->{'infix'}->{'EXPR'};
 $self;
 };
 ## token infix:sym<?>
-sub infix__S_308Question__PEEK { $_[0]->_AUTOLEXpeek('infix__S_308Question', $retree) }
-sub infix__S_308Question {
+sub infix__S_307Question__PEEK { $_[0]->_AUTOLEXpeek('infix__S_307Question', $retree) }
+sub infix__S_307Question {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_308Question");
+my $C = $self->cursor_xact("RULE infix__S_307Question");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\?";
-$self->_MATCHIFYr($S, "infix__S_308Question", do {
+$self->_MATCHIFYr($S, "infix__S_307Question", do {
 my $C = $C;
 if (($C) = ($C->_EXACT("\?"))
 and ($C) = (scalar(do {
@@ -47484,19 +47468,19 @@ $C->O(%conditional)
 }
 ;
 ## token infix:sym<ff>
-sub infix__S_309ff__PEEK { $_[0]->_AUTOLEXpeek('infix__S_309ff', $retree) }
-sub infix__S_309ff {
+sub infix__S_308ff__PEEK { $_[0]->_AUTOLEXpeek('infix__S_308ff', $retree) }
+sub infix__S_308ff {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_309ff");
+my $C = $self->cursor_xact("RULE infix__S_308ff");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "ff";
-$self->_MATCHIFYr($S, "infix__S_309ff", do {
+$self->_MATCHIFYr($S, "infix__S_308ff", do {
 if (my ($C) = ($C->_EXACT("ff"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -47508,19 +47492,19 @@ $C->O(%conditional)
 }
 ;
 ## token infix:sym<^ff>
-sub infix__S_310Caretff__PEEK { $_[0]->_AUTOLEXpeek('infix__S_310Caretff', $retree) }
-sub infix__S_310Caretff {
+sub infix__S_309Caretff__PEEK { $_[0]->_AUTOLEXpeek('infix__S_309Caretff', $retree) }
+sub infix__S_309Caretff {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_310Caretff");
+my $C = $self->cursor_xact("RULE infix__S_309Caretff");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\^ff";
-$self->_MATCHIFYr($S, "infix__S_310Caretff", do {
+$self->_MATCHIFYr($S, "infix__S_309Caretff", do {
 if (my ($C) = ($C->_EXACT("\^ff"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -47532,19 +47516,19 @@ $C->O(%conditional)
 }
 ;
 ## token infix:sym<ff^>
-sub infix__S_311ffCaret__PEEK { $_[0]->_AUTOLEXpeek('infix__S_311ffCaret', $retree) }
-sub infix__S_311ffCaret {
+sub infix__S_310ffCaret__PEEK { $_[0]->_AUTOLEXpeek('infix__S_310ffCaret', $retree) }
+sub infix__S_310ffCaret {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_311ffCaret");
+my $C = $self->cursor_xact("RULE infix__S_310ffCaret");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "ff\^";
-$self->_MATCHIFYr($S, "infix__S_311ffCaret", do {
+$self->_MATCHIFYr($S, "infix__S_310ffCaret", do {
 if (my ($C) = ($C->_EXACT("ff\^"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -47556,19 +47540,19 @@ $C->O(%conditional)
 }
 ;
 ## token infix:sym<^ff^>
-sub infix__S_312CaretffCaret__PEEK { $_[0]->_AUTOLEXpeek('infix__S_312CaretffCaret', $retree) }
-sub infix__S_312CaretffCaret {
+sub infix__S_311CaretffCaret__PEEK { $_[0]->_AUTOLEXpeek('infix__S_311CaretffCaret', $retree) }
+sub infix__S_311CaretffCaret {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_312CaretffCaret");
+my $C = $self->cursor_xact("RULE infix__S_311CaretffCaret");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\^ff\^";
-$self->_MATCHIFYr($S, "infix__S_312CaretffCaret", do {
+$self->_MATCHIFYr($S, "infix__S_311CaretffCaret", do {
 if (my ($C) = ($C->_EXACT("\^ff\^"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -47580,19 +47564,19 @@ $C->O(%conditional)
 }
 ;
 ## token infix:sym<fff>
-sub infix__S_313fff__PEEK { $_[0]->_AUTOLEXpeek('infix__S_313fff', $retree) }
-sub infix__S_313fff {
+sub infix__S_312fff__PEEK { $_[0]->_AUTOLEXpeek('infix__S_312fff', $retree) }
+sub infix__S_312fff {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_313fff");
+my $C = $self->cursor_xact("RULE infix__S_312fff");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "fff";
-$self->_MATCHIFYr($S, "infix__S_313fff", do {
+$self->_MATCHIFYr($S, "infix__S_312fff", do {
 if (my ($C) = ($C->_EXACT("fff"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -47604,19 +47588,19 @@ $C->O(%conditional)
 }
 ;
 ## token infix:sym<^fff>
-sub infix__S_314Caretfff__PEEK { $_[0]->_AUTOLEXpeek('infix__S_314Caretfff', $retree) }
-sub infix__S_314Caretfff {
+sub infix__S_313Caretfff__PEEK { $_[0]->_AUTOLEXpeek('infix__S_313Caretfff', $retree) }
+sub infix__S_313Caretfff {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_314Caretfff");
+my $C = $self->cursor_xact("RULE infix__S_313Caretfff");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\^fff";
-$self->_MATCHIFYr($S, "infix__S_314Caretfff", do {
+$self->_MATCHIFYr($S, "infix__S_313Caretfff", do {
 if (my ($C) = ($C->_EXACT("\^fff"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -47628,19 +47612,19 @@ $C->O(%conditional)
 }
 ;
 ## token infix:sym<fff^>
-sub infix__S_315fffCaret__PEEK { $_[0]->_AUTOLEXpeek('infix__S_315fffCaret', $retree) }
-sub infix__S_315fffCaret {
+sub infix__S_314fffCaret__PEEK { $_[0]->_AUTOLEXpeek('infix__S_314fffCaret', $retree) }
+sub infix__S_314fffCaret {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_315fffCaret");
+my $C = $self->cursor_xact("RULE infix__S_314fffCaret");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "fff\^";
-$self->_MATCHIFYr($S, "infix__S_315fffCaret", do {
+$self->_MATCHIFYr($S, "infix__S_314fffCaret", do {
 if (my ($C) = ($C->_EXACT("fff\^"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -47652,19 +47636,19 @@ $C->O(%conditional)
 }
 ;
 ## token infix:sym<^fff^>
-sub infix__S_316CaretfffCaret__PEEK { $_[0]->_AUTOLEXpeek('infix__S_316CaretfffCaret', $retree) }
-sub infix__S_316CaretfffCaret {
+sub infix__S_315CaretfffCaret__PEEK { $_[0]->_AUTOLEXpeek('infix__S_315CaretfffCaret', $retree) }
+sub infix__S_315CaretfffCaret {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_316CaretfffCaret");
+my $C = $self->cursor_xact("RULE infix__S_315CaretfffCaret");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\^fff\^";
-$self->_MATCHIFYr($S, "infix__S_316CaretfffCaret", do {
+$self->_MATCHIFYr($S, "infix__S_315CaretfffCaret", do {
 if (my ($C) = ($C->_EXACT("\^fff\^"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -47676,19 +47660,19 @@ $C->O(%conditional)
 }
 ;
 ## token infix:sym<=> ()
-sub infix__S_317Equal__PEEK { $_[0]->_AUTOLEXpeek('infix__S_317Equal', $retree) }
-sub infix__S_317Equal {
+sub infix__S_316Equal__PEEK { $_[0]->_AUTOLEXpeek('infix__S_316Equal', $retree) }
+sub infix__S_316Equal {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_317Equal");
+my $C = $self->cursor_xact("RULE infix__S_316Equal");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\=";
-$self->_MATCHIFYr($S, "infix__S_317Equal", do {
+$self->_MATCHIFYr($S, "infix__S_316Equal", do {
 my $C = $C;
 if (($C) = ($C->_EXACT("\="))
 and ($C) = ($C->_BRACKETr(sub {
@@ -47728,19 +47712,19 @@ $C
 }
 ;
 ## token infix:sym<:=>
-sub infix__S_318ColonEqual__PEEK { $_[0]->_AUTOLEXpeek('infix__S_318ColonEqual', $retree) }
-sub infix__S_318ColonEqual {
+sub infix__S_317ColonEqual__PEEK { $_[0]->_AUTOLEXpeek('infix__S_317ColonEqual', $retree) }
+sub infix__S_317ColonEqual {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_318ColonEqual");
+my $C = $self->cursor_xact("RULE infix__S_317ColonEqual");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\:\=";
-$self->_MATCHIFYr($S, "infix__S_318ColonEqual", do {
+$self->_MATCHIFYr($S, "infix__S_317ColonEqual", do {
 if (my ($C) = ($C->_EXACT("\:\="))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -47752,19 +47736,19 @@ $C->O(%item_assignment)
 }
 ;
 ## token infix:sym<::=>
-sub infix__S_319ColonColonEqual__PEEK { $_[0]->_AUTOLEXpeek('infix__S_319ColonColonEqual', $retree) }
-sub infix__S_319ColonColonEqual {
+sub infix__S_318ColonColonEqual__PEEK { $_[0]->_AUTOLEXpeek('infix__S_318ColonColonEqual', $retree) }
+sub infix__S_318ColonColonEqual {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_319ColonColonEqual");
+my $C = $self->cursor_xact("RULE infix__S_318ColonColonEqual");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\:\:\=";
-$self->_MATCHIFYr($S, "infix__S_319ColonColonEqual", do {
+$self->_MATCHIFYr($S, "infix__S_318ColonColonEqual", do {
 if (my ($C) = ($C->_EXACT("\:\:\="))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -47776,19 +47760,19 @@ $C->O(%item_assignment)
 }
 ;
 ## token infix:sym<.=> {
-sub infix__S_320DotEqual__PEEK { $_[0]->_AUTOLEXpeek('infix__S_320DotEqual', $retree) }
-sub infix__S_320DotEqual {
+sub infix__S_319DotEqual__PEEK { $_[0]->_AUTOLEXpeek('infix__S_319DotEqual', $retree) }
+sub infix__S_319DotEqual {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_320DotEqual");
+my $C = $self->cursor_xact("RULE infix__S_319DotEqual");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\.\=";
-$self->_MATCHIFYr($S, "infix__S_320DotEqual", do {
+$self->_MATCHIFYr($S, "infix__S_319DotEqual", do {
 if (my ($C) = ($C->_EXACT("\.\="))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -47820,19 +47804,19 @@ $self->cursor_force($self->{'infix'}->{'_pos'})->worryobs('.= as append operator
 $self;
 };
 ## token infix:sym« => »
-sub infix__S_321EqualGt__PEEK { $_[0]->_AUTOLEXpeek('infix__S_321EqualGt', $retree) }
-sub infix__S_321EqualGt {
+sub infix__S_320EqualGt__PEEK { $_[0]->_AUTOLEXpeek('infix__S_320EqualGt', $retree) }
+sub infix__S_320EqualGt {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_321EqualGt");
+my $C = $self->cursor_xact("RULE infix__S_320EqualGt");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\=\>";
-$self->_MATCHIFYr($S, "infix__S_321EqualGt", do {
+$self->_MATCHIFYr($S, "infix__S_320EqualGt", do {
 if (my ($C) = ($C->_EXACT("\=\>"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -47844,19 +47828,19 @@ $C->O(%item_assignment, fiddly => 0)
 }
 ;
 ## token prefix:sym<so>
-sub prefix__S_322so__PEEK { $_[0]->_AUTOLEXpeek('prefix__S_322so', $retree) }
-sub prefix__S_322so {
+sub prefix__S_321so__PEEK { $_[0]->_AUTOLEXpeek('prefix__S_321so', $retree) }
+sub prefix__S_321so {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE prefix__S_322so");
+my $C = $self->cursor_xact("RULE prefix__S_321so");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "so";
-$self->_MATCHIFYr($S, "prefix__S_322so", do {
+$self->_MATCHIFYr($S, "prefix__S_321so", do {
 if (my ($C) = ($C->_PATTERN(qr/\Gso\b/))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -47868,19 +47852,19 @@ $C->O(%loose_unary)
 }
 ;
 ## token prefix:sym<not>
-sub prefix__S_323not__PEEK { $_[0]->_AUTOLEXpeek('prefix__S_323not', $retree) }
-sub prefix__S_323not {
+sub prefix__S_322not__PEEK { $_[0]->_AUTOLEXpeek('prefix__S_322not', $retree) }
+sub prefix__S_322not {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE prefix__S_323not");
+my $C = $self->cursor_xact("RULE prefix__S_322not");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "not";
-$self->_MATCHIFYr($S, "prefix__S_323not", do {
+$self->_MATCHIFYr($S, "prefix__S_322not", do {
 if (my ($C) = ($C->_PATTERN(qr/\Gnot\b/))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -47892,19 +47876,19 @@ $C->O(%loose_unary)
 }
 ;
 ## token infix:sym<,> {
-sub infix__S_324Comma__PEEK { $_[0]->_AUTOLEXpeek('infix__S_324Comma', $retree) }
-sub infix__S_324Comma {
+sub infix__S_323Comma__PEEK { $_[0]->_AUTOLEXpeek('infix__S_323Comma', $retree) }
+sub infix__S_323Comma {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_324Comma");
+my $C = $self->cursor_xact("RULE infix__S_323Comma");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\,";
-$self->_MATCHIFYr($S, "infix__S_324Comma", do {
+$self->_MATCHIFYr($S, "infix__S_323Comma", do {
 my $C = $C;
 if (($C) = ($C->_EXACT("\,"))
 and ($C) = ($C->_SUBSUMEr(['O'], sub {
@@ -47933,19 +47917,19 @@ $C
 }
 ;
 ## token infix:sym<:> {
-sub infix__S_325Colon__PEEK { $_[0]->_AUTOLEXpeek('infix__S_325Colon', $retree) }
-sub infix__S_325Colon {
+sub infix__S_324Colon__PEEK { $_[0]->_AUTOLEXpeek('infix__S_324Colon', $retree) }
+sub infix__S_324Colon {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_325Colon");
+my $C = $self->cursor_xact("RULE infix__S_324Colon");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\:";
-$self->_MATCHIFYr($S, "infix__S_325Colon", do {
+$self->_MATCHIFYr($S, "infix__S_324Colon", do {
 my $C = $C;
 if (($C) = ($C->_EXACT("\:"))
 and ($C) = ($C->before(sub {
@@ -47960,14 +47944,14 @@ do {
 
     my $fate;
     my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'infix__S_325Colon_0') {
-        $C->deb("Fate passed to infix__S_325Colon_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+    if ($fate = $C->{'_fate'} and $fate->[1] eq 'infix__S_324Colon_0') {
+        $C->deb("Fate passed to infix__S_324Colon_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
         ($C->{'_fate'}, $tag, $try) = @$fate;
         @try = ($try);
-        $x = 'ALT infix__S_325Colon_0';    # some outer ltm is controlling us
+        $x = 'ALT infix__S_324Colon_0';    # some outer ltm is controlling us
     }
     else {
-        $x = 'ALTLTM infix__S_325Colon_0'; # we are top level ltm
+        $x = 'ALTLTM infix__S_324Colon_0'; # we are top level ltm
     }
     my $C = $C->cursor_xact($x);
     my $xact = $C->{_xact};
@@ -47975,7 +47959,7 @@ do {
     my @gather = ();
     for (;;) {
         unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'infix__S_325Colon_0', $retree);
+            $relex //= $C->cursor_fate('STD::P6', 'infix__S_324Colon_0', $retree);
             @try = $relex->($C) or last;
         }
         $try = shift(@try) // next;
@@ -47984,7 +47968,7 @@ do {
             ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
         }
 
-        $C->deb("infix__S_325Colon_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+        $C->deb("infix__S_324Colon_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
         push @gather, ((
 sub {
 my $C=shift;
@@ -48023,19 +48007,19 @@ $C->O(%comma)
 }
 ;
 ## token infix:sym<X>
-sub infix__S_326X__PEEK { $_[0]->_AUTOLEXpeek('infix__S_326X', $retree) }
-sub infix__S_326X {
+sub infix__S_325X__PEEK { $_[0]->_AUTOLEXpeek('infix__S_325X', $retree) }
+sub infix__S_325X {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_326X");
+my $C = $self->cursor_xact("RULE infix__S_325X");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "X";
-$self->_MATCHIFYr($S, "infix__S_326X", do {
+$self->_MATCHIFYr($S, "infix__S_325X", do {
 if (my ($C) = ($C->_EXACT("X"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -48047,19 +48031,19 @@ $C->O(%list_infix)
 }
 ;
 ## token infix:sym<Z>
-sub infix__S_327Z__PEEK { $_[0]->_AUTOLEXpeek('infix__S_327Z', $retree) }
-sub infix__S_327Z {
+sub infix__S_326Z__PEEK { $_[0]->_AUTOLEXpeek('infix__S_326Z', $retree) }
+sub infix__S_326Z {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_327Z");
+my $C = $self->cursor_xact("RULE infix__S_326Z");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "Z";
-$self->_MATCHIFYr($S, "infix__S_327Z", do {
+$self->_MATCHIFYr($S, "infix__S_326Z", do {
 if (my ($C) = ($C->_EXACT("Z"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -48071,19 +48055,19 @@ $C->O(%list_infix)
 }
 ;
 ## token infix:sym<minmax>
-sub infix__S_328minmax__PEEK { $_[0]->_AUTOLEXpeek('infix__S_328minmax', $retree) }
-sub infix__S_328minmax {
+sub infix__S_327minmax__PEEK { $_[0]->_AUTOLEXpeek('infix__S_327minmax', $retree) }
+sub infix__S_327minmax {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_328minmax");
+my $C = $self->cursor_xact("RULE infix__S_327minmax");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "minmax";
-$self->_MATCHIFYr($S, "infix__S_328minmax", do {
+$self->_MATCHIFYr($S, "infix__S_327minmax", do {
 if (my ($C) = ($C->_EXACT("minmax"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -48095,19 +48079,19 @@ $C->O(%list_infix)
 }
 ;
 ## token infix:sym<...>
-sub infix__S_329DotDotDot__PEEK { $_[0]->_AUTOLEXpeek('infix__S_329DotDotDot', $retree) }
-sub infix__S_329DotDotDot {
+sub infix__S_328DotDotDot__PEEK { $_[0]->_AUTOLEXpeek('infix__S_328DotDotDot', $retree) }
+sub infix__S_328DotDotDot {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_329DotDotDot");
+my $C = $self->cursor_xact("RULE infix__S_328DotDotDot");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\.\.\.";
-$self->_MATCHIFYr($S, "infix__S_329DotDotDot", do {
+$self->_MATCHIFYr($S, "infix__S_328DotDotDot", do {
 if (my ($C) = ($C->_EXACT("\.\.\."))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -48119,20 +48103,20 @@ $C->O(%list_infix)
 }
 ;
 ## token term:sym<...>
-sub term__S_330DotDotDot__PEEK { $_[0]->_AUTOLEXpeek('term__S_330DotDotDot', $retree) }
-sub term__S_330DotDotDot {
+sub term__S_329DotDotDot__PEEK { $_[0]->_AUTOLEXpeek('term__S_329DotDotDot', $retree) }
+sub term__S_329DotDotDot {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE term__S_330DotDotDot");
+my $C = $self->cursor_xact("RULE term__S_329DotDotDot");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{'args'} = [];
 $C->{sym} = "\.\.\.";
-$self->_MATCHIFYr($S, "term__S_330DotDotDot", do {
+$self->_MATCHIFYr($S, "term__S_329DotDotDot", do {
 my $C = $C;
 if (($C) = ($C->_EXACT("\.\.\."))
 and ($C) = ($C->_OPTr(sub {
@@ -48152,20 +48136,20 @@ $C->O(%list_prefix)
 }
 ;
 ## token term:sym<???>
-sub term__S_331QuestionQuestionQuestion__PEEK { $_[0]->_AUTOLEXpeek('term__S_331QuestionQuestionQuestion', $retree) }
-sub term__S_331QuestionQuestionQuestion {
+sub term__S_330QuestionQuestionQuestion__PEEK { $_[0]->_AUTOLEXpeek('term__S_330QuestionQuestionQuestion', $retree) }
+sub term__S_330QuestionQuestionQuestion {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE term__S_331QuestionQuestionQuestion");
+my $C = $self->cursor_xact("RULE term__S_330QuestionQuestionQuestion");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{'args'} = [];
 $C->{sym} = "\?\?\?";
-$self->_MATCHIFYr($S, "term__S_331QuestionQuestionQuestion", do {
+$self->_MATCHIFYr($S, "term__S_330QuestionQuestionQuestion", do {
 my $C = $C;
 if (($C) = ($C->_EXACT("\?\?\?"))
 and ($C) = ($C->_OPTr(sub {
@@ -48185,20 +48169,20 @@ $C->O(%list_prefix)
 }
 ;
 ## token term:sym<!!!>
-sub term__S_332BangBangBang__PEEK { $_[0]->_AUTOLEXpeek('term__S_332BangBangBang', $retree) }
-sub term__S_332BangBangBang {
+sub term__S_331BangBangBang__PEEK { $_[0]->_AUTOLEXpeek('term__S_331BangBangBang', $retree) }
+sub term__S_331BangBangBang {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE term__S_332BangBangBang");
+my $C = $self->cursor_xact("RULE term__S_331BangBangBang");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{'args'} = [];
 $C->{sym} = "\!\!\!";
-$self->_MATCHIFYr($S, "term__S_332BangBangBang", do {
+$self->_MATCHIFYr($S, "term__S_331BangBangBang", do {
 my $C = $C;
 if (($C) = ($C->_EXACT("\!\!\!"))
 and ($C) = ($C->_OPTr(sub {
@@ -48225,19 +48209,19 @@ my %deftrap = (
         'WHAT' => 1, 'WHICH' => 1, 'WHERE' => 1, 'HOW' => 1, 'WHENCE' => 1, 'VAR' => 1,
     );
 ## token term:identifier
-sub term__S_333identifier__PEEK { $_[0]->_AUTOLEXpeek('term__S_333identifier', $retree) }
-sub term__S_333identifier {
+sub term__S_332identifier__PEEK { $_[0]->_AUTOLEXpeek('term__S_332identifier', $retree) }
+sub term__S_332identifier {
 no warnings 'recursion';
 my $self = shift;
 
 my $name;my $pos;my $isname = 0;
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE term__S_333identifier");
+my $C = $self->cursor_xact("RULE term__S_332identifier");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "identifier";
-$self->_MATCHIFYr($S, "term__S_333identifier", do {
+$self->_MATCHIFYr($S, "term__S_332identifier", do {
 my $C = $C;
 if (($C) = ($C->_SUBSUMEr(['identifier'], sub {
 my $C = shift;
@@ -48259,14 +48243,14 @@ do {
 
     my $fate;
     my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'term__S_333identifier_0') {
-        $C->deb("Fate passed to term__S_333identifier_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+    if ($fate = $C->{'_fate'} and $fate->[1] eq 'term__S_332identifier_0') {
+        $C->deb("Fate passed to term__S_332identifier_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
         ($C->{'_fate'}, $tag, $try) = @$fate;
         @try = ($try);
-        $x = 'ALT term__S_333identifier_0';    # some outer ltm is controlling us
+        $x = 'ALT term__S_332identifier_0';    # some outer ltm is controlling us
     }
     else {
-        $x = 'ALTLTM term__S_333identifier_0'; # we are top level ltm
+        $x = 'ALTLTM term__S_332identifier_0'; # we are top level ltm
     }
     my $C = $C->cursor_xact($x);
     my $xact = $C->{_xact};
@@ -48274,7 +48258,7 @@ do {
     my @gather = ();
     for (;;) {
         unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'term__S_333identifier_0', $retree);
+            $relex //= $C->cursor_fate('STD::P6', 'term__S_332identifier_0', $retree);
             @try = $relex->($C) or last;
         }
         $try = shift(@try) // next;
@@ -48283,7 +48267,7 @@ do {
             ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
         }
 
-        $C->deb("term__S_333identifier_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+        $C->deb("term__S_332identifier_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
         push @gather, ((
 sub {
 my $C=shift;
@@ -48572,20 +48556,20 @@ $C
 }
 ;
 ## token term:name
-sub term__S_334name__PEEK { $_[0]->_AUTOLEXpeek('term__S_334name', $retree) }
-sub term__S_334name {
+sub term__S_333name__PEEK { $_[0]->_AUTOLEXpeek('term__S_333name', $retree) }
+sub term__S_333name {
 no warnings 'recursion';
 my $self = shift;
 
 my $name;my $pos;
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE term__S_334name");
+my $C = $self->cursor_xact("RULE term__S_333name");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{'postcircumfix'} = [];
 $C->{sym} = "name";
-$self->_MATCHIFYr($S, "term__S_334name", do {
+$self->_MATCHIFYr($S, "term__S_333name", do {
 my $C = $C;
 if (($C) = ($C->_SUBSUMEr(['longname'], sub {
 my $C = shift;
@@ -48658,14 +48642,14 @@ do {
 
     my $fate;
     my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'term__S_334name_0') {
-        $C->deb("Fate passed to term__S_334name_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+    if ($fate = $C->{'_fate'} and $fate->[1] eq 'term__S_333name_0') {
+        $C->deb("Fate passed to term__S_333name_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
         ($C->{'_fate'}, $tag, $try) = @$fate;
         @try = ($try);
-        $x = 'ALT term__S_334name_0';    # some outer ltm is controlling us
+        $x = 'ALT term__S_333name_0';    # some outer ltm is controlling us
     }
     else {
-        $x = 'ALTLTM term__S_334name_0'; # we are top level ltm
+        $x = 'ALTLTM term__S_333name_0'; # we are top level ltm
     }
     my $C = $C->cursor_xact($x);
     my $xact = $C->{_xact};
@@ -48673,7 +48657,7 @@ do {
     my @gather = ();
     for (;;) {
         unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'term__S_334name_0', $retree);
+            $relex //= $C->cursor_fate('STD::P6', 'term__S_333name_0', $retree);
             @try = $relex->($C) or last;
         }
         $try = shift(@try) // next;
@@ -48682,7 +48666,7 @@ do {
             ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
         }
 
-        $C->deb("term__S_334name_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+        $C->deb("term__S_333name_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
         push @gather, ((
 sub {
 my $C=shift;
@@ -48766,19 +48750,19 @@ my $name = @_ ? shift() : undef;
 if ($name lt 'a') {
 $::MEMOS[$self->{'_pos'}]->{'nodecl'} = $name}};
 ## token infix:sym<and>
-sub infix__S_335and__PEEK { $_[0]->_AUTOLEXpeek('infix__S_335and', $retree) }
-sub infix__S_335and {
+sub infix__S_334and__PEEK { $_[0]->_AUTOLEXpeek('infix__S_334and', $retree) }
+sub infix__S_334and {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_335and");
+my $C = $self->cursor_xact("RULE infix__S_334and");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "and";
-$self->_MATCHIFYr($S, "infix__S_335and", do {
+$self->_MATCHIFYr($S, "infix__S_334and", do {
 if (my ($C) = ($C->_EXACT("and"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -48790,19 +48774,19 @@ $C->O(%loose_and, iffy => 1)
 }
 ;
 ## token infix:sym<andthen>
-sub infix__S_336andthen__PEEK { $_[0]->_AUTOLEXpeek('infix__S_336andthen', $retree) }
-sub infix__S_336andthen {
+sub infix__S_335andthen__PEEK { $_[0]->_AUTOLEXpeek('infix__S_335andthen', $retree) }
+sub infix__S_335andthen {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_336andthen");
+my $C = $self->cursor_xact("RULE infix__S_335andthen");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "andthen";
-$self->_MATCHIFYr($S, "infix__S_336andthen", do {
+$self->_MATCHIFYr($S, "infix__S_335andthen", do {
 if (my ($C) = ($C->_EXACT("andthen"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -48814,19 +48798,19 @@ $C->O(%loose_and)
 }
 ;
 ## token infix:sym<or>
-sub infix__S_337or__PEEK { $_[0]->_AUTOLEXpeek('infix__S_337or', $retree) }
-sub infix__S_337or {
+sub infix__S_336or__PEEK { $_[0]->_AUTOLEXpeek('infix__S_336or', $retree) }
+sub infix__S_336or {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_337or");
+my $C = $self->cursor_xact("RULE infix__S_336or");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "or";
-$self->_MATCHIFYr($S, "infix__S_337or", do {
+$self->_MATCHIFYr($S, "infix__S_336or", do {
 if (my ($C) = ($C->_EXACT("or"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -48838,19 +48822,19 @@ $C->O(%loose_or, iffy => 1)
 }
 ;
 ## token infix:sym<orelse>
-sub infix__S_338orelse__PEEK { $_[0]->_AUTOLEXpeek('infix__S_338orelse', $retree) }
-sub infix__S_338orelse {
+sub infix__S_337orelse__PEEK { $_[0]->_AUTOLEXpeek('infix__S_337orelse', $retree) }
+sub infix__S_337orelse {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_338orelse");
+my $C = $self->cursor_xact("RULE infix__S_337orelse");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "orelse";
-$self->_MATCHIFYr($S, "infix__S_338orelse", do {
+$self->_MATCHIFYr($S, "infix__S_337orelse", do {
 if (my ($C) = ($C->_EXACT("orelse"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -48862,19 +48846,19 @@ $C->O(%loose_or)
 }
 ;
 ## token infix:sym<xor>
-sub infix__S_339xor__PEEK { $_[0]->_AUTOLEXpeek('infix__S_339xor', $retree) }
-sub infix__S_339xor {
+sub infix__S_338xor__PEEK { $_[0]->_AUTOLEXpeek('infix__S_338xor', $retree) }
+sub infix__S_338xor {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_339xor");
+my $C = $self->cursor_xact("RULE infix__S_338xor");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "xor";
-$self->_MATCHIFYr($S, "infix__S_339xor", do {
+$self->_MATCHIFYr($S, "infix__S_338xor", do {
 if (my ($C) = ($C->_EXACT("xor"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -48886,19 +48870,19 @@ $C->O(%loose_or, iffy => 1)
 }
 ;
 ## token infix:sym« <== »
-sub infix__S_340LtEqualEqual__PEEK { $_[0]->_AUTOLEXpeek('infix__S_340LtEqualEqual', $retree) }
-sub infix__S_340LtEqualEqual {
+sub infix__S_339LtEqualEqual__PEEK { $_[0]->_AUTOLEXpeek('infix__S_339LtEqualEqual', $retree) }
+sub infix__S_339LtEqualEqual {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_340LtEqualEqual");
+my $C = $self->cursor_xact("RULE infix__S_339LtEqualEqual");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\<\=\=";
-$self->_MATCHIFYr($S, "infix__S_340LtEqualEqual", do {
+$self->_MATCHIFYr($S, "infix__S_339LtEqualEqual", do {
 if (my ($C) = ($C->_EXACT("\<\=\="))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -48910,19 +48894,19 @@ $C->O(%sequencer)
 }
 ;
 ## token infix:sym« ==> »
-sub infix__S_341EqualEqualGt__PEEK { $_[0]->_AUTOLEXpeek('infix__S_341EqualEqualGt', $retree) }
-sub infix__S_341EqualEqualGt {
+sub infix__S_340EqualEqualGt__PEEK { $_[0]->_AUTOLEXpeek('infix__S_340EqualEqualGt', $retree) }
+sub infix__S_340EqualEqualGt {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_341EqualEqualGt");
+my $C = $self->cursor_xact("RULE infix__S_340EqualEqualGt");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\=\=\>";
-$self->_MATCHIFYr($S, "infix__S_341EqualEqualGt", do {
+$self->_MATCHIFYr($S, "infix__S_340EqualEqualGt", do {
 if (my ($C) = ($C->_EXACT("\=\=\>"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -48934,19 +48918,19 @@ $C->O(%sequencer)
 }
 ;
 ## token infix:sym« <<== »
-sub infix__S_342LtLtEqualEqual__PEEK { $_[0]->_AUTOLEXpeek('infix__S_342LtLtEqualEqual', $retree) }
-sub infix__S_342LtLtEqualEqual {
+sub infix__S_341LtLtEqualEqual__PEEK { $_[0]->_AUTOLEXpeek('infix__S_341LtLtEqualEqual', $retree) }
+sub infix__S_341LtLtEqualEqual {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_342LtLtEqualEqual");
+my $C = $self->cursor_xact("RULE infix__S_341LtLtEqualEqual");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\<\<\=\=";
-$self->_MATCHIFYr($S, "infix__S_342LtLtEqualEqual", do {
+$self->_MATCHIFYr($S, "infix__S_341LtLtEqualEqual", do {
 if (my ($C) = ($C->_EXACT("\<\<\=\="))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -48958,19 +48942,19 @@ $C->O(%sequencer)
 }
 ;
 ## token infix:sym« ==>> »
-sub infix__S_343EqualEqualGtGt__PEEK { $_[0]->_AUTOLEXpeek('infix__S_343EqualEqualGtGt', $retree) }
-sub infix__S_343EqualEqualGtGt {
+sub infix__S_342EqualEqualGtGt__PEEK { $_[0]->_AUTOLEXpeek('infix__S_342EqualEqualGtGt', $retree) }
+sub infix__S_342EqualEqualGtGt {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE infix__S_343EqualEqualGtGt");
+my $C = $self->cursor_xact("RULE infix__S_342EqualEqualGtGt");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\=\=\>\>";
-$self->_MATCHIFYr($S, "infix__S_343EqualEqualGtGt", do {
+$self->_MATCHIFYr($S, "infix__S_342EqualEqualGtGt", do {
 if (my ($C) = ($C->_EXACT("\=\=\>\>"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -48982,19 +48966,19 @@ $C->O(%sequencer)
 }
 ;
 ## token terminator:sym<;>
-sub terminator__S_344Semi__PEEK { $_[0]->_AUTOLEXpeek('terminator__S_344Semi', $retree) }
-sub terminator__S_344Semi {
+sub terminator__S_343Semi__PEEK { $_[0]->_AUTOLEXpeek('terminator__S_343Semi', $retree) }
+sub terminator__S_343Semi {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE terminator__S_344Semi");
+my $C = $self->cursor_xact("RULE terminator__S_343Semi");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\;";
-$self->_MATCHIFYr($S, "terminator__S_344Semi", do {
+$self->_MATCHIFYr($S, "terminator__S_343Semi", do {
 if (my ($C) = ($C->_EXACT("\;"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -49006,19 +48990,19 @@ $C->O(%terminator)
 }
 ;
 ## token terminator:sym<if>
-sub terminator__S_345if__PEEK { $_[0]->_AUTOLEXpeek('terminator__S_345if', $retree) }
-sub terminator__S_345if {
+sub terminator__S_344if__PEEK { $_[0]->_AUTOLEXpeek('terminator__S_344if', $retree) }
+sub terminator__S_344if {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE terminator__S_345if");
+my $C = $self->cursor_xact("RULE terminator__S_344if");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "if";
-$self->_MATCHIFYr($S, "terminator__S_345if", do {
+$self->_MATCHIFYr($S, "terminator__S_344if", do {
 my $C = $C;
 if (($C) = ($C->_PATTERN(qr/\Gif\b/))
 and ($C) = ($C->nofun)) {
@@ -49032,19 +49016,19 @@ $C->O(%terminator)
 }
 ;
 ## token terminator:sym<unless>
-sub terminator__S_346unless__PEEK { $_[0]->_AUTOLEXpeek('terminator__S_346unless', $retree) }
-sub terminator__S_346unless {
+sub terminator__S_345unless__PEEK { $_[0]->_AUTOLEXpeek('terminator__S_345unless', $retree) }
+sub terminator__S_345unless {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE terminator__S_346unless");
+my $C = $self->cursor_xact("RULE terminator__S_345unless");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "unless";
-$self->_MATCHIFYr($S, "terminator__S_346unless", do {
+$self->_MATCHIFYr($S, "terminator__S_345unless", do {
 my $C = $C;
 if (($C) = ($C->_PATTERN(qr/\Gunless\b/))
 and ($C) = ($C->nofun)) {
@@ -49058,19 +49042,19 @@ $C->O(%terminator)
 }
 ;
 ## token terminator:sym<while>
-sub terminator__S_347while__PEEK { $_[0]->_AUTOLEXpeek('terminator__S_347while', $retree) }
-sub terminator__S_347while {
+sub terminator__S_346while__PEEK { $_[0]->_AUTOLEXpeek('terminator__S_346while', $retree) }
+sub terminator__S_346while {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE terminator__S_347while");
+my $C = $self->cursor_xact("RULE terminator__S_346while");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "while";
-$self->_MATCHIFYr($S, "terminator__S_347while", do {
+$self->_MATCHIFYr($S, "terminator__S_346while", do {
 my $C = $C;
 if (($C) = ($C->_PATTERN(qr/\Gwhile\b/))
 and ($C) = ($C->nofun)) {
@@ -49084,19 +49068,19 @@ $C->O(%terminator)
 }
 ;
 ## token terminator:sym<until>
-sub terminator__S_348until__PEEK { $_[0]->_AUTOLEXpeek('terminator__S_348until', $retree) }
-sub terminator__S_348until {
+sub terminator__S_347until__PEEK { $_[0]->_AUTOLEXpeek('terminator__S_347until', $retree) }
+sub terminator__S_347until {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE terminator__S_348until");
+my $C = $self->cursor_xact("RULE terminator__S_347until");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "until";
-$self->_MATCHIFYr($S, "terminator__S_348until", do {
+$self->_MATCHIFYr($S, "terminator__S_347until", do {
 my $C = $C;
 if (($C) = ($C->_PATTERN(qr/\Guntil\b/))
 and ($C) = ($C->nofun)) {
@@ -49110,19 +49094,19 @@ $C->O(%terminator)
 }
 ;
 ## token terminator:sym<for>
-sub terminator__S_349for__PEEK { $_[0]->_AUTOLEXpeek('terminator__S_349for', $retree) }
-sub terminator__S_349for {
+sub terminator__S_348for__PEEK { $_[0]->_AUTOLEXpeek('terminator__S_348for', $retree) }
+sub terminator__S_348for {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE terminator__S_349for");
+my $C = $self->cursor_xact("RULE terminator__S_348for");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "for";
-$self->_MATCHIFYr($S, "terminator__S_349for", do {
+$self->_MATCHIFYr($S, "terminator__S_348for", do {
 my $C = $C;
 if (($C) = ($C->_PATTERN(qr/\Gfor\b/))
 and ($C) = ($C->nofun)) {
@@ -49136,19 +49120,19 @@ $C->O(%terminator)
 }
 ;
 ## token terminator:sym<given>
-sub terminator__S_350given__PEEK { $_[0]->_AUTOLEXpeek('terminator__S_350given', $retree) }
-sub terminator__S_350given {
+sub terminator__S_349given__PEEK { $_[0]->_AUTOLEXpeek('terminator__S_349given', $retree) }
+sub terminator__S_349given {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE terminator__S_350given");
+my $C = $self->cursor_xact("RULE terminator__S_349given");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "given";
-$self->_MATCHIFYr($S, "terminator__S_350given", do {
+$self->_MATCHIFYr($S, "terminator__S_349given", do {
 my $C = $C;
 if (($C) = ($C->_PATTERN(qr/\Ggiven\b/))
 and ($C) = ($C->nofun)) {
@@ -49162,19 +49146,19 @@ $C->O(%terminator)
 }
 ;
 ## token terminator:sym<when>
-sub terminator__S_351when__PEEK { $_[0]->_AUTOLEXpeek('terminator__S_351when', $retree) }
-sub terminator__S_351when {
+sub terminator__S_350when__PEEK { $_[0]->_AUTOLEXpeek('terminator__S_350when', $retree) }
+sub terminator__S_350when {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE terminator__S_351when");
+my $C = $self->cursor_xact("RULE terminator__S_350when");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "when";
-$self->_MATCHIFYr($S, "terminator__S_351when", do {
+$self->_MATCHIFYr($S, "terminator__S_350when", do {
 my $C = $C;
 if (($C) = ($C->_PATTERN(qr/\Gwhen\b/))
 and ($C) = ($C->nofun)) {
@@ -49188,19 +49172,19 @@ $C->O(%terminator)
 }
 ;
 ## token terminator:sym« --> »
-sub terminator__S_352MinusMinusGt__PEEK { $_[0]->_AUTOLEXpeek('terminator__S_352MinusMinusGt', $retree) }
-sub terminator__S_352MinusMinusGt {
+sub terminator__S_351MinusMinusGt__PEEK { $_[0]->_AUTOLEXpeek('terminator__S_351MinusMinusGt', $retree) }
+sub terminator__S_351MinusMinusGt {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE terminator__S_352MinusMinusGt");
+my $C = $self->cursor_xact("RULE terminator__S_351MinusMinusGt");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\-\-\>";
-$self->_MATCHIFYr($S, "terminator__S_352MinusMinusGt", do {
+$self->_MATCHIFYr($S, "terminator__S_351MinusMinusGt", do {
 if (my ($C) = ($C->_EXACT("\-\-\>"))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
@@ -49212,19 +49196,19 @@ $C->O(%terminator)
 }
 ;
 ## token terminator:sym<!!>
-sub terminator__S_353BangBang__PEEK { $_[0]->_AUTOLEXpeek('terminator__S_353BangBang', $retree) }
-sub terminator__S_353BangBang {
+sub terminator__S_352BangBang__PEEK { $_[0]->_AUTOLEXpeek('terminator__S_352BangBang', $retree) }
+sub terminator__S_352BangBang {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE terminator__S_353BangBang");
+my $C = $self->cursor_xact("RULE terminator__S_352BangBang");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\!\!";
-$self->_MATCHIFYr($S, "terminator__S_353BangBang", do {
+$self->_MATCHIFYr($S, "terminator__S_352BangBang", do {
 my $C = $C;
 if (($C) = ($C->_EXACT("\!\!"))
 and ($C) = ($C->before(sub {

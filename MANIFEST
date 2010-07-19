@@ -3,6 +3,7 @@ LICENSE
 MANIFEST
 META.yml
 data/uniprops
+inc/MyBuilder.pm
 lib/Actions.pm
 lib/Cursor.pm
 lib/CursorBase.pm
