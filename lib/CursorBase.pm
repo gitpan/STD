@@ -761,7 +761,7 @@ sub _SCANf { my $self = shift;
     my $C = $self->cursor_xact("SCANf $pos");
     my $xact = $C->xact;
 
-    lazymap( sub { $self->cursor($_[0])->retm() }, LazyRange->new($xact, $pos,$eos) );
+    lazymap( sub { $self->cursor($_[0])->retm() }, STD::LazyRange->new($xact, $pos,$eos) );
 }
 
 sub _SCANg { my $self = shift;
@@ -772,7 +772,7 @@ sub _SCANg { my $self = shift;
     my $C = $self->cursor_xact("SCANg $pos");
     my $xact = $C->xact;
 
-    lazymap( sub { $C->cursor($_[0])->retm() }, LazyRangeRev->new($xact, $eos,$pos) );
+    lazymap( sub { $C->cursor($_[0])->retm() }, STD::LazyRangeRev->new($xact, $eos,$pos) );
 }
 
 sub _STARf { my $self = shift;

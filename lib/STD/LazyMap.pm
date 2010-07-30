@@ -162,7 +162,7 @@ sub eager {
     my @out;
     while (@_) {
 	my $head = shift;
-	if (ref($head) eq 'STD::LazyMap') {	# don't unroll LazyConst
+	if (ref($head) eq 'STD::LazyMap') {	# don't unroll STD::LazyConst
 	    while (my ($next) = $head->iter) {
 		push @out, $next;
 	    }
@@ -175,13 +175,13 @@ sub eager {
     @out;
 }
 
-# LazyConst produces an infinite list, which stubbornly tries the same value
+# STD::LazyConst produces an infinite list, which stubbornly tries the same value
 # over and over
-{ package LazyConst;
+{ package STD::LazyConst;
     sub new {
 	my $self = shift;
 	my $xact = shift;
-	bless { 'K' => shift, 'X' => $xact }, 'LazyConst';
+	bless { 'K' => shift, 'X' => $xact }, 'STD::LazyConst';
     }
     sub true {
 	1;
@@ -192,8 +192,8 @@ sub eager {
     }
 }
 
-# LazyRange lazily produces each value in a sequence - useful for quantifiers
-{ package LazyRange;
+# STD::LazyRange lazily produces each value in a sequence - useful for quantifiers
+{ package STD::LazyRange;
     sub new {
 	my $class = shift;
 	my $xact = shift;
@@ -219,7 +219,7 @@ sub eager {
 }
 
 # Like above, but reverse
-{ package LazyRangeRev;
+{ package STD::LazyRangeRev;
     sub new {
 	my $class = shift;
 	my $xact = shift;

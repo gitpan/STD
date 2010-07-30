@@ -19,7 +19,7 @@ my %module_build_args = (
     'Pawel Murias <pawelmurias@gmail.com>'
   ],
   'dist_name' => 'STD',
-  'dist_version' => '0.03',
+  'dist_version' => '0.05',
   'license' => 'artistic_2',
   'module_name' => 'STD',
   'recommends' => {},

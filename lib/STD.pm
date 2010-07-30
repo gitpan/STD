@@ -1,6 +1,8 @@
 use 5.010;
 use utf8;
-{ package STD;BEGIN {$STD::VERSION = 0.03}
+{ package STD;BEGIN {
+$STD::VERSION = 0.05
+}
 use Moose ':all' => { -prefix => "moose_" };
 use Encode;
 moose_extends('STD::Cursor');
