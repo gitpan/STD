@@ -1,15 +1,15 @@
-package LazyMap;
+package STD::LazyMap;
 use 5.010;
 
-# LazyMap.pm
+# STD::LazyMap.pm
 #
 # Copyright 2007-2010, Larry Wall
 #
 # You may copy this software under the terms of the Artistic License,
 #     version 2.0 or later.
 
-# LazyMap implements backtracking for the Cursor parsing engine.  It does this
-# in a very similar manner to the List monad in Haskell.  Notionally, Cursor
+# STD::LazyMap implements backtracking for the STD::Cursor parsing engine.  It does this
+# in a very similar manner to the List monad in Haskell.  Notionally, STD::Cursor
 # processes lists of all results, however only the first result is immediately
 # calculated; the other results are suspended, and only generated when later
 # code needs to refer to them.  The standard operation on lazy objects is to
@@ -65,7 +65,7 @@ use overload 'bool' => 'true';
 # N: Number of values so far returned - this is used to ignore cuts if we
 #    haven't delivered our first value yet (somewhat of a hack).
 #
-# Values returned by a LazyMap are expected to be cursors, or at least have
+# Values returned by a STD::LazyMap are expected to be cursors, or at least have
 # an _xact field that can be checked for cutness.
 
 # Construct a lazymap - block, then a list of inputs (concatenated if lazies)
@@ -81,7 +81,7 @@ sub new {
 sub lazymap (&@) {
     my $block = shift;
     return () unless @_;
-    my $lazy = bless { 'B' => $block, 'C' => [], 'L' => [@_], 'N' => 0 }, 'LazyMap';
+    my $lazy = bless { 'B' => $block, 'C' => [], 'L' => [@_], 'N' => 0 }, 'STD::LazyMap';
     if (wantarray) {
 	if (my @retval = iter($lazy)) {
 	    push @retval, $lazy if @{$lazy->{C}} || @{$lazy->{L}};
@@ -162,7 +162,7 @@ sub eager {
     my @out;
     while (@_) {
 	my $head = shift;
-	if (ref($head) eq 'LazyMap') {	# don't unroll LazyConst
+	if (ref($head) eq 'STD::LazyMap') {	# don't unroll LazyConst
 	    while (my ($next) = $head->iter) {
 		push @out, $next;
 	    }

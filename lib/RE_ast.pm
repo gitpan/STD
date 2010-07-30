@@ -353,7 +353,7 @@ my $NULL = $nfa::NULL;
         my $text = $self->{'text'};
         Encode::_utf8_on($text);
         ::here($text);
-        $Cursor::fakepos++ if $text ne '';
+        $STD::Cursor::fakepos++ if $text ne '';
         my ($fixed, $imp);
         if ( $text =~ /^(.*?)[\$\@\%\&\{]/ ) {
             $fixed = $1; $imp = 1;

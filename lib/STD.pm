@@ -1,9 +1,9 @@
 use 5.010;
 use utf8;
-{ package STD;BEGIN {$STD::VERSION = 0.02}
+{ package STD;BEGIN {$STD::VERSION = 0.03}
 use Moose ':all' => { -prefix => "moose_" };
 use Encode;
-moose_extends('Cursor');
+moose_extends('STD::Cursor');
 our $ALLROLES = { 'STD', 1 };
 our $REGEXES = {
     ALL => [ qw/alnumint apostrophe babble backslash begid binint binints category charname charnames charspec circumfix comment dec_number decint decints dotty embeddedblock endid escale escape hexint hexints ident identifier infix infix_circumfix_meta_operator infix_postfix_meta_operator infix_prefix_meta_operator integer is_ok longname module_name morename multi_declarator name nibbler nofun octint octints opener package_declarator pod_comment postcircumfix postfix postfix_prefix_meta_operator prefix prefix_circumfix_meta_operator prefix_postfix_meta_operator quibble quote quote_mod quotepair rad_number radint regex_declarator routine_declarator scope_declarator sigil spacey special_variable starter statement_control statement_mod_cond statement_mod_loop statement_prefix stdstopper stopper strtonum term terminator trait_mod twigil type_declarator unitstopper unsp unspacey unv value version vws ws/ ],
@@ -26,7 +26,7 @@ $DB::deep = $DB::deep = 1000; # suppress used-once warning
 
 use YAML::XS;
 
-$SIG{__WARN__} = sub { die @_,"   statement started at line ", 'Cursor'->lineof($::LASTSTATE), "
+$SIG{__WARN__} = sub { die @_,"   statement started at line ", 'STD::Cursor'->lineof($::LASTSTATE), "
 " } if $::DEBUG;
 
 $retree = YAML::XS::Load(Encode::encode_utf8(<<'RETREE_END'));
@@ -1732,8 +1732,30 @@ opener: !!perl/hash:RE_ast
   dic: STD
   re: !!perl/hash:RE_cclass
     i: 0
-    text: "[\n\\x{0028}\n\\x{003C}\n\\x{005B}\n\\x{007B}\n\\x{00AB}\n\\x{0F3A}\n\\x{0F3C}\n\\x{169B}\n\\x{2018}\n\\x{201A}\n\\x{201B}\n\\x{201C}\n\\x{201E}\n\\x{201F}\n\\x{2039}\n\\x{2045}\n\\x{207D}\n\\x{208D}\n\\x{2208}\n\\x{2209}\n\\x{220A}\n\\x{2215}\n\\x{223C}\n\\x{2243}\n\\x{2252}\n\\x{2254}\n\\x{2264}\n\\x{2266}\n\\x{2268}\n\\x{226A}\n\\x{226E}\n\\x{2270}\n\\x{2272}\n\\x{2274}\n\\x{2276}\n\\x{2278}\n\\x{227A}\n\\x{227C}\n\\x{227E}\n\\x{2280}\n\\x{2282}\n\\x{2284}\n\\x{2286}\n\\x{2288}\n\\x{228A}\n\\x{228F}\n\\x{2291}\n\\x{2298}\n\\x{22A2}\n\\x{22A6}\n\\x{22A8}\n\\x{22A9}\n\\x{22AB}\n\\x{22B0}\n\\x{22B2}\n\\x{22B4}\n\\x{22B6}\n\\x{22C9}\n\\x{22CB}\n\\x{22D0}\n\\x{22D6}\n\\x{22D8}\n\\x{22DA}\n\\x{22DC}\n\\x{22DE}\n\\x{22E0}\n\\x{22E2}\n\\x{22E4}\n\\x{22E6}\n\\x{22E8}\n\\x{22EA}\n\\x{22EC}\n\\x{22F0}\n\\x{22F2}\n\\x{22F3}\n\\x{22F4}\n\\x{22F6}\n\\x{22F7}\n\\x{2308}\n\\x{230A}\n\\x{2329}\n\\x{23B4}\n\\x{2768}\n\\x{276A}\n\\x{276C}\n\\x{276E}\n\\x{2770}\n\\x{2772}\n\\x{2774}\n\\x{27C3}\n\\x{27C5}\n\\x{27D5}\n\\x{27DD}\n\\x{27E2}\n\\x{27E4}\n\\x{27E6}\n\\x{27E8}\n\\x{27EA}\n\\x{2983}\n\\x{2985}\n\\x{2987}\n\\x{2989}\n\\x{298B}\n\\x{298D}\n\\x{298F}\n\\x{2991}\n\\x{2993}\n\\x{2995}\n\\x{2997}\n\\x{29C0}\n\\x{29C4}\n\\x{29CF}\n\\x{29D1}\n\\x{29D4}\n\\x{29D8}\n\\x{29DA}\n\\x{29F8}\n\\x{29FC}\n\\x{2A2B}\n\\x{2A2D}\n\\x{2A34}\n\\x{2A3C}\n\\x{2A64}\n\\x{2A79}\n\\x{2A7D}\n\\x{2A7F}\n\\x{2A81}\n\\x{2A83}\n\\x{2A8B}\n\\x{2A91}\n\\x{2A93}\n\\x{2A95}\n\\x{2A97}\n\\x{2A99}\n\\x{2A9B}\n\\x{2AA1}\n\\x{2AA6}\n\\x{2AA8}\n\\x{2AAA}\n\\x{2AAC}\n\\x{2AAF}\n\\x{2AB3}\n\\x{2ABB}\n\\x{2ABD}\n\\x{2ABF}\n\\x{2AC1}\n\\x{2AC3}\n\\x{2AC5}\n\\x{2ACD}\n\\x{2ACF}\n\\x{2AD1}\n\\x{2AD3}\n\\x{2AD5}\n\\x{2AEC}\n\\x{2AF7}\n\\x{2AF9}\n\\x{2E02}\n\\x{2E04}\n\\x{2E09}\n\\x{2E0C}\n\\x{2E1C}\n\\x{2E20}\n\\x{3008}\n\\x{300A}\n\\x{300C}\n\\x{300E}\n\\x{3010}\n\\x{3014}\n\\x{3016}\n\\x{3018}\n\\x{301A}\n\\x{301D}\n\\x{FD3E}\n\\x{FE17}\n\\x{FE35}\n\\x{FE37}\n\\x{FE39}\n\\x{FE3B}\n\\x{FE3D}\n\\x{FE3F}\n\\x{FE41}\n\\x{FE43}\n\\x{FE47}\n\\x{FE59}\n\\x{FE5B}\n\\x{FE5D}\n\\x{FF08}\n\\x{FF1C}\n\\x{FF3B}\n\\x{FF5B}\n\\x{FF5F}\n\\x{FF62}\n
-      \ ]"
+    text: "[\n\\x{0028} \\x{003C} \\x{005B} \\x{007B} \\x{00AB} \\x{0F3A} \\x{0F3C}
+      \\x{169B} \\x{2018} \\x{201A} \\x{201B}\n\\x{201C} \\x{201E} \\x{201F} \\x{2039}
+      \\x{2045} \\x{207D} \\x{208D} \\x{2208} \\x{2209} \\x{220A} \\x{2215}\n\\x{223C}
+      \\x{2243} \\x{2252} \\x{2254} \\x{2264} \\x{2266} \\x{2268} \\x{226A} \\x{226E}
+      \\x{2270} \\x{2272}\n\\x{2274} \\x{2276} \\x{2278} \\x{227A} \\x{227C} \\x{227E}
+      \\x{2280} \\x{2282} \\x{2284} \\x{2286} \\x{2288}\n\\x{228A} \\x{228F} \\x{2291}
+      \\x{2298} \\x{22A2} \\x{22A6} \\x{22A8} \\x{22A9} \\x{22AB} \\x{22B0} \\x{22B2}\n\\x{22B4}
+      \\x{22B6} \\x{22C9} \\x{22CB} \\x{22D0} \\x{22D6} \\x{22D8} \\x{22DA} \\x{22DC}
+      \\x{22DE} \\x{22E0}\n\\x{22E2} \\x{22E4} \\x{22E6} \\x{22E8} \\x{22EA} \\x{22EC}
+      \\x{22F0} \\x{22F2} \\x{22F3} \\x{22F4} \\x{22F6}\n\\x{22F7} \\x{2308} \\x{230A}
+      \\x{2329} \\x{23B4} \\x{2768} \\x{276A} \\x{276C} \\x{276E} \\x{2770} \\x{2772}\n\\x{2774}
+      \\x{27C3} \\x{27C5} \\x{27D5} \\x{27DD} \\x{27E2} \\x{27E4} \\x{27E6} \\x{27E8}
+      \\x{27EA} \\x{2983}\n\\x{2985} \\x{2987} \\x{2989} \\x{298B} \\x{298D} \\x{298F}
+      \\x{2991} \\x{2993} \\x{2995} \\x{2997} \\x{29C0}\n\\x{29C4} \\x{29CF} \\x{29D1}
+      \\x{29D4} \\x{29D8} \\x{29DA} \\x{29F8} \\x{29FC} \\x{2A2B} \\x{2A2D} \\x{2A34}\n\\x{2A3C}
+      \\x{2A64} \\x{2A79} \\x{2A7D} \\x{2A7F} \\x{2A81} \\x{2A83} \\x{2A8B} \\x{2A91}
+      \\x{2A93} \\x{2A95}\n\\x{2A97} \\x{2A99} \\x{2A9B} \\x{2AA1} \\x{2AA6} \\x{2AA8}
+      \\x{2AAA} \\x{2AAC} \\x{2AAF} \\x{2AB3} \\x{2ABB}\n\\x{2ABD} \\x{2ABF} \\x{2AC1}
+      \\x{2AC3} \\x{2AC5} \\x{2ACD} \\x{2ACF} \\x{2AD1} \\x{2AD3} \\x{2AD5} \\x{2AEC}\n\\x{2AF7}
+      \\x{2AF9} \\x{2E02} \\x{2E04} \\x{2E09} \\x{2E0C} \\x{2E1C} \\x{2E20} \\x{3008}
+      \\x{300A} \\x{300C}\n\\x{300E} \\x{3010} \\x{3014} \\x{3016} \\x{3018} \\x{301A}
+      \\x{301D} \\x{FD3E} \\x{FE17} \\x{FE35} \\x{FE37}\n\\x{FE39} \\x{FE3B} \\x{FE3D}
+      \\x{FE3F} \\x{FE41} \\x{FE43} \\x{FE47} \\x{FE59} \\x{FE5B} \\x{FE5D} \\x{FF08}\n\\x{FF1C}
+      \\x{FF3B} \\x{FF5B} \\x{FF5F} \\x{FF62}\n  ]"
 package_declarator:*:
   dic: STD
 pod_comment: !!perl/hash:RE_ast
@@ -3020,7 +3042,7 @@ RETREE_END
 use DEBUG;
 use NAME;
 use Stash;
-use Cursor;
+use STD::Cursor;
 our $ALL;
 ## method p6class ()
 sub p6class {
@@ -6086,7 +6108,7 @@ local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 my $C = $self->cursor_xact("RULE stdstopper");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
-$self->_MATCHIFY($S, "stdstopper", LazyMap::lazymap(sub {
+$self->_MATCHIFY($S, "stdstopper", STD::LazyMap::lazymap(sub {
 my $C=shift;
 scalar(do {
 $::MEMOS[$C->{'_pos'}]->{'endstmt'} ||= 1}, $C)
@@ -6486,216 +6508,6 @@ $C
 });
 }
 ;
-our %open2close = (
-"\x{0028}" => "\x{0029}",
-"\x{003C}" => "\x{003E}",
-"\x{005B}" => "\x{005D}",
-"\x{007B}" => "\x{007D}",
-"\x{00AB}" => "\x{00BB}",
-"\x{0F3A}" => "\x{0F3B}",
-"\x{0F3C}" => "\x{0F3D}",
-"\x{169B}" => "\x{169C}",
-"\x{2018}" => "\x{2019}",
-"\x{201A}" => "\x{2019}",
-"\x{201B}" => "\x{2019}",
-"\x{201C}" => "\x{201D}",
-"\x{201E}" => "\x{201D}",
-"\x{201F}" => "\x{201D}",
-"\x{2039}" => "\x{203A}",
-"\x{2045}" => "\x{2046}",
-"\x{207D}" => "\x{207E}",
-"\x{208D}" => "\x{208E}",
-"\x{2208}" => "\x{220B}",
-"\x{2209}" => "\x{220C}",
-"\x{220A}" => "\x{220D}",
-"\x{2215}" => "\x{29F5}",
-"\x{223C}" => "\x{223D}",
-"\x{2243}" => "\x{22CD}",
-"\x{2252}" => "\x{2253}",
-"\x{2254}" => "\x{2255}",
-"\x{2264}" => "\x{2265}",
-"\x{2266}" => "\x{2267}",
-"\x{2268}" => "\x{2269}",
-"\x{226A}" => "\x{226B}",
-"\x{226E}" => "\x{226F}",
-"\x{2270}" => "\x{2271}",
-"\x{2272}" => "\x{2273}",
-"\x{2274}" => "\x{2275}",
-"\x{2276}" => "\x{2277}",
-"\x{2278}" => "\x{2279}",
-"\x{227A}" => "\x{227B}",
-"\x{227C}" => "\x{227D}",
-"\x{227E}" => "\x{227F}",
-"\x{2280}" => "\x{2281}",
-"\x{2282}" => "\x{2283}",
-"\x{2284}" => "\x{2285}",
-"\x{2286}" => "\x{2287}",
-"\x{2288}" => "\x{2289}",
-"\x{228A}" => "\x{228B}",
-"\x{228F}" => "\x{2290}",
-"\x{2291}" => "\x{2292}",
-"\x{2298}" => "\x{29B8}",
-"\x{22A2}" => "\x{22A3}",
-"\x{22A6}" => "\x{2ADE}",
-"\x{22A8}" => "\x{2AE4}",
-"\x{22A9}" => "\x{2AE3}",
-"\x{22AB}" => "\x{2AE5}",
-"\x{22B0}" => "\x{22B1}",
-"\x{22B2}" => "\x{22B3}",
-"\x{22B4}" => "\x{22B5}",
-"\x{22B6}" => "\x{22B7}",
-"\x{22C9}" => "\x{22CA}",
-"\x{22CB}" => "\x{22CC}",
-"\x{22D0}" => "\x{22D1}",
-"\x{22D6}" => "\x{22D7}",
-"\x{22D8}" => "\x{22D9}",
-"\x{22DA}" => "\x{22DB}",
-"\x{22DC}" => "\x{22DD}",
-"\x{22DE}" => "\x{22DF}",
-"\x{22E0}" => "\x{22E1}",
-"\x{22E2}" => "\x{22E3}",
-"\x{22E4}" => "\x{22E5}",
-"\x{22E6}" => "\x{22E7}",
-"\x{22E8}" => "\x{22E9}",
-"\x{22EA}" => "\x{22EB}",
-"\x{22EC}" => "\x{22ED}",
-"\x{22F0}" => "\x{22F1}",
-"\x{22F2}" => "\x{22FA}",
-"\x{22F3}" => "\x{22FB}",
-"\x{22F4}" => "\x{22FC}",
-"\x{22F6}" => "\x{22FD}",
-"\x{22F7}" => "\x{22FE}",
-"\x{2308}" => "\x{2309}",
-"\x{230A}" => "\x{230B}",
-"\x{2329}" => "\x{232A}",
-"\x{23B4}" => "\x{23B5}",
-"\x{2768}" => "\x{2769}",
-"\x{276A}" => "\x{276B}",
-"\x{276C}" => "\x{276D}",
-"\x{276E}" => "\x{276F}",
-"\x{2770}" => "\x{2771}",
-"\x{2772}" => "\x{2773}",
-"\x{2774}" => "\x{2775}",
-"\x{27C3}" => "\x{27C4}",
-"\x{27C5}" => "\x{27C6}",
-"\x{27D5}" => "\x{27D6}",
-"\x{27DD}" => "\x{27DE}",
-"\x{27E2}" => "\x{27E3}",
-"\x{27E4}" => "\x{27E5}",
-"\x{27E6}" => "\x{27E7}",
-"\x{27E8}" => "\x{27E9}",
-"\x{27EA}" => "\x{27EB}",
-"\x{2983}" => "\x{2984}",
-"\x{2985}" => "\x{2986}",
-"\x{2987}" => "\x{2988}",
-"\x{2989}" => "\x{298A}",
-"\x{298B}" => "\x{298C}",
-"\x{298D}" => "\x{298E}",
-"\x{298F}" => "\x{2990}",
-"\x{2991}" => "\x{2992}",
-"\x{2993}" => "\x{2994}",
-"\x{2995}" => "\x{2996}",
-"\x{2997}" => "\x{2998}",
-"\x{29C0}" => "\x{29C1}",
-"\x{29C4}" => "\x{29C5}",
-"\x{29CF}" => "\x{29D0}",
-"\x{29D1}" => "\x{29D2}",
-"\x{29D4}" => "\x{29D5}",
-"\x{29D8}" => "\x{29D9}",
-"\x{29DA}" => "\x{29DB}",
-"\x{29F8}" => "\x{29F9}",
-"\x{29FC}" => "\x{29FD}",
-"\x{2A2B}" => "\x{2A2C}",
-"\x{2A2D}" => "\x{2A2E}",
-"\x{2A34}" => "\x{2A35}",
-"\x{2A3C}" => "\x{2A3D}",
-"\x{2A64}" => "\x{2A65}",
-"\x{2A79}" => "\x{2A7A}",
-"\x{2A7D}" => "\x{2A7E}",
-"\x{2A7F}" => "\x{2A80}",
-"\x{2A81}" => "\x{2A82}",
-"\x{2A83}" => "\x{2A84}",
-"\x{2A8B}" => "\x{2A8C}",
-"\x{2A91}" => "\x{2A92}",
-"\x{2A93}" => "\x{2A94}",
-"\x{2A95}" => "\x{2A96}",
-"\x{2A97}" => "\x{2A98}",
-"\x{2A99}" => "\x{2A9A}",
-"\x{2A9B}" => "\x{2A9C}",
-"\x{2AA1}" => "\x{2AA2}",
-"\x{2AA6}" => "\x{2AA7}",
-"\x{2AA8}" => "\x{2AA9}",
-"\x{2AAA}" => "\x{2AAB}",
-"\x{2AAC}" => "\x{2AAD}",
-"\x{2AAF}" => "\x{2AB0}",
-"\x{2AB3}" => "\x{2AB4}",
-"\x{2ABB}" => "\x{2ABC}",
-"\x{2ABD}" => "\x{2ABE}",
-"\x{2ABF}" => "\x{2AC0}",
-"\x{2AC1}" => "\x{2AC2}",
-"\x{2AC3}" => "\x{2AC4}",
-"\x{2AC5}" => "\x{2AC6}",
-"\x{2ACD}" => "\x{2ACE}",
-"\x{2ACF}" => "\x{2AD0}",
-"\x{2AD1}" => "\x{2AD2}",
-"\x{2AD3}" => "\x{2AD4}",
-"\x{2AD5}" => "\x{2AD6}",
-"\x{2AEC}" => "\x{2AED}",
-"\x{2AF7}" => "\x{2AF8}",
-"\x{2AF9}" => "\x{2AFA}",
-"\x{2E02}" => "\x{2E03}",
-"\x{2E04}" => "\x{2E05}",
-"\x{2E09}" => "\x{2E0A}",
-"\x{2E0C}" => "\x{2E0D}",
-"\x{2E1C}" => "\x{2E1D}",
-"\x{2E20}" => "\x{2E21}",
-"\x{3008}" => "\x{3009}",
-"\x{300A}" => "\x{300B}",
-"\x{300C}" => "\x{300D}",
-"\x{300E}" => "\x{300F}",
-"\x{3010}" => "\x{3011}",
-"\x{3014}" => "\x{3015}",
-"\x{3016}" => "\x{3017}",
-"\x{3018}" => "\x{3019}",
-"\x{301A}" => "\x{301B}",
-"\x{301D}" => "\x{301E}",
-"\x{FD3E}" => "\x{FD3F}",
-"\x{FE17}" => "\x{FE18}",
-"\x{FE35}" => "\x{FE36}",
-"\x{FE37}" => "\x{FE38}",
-"\x{FE39}" => "\x{FE3A}",
-"\x{FE3B}" => "\x{FE3C}",
-"\x{FE3D}" => "\x{FE3E}",
-"\x{FE3F}" => "\x{FE40}",
-"\x{FE41}" => "\x{FE42}",
-"\x{FE43}" => "\x{FE44}",
-"\x{FE47}" => "\x{FE48}",
-"\x{FE59}" => "\x{FE5A}",
-"\x{FE5B}" => "\x{FE5C}",
-"\x{FE5D}" => "\x{FE5E}",
-"\x{FF08}" => "\x{FF09}",
-"\x{FF1C}" => "\x{FF1E}",
-"\x{FF3B}" => "\x{FF3D}",
-"\x{FF5B}" => "\x{FF5D}",
-"\x{FF5F}" => "\x{FF60}",
-"\x{FF62}" => "\x{FF63}",
-);
-our %close2open = reverse %open2close;
-## token opener {
-sub opener__PEEK { $_[0]->_AUTOLEXpeek('opener', $retree) }
-sub opener {
-no warnings 'recursion';
-my $self = shift;
-
-
-local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
-
-my $C = $self->cursor_xact("RULE opener");
-my $xact = $C->xact;
-my $S = $C->{'_pos'};
-$self->_MATCHIFYr($S, "opener", $C->_PATTERN(qr/\G[\x{0028}\x{003C}\x{005B}\x{007B}\x{00AB}\x{0F3A}\x{0F3C}\x{169B}\x{2018}\x{201A}\x{201B}\x{201C}\x{201E}\x{201F}\x{2039}\x{2045}\x{207D}\x{208D}\x{2208}\x{2209}\x{220A}\x{2215}\x{223C}\x{2243}\x{2252}\x{2254}\x{2264}\x{2266}\x{2268}\x{226A}\x{226E}\x{2270}\x{2272}\x{2274}\x{2276}\x{2278}\x{227A}\x{227C}\x{227E}\x{2280}\x{2282}\x{2284}\x{2286}\x{2288}\x{228A}\x{228F}\x{2291}\x{2298}\x{22A2}\x{22A6}\x{22A8}\x{22A9}\x{22AB}\x{22B0}\x{22B2}\x{22B4}\x{22B6}\x{22C9}\x{22CB}\x{22D0}\x{22D6}\x{22D8}\x{22DA}\x{22DC}\x{22DE}\x{22E0}\x{22E2}\x{22E4}\x{22E6}\x{22E8}\x{22EA}\x{22EC}\x{22F0}\x{22F2}\x{22F3}\x{22F4}\x{22F6}\x{22F7}\x{2308}\x{230A}\x{2329}\x{23B4}\x{2768}\x{276A}\x{276C}\x{276E}\x{2770}\x{2772}\x{2774}\x{27C3}\x{27C5}\x{27D5}\x{27DD}\x{27E2}\x{27E4}\x{27E6}\x{27E8}\x{27EA}\x{2983}\x{2985}\x{2987}\x{2989}\x{298B}\x{298D}\x{298F}\x{2991}\x{2993}\x{2995}\x{2997}\x{29C0}\x{29C4}\x{29CF}\x{29D1}\x{29D4}\x{29D8}\x{29DA}\x{29F8}\x{29FC}\x{2A2B}\x{2A2D}\x{2A34}\x{2A3C}\x{2A64}\x{2A79}\x{2A7D}\x{2A7F}\x{2A81}\x{2A83}\x{2A8B}\x{2A91}\x{2A93}\x{2A95}\x{2A97}\x{2A99}\x{2A9B}\x{2AA1}\x{2AA6}\x{2AA8}\x{2AAA}\x{2AAC}\x{2AAF}\x{2AB3}\x{2ABB}\x{2ABD}\x{2ABF}\x{2AC1}\x{2AC3}\x{2AC5}\x{2ACD}\x{2ACF}\x{2AD1}\x{2AD3}\x{2AD5}\x{2AEC}\x{2AF7}\x{2AF9}\x{2E02}\x{2E04}\x{2E09}\x{2E0C}\x{2E1C}\x{2E20}\x{3008}\x{300A}\x{300C}\x{300E}\x{3010}\x{3014}\x{3016}\x{3018}\x{301A}\x{301D}\x{FD3E}\x{FE17}\x{FE35}\x{FE37}\x{FE39}\x{FE3B}\x{FE3D}\x{FE3F}\x{FE41}\x{FE43}\x{FE47}\x{FE59}\x{FE5B}\x{FE5D}\x{FF08}\x{FF1C}\x{FF3B}\x{FF5B}\x{FF5F}\x{FF62}]/));
-}
-;
 ## method peek_delimiters
 sub peek_delimiters {
 no warnings 'recursion';
@@ -6707,11 +6519,11 @@ if ($char =~ /^\s$/) {
 $self->panic("Whitespace character is not allowed as delimiter")}
 elsif ($char =~ /^\w$/) {
 $self->panic("Alphanumeric character is not allowed as delimiter")}
-elsif ($close2open{$char}) {
+elsif ($STD::close2open{$char}) {
 $self->panic("Use of a closing delimiter for an opener is reserved")}
 elsif ($char eq ':') {
 $self->panic("Colons may not be used to delimit quoting constructs")};
-my $rightbrack = $open2close{$char};
+my $rightbrack = $STD::open2close{$char};
 if (not defined $rightbrack) {
 return $char, $char};
 while (substr($::ORIG,$pos,1) eq $char) {
@@ -6748,7 +6560,7 @@ $DB::deep = $DB::deep = 1000; # suppress used-once warning
 
 use YAML::XS;
 
-$SIG{__WARN__} = sub { die @_,"   statement started at line ", 'Cursor'->lineof($::LASTSTATE), "
+$SIG{__WARN__} = sub { die @_,"   statement started at line ", 'STD::Cursor'->lineof($::LASTSTATE), "
 " } if $::DEBUG;
 
 $retree = YAML::XS::Load(Encode::encode_utf8(<<'RETREE_END'));
@@ -6826,7 +6638,7 @@ $DB::deep = $DB::deep = 1000; # suppress used-once warning
 
 use YAML::XS;
 
-$SIG{__WARN__} = sub { die @_,"   statement started at line ", 'Cursor'->lineof($::LASTSTATE), "
+$SIG{__WARN__} = sub { die @_,"   statement started at line ", 'STD::Cursor'->lineof($::LASTSTATE), "
 " } if $::DEBUG;
 
 $retree = YAML::XS::Load(Encode::encode_utf8(<<'RETREE_END'));
@@ -6909,7 +6721,7 @@ $DB::deep = $DB::deep = 1000; # suppress used-once warning
 
 use YAML::XS;
 
-$SIG{__WARN__} = sub { die @_,"   statement started at line ", 'Cursor'->lineof($::LASTSTATE), "
+$SIG{__WARN__} = sub { die @_,"   statement started at line ", 'STD::Cursor'->lineof($::LASTSTATE), "
 " } if $::DEBUG;
 
 $retree = YAML::XS::Load(Encode::encode_utf8(<<'RETREE_END'));
@@ -7053,7 +6865,7 @@ sub {
 my $C=shift;
 if (my ($C) = (do {
 if (my ($C) = ($C->_PATTERN(qr/\G[_[:alpha:]]/))) {
-LazyMap::lazymap(sub {
+STD::LazyMap::lazymap(sub {
 my $C=shift;
 if (my ($C) = ($C->before(sub {
 my $C=shift;
@@ -7142,7 +6954,7 @@ do {
 push @gather, do {
 if (my ($C) = (do {
 if (my ($C) = ($C->sorry("Unrecognized character name"))) {
-LazyMap::lazymap(sub {
+STD::LazyMap::lazymap(sub {
 my $C=shift;
 if (my ($C) = ($C->before(sub {
 my $C=shift;
@@ -7658,7 +7470,7 @@ $DB::deep = $DB::deep = 1000; # suppress used-once warning
 
 use YAML::XS;
 
-$SIG{__WARN__} = sub { die @_,"   statement started at line ", 'Cursor'->lineof($::LASTSTATE), "
+$SIG{__WARN__} = sub { die @_,"   statement started at line ", 'STD::Cursor'->lineof($::LASTSTATE), "
 " } if $::DEBUG;
 
 moose_has 'delim' => (isa => 'Str', is => 'rw');
@@ -7681,7 +7493,7 @@ $DB::deep = $DB::deep = 1000; # suppress used-once warning
 
 use YAML::XS;
 
-$SIG{__WARN__} = sub { die @_,"   statement started at line ", 'Cursor'->lineof($::LASTSTATE), "
+$SIG{__WARN__} = sub { die @_,"   statement started at line ", 'STD::Cursor'->lineof($::LASTSTATE), "
 " } if $::DEBUG;
 
 $retree = YAML::XS::Load(Encode::encode_utf8(<<'RETREE_END'));
@@ -7755,7 +7567,7 @@ $C->_PATTERN(qr/\G[\x20\t\r]/)
 }))
 and ($C) = ($C->_EXACT($::DELIM))
 and ($C) = ($C->_PATTERN(qr/\G[\x20\t\r]*+/))) {
-LazyMap::lazymap(sub {
+STD::LazyMap::lazymap(sub {
 my $C=shift;
 $C->_PATTERN(qr/\G(?m:$)\n?+/)
 },
@@ -8726,13 +8538,13 @@ my $C=shift;
 if (my ($C) = (do {
 if (my ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-LazyMap::lazymap(sub {
+STD::LazyMap::lazymap(sub {
 my $C=shift;
 $C->_PATTERN(qr/\G\n\=\=\=\=\=\=\=/)
 },
 $C->_SCANf())
 }))) {
-LazyMap::lazymap(sub {
+STD::LazyMap::lazymap(sub {
 my $C=shift;
 $C->_PATTERN(qr/\G\n\>\>\>\>\>\>\>/)
 },
@@ -8752,7 +8564,7 @@ if (my ($C) = (do {
 my $C = $C;
 if (($C) = ($C->_EXACT("\=\=\=\=\=\=\="))
 and ($C) = ($C->_COMMITLTM())) {
-LazyMap::lazymap(sub {
+STD::LazyMap::lazymap(sub {
 my $C=shift;
 $C->_PATTERN(qr/\G\n\>\>\>\>\>\>\>[^\n]*+\n/)
 },
@@ -9291,7 +9103,7 @@ my $xact = $C->xact;
 my @gather;
 do {
 push @gather, do {
-if (my ($C) = (LazyMap::lazymap(sub {
+if (my ($C) = (STD::LazyMap::lazymap(sub {
 my $C=shift;
 if (($C) = ($C->_EXACT("\n"))
 and ($C) = ($C->_BRACKETr(sub {
@@ -9391,7 +9203,7 @@ my $xact = $C->xact;
 my @gather;
 do {
 push @gather, do {
-if (my ($C) = (LazyMap::lazymap(sub {
+if (my ($C) = (STD::LazyMap::lazymap(sub {
 my $C=shift;
 if (($C) = ($C->_EXACT("\n"))
 and ($C) = ($C->_PATTERN(qr/\G[\x20\t\r]*+\=/))
@@ -9471,7 +9283,7 @@ my $xact = $C->xact;
 my @gather;
 do {
 push @gather, do {
-if (my ($C) = (LazyMap::lazymap(sub {
+if (my ($C) = (STD::LazyMap::lazymap(sub {
 my $C=shift;
 $C->_PATTERN(qr/\G(?m:^)[\x20\t\r]*+(?m:$)/)
 },
@@ -9503,7 +9315,7 @@ if (($C) = ($C->before(sub {
 my $C=shift;
 if (my ($C) = ($C->before(sub {
 my $C=shift;
-if (my ($C) = (LazyMap::lazymap(sub {
+if (my ($C) = (STD::LazyMap::lazymap(sub {
 my $C=shift;
 $C->_PATTERN(qr/\G(?m:^)\=cut\b/)
 },
@@ -10715,6 +10527,216 @@ $C->O(%terminator)
 });
 }
 ;
+our %open2close = (
+"\x{0028}" => "\x{0029}",
+"\x{003C}" => "\x{003E}",
+"\x{005B}" => "\x{005D}",
+"\x{007B}" => "\x{007D}",
+"\x{00AB}" => "\x{00BB}",
+"\x{0F3A}" => "\x{0F3B}",
+"\x{0F3C}" => "\x{0F3D}",
+"\x{169B}" => "\x{169C}",
+"\x{2018}" => "\x{2019}",
+"\x{201A}" => "\x{2019}",
+"\x{201B}" => "\x{2019}",
+"\x{201C}" => "\x{201D}",
+"\x{201E}" => "\x{201D}",
+"\x{201F}" => "\x{201D}",
+"\x{2039}" => "\x{203A}",
+"\x{2045}" => "\x{2046}",
+"\x{207D}" => "\x{207E}",
+"\x{208D}" => "\x{208E}",
+"\x{2208}" => "\x{220B}",
+"\x{2209}" => "\x{220C}",
+"\x{220A}" => "\x{220D}",
+"\x{2215}" => "\x{29F5}",
+"\x{223C}" => "\x{223D}",
+"\x{2243}" => "\x{22CD}",
+"\x{2252}" => "\x{2253}",
+"\x{2254}" => "\x{2255}",
+"\x{2264}" => "\x{2265}",
+"\x{2266}" => "\x{2267}",
+"\x{2268}" => "\x{2269}",
+"\x{226A}" => "\x{226B}",
+"\x{226E}" => "\x{226F}",
+"\x{2270}" => "\x{2271}",
+"\x{2272}" => "\x{2273}",
+"\x{2274}" => "\x{2275}",
+"\x{2276}" => "\x{2277}",
+"\x{2278}" => "\x{2279}",
+"\x{227A}" => "\x{227B}",
+"\x{227C}" => "\x{227D}",
+"\x{227E}" => "\x{227F}",
+"\x{2280}" => "\x{2281}",
+"\x{2282}" => "\x{2283}",
+"\x{2284}" => "\x{2285}",
+"\x{2286}" => "\x{2287}",
+"\x{2288}" => "\x{2289}",
+"\x{228A}" => "\x{228B}",
+"\x{228F}" => "\x{2290}",
+"\x{2291}" => "\x{2292}",
+"\x{2298}" => "\x{29B8}",
+"\x{22A2}" => "\x{22A3}",
+"\x{22A6}" => "\x{2ADE}",
+"\x{22A8}" => "\x{2AE4}",
+"\x{22A9}" => "\x{2AE3}",
+"\x{22AB}" => "\x{2AE5}",
+"\x{22B0}" => "\x{22B1}",
+"\x{22B2}" => "\x{22B3}",
+"\x{22B4}" => "\x{22B5}",
+"\x{22B6}" => "\x{22B7}",
+"\x{22C9}" => "\x{22CA}",
+"\x{22CB}" => "\x{22CC}",
+"\x{22D0}" => "\x{22D1}",
+"\x{22D6}" => "\x{22D7}",
+"\x{22D8}" => "\x{22D9}",
+"\x{22DA}" => "\x{22DB}",
+"\x{22DC}" => "\x{22DD}",
+"\x{22DE}" => "\x{22DF}",
+"\x{22E0}" => "\x{22E1}",
+"\x{22E2}" => "\x{22E3}",
+"\x{22E4}" => "\x{22E5}",
+"\x{22E6}" => "\x{22E7}",
+"\x{22E8}" => "\x{22E9}",
+"\x{22EA}" => "\x{22EB}",
+"\x{22EC}" => "\x{22ED}",
+"\x{22F0}" => "\x{22F1}",
+"\x{22F2}" => "\x{22FA}",
+"\x{22F3}" => "\x{22FB}",
+"\x{22F4}" => "\x{22FC}",
+"\x{22F6}" => "\x{22FD}",
+"\x{22F7}" => "\x{22FE}",
+"\x{2308}" => "\x{2309}",
+"\x{230A}" => "\x{230B}",
+"\x{2329}" => "\x{232A}",
+"\x{23B4}" => "\x{23B5}",
+"\x{2768}" => "\x{2769}",
+"\x{276A}" => "\x{276B}",
+"\x{276C}" => "\x{276D}",
+"\x{276E}" => "\x{276F}",
+"\x{2770}" => "\x{2771}",
+"\x{2772}" => "\x{2773}",
+"\x{2774}" => "\x{2775}",
+"\x{27C3}" => "\x{27C4}",
+"\x{27C5}" => "\x{27C6}",
+"\x{27D5}" => "\x{27D6}",
+"\x{27DD}" => "\x{27DE}",
+"\x{27E2}" => "\x{27E3}",
+"\x{27E4}" => "\x{27E5}",
+"\x{27E6}" => "\x{27E7}",
+"\x{27E8}" => "\x{27E9}",
+"\x{27EA}" => "\x{27EB}",
+"\x{2983}" => "\x{2984}",
+"\x{2985}" => "\x{2986}",
+"\x{2987}" => "\x{2988}",
+"\x{2989}" => "\x{298A}",
+"\x{298B}" => "\x{298C}",
+"\x{298D}" => "\x{298E}",
+"\x{298F}" => "\x{2990}",
+"\x{2991}" => "\x{2992}",
+"\x{2993}" => "\x{2994}",
+"\x{2995}" => "\x{2996}",
+"\x{2997}" => "\x{2998}",
+"\x{29C0}" => "\x{29C1}",
+"\x{29C4}" => "\x{29C5}",
+"\x{29CF}" => "\x{29D0}",
+"\x{29D1}" => "\x{29D2}",
+"\x{29D4}" => "\x{29D5}",
+"\x{29D8}" => "\x{29D9}",
+"\x{29DA}" => "\x{29DB}",
+"\x{29F8}" => "\x{29F9}",
+"\x{29FC}" => "\x{29FD}",
+"\x{2A2B}" => "\x{2A2C}",
+"\x{2A2D}" => "\x{2A2E}",
+"\x{2A34}" => "\x{2A35}",
+"\x{2A3C}" => "\x{2A3D}",
+"\x{2A64}" => "\x{2A65}",
+"\x{2A79}" => "\x{2A7A}",
+"\x{2A7D}" => "\x{2A7E}",
+"\x{2A7F}" => "\x{2A80}",
+"\x{2A81}" => "\x{2A82}",
+"\x{2A83}" => "\x{2A84}",
+"\x{2A8B}" => "\x{2A8C}",
+"\x{2A91}" => "\x{2A92}",
+"\x{2A93}" => "\x{2A94}",
+"\x{2A95}" => "\x{2A96}",
+"\x{2A97}" => "\x{2A98}",
+"\x{2A99}" => "\x{2A9A}",
+"\x{2A9B}" => "\x{2A9C}",
+"\x{2AA1}" => "\x{2AA2}",
+"\x{2AA6}" => "\x{2AA7}",
+"\x{2AA8}" => "\x{2AA9}",
+"\x{2AAA}" => "\x{2AAB}",
+"\x{2AAC}" => "\x{2AAD}",
+"\x{2AAF}" => "\x{2AB0}",
+"\x{2AB3}" => "\x{2AB4}",
+"\x{2ABB}" => "\x{2ABC}",
+"\x{2ABD}" => "\x{2ABE}",
+"\x{2ABF}" => "\x{2AC0}",
+"\x{2AC1}" => "\x{2AC2}",
+"\x{2AC3}" => "\x{2AC4}",
+"\x{2AC5}" => "\x{2AC6}",
+"\x{2ACD}" => "\x{2ACE}",
+"\x{2ACF}" => "\x{2AD0}",
+"\x{2AD1}" => "\x{2AD2}",
+"\x{2AD3}" => "\x{2AD4}",
+"\x{2AD5}" => "\x{2AD6}",
+"\x{2AEC}" => "\x{2AED}",
+"\x{2AF7}" => "\x{2AF8}",
+"\x{2AF9}" => "\x{2AFA}",
+"\x{2E02}" => "\x{2E03}",
+"\x{2E04}" => "\x{2E05}",
+"\x{2E09}" => "\x{2E0A}",
+"\x{2E0C}" => "\x{2E0D}",
+"\x{2E1C}" => "\x{2E1D}",
+"\x{2E20}" => "\x{2E21}",
+"\x{3008}" => "\x{3009}",
+"\x{300A}" => "\x{300B}",
+"\x{300C}" => "\x{300D}",
+"\x{300E}" => "\x{300F}",
+"\x{3010}" => "\x{3011}",
+"\x{3014}" => "\x{3015}",
+"\x{3016}" => "\x{3017}",
+"\x{3018}" => "\x{3019}",
+"\x{301A}" => "\x{301B}",
+"\x{301D}" => "\x{301E}",
+"\x{FD3E}" => "\x{FD3F}",
+"\x{FE17}" => "\x{FE18}",
+"\x{FE35}" => "\x{FE36}",
+"\x{FE37}" => "\x{FE38}",
+"\x{FE39}" => "\x{FE3A}",
+"\x{FE3B}" => "\x{FE3C}",
+"\x{FE3D}" => "\x{FE3E}",
+"\x{FE3F}" => "\x{FE40}",
+"\x{FE41}" => "\x{FE42}",
+"\x{FE43}" => "\x{FE44}",
+"\x{FE47}" => "\x{FE48}",
+"\x{FE59}" => "\x{FE5A}",
+"\x{FE5B}" => "\x{FE5C}",
+"\x{FE5D}" => "\x{FE5E}",
+"\x{FF08}" => "\x{FF09}",
+"\x{FF1C}" => "\x{FF1E}",
+"\x{FF3B}" => "\x{FF3D}",
+"\x{FF5B}" => "\x{FF5D}",
+"\x{FF5F}" => "\x{FF60}",
+"\x{FF62}" => "\x{FF63}",
+);
+our %close2open = reverse %open2close;
+## token opener {
+sub opener__PEEK { $_[0]->_AUTOLEXpeek('opener', $retree) }
+sub opener {
+no warnings 'recursion';
+my $self = shift;
+
+
+local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
+
+my $C = $self->cursor_xact("RULE opener");
+my $xact = $C->xact;
+my $S = $C->{'_pos'};
+$self->_MATCHIFYr($S, "opener", $C->_PATTERN(qr/\G[\x{0028}\x{003C}\x{005B}\x{007B}\x{00AB}\x{0F3A}\x{0F3C}\x{169B}\x{2018}\x{201A}\x{201B}\x{201C}\x{201E}\x{201F}\x{2039}\x{2045}\x{207D}\x{208D}\x{2208}\x{2209}\x{220A}\x{2215}\x{223C}\x{2243}\x{2252}\x{2254}\x{2264}\x{2266}\x{2268}\x{226A}\x{226E}\x{2270}\x{2272}\x{2274}\x{2276}\x{2278}\x{227A}\x{227C}\x{227E}\x{2280}\x{2282}\x{2284}\x{2286}\x{2288}\x{228A}\x{228F}\x{2291}\x{2298}\x{22A2}\x{22A6}\x{22A8}\x{22A9}\x{22AB}\x{22B0}\x{22B2}\x{22B4}\x{22B6}\x{22C9}\x{22CB}\x{22D0}\x{22D6}\x{22D8}\x{22DA}\x{22DC}\x{22DE}\x{22E0}\x{22E2}\x{22E4}\x{22E6}\x{22E8}\x{22EA}\x{22EC}\x{22F0}\x{22F2}\x{22F3}\x{22F4}\x{22F6}\x{22F7}\x{2308}\x{230A}\x{2329}\x{23B4}\x{2768}\x{276A}\x{276C}\x{276E}\x{2770}\x{2772}\x{2774}\x{27C3}\x{27C5}\x{27D5}\x{27DD}\x{27E2}\x{27E4}\x{27E6}\x{27E8}\x{27EA}\x{2983}\x{2985}\x{2987}\x{2989}\x{298B}\x{298D}\x{298F}\x{2991}\x{2993}\x{2995}\x{2997}\x{29C0}\x{29C4}\x{29CF}\x{29D1}\x{29D4}\x{29D8}\x{29DA}\x{29F8}\x{29FC}\x{2A2B}\x{2A2D}\x{2A34}\x{2A3C}\x{2A64}\x{2A79}\x{2A7D}\x{2A7F}\x{2A81}\x{2A83}\x{2A8B}\x{2A91}\x{2A93}\x{2A95}\x{2A97}\x{2A99}\x{2A9B}\x{2AA1}\x{2AA6}\x{2AA8}\x{2AAA}\x{2AAC}\x{2AAF}\x{2AB3}\x{2ABB}\x{2ABD}\x{2ABF}\x{2AC1}\x{2AC3}\x{2AC5}\x{2ACD}\x{2ACF}\x{2AD1}\x{2AD3}\x{2AD5}\x{2AEC}\x{2AF7}\x{2AF9}\x{2E02}\x{2E04}\x{2E09}\x{2E0C}\x{2E1C}\x{2E20}\x{3008}\x{300A}\x{300C}\x{300E}\x{3010}\x{3014}\x{3016}\x{3018}\x{301A}\x{301D}\x{FD3E}\x{FE17}\x{FE35}\x{FE37}\x{FE39}\x{FE3B}\x{FE3D}\x{FE3F}\x{FE41}\x{FE43}\x{FE47}\x{FE59}\x{FE5B}\x{FE5D}\x{FF08}\x{FF1C}\x{FF3B}\x{FF5B}\x{FF5F}\x{FF62}]/));
+}
+;
 { package STD::P6;
 use Moose ':all' => { -prefix => "moose_" };
 use Encode;
@@ -10764,7 +10786,7 @@ $DB::deep = $DB::deep = 1000; # suppress used-once warning
 
 use YAML::XS;
 
-$SIG{__WARN__} = sub { die @_,"   statement started at line ", 'Cursor'->lineof($::LASTSTATE), "
+$SIG{__WARN__} = sub { die @_,"   statement started at line ", 'STD::Cursor'->lineof($::LASTSTATE), "
 " } if $::DEBUG;
 
 $retree = YAML::XS::Load(Encode::encode_utf8(<<'RETREE_END'));
@@ -14484,12 +14506,14 @@ method_def: !!perl/hash:RE_ast
               - !!perl/hash:RE_sequence
                 alt: method_def_0 0
                 zyg:
-                - !!perl/hash:RE_quantified_atom
-                  atom: !!perl/hash:RE_cclass
-                    i: 0
-                    text: '[ ! ^ ]'
-                  quant:
-                  - '?'
+                - !!perl/hash:RE_bindnamed
+                  atom: !!perl/hash:RE_bracket
+                    re: !!perl/hash:RE_quantified_atom
+                      atom: !!perl/hash:RE_cclass
+                        i: 0
+                        text: '[ ! ^ ]'
+                      quant:
+                      - '?'
                 - !!perl/hash:RE_method
                   name: longname
                   rest: ''
@@ -30137,7 +30161,13 @@ do {
         push @gather, ((
 sub {
 my $C=shift;
-if (($C) = ($C->_PATTERN(qr/\G(?:[!^])?+/))
+if (($C) = ($C->_SUBSUMEr(['type'], sub {
+my $C = shift;
+$C->_BRACKETr(sub {
+my $C=shift;
+$C->_PATTERN(qr/\G(?:[!^])?+/)
+})
+}))
 and ($C) = ($C->_SUBSUMEr(['longname'], sub {
 my $C = shift;
 $C->longname
@@ -31570,7 +31600,7 @@ $C->_OPTr(sub {
 my $C=shift;
 if (my ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-LazyMap::lazymap(sub {
+STD::LazyMap::lazymap(sub {
 my $C=shift;
 if (my ($C) = ($C->before(sub {
 my $C=shift;
@@ -31607,7 +31637,7 @@ $C->POST
 or $xact->[-2] or
 do {
 push @gather, do {
-if (my ($C) = (LazyMap::lazymap(sub {
+if (my ($C) = (STD::LazyMap::lazymap(sub {
 my $C=shift;
 if (my ($C) = ($C->before(sub {
 my $C=shift;
@@ -34424,12 +34454,12 @@ my $C = $self->cursor_xact("RULE special_variable__S_121DollarCur_Ly");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\$\{\ \}";
-$self->_MATCHIFY($S, "special_variable__S_121DollarCur_Ly", LazyMap::lazymap(sub {
+$self->_MATCHIFY($S, "special_variable__S_121DollarCur_Ly", STD::LazyMap::lazymap(sub {
 my $C=shift;
 if (($C) = ($C->_EXACT("\{"))
 and ($C) = (scalar(do {
 }, $C))) {
-LazyMap::lazymap(sub {
+STD::LazyMap::lazymap(sub {
 my $C=shift;
 if (my ($C) = ($C->_EXACT("\}"))) {
 scalar(do {
@@ -42376,18 +42406,18 @@ my $C = $self->cursor_xact("RULE prefix_circumfix_meta_operator__S_196reduce");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "reduce";
-$self->_MATCHIFY($S, "prefix_circumfix_meta_operator__S_196reduce", LazyMap::lazymap(sub {
+$self->_MATCHIFY($S, "prefix_circumfix_meta_operator__S_196reduce", STD::LazyMap::lazymap(sub {
 my $C=shift;
-LazyMap::lazymap(sub {
+STD::LazyMap::lazymap(sub {
 my $C=shift;
 if (my ($C) = (scalar(do {
 my $M = $C;
 $op = $M->{'s'}->{'op'}}, $C))) {
-LazyMap::lazymap(sub {
+STD::LazyMap::lazymap(sub {
 my $C=shift;
-LazyMap::lazymap(sub {
+STD::LazyMap::lazymap(sub {
 my $C=shift;
-LazyMap::lazymap(sub {
+STD::LazyMap::lazymap(sub {
 my $C=shift;
 if (my ($C) = (scalar(do {
 my $M = $C;
@@ -42407,13 +42437,13 @@ or $xact->[-2] or
 do {
 push @gather, $C->before(sub {
 my $C=shift;
-LazyMap::lazymap(sub {
+STD::LazyMap::lazymap(sub {
 my $C=shift;
 $C->_OPTg(sub {
 my $C=shift;
 $C->_BRACKET(sub {
 my $C=shift;
-LazyMap::lazymap(sub {
+STD::LazyMap::lazymap(sub {
 my $C=shift;
 scalar(do {
 my $M = $C;
@@ -42484,7 +42514,7 @@ my $C = shift;
 $C->_PAREN( sub {
 my $C=shift;
 if (my ($C) = ($C->_EXACT("\["))) {
-LazyMap::lazymap(sub {
+STD::LazyMap::lazymap(sub {
 my $C=shift;
 if (my ($C) = ($C->_EXACT("\]"))) {
 $C->_BRACKET(sub {
@@ -42548,7 +42578,7 @@ do {my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
-push @gather, LazyMap::lazymap(sub {
+push @gather, STD::LazyMap::lazymap(sub {
 my $C=shift;
 $C->before(sub {
 my $C=shift;
@@ -42564,7 +42594,7 @@ or $xact->[-2] or
 do {
 push @gather, do {
 if (my ($C) = ($C->_EXACT("\\"))) {
-LazyMap::lazymap(sub {
+STD::LazyMap::lazymap(sub {
 my $C=shift;
 $C->before(sub {
 my $C=shift;
@@ -42597,7 +42627,7 @@ $C
 $C->before(sub {
 my $C=shift;
 if (my ($C) = ($C->_EXACT("\["))) {
-LazyMap::lazymap(sub {
+STD::LazyMap::lazymap(sub {
 my $C=shift;
 $C->_EXACT("\]")
 },
@@ -44092,7 +44122,7 @@ if (my ($C) = ($C->before(sub {
 my $C=shift;
 if (my ($C) = (do {
 if (my ($C) = ($C->_EXACT("\""))) {
-LazyMap::lazymap(sub {
+STD::LazyMap::lazymap(sub {
 my $C=shift;
 $C->_PATTERN(qr/\G\s/)
 },
@@ -47301,7 +47331,7 @@ if (($C) = ($C->before(sub {
 my $C=shift;
 if (my ($C) = ($C->before(sub {
 my $C=shift;
-if (my ($C) = (LazyMap::lazymap(sub {
+if (my ($C) = (STD::LazyMap::lazymap(sub {
 my $C=shift;
 $C->_OPTr(sub {
 my $C=shift;
@@ -47447,7 +47477,7 @@ and ($C) = ($C->before(sub {
 my $C=shift;
 if (my ($C) = ($C->before(sub {
 my $C=shift;
-if (my ($C) = (LazyMap::lazymap(sub {
+if (my ($C) = (STD::LazyMap::lazymap(sub {
 my $C=shift;
 $C->_EXACT("\:")
 },
@@ -49284,7 +49314,7 @@ $C->stopper
 },
 sub {
 my $C=shift;
-LazyMap::lazymap(sub {
+STD::LazyMap::lazymap(sub {
 my $C=shift;
 $C->before(sub {
 my $C=shift;
@@ -49299,7 +49329,7 @@ $C->_EXACT("\!\!")
 },
 sub {
 my $C=shift;
-LazyMap::lazymap(sub {
+STD::LazyMap::lazymap(sub {
 my $C=shift;
 $C->before(sub {
 my $C=shift;
@@ -49396,7 +49426,7 @@ $DB::deep = $DB::deep = 1000; # suppress used-once warning
 
 use YAML::XS;
 
-$SIG{__WARN__} = sub { die @_,"   statement started at line ", 'Cursor'->lineof($::LASTSTATE), "
+$SIG{__WARN__} = sub { die @_,"   statement started at line ", 'STD::Cursor'->lineof($::LASTSTATE), "
 " } if $::DEBUG;
 
 { package STD::Q::b1;
@@ -49417,7 +49447,7 @@ $DB::deep = $DB::deep = 1000; # suppress used-once warning
 
 use YAML::XS;
 
-$SIG{__WARN__} = sub { die @_,"   statement started at line ", 'Cursor'->lineof($::LASTSTATE), "
+$SIG{__WARN__} = sub { die @_,"   statement started at line ", 'STD::Cursor'->lineof($::LASTSTATE), "
 " } if $::DEBUG;
 
 $retree = YAML::XS::Load(Encode::encode_utf8(<<'RETREE_END'));
@@ -50102,7 +50132,7 @@ $DB::deep = $DB::deep = 1000; # suppress used-once warning
 
 use YAML::XS;
 
-$SIG{__WARN__} = sub { die @_,"   statement started at line ", 'Cursor'->lineof($::LASTSTATE), "
+$SIG{__WARN__} = sub { die @_,"   statement started at line ", 'STD::Cursor'->lineof($::LASTSTATE), "
 " } if $::DEBUG;
 
 $retree = YAML::XS::Load(Encode::encode_utf8(<<'RETREE_END'));
@@ -50151,7 +50181,7 @@ $DB::deep = $DB::deep = 1000; # suppress used-once warning
 
 use YAML::XS;
 
-$SIG{__WARN__} = sub { die @_,"   statement started at line ", 'Cursor'->lineof($::LASTSTATE), "
+$SIG{__WARN__} = sub { die @_,"   statement started at line ", 'STD::Cursor'->lineof($::LASTSTATE), "
 " } if $::DEBUG;
 
 $retree = YAML::XS::Load(Encode::encode_utf8(<<'RETREE_END'));
@@ -50231,7 +50261,7 @@ $DB::deep = $DB::deep = 1000; # suppress used-once warning
 
 use YAML::XS;
 
-$SIG{__WARN__} = sub { die @_,"   statement started at line ", 'Cursor'->lineof($::LASTSTATE), "
+$SIG{__WARN__} = sub { die @_,"   statement started at line ", 'STD::Cursor'->lineof($::LASTSTATE), "
 " } if $::DEBUG;
 
 $retree = YAML::XS::Load(Encode::encode_utf8(<<'RETREE_END'));
@@ -50280,7 +50310,7 @@ $DB::deep = $DB::deep = 1000; # suppress used-once warning
 
 use YAML::XS;
 
-$SIG{__WARN__} = sub { die @_,"   statement started at line ", 'Cursor'->lineof($::LASTSTATE), "
+$SIG{__WARN__} = sub { die @_,"   statement started at line ", 'STD::Cursor'->lineof($::LASTSTATE), "
 " } if $::DEBUG;
 
 $retree = YAML::XS::Load(Encode::encode_utf8(<<'RETREE_END'));
@@ -50379,7 +50409,7 @@ $DB::deep = $DB::deep = 1000; # suppress used-once warning
 
 use YAML::XS;
 
-$SIG{__WARN__} = sub { die @_,"   statement started at line ", 'Cursor'->lineof($::LASTSTATE), "
+$SIG{__WARN__} = sub { die @_,"   statement started at line ", 'STD::Cursor'->lineof($::LASTSTATE), "
 " } if $::DEBUG;
 
 $retree = YAML::XS::Load(Encode::encode_utf8(<<'RETREE_END'));
@@ -50428,7 +50458,7 @@ $DB::deep = $DB::deep = 1000; # suppress used-once warning
 
 use YAML::XS;
 
-$SIG{__WARN__} = sub { die @_,"   statement started at line ", 'Cursor'->lineof($::LASTSTATE), "
+$SIG{__WARN__} = sub { die @_,"   statement started at line ", 'STD::Cursor'->lineof($::LASTSTATE), "
 " } if $::DEBUG;
 
 $retree = YAML::XS::Load(Encode::encode_utf8(<<'RETREE_END'));
@@ -50572,7 +50602,7 @@ $DB::deep = $DB::deep = 1000; # suppress used-once warning
 
 use YAML::XS;
 
-$SIG{__WARN__} = sub { die @_,"   statement started at line ", 'Cursor'->lineof($::LASTSTATE), "
+$SIG{__WARN__} = sub { die @_,"   statement started at line ", 'STD::Cursor'->lineof($::LASTSTATE), "
 " } if $::DEBUG;
 
 $retree = YAML::XS::Load(Encode::encode_utf8(<<'RETREE_END'));
@@ -50621,7 +50651,7 @@ $DB::deep = $DB::deep = 1000; # suppress used-once warning
 
 use YAML::XS;
 
-$SIG{__WARN__} = sub { die @_,"   statement started at line ", 'Cursor'->lineof($::LASTSTATE), "
+$SIG{__WARN__} = sub { die @_,"   statement started at line ", 'STD::Cursor'->lineof($::LASTSTATE), "
 " } if $::DEBUG;
 
 $retree = YAML::XS::Load(Encode::encode_utf8(<<'RETREE_END'));
@@ -50765,7 +50795,7 @@ $DB::deep = $DB::deep = 1000; # suppress used-once warning
 
 use YAML::XS;
 
-$SIG{__WARN__} = sub { die @_,"   statement started at line ", 'Cursor'->lineof($::LASTSTATE), "
+$SIG{__WARN__} = sub { die @_,"   statement started at line ", 'STD::Cursor'->lineof($::LASTSTATE), "
 " } if $::DEBUG;
 
 $retree = YAML::XS::Load(Encode::encode_utf8(<<'RETREE_END'));
@@ -50814,7 +50844,7 @@ $DB::deep = $DB::deep = 1000; # suppress used-once warning
 
 use YAML::XS;
 
-$SIG{__WARN__} = sub { die @_,"   statement started at line ", 'Cursor'->lineof($::LASTSTATE), "
+$SIG{__WARN__} = sub { die @_,"   statement started at line ", 'STD::Cursor'->lineof($::LASTSTATE), "
 " } if $::DEBUG;
 
 $retree = YAML::XS::Load(Encode::encode_utf8(<<'RETREE_END'));
@@ -50958,7 +50988,7 @@ $DB::deep = $DB::deep = 1000; # suppress used-once warning
 
 use YAML::XS;
 
-$SIG{__WARN__} = sub { die @_,"   statement started at line ", 'Cursor'->lineof($::LASTSTATE), "
+$SIG{__WARN__} = sub { die @_,"   statement started at line ", 'STD::Cursor'->lineof($::LASTSTATE), "
 " } if $::DEBUG;
 
 $retree = YAML::XS::Load(Encode::encode_utf8(<<'RETREE_END'));
@@ -51006,7 +51036,7 @@ $DB::deep = $DB::deep = 1000; # suppress used-once warning
 
 use YAML::XS;
 
-$SIG{__WARN__} = sub { die @_,"   statement started at line ", 'Cursor'->lineof($::LASTSTATE), "
+$SIG{__WARN__} = sub { die @_,"   statement started at line ", 'STD::Cursor'->lineof($::LASTSTATE), "
 " } if $::DEBUG;
 
 ## method postprocess ($s)
@@ -51032,7 +51062,7 @@ $DB::deep = $DB::deep = 1000; # suppress used-once warning
 
 use YAML::XS;
 
-$SIG{__WARN__} = sub { die @_,"   statement started at line ", 'Cursor'->lineof($::LASTSTATE), "
+$SIG{__WARN__} = sub { die @_,"   statement started at line ", 'STD::Cursor'->lineof($::LASTSTATE), "
 " } if $::DEBUG;
 
 ## method postprocess ($s)
@@ -51058,7 +51088,7 @@ $DB::deep = $DB::deep = 1000; # suppress used-once warning
 
 use YAML::XS;
 
-$SIG{__WARN__} = sub { die @_,"   statement started at line ", 'Cursor'->lineof($::LASTSTATE), "
+$SIG{__WARN__} = sub { die @_,"   statement started at line ", 'STD::Cursor'->lineof($::LASTSTATE), "
 " } if $::DEBUG;
 
 ## method postprocess ($s)
@@ -51084,7 +51114,7 @@ $DB::deep = $DB::deep = 1000; # suppress used-once warning
 
 use YAML::XS;
 
-$SIG{__WARN__} = sub { die @_,"   statement started at line ", 'Cursor'->lineof($::LASTSTATE), "
+$SIG{__WARN__} = sub { die @_,"   statement started at line ", 'STD::Cursor'->lineof($::LASTSTATE), "
 " } if $::DEBUG;
 
 ## method postprocess ($s)
@@ -51110,7 +51140,7 @@ $DB::deep = $DB::deep = 1000; # suppress used-once warning
 
 use YAML::XS;
 
-$SIG{__WARN__} = sub { die @_,"   statement started at line ", 'Cursor'->lineof($::LASTSTATE), "
+$SIG{__WARN__} = sub { die @_,"   statement started at line ", 'STD::Cursor'->lineof($::LASTSTATE), "
 " } if $::DEBUG;
 
 ## method postprocess ($s)
@@ -51136,7 +51166,7 @@ $DB::deep = $DB::deep = 1000; # suppress used-once warning
 
 use YAML::XS;
 
-$SIG{__WARN__} = sub { die @_,"   statement started at line ", 'Cursor'->lineof($::LASTSTATE), "
+$SIG{__WARN__} = sub { die @_,"   statement started at line ", 'STD::Cursor'->lineof($::LASTSTATE), "
 " } if $::DEBUG;
 
 ## method postprocess ($s)
@@ -51162,7 +51192,7 @@ $DB::deep = $DB::deep = 1000; # suppress used-once warning
 
 use YAML::XS;
 
-$SIG{__WARN__} = sub { die @_,"   statement started at line ", 'Cursor'->lineof($::LASTSTATE), "
+$SIG{__WARN__} = sub { die @_,"   statement started at line ", 'STD::Cursor'->lineof($::LASTSTATE), "
 " } if $::DEBUG;
 
 ## method postprocess ($s)
@@ -51188,7 +51218,7 @@ $DB::deep = $DB::deep = 1000; # suppress used-once warning
 
 use YAML::XS;
 
-$SIG{__WARN__} = sub { die @_,"   statement started at line ", 'Cursor'->lineof($::LASTSTATE), "
+$SIG{__WARN__} = sub { die @_,"   statement started at line ", 'STD::Cursor'->lineof($::LASTSTATE), "
 " } if $::DEBUG;
 
 ## method postprocess ($s)
@@ -51216,7 +51246,7 @@ $DB::deep = $DB::deep = 1000; # suppress used-once warning
 
 use YAML::XS;
 
-$SIG{__WARN__} = sub { die @_,"   statement started at line ", 'Cursor'->lineof($::LASTSTATE), "
+$SIG{__WARN__} = sub { die @_,"   statement started at line ", 'STD::Cursor'->lineof($::LASTSTATE), "
 " } if $::DEBUG;
 
 $retree = YAML::XS::Load(Encode::encode_utf8(<<'RETREE_END'));
@@ -51485,7 +51515,7 @@ $DB::deep = $DB::deep = 1000; # suppress used-once warning
 
 use YAML::XS;
 
-$SIG{__WARN__} = sub { die @_,"   statement started at line ", 'Cursor'->lineof($::LASTSTATE), "
+$SIG{__WARN__} = sub { die @_,"   statement started at line ", 'STD::Cursor'->lineof($::LASTSTATE), "
 " } if $::DEBUG;
 
 $retree = YAML::XS::Load(Encode::encode_utf8(<<'RETREE_END'));
@@ -51700,7 +51730,7 @@ $DB::deep = $DB::deep = 1000; # suppress used-once warning
 
 use YAML::XS;
 
-$SIG{__WARN__} = sub { die @_,"   statement started at line ", 'Cursor'->lineof($::LASTSTATE), "
+$SIG{__WARN__} = sub { die @_,"   statement started at line ", 'STD::Cursor'->lineof($::LASTSTATE), "
 " } if $::DEBUG;
 
 $retree = YAML::XS::Load(Encode::encode_utf8(<<'RETREE_END'));
@@ -53027,7 +53057,7 @@ $DB::deep = $DB::deep = 1000; # suppress used-once warning
 
 use YAML::XS;
 
-$SIG{__WARN__} = sub { die @_,"   statement started at line ", 'Cursor'->lineof($::LASTSTATE), "
+$SIG{__WARN__} = sub { die @_,"   statement started at line ", 'STD::Cursor'->lineof($::LASTSTATE), "
 " } if $::DEBUG;
 
 ## method tweak (:$g!)
@@ -53324,7 +53354,7 @@ $DB::deep = $DB::deep = 1000; # suppress used-once warning
 
 use YAML::XS;
 
-$SIG{__WARN__} = sub { die @_,"   statement started at line ", 'Cursor'->lineof($::LASTSTATE), "
+$SIG{__WARN__} = sub { die @_,"   statement started at line ", 'STD::Cursor'->lineof($::LASTSTATE), "
 " } if $::DEBUG;
 
 $retree = YAML::XS::Load(Encode::encode_utf8(<<'RETREE_END'));
@@ -53804,7 +53834,7 @@ $DB::deep = $DB::deep = 1000; # suppress used-once warning
 
 use YAML::XS;
 
-$SIG{__WARN__} = sub { die @_,"   statement started at line ", 'Cursor'->lineof($::LASTSTATE), "
+$SIG{__WARN__} = sub { die @_,"   statement started at line ", 'STD::Cursor'->lineof($::LASTSTATE), "
 " } if $::DEBUG;
 
 $retree = YAML::XS::Load(Encode::encode_utf8(<<'RETREE_END'));
@@ -58001,7 +58031,7 @@ if (($C) = ($C->before(sub {
 my $C=shift;
 if (my ($C) = ($C->before(sub {
 my $C=shift;
-if (my ($C) = (LazyMap::lazymap(sub {
+if (my ($C) = (STD::LazyMap::lazymap(sub {
 my $C=shift;
 $C->_SUBSUMEr(['stopper'], sub {
 my $C = shift;
@@ -62941,6 +62971,7 @@ elsif ($name =~ s/^\&//) {
 $self->sorry("Illegal redeclaration of routine '$name'$loc") unless $name eq ''}
 else {
 $self->worry("Useless redeclaration of variable $name$loc")};
+return $self;
 };
 }
 else {
@@ -63036,10 +63067,11 @@ $loc = " (from line $oline)"}};
 $sid = $self->clean_id($sid, $name);
 if ($name =~ /^\w/) {
 $self->sorry("Illegal redeclaration of symbol '$sid'$loc")}
-elsif ($name =~ /^\&/) {
+elsif ($name =~ s/^\&//) {
 $self->sorry("Illegal redeclaration of routine '$sid'$loc") unless $name eq ''}
 else {
 };
+return $self;
 };
 }
 else {
@@ -63553,7 +63585,7 @@ $m .= "Other potential difficulties:\n  " . join( "\n  ", @::WORRIES) . "\n"};
 $::IN_PANIC--;
 die $m if $::IN_SUPPOSE;
 $::IN_PANIC++;
-print STDERR $Cursor::RED, '===', $Cursor::CLEAR, 'SORRY!', $Cursor::RED, '===', $Cursor::CLEAR, "\n"
+print STDERR $STD::Cursor::RED, '===', $STD::Cursor::CLEAR, 'SORRY!', $STD::Cursor::RED, '===', $STD::Cursor::CLEAR, "\n"
         unless $::FATALS++;
 print STDERR $m;
 $self->explain_mystery();
@@ -63572,14 +63604,14 @@ local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 my $C = $self->cursor_xact("RULE is_ok");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
-$self->_MATCHIFY($S, "is_ok", LazyMap::lazymap(sub {
+$self->_MATCHIFY($S, "is_ok", STD::LazyMap::lazymap(sub {
 my $C=shift;
 if (my ($C) = ($C->_EXACT("\#OK"))) {
-LazyMap::lazymap(sub {
+STD::LazyMap::lazymap(sub {
 my $C=shift;
-LazyMap::lazymap(sub {
+STD::LazyMap::lazymap(sub {
 my $C=shift;
-LazyMap::lazymap(sub {
+STD::LazyMap::lazymap(sub {
 my $C=shift;
 $C->_PATTERN(qr/\G(?m:$)/)
 },
@@ -63638,7 +63670,7 @@ my $self = shift;
 die 'Required argument s omitted' unless @_;
 my $s = @_ ? shift() : undef;
 $self->deb("sorry $s") if $::DEBUG;
-print STDERR $Cursor::RED, '===', $Cursor::CLEAR, 'SORRY!', $Cursor::RED, '===', $Cursor::CLEAR, "\n"
+print STDERR $STD::Cursor::RED, '===', $STD::Cursor::CLEAR, 'SORRY!', $STD::Cursor::RED, '===', $STD::Cursor::CLEAR, "\n"
         unless $::IN_SUPPOSE or $::FATALS++;
 if ($s) {
 my $m = $s;

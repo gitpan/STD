@@ -20,7 +20,7 @@ are all almost certainly out.
   experimenting with modifications to viv itself.
 
 * Second, the source code is parsed into an object-oriented abstract syntax
-  tree using STD.pm6 and Actions.  If --freeze is passed, the process stops
+  tree using STD.pm6 and STD::Actions.  If --freeze is passed, the process stops
   here and a Storable dump is generated.
 
 * Translation of the parse tree into output code occurs in a single interleaved
@@ -36,11 +36,8 @@ are all almost certainly out.
 =cut
 
 use FindBin;
-BEGIN {
-    if (-s "$FindBin::Bin/STD.pmc") {
-        unshift @INC, $FindBin::Bin;
-    }
-}
+BEGIN { unshift @INC, $FindBin::Bin if -s "$FindBin::Bin/STD.pmc"; }
+
 use strict;
 use 5.010;
 use warnings FATAL => 'all';
@@ -115,7 +112,7 @@ END
     exit;
 }
 
-use Actions;
+use STD::Actions;
 
 sub spew {
     my $bits = shift;
@@ -197,12 +194,12 @@ sub MAIN {
 	$r = $raw->{AST};
 	$STD::ALL = $raw->{STABS};
 	for my $cl (keys %{$raw->{GENCLASS}}) {
-	    Actions::gen_class($cl, $raw->{GENCLASS}->{$cl});
+	    STD::Actions::gen_class($cl, $raw->{GENCLASS}->{$cl});
 	}
     }
     elsif (@_ and -f $_[0]) {
 	$r = STD->parsefile($_[0], text_return => \$ORIG,
-	    actions => 'Actions')->{'_ast'};
+	    actions => 'STD::Actions')->{'_ast'};
     }
     else {
 	if (not $PROG) {
@@ -211,7 +208,7 @@ sub MAIN {
 	    $PROG = <>;
 	}
 	$ORIG = $PROG;
-	$r = STD->parse($PROG, actions => 'Actions')->{'_ast'};
+	$r = STD->parse($PROG, actions => 'STD::Actions')->{'_ast'};
     }
     unless ($OPT_thaw) {
 	$ORIG =~ s/\n;\z//;
@@ -239,7 +236,7 @@ sub MAIN {
     }
     elsif ($output eq 'store') {
 	delete $r->{stabs};
-	my $data = { AST => $r, GENCLASS => \%Actions::GENCLASS,
+	my $data = { AST => $r, GENCLASS => \%STD::Actions::GENCLASS,
 	    ORIG => $ORIG, STABS => $STD::ALL };
 	defined($OPT_output_file) ? store($data, $OPT_output_file)
 	    : Storable::store_fd($data, \*STDOUT);
@@ -1666,7 +1663,7 @@ BODY
 	    push(@extends, $t =~ /^is\s+(\S+)/);
 	}
 	@extends = map { $::OUR{$_} // $_ } @extends;
-	@extends = 'Cursor' if $::PKGDECL eq 'grammar' && !@extends;
+	@extends = 'STD::Cursor' if $::PKGDECL eq 'grammar' && !@extends;
 	@extends;
     }
     sub roles { my $self = shift;
@@ -1717,7 +1714,7 @@ my \$retree;
 
 use YAML::XS;
 
-\$SIG{__WARN__} = sub { die \@_,"   statement started at line ", 'Cursor'->lineof(\$::LASTSTATE), "\n" } if \$::DEBUG;
+\$SIG{__WARN__} = sub { die \@_,"   statement started at line ", 'STD::Cursor'->lineof(\$::LASTSTATE), "\n" } if \$::DEBUG;
 
 END
 	$header;
@@ -3156,7 +3153,7 @@ END
 	if ($outr) {
 	    DEEP::ratchet($inner, $out1);
 	} else {
-	    DEEP::raw(::hang("LazyMap::lazymap(" . DEEP::chunk($inner)->p5expr .
+	    DEEP::raw(::hang("STD::LazyMap::lazymap(" . DEEP::chunk($inner)->p5expr .
 		",\n" . $outer->p5expr . ")", "    "));
 	}
     }

@@ -3,7 +3,7 @@ use strict;
 use warnings;
 our $OPT_log;
 our $OPT_match;
-package Actions;
+package STD::Actions;
 use Scalar::Util 'refaddr';
 
 # Generic ast translation done via autoload
@@ -19,7 +19,7 @@ sub AUTOLOAD {
     return if $match->{_ast}{_specific} and ref($match->{_ast}) =~ /^VAST/;
     print STDERR "AUTOLOAD $AUTOLOAD\n" if $OPT_log;
     my $r = hoistast($match);
-    (my $class = $AUTOLOAD) =~ s/^Actions/VAST/;
+    (my $class = $AUTOLOAD) =~ s/^STD::Actions/VAST/;
     $class =~ s/__S_\d\d\d/__S_/ and $r->{_specific} = 1;
     if ($class =~ /::(infix|prefix|postfix|postcircumfix|dotty|regex_infix)__S_/) {
 	$r->{_op} = $class;
@@ -128,7 +128,7 @@ sub hoistast {
 		$r{$k} = $v;
 	    }
 	    elsif (ref($v)) {
-		if ($v->isa('Cursor') && !$v->{_reduced}) {
+		if ($v->isa('STD::Cursor') && !$v->{_reduced}) {
 		    $r{$k} = $v->{'_ast'} //= hoistast($v);
 		    bless $r{$k}, 'VAST::Str';
 		    next;

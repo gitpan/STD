@@ -15,4 +15,9 @@ meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
   version: 1.4
 name: STD
-version: 0.02
+requires:
+  File::ShareDir: 1.02
+  Moose: 0
+  YAML::XS: 0
+  perl: v5.10
+version: 0.03

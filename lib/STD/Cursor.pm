@@ -1,11 +1,11 @@
 use 5.010;
 use utf8;
 use CursorBase;
-{ package Cursor;
+{ package STD::Cursor;
 use Moose ':all' => { -prefix => "moose_" };
 use Encode;
 moose_extends('CursorBase');
-our $ALLROLES = { 'Cursor', 1 };
+our $ALLROLES = { 'STD::Cursor', 1 };
 our $REGEXES = {
     ALL => [ qw// ],
 };
@@ -18,7 +18,7 @@ $DB::deep = $DB::deep = 1000; # suppress used-once warning
 
 use YAML::XS;
 
-$SIG{__WARN__} = sub { die @_,"   statement started at line ", 'Cursor'->lineof($::LASTSTATE), "
+$SIG{__WARN__} = sub { die @_,"   statement started at line ", 'STD::Cursor'->lineof($::LASTSTATE), "
 " } if $::DEBUG;
 
 ;
@@ -41,7 +41,7 @@ my $here = $self;
 $m .= $s;
 $m .= $here->locmess;
 $m .= "\n" unless $m =~ /\n$/;
-print STDERR $Cursor::RED, '===', $Cursor::CLEAR, 'SORRY!', $Cursor::RED, '===', $Cursor::CLEAR, "\n";
+print STDERR $STD::Cursor::RED, '===', $STD::Cursor::CLEAR, 'SORRY!', $STD::Cursor::RED, '===', $STD::Cursor::CLEAR, "\n";
 print STDERR $m;
 die "Parse failed\n";
 };
@@ -62,7 +62,7 @@ my $self = shift;
 die 'Required argument s omitted' unless @_;
 my $s = @_ ? shift() : undef;
 $self->deb("sorry $s") if $::DEBUG;
-print STDERR $Cursor::RED, '===', $Cursor::CLEAR, 'SORRY!', $Cursor::RED, '===', $Cursor::CLEAR, "\n"
+print STDERR $STD::Cursor::RED, '===', $STD::Cursor::CLEAR, 'SORRY!', $STD::Cursor::RED, '===', $STD::Cursor::CLEAR, "\n"
         unless $::IN_SUPPOSE or $::FATALS++;
 if ($s) {
 my $m = $s;
@@ -91,8 +91,8 @@ $pre = '<BOL>' if $pre eq '';
 my $post = substr($::ORIG, $pos, 40);
 1 while $post =~ s!(\n.*)!!;
 $post = '<EOL>' if $post eq '';
-" at " . $::FILE->{'name'} . " line $line:\n------> " . $Cursor::GREEN . $pre . $Cursor::YELLOW . $::PERL6HERE . $Cursor::RED . 
-        "$post$Cursor::CLEAR";
+" at " . $::FILE->{'name'} . " line $line:\n------> " . $STD::Cursor::GREEN . $pre . $STD::Cursor::YELLOW . $::PERL6HERE . $STD::Cursor::RED . 
+        "$post$STD::Cursor::CLEAR";
 };
 ## method line
 sub line {

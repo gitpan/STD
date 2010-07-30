@@ -68,7 +68,7 @@ our $YELLOW = color 'yellow';
 our $RED = color 'red';
 our $CLEAR = color 'clear';
 
-use LazyMap qw(lazymap eager);
+use STD::LazyMap qw(lazymap eager);
 use constant DEBUG => $::DEBUG;
 
 our $REGEXES = { ALL => [] };
@@ -97,7 +97,7 @@ BEGIN {
 }
 
 #############################################################
-# Cursor Accessors
+# STD::Cursor Accessors
 #############################################################
 
 sub _PARAMS {}  # overridden in parametric role packages
@@ -253,8 +253,8 @@ sub initparse {
     local $::HIGHMESS = '';
     local $::HIGHEXPECT = {};
     local $::LASTSTATE;
-    local $::LAST_NIBBLE = bless { firstline => 0, lastline => 0 }, 'Cursor';
-    local $::LAST_NIBBLE_MULTILINE = bless { firstline => 0, lastline => 0 }, 'Cursor';
+    local $::LAST_NIBBLE = bless { firstline => 0, lastline => 0 }, 'STD::Cursor';
+    local $::LAST_NIBBLE_MULTILINE = bless { firstline => 0, lastline => 0 }, 'STD::Cursor';
     local $::GOAL = "(eof)";
     $text .= "\n" unless substr($text,-1,1) eq "\n";
     local $::ORIG = $text;           # original string
@@ -417,7 +417,7 @@ sub delete {
 }
 
 #############################################################
-# Cursor transformations
+# STD::Cursor transformations
 #############################################################
 
 sub cursor_xact { my $self = shift;
@@ -684,10 +684,10 @@ sub callm { my $self = shift;
             if ($s =~ /::_/) {
                 next;
             }
-            elsif ($s =~ /^Cursor(?:Base)?::/) {
+            elsif ($s =~ /^(?:STD::Cursor|CursorBase)?::/) {
                 next;
             }
-            elsif ($s =~ /^LazyMap::/) {
+            elsif ($s =~ /^STD::LazyMap::/) {
                 next;
             }
             elsif ($s =~ /^\(eval\)/) {
@@ -721,7 +721,7 @@ sub callm { my $self = shift;
 sub retm {
     return $_[0] unless DEBUG & DEBUG::trace_call;
     my $self = shift;
-    warn "Returning non-Cursor: $self\n" unless exists $self->{_pos};
+    warn "Returning non-STD::Cursor: $self\n" unless exists $self->{_pos};
     my ($package, $file, $line, $subname, $hasargs) = caller(1);
     $self->deb($subname, " returning @{[$self->{_pos}]}");
     $self;
@@ -787,7 +787,7 @@ sub _STARf { my $self = shift;
 
     lazymap(sub { $_[0]->retm() }, 
         $C->cursor($pos),
-        LazyMap->new(sub { $C->_PLUSf($_[0]) }, $block));
+        STD::LazyMap->new(sub { $C->_PLUSf($_[0]) }, $block));
 }
 
 sub _STARg { my $self = shift;
@@ -853,7 +853,7 @@ sub _PLUSf { my $self = shift;
             lazymap(
                 sub {
                     $self->cursor($_[0]->{_pos})->retm()
-                }, $x, LazyMap->new(sub { $x->_PLUSf($_[0]) }, $block)
+                }, $x, STD::LazyMap->new(sub { $x->_PLUSf($_[0]) }, $block)
             );
         }, $block->($self)
     );
@@ -1942,13 +1942,12 @@ sub _dfa_dump_node { my ($dfan) = @_;
     }
 }
 
-sub _elem_matches { my ($char, $element) = @_;
-    if (length($element) == 1) {
-        return $char eq $element;
-    } else {
-        my $i = ord $char;
-        return vec(_get_unicode_map($element)->[$i >> 10], $i & 1023, 1);
-    }
+sub _elem_matches { # my ($char, $element) = @_;
+    # Optimize for the common path
+    return $_[0] eq $_[1] if length $_[1] == 1;
+
+    my $i = ord $_[0];
+    return vec(_get_unicode_map($_[1])->[$i >> 10], $i & 1023, 1);
 }
 
 my %boolean_tables = map { $_, 1 } qw/AHex Alpha BidiC BidiM CE CI CWCF CWCM
@@ -2216,7 +2215,7 @@ sub _AUTOLEXgenDFA { my ($self, $realkey, $key, $retree) = @_;
             +{ map { $_->name, 1 } ($lang->meta, $lang->meta->calculate_all_roles) }
         };
 
-        # It doesn't make sense to float a lexer above Cursor, or (for 'has'
+        # It doesn't make sense to float a lexer above STD::Cursor, or (for 'has'
         # regexes), the class of definition.
         if ($ar->{$dic}) {
             $self->deb("\tcannot reuse $key; at top") if DEBUG & DEBUG::autolexer;

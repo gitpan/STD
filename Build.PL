@@ -19,12 +19,17 @@ my %module_build_args = (
     'Pawel Murias <pawelmurias@gmail.com>'
   ],
   'dist_name' => 'STD',
-  'dist_version' => '0.02',
+  'dist_version' => '0.03',
   'license' => 'artistic_2',
   'module_name' => 'STD',
   'recommends' => {},
   'recursive_test_files' => 1,
-  'requires' => {},
+  'requires' => {
+    'File::ShareDir' => '1.02',
+    'Moose' => '0',
+    'YAML::XS' => '0',
+    'perl' => 'v5.10'
+  },
   'script_files' => [],
   'share_dir' => {
     'dist' => 'data'
