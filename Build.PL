@@ -15,11 +15,11 @@ my %module_build_args = (
   'dist_abstract' => 'The Standard Perl 6 Grammar',
   'dist_author' => [
     'Larry Wall <larry@wall.org>',
-    'Stefan O\'Rear',
+    'Stefan O\'Rear <stefanor@cox.net>',
     'Pawel Murias <pawelmurias@gmail.com>'
   ],
   'dist_name' => 'STD',
-  'dist_version' => '0.05',
+  'dist_version' => '32055',
   'license' => 'artistic_2',
   'module_name' => 'STD',
   'recommends' => {},

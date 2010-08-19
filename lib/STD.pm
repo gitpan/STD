@@ -1,23 +1,23 @@
 use 5.010;
 use utf8;
 { package STD;BEGIN {
-$STD::VERSION = 0.05
+$STD::VERSION = 32055
 }
 use Moose ':all' => { -prefix => "moose_" };
 use Encode;
 moose_extends('STD::Cursor');
 our $ALLROLES = { 'STD', 1 };
 our $REGEXES = {
-    ALL => [ qw/alnumint apostrophe babble backslash begid binint binints category charname charnames charspec circumfix comment dec_number decint decints dotty embeddedblock endid escale escape hexint hexints ident identifier infix infix_circumfix_meta_operator infix_postfix_meta_operator infix_prefix_meta_operator integer is_ok longname module_name morename multi_declarator name nibbler nofun octint octints opener package_declarator pod_comment postcircumfix postfix postfix_prefix_meta_operator prefix prefix_circumfix_meta_operator prefix_postfix_meta_operator quibble quote quote_mod quotepair rad_number radint regex_declarator routine_declarator scope_declarator sigil spacey special_variable starter statement_control statement_mod_cond statement_mod_loop statement_prefix stdstopper stopper strtonum term terminator trait_mod twigil type_declarator unitstopper unsp unspacey unv value version vws ws/ ],
-    category => [ qw/category__S_000category__PEEK category__S_001sigil__PEEK category__S_002twigil__PEEK category__S_003special_variable__PEEK category__S_004comment__PEEK category__S_005version__PEEK category__S_006module_name__PEEK category__S_007value__PEEK category__S_008term__PEEK category__S_009strtonum__PEEK category__S_010quote__PEEK category__S_011prefix__PEEK category__S_012infix__PEEK category__S_013postfix__PEEK category__S_014dotty__PEEK category__S_015circumfix__PEEK category__S_016postcircumfix__PEEK category__S_017quote_mod__PEEK category__S_018trait_mod__PEEK category__S_019type_declarator__PEEK category__S_020scope_declarator__PEEK category__S_021package_declarator__PEEK category__S_022multi_declarator__PEEK category__S_023routine_declarator__PEEK category__S_024regex_declarator__PEEK category__S_025statement_prefix__PEEK category__S_026statement_control__PEEK category__S_027statement_mod_cond__PEEK category__S_028statement_mod_loop__PEEK category__S_029infix_prefix_meta_operator__PEEK category__S_030infix_postfix_meta_operator__PEEK category__S_031infix_circumfix_meta_operator__PEEK category__S_032postfix_prefix_meta_operator__PEEK category__S_033prefix_postfix_meta_operator__PEEK category__S_034prefix_circumfix_meta_operator__PEEK category__S_035terminator__PEEK/ ],
-    circumfix => [ qw/circumfix__S_051Fre_Nch__PEEK circumfix__S_052LtLt_GtGt__PEEK circumfix__S_053Lt_Gt__PEEK/ ],
-    comment => [ qw/comment__S_054SharpGraveParenDotDotDotThesis__PEEK comment__S_055SharpParenDotDotDotThesis__PEEK comment__S_056SharpEqualParenDotDotDotThesis__PEEK comment__S_057SharpEqual__PEEK comment__S_058Sharp__PEEK/ ],
-    escape => [ qw/escape__S_048none__PEEK/ ],
-    quote => [ qw/quote__S_049Single_Single__PEEK quote__S_050Double_Double__PEEK/ ],
-    sigil => [ qw/sigil__S_036Dollar__PEEK sigil__S_037At__PEEK sigil__S_038Percent__PEEK sigil__S_039Amp__PEEK/ ],
-    term => [ qw/term__S_062miscbad__PEEK/ ],
-    terminator => [ qw/terminator__S_059Thesis__PEEK terminator__S_060Ket__PEEK terminator__S_061Ly__PEEK/ ],
-    twigil => [ qw/twigil__S_040Dot__PEEK twigil__S_041Bang__PEEK twigil__S_042Caret__PEEK twigil__S_043Colon__PEEK twigil__S_044Star__PEEK twigil__S_045Question__PEEK twigil__S_046Equal__PEEK twigil__S_047Tilde__PEEK/ ],
+ALL => [ qw/alnumint apostrophe babble backslash begid binint binints category charname charnames charspec circumfix comment dec_number decint decints dotty embeddedblock endid escale escape hexint hexints ident identifier infix infix_circumfix_meta_operator infix_postfix_meta_operator infix_prefix_meta_operator integer is_ok longname module_name morename multi_declarator name nibbler nofun octint octints opener package_declarator pod_comment postcircumfix postfix postfix_prefix_meta_operator prefix prefix_circumfix_meta_operator prefix_postfix_meta_operator quibble quote quote_mod quotepair rad_number radint regex_declarator routine_declarator scope_declarator sigil spacey special_variable starter statement_control statement_mod_cond statement_mod_loop statement_prefix stdstopper stopper strtonum term terminator trait_mod twigil type_declarator unitstopper unsp unspacey unv value version vws ws/ ],
+category => [ qw/category__S_000category__PEEK category__S_001sigil__PEEK category__S_002twigil__PEEK category__S_003special_variable__PEEK category__S_004comment__PEEK category__S_005version__PEEK category__S_006module_name__PEEK category__S_007value__PEEK category__S_008term__PEEK category__S_009strtonum__PEEK category__S_010quote__PEEK category__S_011prefix__PEEK category__S_012infix__PEEK category__S_013postfix__PEEK category__S_014dotty__PEEK category__S_015circumfix__PEEK category__S_016postcircumfix__PEEK category__S_017quote_mod__PEEK category__S_018trait_mod__PEEK category__S_019type_declarator__PEEK category__S_020scope_declarator__PEEK category__S_021package_declarator__PEEK category__S_022multi_declarator__PEEK category__S_023routine_declarator__PEEK category__S_024regex_declarator__PEEK category__S_025statement_prefix__PEEK category__S_026statement_control__PEEK category__S_027statement_mod_cond__PEEK category__S_028statement_mod_loop__PEEK category__S_029infix_prefix_meta_operator__PEEK category__S_030infix_postfix_meta_operator__PEEK category__S_031infix_circumfix_meta_operator__PEEK category__S_032postfix_prefix_meta_operator__PEEK category__S_033prefix_postfix_meta_operator__PEEK category__S_034prefix_circumfix_meta_operator__PEEK category__S_035terminator__PEEK/ ],
+circumfix => [ qw/circumfix__S_051Fre_Nch__PEEK circumfix__S_052LtLt_GtGt__PEEK circumfix__S_053Lt_Gt__PEEK/ ],
+comment => [ qw/comment__S_054SharpGraveParenDotDotDotThesis__PEEK comment__S_055SharpParenDotDotDotThesis__PEEK comment__S_056SharpEqualParenDotDotDotThesis__PEEK comment__S_057SharpEqual__PEEK comment__S_058Sharp__PEEK/ ],
+escape => [ qw/escape__S_048none__PEEK/ ],
+quote => [ qw/quote__S_049Single_Single__PEEK quote__S_050Double_Double__PEEK/ ],
+sigil => [ qw/sigil__S_036Dollar__PEEK sigil__S_037At__PEEK sigil__S_038Percent__PEEK sigil__S_039Amp__PEEK/ ],
+term => [ qw/term__S_062miscbad__PEEK/ ],
+terminator => [ qw/terminator__S_059Thesis__PEEK terminator__S_060Ket__PEEK terminator__S_061Ly__PEEK/ ],
+twigil => [ qw/twigil__S_040Dot__PEEK twigil__S_041Bang__PEEK twigil__S_042Caret__PEEK twigil__S_043Colon__PEEK twigil__S_044Star__PEEK twigil__S_045Question__PEEK twigil__S_046Equal__PEEK twigil__S_047Tilde__PEEK/ ],
 };
 
 
@@ -1461,13 +1461,18 @@ longname: !!perl/hash:RE_ast
         re: !!perl/hash:RE_sequence
           zyg:
           - !!perl/hash:RE_assertion
-            assert: '!'
+            assert: '?'
             re: !!perl/hash:RE_method_re
               name: before
               nobind: 1
-              re: !!perl/hash:RE_string
-                i: 0
-                text: :{
+              re: !!perl/hash:RE_sequence
+                zyg:
+                - !!perl/hash:RE_string
+                  i: 0
+                  text: ':'
+                - !!perl/hash:RE_cclass
+                  i: 0
+                  text: '[ a..z A..Z _ \< \[ \« ]'
           - !!perl/hash:RE_method
             name: colonpair
             rest: ''
@@ -3100,56 +3105,56 @@ local $::endargs = -1;
 ## token category {*}
 sub category__PEEK { $_[0]->_AUTOLEXpeek('category:*',$retree); }
 sub category {
-    my $self = shift;
-    my $subs;
+my $self = shift;
+my $subs;
 
-    local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
+local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-    my $C = $self->cursor_xact('RULE category');
-    my $S = $C->{'_pos'};
+my $C = $self->cursor_xact('RULE category');
+my $S = $C->{'_pos'};
 
-    my @result = do {
-        my ($tag, $try);
-        my @try;
-        my $relex;
-        my $x;
-        if (my $fate = $C->{'_fate'}) {
-            if ($fate->[1] eq 'category') {
-                $C->deb("Fate passed to category: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-                ($C->{'_fate'}, $tag, $try) = @$fate;
-                @try = ($try);
-                $x = 'ALT category';
-            }
-            else {
-                $x = 'ALTLTM category';
-            }
-        }
-        else {
-            $x = 'ALTLTM category';
-        }
-        my $C = $C->cursor_xact($x);
-        my $xact = $C->{_xact};
+my @result = do {
+my ($tag, $try);
+my @try;
+my $relex;
+my $x;
+if (my $fate = $C->{'_fate'}) {
+if ($fate->[1] eq 'category') {
+$C->deb("Fate passed to category: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT category';
+}
+else {
+$x = 'ALTLTM category';
+}
+}
+else {
+$x = 'ALTLTM category';
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-        my @gather = ();
-        for (;;) {
-            unless (@try) {
-                $relex //= $C->cursor_fate('STD', 'category:*', $retree);
-                @try = $relex->($C) or last;
-            }
-            $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD', 'category:*', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-            if (ref $try) {
-                ($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
-            }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
+}
 
-            $C->deb("category trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-            push @gather, $C->$try(@_);
-            last if @gather;
-            last if $xact->[-2];  # committed?
-        }
-        $self->_MATCHIFYr($S, "category", @gather);
-    };
-    @result;
+$C->deb("category trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, $C->$try(@_);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+$self->_MATCHIFYr($S, "category", @gather);
+};
+@result;
 }
 ;
 ## token category:category { <sym> }
@@ -3187,56 +3192,56 @@ $self->_MATCHIFYr($S, "category__S_001sigil", $C->_EXACT("sigil"));
 ## token sigil {*}
 sub sigil__PEEK { $_[0]->_AUTOLEXpeek('sigil:*',$retree); }
 sub sigil {
-    my $self = shift;
-    my $subs;
+my $self = shift;
+my $subs;
 
-    local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
+local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-    my $C = $self->cursor_xact('RULE sigil');
-    my $S = $C->{'_pos'};
+my $C = $self->cursor_xact('RULE sigil');
+my $S = $C->{'_pos'};
 
-    my @result = do {
-        my ($tag, $try);
-        my @try;
-        my $relex;
-        my $x;
-        if (my $fate = $C->{'_fate'}) {
-            if ($fate->[1] eq 'sigil') {
-                $C->deb("Fate passed to sigil: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-                ($C->{'_fate'}, $tag, $try) = @$fate;
-                @try = ($try);
-                $x = 'ALT sigil';
-            }
-            else {
-                $x = 'ALTLTM sigil';
-            }
-        }
-        else {
-            $x = 'ALTLTM sigil';
-        }
-        my $C = $C->cursor_xact($x);
-        my $xact = $C->{_xact};
+my @result = do {
+my ($tag, $try);
+my @try;
+my $relex;
+my $x;
+if (my $fate = $C->{'_fate'}) {
+if ($fate->[1] eq 'sigil') {
+$C->deb("Fate passed to sigil: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT sigil';
+}
+else {
+$x = 'ALTLTM sigil';
+}
+}
+else {
+$x = 'ALTLTM sigil';
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-        my @gather = ();
-        for (;;) {
-            unless (@try) {
-                $relex //= $C->cursor_fate('STD', 'sigil:*', $retree);
-                @try = $relex->($C) or last;
-            }
-            $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD', 'sigil:*', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-            if (ref $try) {
-                ($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
-            }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
+}
 
-            $C->deb("sigil trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-            push @gather, $C->$try(@_);
-            last if @gather;
-            last if $xact->[-2];  # committed?
-        }
-        $self->_MATCHIFYr($S, "sigil", @gather);
-    };
-    @result;
+$C->deb("sigil trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, $C->$try(@_);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+$self->_MATCHIFYr($S, "sigil", @gather);
+};
+@result;
 }
 ;
 ## token category:twigil { <sym> }
@@ -3258,56 +3263,56 @@ $self->_MATCHIFYr($S, "category__S_002twigil", $C->_EXACT("twigil"));
 ## token twigil (:$*endsym = 'begid') {*}
 sub twigil__PEEK { $_[0]->_AUTOLEXpeek('twigil:*',$retree); }
 sub twigil {
-    my $self = shift;
-    my $subs;
+my $self = shift;
+my $subs;
 
-    local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
+local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-    my $C = $self->cursor_xact('RULE twigil');
-    my $S = $C->{'_pos'};
+my $C = $self->cursor_xact('RULE twigil');
+my $S = $C->{'_pos'};
 
-    my @result = do {
-        my ($tag, $try);
-        my @try;
-        my $relex;
-        my $x;
-        if (my $fate = $C->{'_fate'}) {
-            if ($fate->[1] eq 'twigil') {
-                $C->deb("Fate passed to twigil: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-                ($C->{'_fate'}, $tag, $try) = @$fate;
-                @try = ($try);
-                $x = 'ALT twigil';
-            }
-            else {
-                $x = 'ALTLTM twigil';
-            }
-        }
-        else {
-            $x = 'ALTLTM twigil';
-        }
-        my $C = $C->cursor_xact($x);
-        my $xact = $C->{_xact};
+my @result = do {
+my ($tag, $try);
+my @try;
+my $relex;
+my $x;
+if (my $fate = $C->{'_fate'}) {
+if ($fate->[1] eq 'twigil') {
+$C->deb("Fate passed to twigil: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT twigil';
+}
+else {
+$x = 'ALTLTM twigil';
+}
+}
+else {
+$x = 'ALTLTM twigil';
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-        my @gather = ();
-        for (;;) {
-            unless (@try) {
-                $relex //= $C->cursor_fate('STD', 'twigil:*', $retree);
-                @try = $relex->($C) or last;
-            }
-            $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD', 'twigil:*', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-            if (ref $try) {
-                ($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
-            }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
+}
 
-            $C->deb("twigil trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-            push @gather, $C->$try(@_);
-            last if @gather;
-            last if $xact->[-2];  # committed?
-        }
-        $self->_MATCHIFYr($S, "twigil", @gather);
-    };
-    @result;
+$C->deb("twigil trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, $C->$try(@_);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+$self->_MATCHIFYr($S, "twigil", @gather);
+};
+@result;
 }
 ;
 ## token category:special_variable { <sym> }
@@ -3329,56 +3334,56 @@ $self->_MATCHIFYr($S, "category__S_003special_variable", $C->_EXACT("special_var
 ## token special_variable {*}
 sub special_variable__PEEK { $_[0]->_AUTOLEXpeek('special_variable:*',$retree); }
 sub special_variable {
-    my $self = shift;
-    my $subs;
+my $self = shift;
+my $subs;
 
-    local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
+local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-    my $C = $self->cursor_xact('RULE special_variable');
-    my $S = $C->{'_pos'};
+my $C = $self->cursor_xact('RULE special_variable');
+my $S = $C->{'_pos'};
 
-    my @result = do {
-        my ($tag, $try);
-        my @try;
-        my $relex;
-        my $x;
-        if (my $fate = $C->{'_fate'}) {
-            if ($fate->[1] eq 'special_variable') {
-                $C->deb("Fate passed to special_variable: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-                ($C->{'_fate'}, $tag, $try) = @$fate;
-                @try = ($try);
-                $x = 'ALT special_variable';
-            }
-            else {
-                $x = 'ALTLTM special_variable';
-            }
-        }
-        else {
-            $x = 'ALTLTM special_variable';
-        }
-        my $C = $C->cursor_xact($x);
-        my $xact = $C->{_xact};
+my @result = do {
+my ($tag, $try);
+my @try;
+my $relex;
+my $x;
+if (my $fate = $C->{'_fate'}) {
+if ($fate->[1] eq 'special_variable') {
+$C->deb("Fate passed to special_variable: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT special_variable';
+}
+else {
+$x = 'ALTLTM special_variable';
+}
+}
+else {
+$x = 'ALTLTM special_variable';
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-        my @gather = ();
-        for (;;) {
-            unless (@try) {
-                $relex //= $C->cursor_fate('STD', 'special_variable:*', $retree);
-                @try = $relex->($C) or last;
-            }
-            $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD', 'special_variable:*', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-            if (ref $try) {
-                ($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
-            }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
+}
 
-            $C->deb("special_variable trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-            push @gather, $C->$try(@_);
-            last if @gather;
-            last if $xact->[-2];  # committed?
-        }
-        $self->_MATCHIFYr($S, "special_variable", @gather);
-    };
-    @result;
+$C->deb("special_variable trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, $C->$try(@_);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+$self->_MATCHIFYr($S, "special_variable", @gather);
+};
+@result;
 }
 ;
 ## token category:comment { <sym> }
@@ -3400,56 +3405,56 @@ $self->_MATCHIFYr($S, "category__S_004comment", $C->_EXACT("comment"));
 ## token comment {*}
 sub comment__PEEK { $_[0]->_AUTOLEXpeek('comment:*',$retree); }
 sub comment {
-    my $self = shift;
-    my $subs;
+my $self = shift;
+my $subs;
 
-    local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
+local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-    my $C = $self->cursor_xact('RULE comment');
-    my $S = $C->{'_pos'};
+my $C = $self->cursor_xact('RULE comment');
+my $S = $C->{'_pos'};
 
-    my @result = do {
-        my ($tag, $try);
-        my @try;
-        my $relex;
-        my $x;
-        if (my $fate = $C->{'_fate'}) {
-            if ($fate->[1] eq 'comment') {
-                $C->deb("Fate passed to comment: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-                ($C->{'_fate'}, $tag, $try) = @$fate;
-                @try = ($try);
-                $x = 'ALT comment';
-            }
-            else {
-                $x = 'ALTLTM comment';
-            }
-        }
-        else {
-            $x = 'ALTLTM comment';
-        }
-        my $C = $C->cursor_xact($x);
-        my $xact = $C->{_xact};
+my @result = do {
+my ($tag, $try);
+my @try;
+my $relex;
+my $x;
+if (my $fate = $C->{'_fate'}) {
+if ($fate->[1] eq 'comment') {
+$C->deb("Fate passed to comment: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT comment';
+}
+else {
+$x = 'ALTLTM comment';
+}
+}
+else {
+$x = 'ALTLTM comment';
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-        my @gather = ();
-        for (;;) {
-            unless (@try) {
-                $relex //= $C->cursor_fate('STD', 'comment:*', $retree);
-                @try = $relex->($C) or last;
-            }
-            $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD', 'comment:*', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-            if (ref $try) {
-                ($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
-            }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
+}
 
-            $C->deb("comment trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-            push @gather, $C->$try(@_);
-            last if @gather;
-            last if $xact->[-2];  # committed?
-        }
-        $self->_MATCHIFYr($S, "comment", @gather);
-    };
-    @result;
+$C->deb("comment trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, $C->$try(@_);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+$self->_MATCHIFYr($S, "comment", @gather);
+};
+@result;
 }
 ;
 ## token category:version { <sym> }
@@ -3471,56 +3476,56 @@ $self->_MATCHIFYr($S, "category__S_005version", $C->_EXACT("version"));
 ## token version {*}
 sub version__PEEK { $_[0]->_AUTOLEXpeek('version:*',$retree); }
 sub version {
-    my $self = shift;
-    my $subs;
+my $self = shift;
+my $subs;
 
-    local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
+local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-    my $C = $self->cursor_xact('RULE version');
-    my $S = $C->{'_pos'};
+my $C = $self->cursor_xact('RULE version');
+my $S = $C->{'_pos'};
 
-    my @result = do {
-        my ($tag, $try);
-        my @try;
-        my $relex;
-        my $x;
-        if (my $fate = $C->{'_fate'}) {
-            if ($fate->[1] eq 'version') {
-                $C->deb("Fate passed to version: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-                ($C->{'_fate'}, $tag, $try) = @$fate;
-                @try = ($try);
-                $x = 'ALT version';
-            }
-            else {
-                $x = 'ALTLTM version';
-            }
-        }
-        else {
-            $x = 'ALTLTM version';
-        }
-        my $C = $C->cursor_xact($x);
-        my $xact = $C->{_xact};
+my @result = do {
+my ($tag, $try);
+my @try;
+my $relex;
+my $x;
+if (my $fate = $C->{'_fate'}) {
+if ($fate->[1] eq 'version') {
+$C->deb("Fate passed to version: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT version';
+}
+else {
+$x = 'ALTLTM version';
+}
+}
+else {
+$x = 'ALTLTM version';
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-        my @gather = ();
-        for (;;) {
-            unless (@try) {
-                $relex //= $C->cursor_fate('STD', 'version:*', $retree);
-                @try = $relex->($C) or last;
-            }
-            $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD', 'version:*', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-            if (ref $try) {
-                ($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
-            }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
+}
 
-            $C->deb("version trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-            push @gather, $C->$try(@_);
-            last if @gather;
-            last if $xact->[-2];  # committed?
-        }
-        $self->_MATCHIFYr($S, "version", @gather);
-    };
-    @result;
+$C->deb("version trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, $C->$try(@_);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+$self->_MATCHIFYr($S, "version", @gather);
+};
+@result;
 }
 ;
 ## token category:module_name { <sym> }
@@ -3542,56 +3547,56 @@ $self->_MATCHIFYr($S, "category__S_006module_name", $C->_EXACT("module_name"));
 ## token module_name {*}
 sub module_name__PEEK { $_[0]->_AUTOLEXpeek('module_name:*',$retree); }
 sub module_name {
-    my $self = shift;
-    my $subs;
+my $self = shift;
+my $subs;
 
-    local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
+local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-    my $C = $self->cursor_xact('RULE module_name');
-    my $S = $C->{'_pos'};
+my $C = $self->cursor_xact('RULE module_name');
+my $S = $C->{'_pos'};
 
-    my @result = do {
-        my ($tag, $try);
-        my @try;
-        my $relex;
-        my $x;
-        if (my $fate = $C->{'_fate'}) {
-            if ($fate->[1] eq 'module_name') {
-                $C->deb("Fate passed to module_name: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-                ($C->{'_fate'}, $tag, $try) = @$fate;
-                @try = ($try);
-                $x = 'ALT module_name';
-            }
-            else {
-                $x = 'ALTLTM module_name';
-            }
-        }
-        else {
-            $x = 'ALTLTM module_name';
-        }
-        my $C = $C->cursor_xact($x);
-        my $xact = $C->{_xact};
+my @result = do {
+my ($tag, $try);
+my @try;
+my $relex;
+my $x;
+if (my $fate = $C->{'_fate'}) {
+if ($fate->[1] eq 'module_name') {
+$C->deb("Fate passed to module_name: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT module_name';
+}
+else {
+$x = 'ALTLTM module_name';
+}
+}
+else {
+$x = 'ALTLTM module_name';
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-        my @gather = ();
-        for (;;) {
-            unless (@try) {
-                $relex //= $C->cursor_fate('STD', 'module_name:*', $retree);
-                @try = $relex->($C) or last;
-            }
-            $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD', 'module_name:*', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-            if (ref $try) {
-                ($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
-            }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
+}
 
-            $C->deb("module_name trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-            push @gather, $C->$try(@_);
-            last if @gather;
-            last if $xact->[-2];  # committed?
-        }
-        $self->_MATCHIFYr($S, "module_name", @gather);
-    };
-    @result;
+$C->deb("module_name trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, $C->$try(@_);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+$self->_MATCHIFYr($S, "module_name", @gather);
+};
+@result;
 }
 ;
 ## token category:value { <sym> }
@@ -3613,56 +3618,56 @@ $self->_MATCHIFYr($S, "category__S_007value", $C->_EXACT("value"));
 ## token value {*}
 sub value__PEEK { $_[0]->_AUTOLEXpeek('value:*',$retree); }
 sub value {
-    my $self = shift;
-    my $subs;
+my $self = shift;
+my $subs;
 
-    local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
+local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-    my $C = $self->cursor_xact('RULE value');
-    my $S = $C->{'_pos'};
+my $C = $self->cursor_xact('RULE value');
+my $S = $C->{'_pos'};
 
-    my @result = do {
-        my ($tag, $try);
-        my @try;
-        my $relex;
-        my $x;
-        if (my $fate = $C->{'_fate'}) {
-            if ($fate->[1] eq 'value') {
-                $C->deb("Fate passed to value: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-                ($C->{'_fate'}, $tag, $try) = @$fate;
-                @try = ($try);
-                $x = 'ALT value';
-            }
-            else {
-                $x = 'ALTLTM value';
-            }
-        }
-        else {
-            $x = 'ALTLTM value';
-        }
-        my $C = $C->cursor_xact($x);
-        my $xact = $C->{_xact};
+my @result = do {
+my ($tag, $try);
+my @try;
+my $relex;
+my $x;
+if (my $fate = $C->{'_fate'}) {
+if ($fate->[1] eq 'value') {
+$C->deb("Fate passed to value: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT value';
+}
+else {
+$x = 'ALTLTM value';
+}
+}
+else {
+$x = 'ALTLTM value';
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-        my @gather = ();
-        for (;;) {
-            unless (@try) {
-                $relex //= $C->cursor_fate('STD', 'value:*', $retree);
-                @try = $relex->($C) or last;
-            }
-            $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD', 'value:*', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-            if (ref $try) {
-                ($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
-            }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
+}
 
-            $C->deb("value trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-            push @gather, $C->$try(@_);
-            last if @gather;
-            last if $xact->[-2];  # committed?
-        }
-        $self->_MATCHIFYr($S, "value", @gather);
-    };
-    @result;
+$C->deb("value trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, $C->$try(@_);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+$self->_MATCHIFYr($S, "value", @gather);
+};
+@result;
 }
 ;
 ## token category:term { <sym> }
@@ -3684,56 +3689,56 @@ $self->_MATCHIFYr($S, "category__S_008term", $C->_EXACT("term"));
 ## token term {*}
 sub term__PEEK { $_[0]->_AUTOLEXpeek('term:*',$retree); }
 sub term {
-    my $self = shift;
-    my $subs;
+my $self = shift;
+my $subs;
 
-    local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
+local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-    my $C = $self->cursor_xact('RULE term');
-    my $S = $C->{'_pos'};
+my $C = $self->cursor_xact('RULE term');
+my $S = $C->{'_pos'};
 
-    my @result = do {
-        my ($tag, $try);
-        my @try;
-        my $relex;
-        my $x;
-        if (my $fate = $C->{'_fate'}) {
-            if ($fate->[1] eq 'term') {
-                $C->deb("Fate passed to term: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-                ($C->{'_fate'}, $tag, $try) = @$fate;
-                @try = ($try);
-                $x = 'ALT term';
-            }
-            else {
-                $x = 'ALTLTM term';
-            }
-        }
-        else {
-            $x = 'ALTLTM term';
-        }
-        my $C = $C->cursor_xact($x);
-        my $xact = $C->{_xact};
+my @result = do {
+my ($tag, $try);
+my @try;
+my $relex;
+my $x;
+if (my $fate = $C->{'_fate'}) {
+if ($fate->[1] eq 'term') {
+$C->deb("Fate passed to term: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT term';
+}
+else {
+$x = 'ALTLTM term';
+}
+}
+else {
+$x = 'ALTLTM term';
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-        my @gather = ();
-        for (;;) {
-            unless (@try) {
-                $relex //= $C->cursor_fate('STD', 'term:*', $retree);
-                @try = $relex->($C) or last;
-            }
-            $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD', 'term:*', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-            if (ref $try) {
-                ($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
-            }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
+}
 
-            $C->deb("term trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-            push @gather, $C->$try(@_);
-            last if @gather;
-            last if $xact->[-2];  # committed?
-        }
-        $self->_MATCHIFYr($S, "term", @gather);
-    };
-    @result;
+$C->deb("term trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, $C->$try(@_);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+$self->_MATCHIFYr($S, "term", @gather);
+};
+@result;
 }
 ;
 ## token category:strtonum { <sym> }
@@ -3755,56 +3760,56 @@ $self->_MATCHIFYr($S, "category__S_009strtonum", $C->_EXACT("strtonum"));
 ## token strtonum {*}
 sub strtonum__PEEK { $_[0]->_AUTOLEXpeek('strtonum:*',$retree); }
 sub strtonum {
-    my $self = shift;
-    my $subs;
+my $self = shift;
+my $subs;
 
-    local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
+local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-    my $C = $self->cursor_xact('RULE strtonum');
-    my $S = $C->{'_pos'};
+my $C = $self->cursor_xact('RULE strtonum');
+my $S = $C->{'_pos'};
 
-    my @result = do {
-        my ($tag, $try);
-        my @try;
-        my $relex;
-        my $x;
-        if (my $fate = $C->{'_fate'}) {
-            if ($fate->[1] eq 'strtonum') {
-                $C->deb("Fate passed to strtonum: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-                ($C->{'_fate'}, $tag, $try) = @$fate;
-                @try = ($try);
-                $x = 'ALT strtonum';
-            }
-            else {
-                $x = 'ALTLTM strtonum';
-            }
-        }
-        else {
-            $x = 'ALTLTM strtonum';
-        }
-        my $C = $C->cursor_xact($x);
-        my $xact = $C->{_xact};
+my @result = do {
+my ($tag, $try);
+my @try;
+my $relex;
+my $x;
+if (my $fate = $C->{'_fate'}) {
+if ($fate->[1] eq 'strtonum') {
+$C->deb("Fate passed to strtonum: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT strtonum';
+}
+else {
+$x = 'ALTLTM strtonum';
+}
+}
+else {
+$x = 'ALTLTM strtonum';
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-        my @gather = ();
-        for (;;) {
-            unless (@try) {
-                $relex //= $C->cursor_fate('STD', 'strtonum:*', $retree);
-                @try = $relex->($C) or last;
-            }
-            $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD', 'strtonum:*', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-            if (ref $try) {
-                ($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
-            }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
+}
 
-            $C->deb("strtonum trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-            push @gather, $C->$try(@_);
-            last if @gather;
-            last if $xact->[-2];  # committed?
-        }
-        $self->_MATCHIFYr($S, "strtonum", @gather);
-    };
-    @result;
+$C->deb("strtonum trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, $C->$try(@_);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+$self->_MATCHIFYr($S, "strtonum", @gather);
+};
+@result;
 }
 ;
 ## token category:quote { <sym> }
@@ -3826,56 +3831,56 @@ $self->_MATCHIFYr($S, "category__S_010quote", $C->_EXACT("quote"));
 ## token quote () {*}
 sub quote__PEEK { $_[0]->_AUTOLEXpeek('quote:*',$retree); }
 sub quote {
-    my $self = shift;
-    my $subs;
+my $self = shift;
+my $subs;
 
-    local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
+local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-    my $C = $self->cursor_xact('RULE quote');
-    my $S = $C->{'_pos'};
+my $C = $self->cursor_xact('RULE quote');
+my $S = $C->{'_pos'};
 
-    my @result = do {
-        my ($tag, $try);
-        my @try;
-        my $relex;
-        my $x;
-        if (my $fate = $C->{'_fate'}) {
-            if ($fate->[1] eq 'quote') {
-                $C->deb("Fate passed to quote: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-                ($C->{'_fate'}, $tag, $try) = @$fate;
-                @try = ($try);
-                $x = 'ALT quote';
-            }
-            else {
-                $x = 'ALTLTM quote';
-            }
-        }
-        else {
-            $x = 'ALTLTM quote';
-        }
-        my $C = $C->cursor_xact($x);
-        my $xact = $C->{_xact};
+my @result = do {
+my ($tag, $try);
+my @try;
+my $relex;
+my $x;
+if (my $fate = $C->{'_fate'}) {
+if ($fate->[1] eq 'quote') {
+$C->deb("Fate passed to quote: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT quote';
+}
+else {
+$x = 'ALTLTM quote';
+}
+}
+else {
+$x = 'ALTLTM quote';
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-        my @gather = ();
-        for (;;) {
-            unless (@try) {
-                $relex //= $C->cursor_fate('STD', 'quote:*', $retree);
-                @try = $relex->($C) or last;
-            }
-            $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD', 'quote:*', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-            if (ref $try) {
-                ($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
-            }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
+}
 
-            $C->deb("quote trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-            push @gather, $C->$try(@_);
-            last if @gather;
-            last if $xact->[-2];  # committed?
-        }
-        $self->_MATCHIFYr($S, "quote", @gather);
-    };
-    @result;
+$C->deb("quote trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, $C->$try(@_);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+$self->_MATCHIFYr($S, "quote", @gather);
+};
+@result;
 }
 ;
 ## token category:prefix { <sym> }
@@ -3897,56 +3902,56 @@ $self->_MATCHIFYr($S, "category__S_011prefix", $C->_EXACT("prefix"));
 ## token prefix is unary is defequiv(%symbolic_unary) {*}
 sub prefix__PEEK { $_[0]->_AUTOLEXpeek('prefix:*',$retree); }
 sub prefix {
-    my $self = shift;
-    my $subs;
+my $self = shift;
+my $subs;
 
-    local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
+local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-    my $C = $self->cursor_xact('RULE prefix');
-    my $S = $C->{'_pos'};
+my $C = $self->cursor_xact('RULE prefix');
+my $S = $C->{'_pos'};
 
-    my @result = do {
-        my ($tag, $try);
-        my @try;
-        my $relex;
-        my $x;
-        if (my $fate = $C->{'_fate'}) {
-            if ($fate->[1] eq 'prefix') {
-                $C->deb("Fate passed to prefix: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-                ($C->{'_fate'}, $tag, $try) = @$fate;
-                @try = ($try);
-                $x = 'ALT prefix';
-            }
-            else {
-                $x = 'ALTLTM prefix';
-            }
-        }
-        else {
-            $x = 'ALTLTM prefix';
-        }
-        my $C = $C->cursor_xact($x);
-        my $xact = $C->{_xact};
+my @result = do {
+my ($tag, $try);
+my @try;
+my $relex;
+my $x;
+if (my $fate = $C->{'_fate'}) {
+if ($fate->[1] eq 'prefix') {
+$C->deb("Fate passed to prefix: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT prefix';
+}
+else {
+$x = 'ALTLTM prefix';
+}
+}
+else {
+$x = 'ALTLTM prefix';
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-        my @gather = ();
-        for (;;) {
-            unless (@try) {
-                $relex //= $C->cursor_fate('STD', 'prefix:*', $retree);
-                @try = $relex->($C) or last;
-            }
-            $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD', 'prefix:*', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-            if (ref $try) {
-                ($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
-            }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
+}
 
-            $C->deb("prefix trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-            push @gather, $C->$try(@_);
-            last if @gather;
-            last if $xact->[-2];  # committed?
-        }
-        $self->_MATCHIFYr($S, "prefix", @gather);
-    };
-    @result;
+$C->deb("prefix trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, $C->$try(@_);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+$self->_MATCHIFYr($S, "prefix", @gather);
+};
+@result;
 }
 ;
 ## token category:infix { <sym> }
@@ -3968,56 +3973,56 @@ $self->_MATCHIFYr($S, "category__S_012infix", $C->_EXACT("infix"));
 ## token infix is binary is defequiv(%additive) {*}
 sub infix__PEEK { $_[0]->_AUTOLEXpeek('infix:*',$retree); }
 sub infix {
-    my $self = shift;
-    my $subs;
+my $self = shift;
+my $subs;
 
-    local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
+local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-    my $C = $self->cursor_xact('RULE infix');
-    my $S = $C->{'_pos'};
+my $C = $self->cursor_xact('RULE infix');
+my $S = $C->{'_pos'};
 
-    my @result = do {
-        my ($tag, $try);
-        my @try;
-        my $relex;
-        my $x;
-        if (my $fate = $C->{'_fate'}) {
-            if ($fate->[1] eq 'infix') {
-                $C->deb("Fate passed to infix: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-                ($C->{'_fate'}, $tag, $try) = @$fate;
-                @try = ($try);
-                $x = 'ALT infix';
-            }
-            else {
-                $x = 'ALTLTM infix';
-            }
-        }
-        else {
-            $x = 'ALTLTM infix';
-        }
-        my $C = $C->cursor_xact($x);
-        my $xact = $C->{_xact};
+my @result = do {
+my ($tag, $try);
+my @try;
+my $relex;
+my $x;
+if (my $fate = $C->{'_fate'}) {
+if ($fate->[1] eq 'infix') {
+$C->deb("Fate passed to infix: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT infix';
+}
+else {
+$x = 'ALTLTM infix';
+}
+}
+else {
+$x = 'ALTLTM infix';
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-        my @gather = ();
-        for (;;) {
-            unless (@try) {
-                $relex //= $C->cursor_fate('STD', 'infix:*', $retree);
-                @try = $relex->($C) or last;
-            }
-            $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD', 'infix:*', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-            if (ref $try) {
-                ($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
-            }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
+}
 
-            $C->deb("infix trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-            push @gather, $C->$try(@_);
-            last if @gather;
-            last if $xact->[-2];  # committed?
-        }
-        $self->_MATCHIFYr($S, "infix", @gather);
-    };
-    @result;
+$C->deb("infix trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, $C->$try(@_);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+$self->_MATCHIFYr($S, "infix", @gather);
+};
+@result;
 }
 ;
 ## token category:postfix { <sym> }
@@ -4039,56 +4044,56 @@ $self->_MATCHIFYr($S, "category__S_013postfix", $C->_EXACT("postfix"));
 ## token postfix is unary is defequiv(%autoincrement) {*}
 sub postfix__PEEK { $_[0]->_AUTOLEXpeek('postfix:*',$retree); }
 sub postfix {
-    my $self = shift;
-    my $subs;
+my $self = shift;
+my $subs;
 
-    local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
+local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-    my $C = $self->cursor_xact('RULE postfix');
-    my $S = $C->{'_pos'};
+my $C = $self->cursor_xact('RULE postfix');
+my $S = $C->{'_pos'};
 
-    my @result = do {
-        my ($tag, $try);
-        my @try;
-        my $relex;
-        my $x;
-        if (my $fate = $C->{'_fate'}) {
-            if ($fate->[1] eq 'postfix') {
-                $C->deb("Fate passed to postfix: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-                ($C->{'_fate'}, $tag, $try) = @$fate;
-                @try = ($try);
-                $x = 'ALT postfix';
-            }
-            else {
-                $x = 'ALTLTM postfix';
-            }
-        }
-        else {
-            $x = 'ALTLTM postfix';
-        }
-        my $C = $C->cursor_xact($x);
-        my $xact = $C->{_xact};
+my @result = do {
+my ($tag, $try);
+my @try;
+my $relex;
+my $x;
+if (my $fate = $C->{'_fate'}) {
+if ($fate->[1] eq 'postfix') {
+$C->deb("Fate passed to postfix: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT postfix';
+}
+else {
+$x = 'ALTLTM postfix';
+}
+}
+else {
+$x = 'ALTLTM postfix';
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-        my @gather = ();
-        for (;;) {
-            unless (@try) {
-                $relex //= $C->cursor_fate('STD', 'postfix:*', $retree);
-                @try = $relex->($C) or last;
-            }
-            $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD', 'postfix:*', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-            if (ref $try) {
-                ($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
-            }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
+}
 
-            $C->deb("postfix trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-            push @gather, $C->$try(@_);
-            last if @gather;
-            last if $xact->[-2];  # committed?
-        }
-        $self->_MATCHIFYr($S, "postfix", @gather);
-    };
-    @result;
+$C->deb("postfix trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, $C->$try(@_);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+$self->_MATCHIFYr($S, "postfix", @gather);
+};
+@result;
 }
 ;
 ## token category:dotty { <sym> }
@@ -4110,56 +4115,56 @@ $self->_MATCHIFYr($S, "category__S_014dotty", $C->_EXACT("dotty"));
 ## token dotty (:$*endsym = 'unspacey') {*}
 sub dotty__PEEK { $_[0]->_AUTOLEXpeek('dotty:*',$retree); }
 sub dotty {
-    my $self = shift;
-    my $subs;
+my $self = shift;
+my $subs;
 
-    local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
+local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-    my $C = $self->cursor_xact('RULE dotty');
-    my $S = $C->{'_pos'};
+my $C = $self->cursor_xact('RULE dotty');
+my $S = $C->{'_pos'};
 
-    my @result = do {
-        my ($tag, $try);
-        my @try;
-        my $relex;
-        my $x;
-        if (my $fate = $C->{'_fate'}) {
-            if ($fate->[1] eq 'dotty') {
-                $C->deb("Fate passed to dotty: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-                ($C->{'_fate'}, $tag, $try) = @$fate;
-                @try = ($try);
-                $x = 'ALT dotty';
-            }
-            else {
-                $x = 'ALTLTM dotty';
-            }
-        }
-        else {
-            $x = 'ALTLTM dotty';
-        }
-        my $C = $C->cursor_xact($x);
-        my $xact = $C->{_xact};
+my @result = do {
+my ($tag, $try);
+my @try;
+my $relex;
+my $x;
+if (my $fate = $C->{'_fate'}) {
+if ($fate->[1] eq 'dotty') {
+$C->deb("Fate passed to dotty: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT dotty';
+}
+else {
+$x = 'ALTLTM dotty';
+}
+}
+else {
+$x = 'ALTLTM dotty';
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-        my @gather = ();
-        for (;;) {
-            unless (@try) {
-                $relex //= $C->cursor_fate('STD', 'dotty:*', $retree);
-                @try = $relex->($C) or last;
-            }
-            $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD', 'dotty:*', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-            if (ref $try) {
-                ($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
-            }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
+}
 
-            $C->deb("dotty trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-            push @gather, $C->$try(@_);
-            last if @gather;
-            last if $xact->[-2];  # committed?
-        }
-        $self->_MATCHIFYr($S, "dotty", @gather);
-    };
-    @result;
+$C->deb("dotty trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, $C->$try(@_);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+$self->_MATCHIFYr($S, "dotty", @gather);
+};
+@result;
 }
 ;
 ## token category:circumfix { <sym> }
@@ -4181,56 +4186,56 @@ $self->_MATCHIFYr($S, "category__S_015circumfix", $C->_EXACT("circumfix"));
 ## token circumfix {*}
 sub circumfix__PEEK { $_[0]->_AUTOLEXpeek('circumfix:*',$retree); }
 sub circumfix {
-    my $self = shift;
-    my $subs;
+my $self = shift;
+my $subs;
 
-    local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
+local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-    my $C = $self->cursor_xact('RULE circumfix');
-    my $S = $C->{'_pos'};
+my $C = $self->cursor_xact('RULE circumfix');
+my $S = $C->{'_pos'};
 
-    my @result = do {
-        my ($tag, $try);
-        my @try;
-        my $relex;
-        my $x;
-        if (my $fate = $C->{'_fate'}) {
-            if ($fate->[1] eq 'circumfix') {
-                $C->deb("Fate passed to circumfix: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-                ($C->{'_fate'}, $tag, $try) = @$fate;
-                @try = ($try);
-                $x = 'ALT circumfix';
-            }
-            else {
-                $x = 'ALTLTM circumfix';
-            }
-        }
-        else {
-            $x = 'ALTLTM circumfix';
-        }
-        my $C = $C->cursor_xact($x);
-        my $xact = $C->{_xact};
+my @result = do {
+my ($tag, $try);
+my @try;
+my $relex;
+my $x;
+if (my $fate = $C->{'_fate'}) {
+if ($fate->[1] eq 'circumfix') {
+$C->deb("Fate passed to circumfix: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT circumfix';
+}
+else {
+$x = 'ALTLTM circumfix';
+}
+}
+else {
+$x = 'ALTLTM circumfix';
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-        my @gather = ();
-        for (;;) {
-            unless (@try) {
-                $relex //= $C->cursor_fate('STD', 'circumfix:*', $retree);
-                @try = $relex->($C) or last;
-            }
-            $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD', 'circumfix:*', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-            if (ref $try) {
-                ($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
-            }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
+}
 
-            $C->deb("circumfix trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-            push @gather, $C->$try(@_);
-            last if @gather;
-            last if $xact->[-2];  # committed?
-        }
-        $self->_MATCHIFYr($S, "circumfix", @gather);
-    };
-    @result;
+$C->deb("circumfix trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, $C->$try(@_);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+$self->_MATCHIFYr($S, "circumfix", @gather);
+};
+@result;
 }
 ;
 ## token category:postcircumfix { <sym> }
@@ -4252,56 +4257,56 @@ $self->_MATCHIFYr($S, "category__S_016postcircumfix", $C->_EXACT("postcircumfix"
 ## token postcircumfix is unary {*}  # unary as far as EXPR knows...
 sub postcircumfix__PEEK { $_[0]->_AUTOLEXpeek('postcircumfix:*',$retree); }
 sub postcircumfix {
-    my $self = shift;
-    my $subs;
+my $self = shift;
+my $subs;
 
-    local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
+local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-    my $C = $self->cursor_xact('RULE postcircumfix');
-    my $S = $C->{'_pos'};
+my $C = $self->cursor_xact('RULE postcircumfix');
+my $S = $C->{'_pos'};
 
-    my @result = do {
-        my ($tag, $try);
-        my @try;
-        my $relex;
-        my $x;
-        if (my $fate = $C->{'_fate'}) {
-            if ($fate->[1] eq 'postcircumfix') {
-                $C->deb("Fate passed to postcircumfix: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-                ($C->{'_fate'}, $tag, $try) = @$fate;
-                @try = ($try);
-                $x = 'ALT postcircumfix';
-            }
-            else {
-                $x = 'ALTLTM postcircumfix';
-            }
-        }
-        else {
-            $x = 'ALTLTM postcircumfix';
-        }
-        my $C = $C->cursor_xact($x);
-        my $xact = $C->{_xact};
+my @result = do {
+my ($tag, $try);
+my @try;
+my $relex;
+my $x;
+if (my $fate = $C->{'_fate'}) {
+if ($fate->[1] eq 'postcircumfix') {
+$C->deb("Fate passed to postcircumfix: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT postcircumfix';
+}
+else {
+$x = 'ALTLTM postcircumfix';
+}
+}
+else {
+$x = 'ALTLTM postcircumfix';
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-        my @gather = ();
-        for (;;) {
-            unless (@try) {
-                $relex //= $C->cursor_fate('STD', 'postcircumfix:*', $retree);
-                @try = $relex->($C) or last;
-            }
-            $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD', 'postcircumfix:*', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-            if (ref $try) {
-                ($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
-            }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
+}
 
-            $C->deb("postcircumfix trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-            push @gather, $C->$try(@_);
-            last if @gather;
-            last if $xact->[-2];  # committed?
-        }
-        $self->_MATCHIFYr($S, "postcircumfix", @gather);
-    };
-    @result;
+$C->deb("postcircumfix trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, $C->$try(@_);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+$self->_MATCHIFYr($S, "postcircumfix", @gather);
+};
+@result;
 }
 ;
 ## token category:quote_mod { <sym> }
@@ -4323,56 +4328,56 @@ $self->_MATCHIFYr($S, "category__S_017quote_mod", $C->_EXACT("quote_mod"));
 ## token quote_mod {*}
 sub quote_mod__PEEK { $_[0]->_AUTOLEXpeek('quote_mod:*',$retree); }
 sub quote_mod {
-    my $self = shift;
-    my $subs;
+my $self = shift;
+my $subs;
 
-    local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
+local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-    my $C = $self->cursor_xact('RULE quote_mod');
-    my $S = $C->{'_pos'};
+my $C = $self->cursor_xact('RULE quote_mod');
+my $S = $C->{'_pos'};
 
-    my @result = do {
-        my ($tag, $try);
-        my @try;
-        my $relex;
-        my $x;
-        if (my $fate = $C->{'_fate'}) {
-            if ($fate->[1] eq 'quote_mod') {
-                $C->deb("Fate passed to quote_mod: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-                ($C->{'_fate'}, $tag, $try) = @$fate;
-                @try = ($try);
-                $x = 'ALT quote_mod';
-            }
-            else {
-                $x = 'ALTLTM quote_mod';
-            }
-        }
-        else {
-            $x = 'ALTLTM quote_mod';
-        }
-        my $C = $C->cursor_xact($x);
-        my $xact = $C->{_xact};
+my @result = do {
+my ($tag, $try);
+my @try;
+my $relex;
+my $x;
+if (my $fate = $C->{'_fate'}) {
+if ($fate->[1] eq 'quote_mod') {
+$C->deb("Fate passed to quote_mod: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT quote_mod';
+}
+else {
+$x = 'ALTLTM quote_mod';
+}
+}
+else {
+$x = 'ALTLTM quote_mod';
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-        my @gather = ();
-        for (;;) {
-            unless (@try) {
-                $relex //= $C->cursor_fate('STD', 'quote_mod:*', $retree);
-                @try = $relex->($C) or last;
-            }
-            $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD', 'quote_mod:*', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-            if (ref $try) {
-                ($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
-            }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
+}
 
-            $C->deb("quote_mod trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-            push @gather, $C->$try(@_);
-            last if @gather;
-            last if $xact->[-2];  # committed?
-        }
-        $self->_MATCHIFYr($S, "quote_mod", @gather);
-    };
-    @result;
+$C->deb("quote_mod trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, $C->$try(@_);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+$self->_MATCHIFYr($S, "quote_mod", @gather);
+};
+@result;
 }
 ;
 ## token category:trait_mod { <sym> }
@@ -4394,56 +4399,56 @@ $self->_MATCHIFYr($S, "category__S_018trait_mod", $C->_EXACT("trait_mod"));
 ## token trait_mod (:$*endsym = 'spacey') {*}
 sub trait_mod__PEEK { $_[0]->_AUTOLEXpeek('trait_mod:*',$retree); }
 sub trait_mod {
-    my $self = shift;
-    my $subs;
+my $self = shift;
+my $subs;
 
-    local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
+local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-    my $C = $self->cursor_xact('RULE trait_mod');
-    my $S = $C->{'_pos'};
+my $C = $self->cursor_xact('RULE trait_mod');
+my $S = $C->{'_pos'};
 
-    my @result = do {
-        my ($tag, $try);
-        my @try;
-        my $relex;
-        my $x;
-        if (my $fate = $C->{'_fate'}) {
-            if ($fate->[1] eq 'trait_mod') {
-                $C->deb("Fate passed to trait_mod: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-                ($C->{'_fate'}, $tag, $try) = @$fate;
-                @try = ($try);
-                $x = 'ALT trait_mod';
-            }
-            else {
-                $x = 'ALTLTM trait_mod';
-            }
-        }
-        else {
-            $x = 'ALTLTM trait_mod';
-        }
-        my $C = $C->cursor_xact($x);
-        my $xact = $C->{_xact};
+my @result = do {
+my ($tag, $try);
+my @try;
+my $relex;
+my $x;
+if (my $fate = $C->{'_fate'}) {
+if ($fate->[1] eq 'trait_mod') {
+$C->deb("Fate passed to trait_mod: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT trait_mod';
+}
+else {
+$x = 'ALTLTM trait_mod';
+}
+}
+else {
+$x = 'ALTLTM trait_mod';
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-        my @gather = ();
-        for (;;) {
-            unless (@try) {
-                $relex //= $C->cursor_fate('STD', 'trait_mod:*', $retree);
-                @try = $relex->($C) or last;
-            }
-            $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD', 'trait_mod:*', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-            if (ref $try) {
-                ($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
-            }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
+}
 
-            $C->deb("trait_mod trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-            push @gather, $C->$try(@_);
-            last if @gather;
-            last if $xact->[-2];  # committed?
-        }
-        $self->_MATCHIFYr($S, "trait_mod", @gather);
-    };
-    @result;
+$C->deb("trait_mod trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, $C->$try(@_);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+$self->_MATCHIFYr($S, "trait_mod", @gather);
+};
+@result;
 }
 ;
 ## token category:type_declarator { <sym> }
@@ -4465,56 +4470,56 @@ $self->_MATCHIFYr($S, "category__S_019type_declarator", $C->_EXACT("type_declara
 ## token type_declarator (:$*endsym = 'spacey') {*}
 sub type_declarator__PEEK { $_[0]->_AUTOLEXpeek('type_declarator:*',$retree); }
 sub type_declarator {
-    my $self = shift;
-    my $subs;
+my $self = shift;
+my $subs;
 
-    local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
+local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-    my $C = $self->cursor_xact('RULE type_declarator');
-    my $S = $C->{'_pos'};
+my $C = $self->cursor_xact('RULE type_declarator');
+my $S = $C->{'_pos'};
 
-    my @result = do {
-        my ($tag, $try);
-        my @try;
-        my $relex;
-        my $x;
-        if (my $fate = $C->{'_fate'}) {
-            if ($fate->[1] eq 'type_declarator') {
-                $C->deb("Fate passed to type_declarator: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-                ($C->{'_fate'}, $tag, $try) = @$fate;
-                @try = ($try);
-                $x = 'ALT type_declarator';
-            }
-            else {
-                $x = 'ALTLTM type_declarator';
-            }
-        }
-        else {
-            $x = 'ALTLTM type_declarator';
-        }
-        my $C = $C->cursor_xact($x);
-        my $xact = $C->{_xact};
+my @result = do {
+my ($tag, $try);
+my @try;
+my $relex;
+my $x;
+if (my $fate = $C->{'_fate'}) {
+if ($fate->[1] eq 'type_declarator') {
+$C->deb("Fate passed to type_declarator: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT type_declarator';
+}
+else {
+$x = 'ALTLTM type_declarator';
+}
+}
+else {
+$x = 'ALTLTM type_declarator';
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-        my @gather = ();
-        for (;;) {
-            unless (@try) {
-                $relex //= $C->cursor_fate('STD', 'type_declarator:*', $retree);
-                @try = $relex->($C) or last;
-            }
-            $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD', 'type_declarator:*', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-            if (ref $try) {
-                ($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
-            }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
+}
 
-            $C->deb("type_declarator trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-            push @gather, $C->$try(@_);
-            last if @gather;
-            last if $xact->[-2];  # committed?
-        }
-        $self->_MATCHIFYr($S, "type_declarator", @gather);
-    };
-    @result;
+$C->deb("type_declarator trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, $C->$try(@_);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+$self->_MATCHIFYr($S, "type_declarator", @gather);
+};
+@result;
 }
 ;
 ## token category:scope_declarator { <sym> }
@@ -4536,56 +4541,56 @@ $self->_MATCHIFYr($S, "category__S_020scope_declarator", $C->_EXACT("scope_decla
 ## token scope_declarator (:$*endsym = 'nofun') {*}
 sub scope_declarator__PEEK { $_[0]->_AUTOLEXpeek('scope_declarator:*',$retree); }
 sub scope_declarator {
-    my $self = shift;
-    my $subs;
+my $self = shift;
+my $subs;
 
-    local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
+local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-    my $C = $self->cursor_xact('RULE scope_declarator');
-    my $S = $C->{'_pos'};
+my $C = $self->cursor_xact('RULE scope_declarator');
+my $S = $C->{'_pos'};
 
-    my @result = do {
-        my ($tag, $try);
-        my @try;
-        my $relex;
-        my $x;
-        if (my $fate = $C->{'_fate'}) {
-            if ($fate->[1] eq 'scope_declarator') {
-                $C->deb("Fate passed to scope_declarator: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-                ($C->{'_fate'}, $tag, $try) = @$fate;
-                @try = ($try);
-                $x = 'ALT scope_declarator';
-            }
-            else {
-                $x = 'ALTLTM scope_declarator';
-            }
-        }
-        else {
-            $x = 'ALTLTM scope_declarator';
-        }
-        my $C = $C->cursor_xact($x);
-        my $xact = $C->{_xact};
+my @result = do {
+my ($tag, $try);
+my @try;
+my $relex;
+my $x;
+if (my $fate = $C->{'_fate'}) {
+if ($fate->[1] eq 'scope_declarator') {
+$C->deb("Fate passed to scope_declarator: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT scope_declarator';
+}
+else {
+$x = 'ALTLTM scope_declarator';
+}
+}
+else {
+$x = 'ALTLTM scope_declarator';
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-        my @gather = ();
-        for (;;) {
-            unless (@try) {
-                $relex //= $C->cursor_fate('STD', 'scope_declarator:*', $retree);
-                @try = $relex->($C) or last;
-            }
-            $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD', 'scope_declarator:*', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-            if (ref $try) {
-                ($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
-            }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
+}
 
-            $C->deb("scope_declarator trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-            push @gather, $C->$try(@_);
-            last if @gather;
-            last if $xact->[-2];  # committed?
-        }
-        $self->_MATCHIFYr($S, "scope_declarator", @gather);
-    };
-    @result;
+$C->deb("scope_declarator trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, $C->$try(@_);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+$self->_MATCHIFYr($S, "scope_declarator", @gather);
+};
+@result;
 }
 ;
 ## token category:package_declarator { <sym> }
@@ -4607,56 +4612,56 @@ $self->_MATCHIFYr($S, "category__S_021package_declarator", $C->_EXACT("package_d
 ## token package_declarator (:$*endsym = 'spacey') {*}
 sub package_declarator__PEEK { $_[0]->_AUTOLEXpeek('package_declarator:*',$retree); }
 sub package_declarator {
-    my $self = shift;
-    my $subs;
+my $self = shift;
+my $subs;
 
-    local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
+local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-    my $C = $self->cursor_xact('RULE package_declarator');
-    my $S = $C->{'_pos'};
+my $C = $self->cursor_xact('RULE package_declarator');
+my $S = $C->{'_pos'};
 
-    my @result = do {
-        my ($tag, $try);
-        my @try;
-        my $relex;
-        my $x;
-        if (my $fate = $C->{'_fate'}) {
-            if ($fate->[1] eq 'package_declarator') {
-                $C->deb("Fate passed to package_declarator: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-                ($C->{'_fate'}, $tag, $try) = @$fate;
-                @try = ($try);
-                $x = 'ALT package_declarator';
-            }
-            else {
-                $x = 'ALTLTM package_declarator';
-            }
-        }
-        else {
-            $x = 'ALTLTM package_declarator';
-        }
-        my $C = $C->cursor_xact($x);
-        my $xact = $C->{_xact};
+my @result = do {
+my ($tag, $try);
+my @try;
+my $relex;
+my $x;
+if (my $fate = $C->{'_fate'}) {
+if ($fate->[1] eq 'package_declarator') {
+$C->deb("Fate passed to package_declarator: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT package_declarator';
+}
+else {
+$x = 'ALTLTM package_declarator';
+}
+}
+else {
+$x = 'ALTLTM package_declarator';
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-        my @gather = ();
-        for (;;) {
-            unless (@try) {
-                $relex //= $C->cursor_fate('STD', 'package_declarator:*', $retree);
-                @try = $relex->($C) or last;
-            }
-            $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD', 'package_declarator:*', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-            if (ref $try) {
-                ($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
-            }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
+}
 
-            $C->deb("package_declarator trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-            push @gather, $C->$try(@_);
-            last if @gather;
-            last if $xact->[-2];  # committed?
-        }
-        $self->_MATCHIFYr($S, "package_declarator", @gather);
-    };
-    @result;
+$C->deb("package_declarator trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, $C->$try(@_);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+$self->_MATCHIFYr($S, "package_declarator", @gather);
+};
+@result;
 }
 ;
 ## token category:multi_declarator { <sym> }
@@ -4678,56 +4683,56 @@ $self->_MATCHIFYr($S, "category__S_022multi_declarator", $C->_EXACT("multi_decla
 ## token multi_declarator (:$*endsym = 'spacey') {*}
 sub multi_declarator__PEEK { $_[0]->_AUTOLEXpeek('multi_declarator:*',$retree); }
 sub multi_declarator {
-    my $self = shift;
-    my $subs;
+my $self = shift;
+my $subs;
 
-    local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
+local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-    my $C = $self->cursor_xact('RULE multi_declarator');
-    my $S = $C->{'_pos'};
+my $C = $self->cursor_xact('RULE multi_declarator');
+my $S = $C->{'_pos'};
 
-    my @result = do {
-        my ($tag, $try);
-        my @try;
-        my $relex;
-        my $x;
-        if (my $fate = $C->{'_fate'}) {
-            if ($fate->[1] eq 'multi_declarator') {
-                $C->deb("Fate passed to multi_declarator: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-                ($C->{'_fate'}, $tag, $try) = @$fate;
-                @try = ($try);
-                $x = 'ALT multi_declarator';
-            }
-            else {
-                $x = 'ALTLTM multi_declarator';
-            }
-        }
-        else {
-            $x = 'ALTLTM multi_declarator';
-        }
-        my $C = $C->cursor_xact($x);
-        my $xact = $C->{_xact};
+my @result = do {
+my ($tag, $try);
+my @try;
+my $relex;
+my $x;
+if (my $fate = $C->{'_fate'}) {
+if ($fate->[1] eq 'multi_declarator') {
+$C->deb("Fate passed to multi_declarator: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT multi_declarator';
+}
+else {
+$x = 'ALTLTM multi_declarator';
+}
+}
+else {
+$x = 'ALTLTM multi_declarator';
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-        my @gather = ();
-        for (;;) {
-            unless (@try) {
-                $relex //= $C->cursor_fate('STD', 'multi_declarator:*', $retree);
-                @try = $relex->($C) or last;
-            }
-            $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD', 'multi_declarator:*', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-            if (ref $try) {
-                ($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
-            }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
+}
 
-            $C->deb("multi_declarator trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-            push @gather, $C->$try(@_);
-            last if @gather;
-            last if $xact->[-2];  # committed?
-        }
-        $self->_MATCHIFYr($S, "multi_declarator", @gather);
-    };
-    @result;
+$C->deb("multi_declarator trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, $C->$try(@_);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+$self->_MATCHIFYr($S, "multi_declarator", @gather);
+};
+@result;
 }
 ;
 ## token category:routine_declarator { <sym> }
@@ -4749,56 +4754,56 @@ $self->_MATCHIFYr($S, "category__S_023routine_declarator", $C->_EXACT("routine_d
 ## token routine_declarator (:$*endsym = 'nofun') {*}
 sub routine_declarator__PEEK { $_[0]->_AUTOLEXpeek('routine_declarator:*',$retree); }
 sub routine_declarator {
-    my $self = shift;
-    my $subs;
+my $self = shift;
+my $subs;
 
-    local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
+local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-    my $C = $self->cursor_xact('RULE routine_declarator');
-    my $S = $C->{'_pos'};
+my $C = $self->cursor_xact('RULE routine_declarator');
+my $S = $C->{'_pos'};
 
-    my @result = do {
-        my ($tag, $try);
-        my @try;
-        my $relex;
-        my $x;
-        if (my $fate = $C->{'_fate'}) {
-            if ($fate->[1] eq 'routine_declarator') {
-                $C->deb("Fate passed to routine_declarator: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-                ($C->{'_fate'}, $tag, $try) = @$fate;
-                @try = ($try);
-                $x = 'ALT routine_declarator';
-            }
-            else {
-                $x = 'ALTLTM routine_declarator';
-            }
-        }
-        else {
-            $x = 'ALTLTM routine_declarator';
-        }
-        my $C = $C->cursor_xact($x);
-        my $xact = $C->{_xact};
+my @result = do {
+my ($tag, $try);
+my @try;
+my $relex;
+my $x;
+if (my $fate = $C->{'_fate'}) {
+if ($fate->[1] eq 'routine_declarator') {
+$C->deb("Fate passed to routine_declarator: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT routine_declarator';
+}
+else {
+$x = 'ALTLTM routine_declarator';
+}
+}
+else {
+$x = 'ALTLTM routine_declarator';
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-        my @gather = ();
-        for (;;) {
-            unless (@try) {
-                $relex //= $C->cursor_fate('STD', 'routine_declarator:*', $retree);
-                @try = $relex->($C) or last;
-            }
-            $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD', 'routine_declarator:*', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-            if (ref $try) {
-                ($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
-            }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
+}
 
-            $C->deb("routine_declarator trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-            push @gather, $C->$try(@_);
-            last if @gather;
-            last if $xact->[-2];  # committed?
-        }
-        $self->_MATCHIFYr($S, "routine_declarator", @gather);
-    };
-    @result;
+$C->deb("routine_declarator trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, $C->$try(@_);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+$self->_MATCHIFYr($S, "routine_declarator", @gather);
+};
+@result;
 }
 ;
 ## token category:regex_declarator { <sym> }
@@ -4820,56 +4825,56 @@ $self->_MATCHIFYr($S, "category__S_024regex_declarator", $C->_EXACT("regex_decla
 ## token regex_declarator (:$*endsym = 'spacey') {*}
 sub regex_declarator__PEEK { $_[0]->_AUTOLEXpeek('regex_declarator:*',$retree); }
 sub regex_declarator {
-    my $self = shift;
-    my $subs;
+my $self = shift;
+my $subs;
 
-    local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
+local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-    my $C = $self->cursor_xact('RULE regex_declarator');
-    my $S = $C->{'_pos'};
+my $C = $self->cursor_xact('RULE regex_declarator');
+my $S = $C->{'_pos'};
 
-    my @result = do {
-        my ($tag, $try);
-        my @try;
-        my $relex;
-        my $x;
-        if (my $fate = $C->{'_fate'}) {
-            if ($fate->[1] eq 'regex_declarator') {
-                $C->deb("Fate passed to regex_declarator: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-                ($C->{'_fate'}, $tag, $try) = @$fate;
-                @try = ($try);
-                $x = 'ALT regex_declarator';
-            }
-            else {
-                $x = 'ALTLTM regex_declarator';
-            }
-        }
-        else {
-            $x = 'ALTLTM regex_declarator';
-        }
-        my $C = $C->cursor_xact($x);
-        my $xact = $C->{_xact};
+my @result = do {
+my ($tag, $try);
+my @try;
+my $relex;
+my $x;
+if (my $fate = $C->{'_fate'}) {
+if ($fate->[1] eq 'regex_declarator') {
+$C->deb("Fate passed to regex_declarator: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT regex_declarator';
+}
+else {
+$x = 'ALTLTM regex_declarator';
+}
+}
+else {
+$x = 'ALTLTM regex_declarator';
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-        my @gather = ();
-        for (;;) {
-            unless (@try) {
-                $relex //= $C->cursor_fate('STD', 'regex_declarator:*', $retree);
-                @try = $relex->($C) or last;
-            }
-            $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD', 'regex_declarator:*', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-            if (ref $try) {
-                ($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
-            }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
+}
 
-            $C->deb("regex_declarator trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-            push @gather, $C->$try(@_);
-            last if @gather;
-            last if $xact->[-2];  # committed?
-        }
-        $self->_MATCHIFYr($S, "regex_declarator", @gather);
-    };
-    @result;
+$C->deb("regex_declarator trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, $C->$try(@_);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+$self->_MATCHIFYr($S, "regex_declarator", @gather);
+};
+@result;
 }
 ;
 ## token category:statement_prefix { <sym> }
@@ -4891,56 +4896,56 @@ $self->_MATCHIFYr($S, "category__S_025statement_prefix", $C->_EXACT("statement_p
 ## rule  statement_prefix () {*}
 sub statement_prefix__PEEK { $_[0]->_AUTOLEXpeek('statement_prefix:*',$retree); }
 sub statement_prefix {
-    my $self = shift;
-    my $subs;
+my $self = shift;
+my $subs;
 
-    local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
+local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-    my $C = $self->cursor_xact('RULE statement_prefix');
-    my $S = $C->{'_pos'};
+my $C = $self->cursor_xact('RULE statement_prefix');
+my $S = $C->{'_pos'};
 
-    my @result = do {
-        my ($tag, $try);
-        my @try;
-        my $relex;
-        my $x;
-        if (my $fate = $C->{'_fate'}) {
-            if ($fate->[1] eq 'statement_prefix') {
-                $C->deb("Fate passed to statement_prefix: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-                ($C->{'_fate'}, $tag, $try) = @$fate;
-                @try = ($try);
-                $x = 'ALT statement_prefix';
-            }
-            else {
-                $x = 'ALTLTM statement_prefix';
-            }
-        }
-        else {
-            $x = 'ALTLTM statement_prefix';
-        }
-        my $C = $C->cursor_xact($x);
-        my $xact = $C->{_xact};
+my @result = do {
+my ($tag, $try);
+my @try;
+my $relex;
+my $x;
+if (my $fate = $C->{'_fate'}) {
+if ($fate->[1] eq 'statement_prefix') {
+$C->deb("Fate passed to statement_prefix: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT statement_prefix';
+}
+else {
+$x = 'ALTLTM statement_prefix';
+}
+}
+else {
+$x = 'ALTLTM statement_prefix';
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-        my @gather = ();
-        for (;;) {
-            unless (@try) {
-                $relex //= $C->cursor_fate('STD', 'statement_prefix:*', $retree);
-                @try = $relex->($C) or last;
-            }
-            $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD', 'statement_prefix:*', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-            if (ref $try) {
-                ($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
-            }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
+}
 
-            $C->deb("statement_prefix trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-            push @gather, $C->$try(@_);
-            last if @gather;
-            last if $xact->[-2];  # committed?
-        }
-        $self->_MATCHIFYr($S, "statement_prefix", @gather);
-    };
-    @result;
+$C->deb("statement_prefix trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, $C->$try(@_);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+$self->_MATCHIFYr($S, "statement_prefix", @gather);
+};
+@result;
 }
 ;
 ## token category:statement_control { <sym> }
@@ -4962,56 +4967,56 @@ $self->_MATCHIFYr($S, "category__S_026statement_control", $C->_EXACT("statement_
 ## rule  statement_control (:$*endsym = 'spacey') {*}
 sub statement_control__PEEK { $_[0]->_AUTOLEXpeek('statement_control:*',$retree); }
 sub statement_control {
-    my $self = shift;
-    my $subs;
+my $self = shift;
+my $subs;
 
-    local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
+local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-    my $C = $self->cursor_xact('RULE statement_control');
-    my $S = $C->{'_pos'};
+my $C = $self->cursor_xact('RULE statement_control');
+my $S = $C->{'_pos'};
 
-    my @result = do {
-        my ($tag, $try);
-        my @try;
-        my $relex;
-        my $x;
-        if (my $fate = $C->{'_fate'}) {
-            if ($fate->[1] eq 'statement_control') {
-                $C->deb("Fate passed to statement_control: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-                ($C->{'_fate'}, $tag, $try) = @$fate;
-                @try = ($try);
-                $x = 'ALT statement_control';
-            }
-            else {
-                $x = 'ALTLTM statement_control';
-            }
-        }
-        else {
-            $x = 'ALTLTM statement_control';
-        }
-        my $C = $C->cursor_xact($x);
-        my $xact = $C->{_xact};
+my @result = do {
+my ($tag, $try);
+my @try;
+my $relex;
+my $x;
+if (my $fate = $C->{'_fate'}) {
+if ($fate->[1] eq 'statement_control') {
+$C->deb("Fate passed to statement_control: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT statement_control';
+}
+else {
+$x = 'ALTLTM statement_control';
+}
+}
+else {
+$x = 'ALTLTM statement_control';
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-        my @gather = ();
-        for (;;) {
-            unless (@try) {
-                $relex //= $C->cursor_fate('STD', 'statement_control:*', $retree);
-                @try = $relex->($C) or last;
-            }
-            $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD', 'statement_control:*', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-            if (ref $try) {
-                ($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
-            }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
+}
 
-            $C->deb("statement_control trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-            push @gather, $C->$try(@_);
-            last if @gather;
-            last if $xact->[-2];  # committed?
-        }
-        $self->_MATCHIFYr($S, "statement_control", @gather);
-    };
-    @result;
+$C->deb("statement_control trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, $C->$try(@_);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+$self->_MATCHIFYr($S, "statement_control", @gather);
+};
+@result;
 }
 ;
 ## token category:statement_mod_cond { <sym> }
@@ -5033,56 +5038,56 @@ $self->_MATCHIFYr($S, "category__S_027statement_mod_cond", $C->_EXACT("statement
 ## rule  statement_mod_cond (:$*endsym = 'nofun') {*}
 sub statement_mod_cond__PEEK { $_[0]->_AUTOLEXpeek('statement_mod_cond:*',$retree); }
 sub statement_mod_cond {
-    my $self = shift;
-    my $subs;
+my $self = shift;
+my $subs;
 
-    local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
+local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-    my $C = $self->cursor_xact('RULE statement_mod_cond');
-    my $S = $C->{'_pos'};
+my $C = $self->cursor_xact('RULE statement_mod_cond');
+my $S = $C->{'_pos'};
 
-    my @result = do {
-        my ($tag, $try);
-        my @try;
-        my $relex;
-        my $x;
-        if (my $fate = $C->{'_fate'}) {
-            if ($fate->[1] eq 'statement_mod_cond') {
-                $C->deb("Fate passed to statement_mod_cond: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-                ($C->{'_fate'}, $tag, $try) = @$fate;
-                @try = ($try);
-                $x = 'ALT statement_mod_cond';
-            }
-            else {
-                $x = 'ALTLTM statement_mod_cond';
-            }
-        }
-        else {
-            $x = 'ALTLTM statement_mod_cond';
-        }
-        my $C = $C->cursor_xact($x);
-        my $xact = $C->{_xact};
+my @result = do {
+my ($tag, $try);
+my @try;
+my $relex;
+my $x;
+if (my $fate = $C->{'_fate'}) {
+if ($fate->[1] eq 'statement_mod_cond') {
+$C->deb("Fate passed to statement_mod_cond: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT statement_mod_cond';
+}
+else {
+$x = 'ALTLTM statement_mod_cond';
+}
+}
+else {
+$x = 'ALTLTM statement_mod_cond';
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-        my @gather = ();
-        for (;;) {
-            unless (@try) {
-                $relex //= $C->cursor_fate('STD', 'statement_mod_cond:*', $retree);
-                @try = $relex->($C) or last;
-            }
-            $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD', 'statement_mod_cond:*', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-            if (ref $try) {
-                ($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
-            }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
+}
 
-            $C->deb("statement_mod_cond trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-            push @gather, $C->$try(@_);
-            last if @gather;
-            last if $xact->[-2];  # committed?
-        }
-        $self->_MATCHIFYr($S, "statement_mod_cond", @gather);
-    };
-    @result;
+$C->deb("statement_mod_cond trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, $C->$try(@_);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+$self->_MATCHIFYr($S, "statement_mod_cond", @gather);
+};
+@result;
 }
 ;
 ## token category:statement_mod_loop { <sym> }
@@ -5104,56 +5109,56 @@ $self->_MATCHIFYr($S, "category__S_028statement_mod_loop", $C->_EXACT("statement
 ## rule  statement_mod_loop (:$*endsym = 'nofun') {*}
 sub statement_mod_loop__PEEK { $_[0]->_AUTOLEXpeek('statement_mod_loop:*',$retree); }
 sub statement_mod_loop {
-    my $self = shift;
-    my $subs;
+my $self = shift;
+my $subs;
 
-    local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
+local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-    my $C = $self->cursor_xact('RULE statement_mod_loop');
-    my $S = $C->{'_pos'};
+my $C = $self->cursor_xact('RULE statement_mod_loop');
+my $S = $C->{'_pos'};
 
-    my @result = do {
-        my ($tag, $try);
-        my @try;
-        my $relex;
-        my $x;
-        if (my $fate = $C->{'_fate'}) {
-            if ($fate->[1] eq 'statement_mod_loop') {
-                $C->deb("Fate passed to statement_mod_loop: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-                ($C->{'_fate'}, $tag, $try) = @$fate;
-                @try = ($try);
-                $x = 'ALT statement_mod_loop';
-            }
-            else {
-                $x = 'ALTLTM statement_mod_loop';
-            }
-        }
-        else {
-            $x = 'ALTLTM statement_mod_loop';
-        }
-        my $C = $C->cursor_xact($x);
-        my $xact = $C->{_xact};
+my @result = do {
+my ($tag, $try);
+my @try;
+my $relex;
+my $x;
+if (my $fate = $C->{'_fate'}) {
+if ($fate->[1] eq 'statement_mod_loop') {
+$C->deb("Fate passed to statement_mod_loop: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT statement_mod_loop';
+}
+else {
+$x = 'ALTLTM statement_mod_loop';
+}
+}
+else {
+$x = 'ALTLTM statement_mod_loop';
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-        my @gather = ();
-        for (;;) {
-            unless (@try) {
-                $relex //= $C->cursor_fate('STD', 'statement_mod_loop:*', $retree);
-                @try = $relex->($C) or last;
-            }
-            $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD', 'statement_mod_loop:*', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-            if (ref $try) {
-                ($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
-            }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
+}
 
-            $C->deb("statement_mod_loop trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-            push @gather, $C->$try(@_);
-            last if @gather;
-            last if $xact->[-2];  # committed?
-        }
-        $self->_MATCHIFYr($S, "statement_mod_loop", @gather);
-    };
-    @result;
+$C->deb("statement_mod_loop trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, $C->$try(@_);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+$self->_MATCHIFYr($S, "statement_mod_loop", @gather);
+};
+@result;
 }
 ;
 ## token category:infix_prefix_meta_operator { <sym> }
@@ -5175,56 +5180,56 @@ $self->_MATCHIFYr($S, "category__S_029infix_prefix_meta_operator", $C->_EXACT("i
 ## token infix_prefix_meta_operator is binary {*}
 sub infix_prefix_meta_operator__PEEK { $_[0]->_AUTOLEXpeek('infix_prefix_meta_operator:*',$retree); }
 sub infix_prefix_meta_operator {
-    my $self = shift;
-    my $subs;
+my $self = shift;
+my $subs;
 
-    local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
+local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-    my $C = $self->cursor_xact('RULE infix_prefix_meta_operator');
-    my $S = $C->{'_pos'};
+my $C = $self->cursor_xact('RULE infix_prefix_meta_operator');
+my $S = $C->{'_pos'};
 
-    my @result = do {
-        my ($tag, $try);
-        my @try;
-        my $relex;
-        my $x;
-        if (my $fate = $C->{'_fate'}) {
-            if ($fate->[1] eq 'infix_prefix_meta_operator') {
-                $C->deb("Fate passed to infix_prefix_meta_operator: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-                ($C->{'_fate'}, $tag, $try) = @$fate;
-                @try = ($try);
-                $x = 'ALT infix_prefix_meta_operator';
-            }
-            else {
-                $x = 'ALTLTM infix_prefix_meta_operator';
-            }
-        }
-        else {
-            $x = 'ALTLTM infix_prefix_meta_operator';
-        }
-        my $C = $C->cursor_xact($x);
-        my $xact = $C->{_xact};
+my @result = do {
+my ($tag, $try);
+my @try;
+my $relex;
+my $x;
+if (my $fate = $C->{'_fate'}) {
+if ($fate->[1] eq 'infix_prefix_meta_operator') {
+$C->deb("Fate passed to infix_prefix_meta_operator: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT infix_prefix_meta_operator';
+}
+else {
+$x = 'ALTLTM infix_prefix_meta_operator';
+}
+}
+else {
+$x = 'ALTLTM infix_prefix_meta_operator';
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-        my @gather = ();
-        for (;;) {
-            unless (@try) {
-                $relex //= $C->cursor_fate('STD', 'infix_prefix_meta_operator:*', $retree);
-                @try = $relex->($C) or last;
-            }
-            $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD', 'infix_prefix_meta_operator:*', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-            if (ref $try) {
-                ($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
-            }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
+}
 
-            $C->deb("infix_prefix_meta_operator trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-            push @gather, $C->$try(@_);
-            last if @gather;
-            last if $xact->[-2];  # committed?
-        }
-        $self->_MATCHIFYr($S, "infix_prefix_meta_operator", @gather);
-    };
-    @result;
+$C->deb("infix_prefix_meta_operator trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, $C->$try(@_);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+$self->_MATCHIFYr($S, "infix_prefix_meta_operator", @gather);
+};
+@result;
 }
 ;
 ## token category:infix_postfix_meta_operator { <sym> }
@@ -5246,56 +5251,56 @@ $self->_MATCHIFYr($S, "category__S_030infix_postfix_meta_operator", $C->_EXACT("
 ## token infix_postfix_meta_operator ($op) is binary {*}
 sub infix_postfix_meta_operator__PEEK { $_[0]->_AUTOLEXpeek('infix_postfix_meta_operator:*',$retree); }
 sub infix_postfix_meta_operator {
-    my $self = shift;
-    my $subs;
+my $self = shift;
+my $subs;
 
-    local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
+local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-    my $C = $self->cursor_xact('RULE infix_postfix_meta_operator');
-    my $S = $C->{'_pos'};
+my $C = $self->cursor_xact('RULE infix_postfix_meta_operator');
+my $S = $C->{'_pos'};
 
-    my @result = do {
-        my ($tag, $try);
-        my @try;
-        my $relex;
-        my $x;
-        if (my $fate = $C->{'_fate'}) {
-            if ($fate->[1] eq 'infix_postfix_meta_operator') {
-                $C->deb("Fate passed to infix_postfix_meta_operator: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-                ($C->{'_fate'}, $tag, $try) = @$fate;
-                @try = ($try);
-                $x = 'ALT infix_postfix_meta_operator';
-            }
-            else {
-                $x = 'ALTLTM infix_postfix_meta_operator';
-            }
-        }
-        else {
-            $x = 'ALTLTM infix_postfix_meta_operator';
-        }
-        my $C = $C->cursor_xact($x);
-        my $xact = $C->{_xact};
+my @result = do {
+my ($tag, $try);
+my @try;
+my $relex;
+my $x;
+if (my $fate = $C->{'_fate'}) {
+if ($fate->[1] eq 'infix_postfix_meta_operator') {
+$C->deb("Fate passed to infix_postfix_meta_operator: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT infix_postfix_meta_operator';
+}
+else {
+$x = 'ALTLTM infix_postfix_meta_operator';
+}
+}
+else {
+$x = 'ALTLTM infix_postfix_meta_operator';
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-        my @gather = ();
-        for (;;) {
-            unless (@try) {
-                $relex //= $C->cursor_fate('STD', 'infix_postfix_meta_operator:*', $retree);
-                @try = $relex->($C) or last;
-            }
-            $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD', 'infix_postfix_meta_operator:*', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-            if (ref $try) {
-                ($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
-            }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
+}
 
-            $C->deb("infix_postfix_meta_operator trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-            push @gather, $C->$try(@_);
-            last if @gather;
-            last if $xact->[-2];  # committed?
-        }
-        $self->_MATCHIFYr($S, "infix_postfix_meta_operator", @gather);
-    };
-    @result;
+$C->deb("infix_postfix_meta_operator trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, $C->$try(@_);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+$self->_MATCHIFYr($S, "infix_postfix_meta_operator", @gather);
+};
+@result;
 }
 ;
 ## token category:infix_circumfix_meta_operator { <sym> }
@@ -5317,56 +5322,56 @@ $self->_MATCHIFYr($S, "category__S_031infix_circumfix_meta_operator", $C->_EXACT
 ## token infix_circumfix_meta_operator is binary {*}
 sub infix_circumfix_meta_operator__PEEK { $_[0]->_AUTOLEXpeek('infix_circumfix_meta_operator:*',$retree); }
 sub infix_circumfix_meta_operator {
-    my $self = shift;
-    my $subs;
+my $self = shift;
+my $subs;
 
-    local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
+local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-    my $C = $self->cursor_xact('RULE infix_circumfix_meta_operator');
-    my $S = $C->{'_pos'};
+my $C = $self->cursor_xact('RULE infix_circumfix_meta_operator');
+my $S = $C->{'_pos'};
 
-    my @result = do {
-        my ($tag, $try);
-        my @try;
-        my $relex;
-        my $x;
-        if (my $fate = $C->{'_fate'}) {
-            if ($fate->[1] eq 'infix_circumfix_meta_operator') {
-                $C->deb("Fate passed to infix_circumfix_meta_operator: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-                ($C->{'_fate'}, $tag, $try) = @$fate;
-                @try = ($try);
-                $x = 'ALT infix_circumfix_meta_operator';
-            }
-            else {
-                $x = 'ALTLTM infix_circumfix_meta_operator';
-            }
-        }
-        else {
-            $x = 'ALTLTM infix_circumfix_meta_operator';
-        }
-        my $C = $C->cursor_xact($x);
-        my $xact = $C->{_xact};
+my @result = do {
+my ($tag, $try);
+my @try;
+my $relex;
+my $x;
+if (my $fate = $C->{'_fate'}) {
+if ($fate->[1] eq 'infix_circumfix_meta_operator') {
+$C->deb("Fate passed to infix_circumfix_meta_operator: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT infix_circumfix_meta_operator';
+}
+else {
+$x = 'ALTLTM infix_circumfix_meta_operator';
+}
+}
+else {
+$x = 'ALTLTM infix_circumfix_meta_operator';
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-        my @gather = ();
-        for (;;) {
-            unless (@try) {
-                $relex //= $C->cursor_fate('STD', 'infix_circumfix_meta_operator:*', $retree);
-                @try = $relex->($C) or last;
-            }
-            $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD', 'infix_circumfix_meta_operator:*', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-            if (ref $try) {
-                ($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
-            }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
+}
 
-            $C->deb("infix_circumfix_meta_operator trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-            push @gather, $C->$try(@_);
-            last if @gather;
-            last if $xact->[-2];  # committed?
-        }
-        $self->_MATCHIFYr($S, "infix_circumfix_meta_operator", @gather);
-    };
-    @result;
+$C->deb("infix_circumfix_meta_operator trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, $C->$try(@_);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+$self->_MATCHIFYr($S, "infix_circumfix_meta_operator", @gather);
+};
+@result;
 }
 ;
 ## token category:postfix_prefix_meta_operator { <sym> }
@@ -5388,56 +5393,56 @@ $self->_MATCHIFYr($S, "category__S_032postfix_prefix_meta_operator", $C->_EXACT(
 ## token postfix_prefix_meta_operator is unary {*}
 sub postfix_prefix_meta_operator__PEEK { $_[0]->_AUTOLEXpeek('postfix_prefix_meta_operator:*',$retree); }
 sub postfix_prefix_meta_operator {
-    my $self = shift;
-    my $subs;
+my $self = shift;
+my $subs;
 
-    local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
+local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-    my $C = $self->cursor_xact('RULE postfix_prefix_meta_operator');
-    my $S = $C->{'_pos'};
+my $C = $self->cursor_xact('RULE postfix_prefix_meta_operator');
+my $S = $C->{'_pos'};
 
-    my @result = do {
-        my ($tag, $try);
-        my @try;
-        my $relex;
-        my $x;
-        if (my $fate = $C->{'_fate'}) {
-            if ($fate->[1] eq 'postfix_prefix_meta_operator') {
-                $C->deb("Fate passed to postfix_prefix_meta_operator: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-                ($C->{'_fate'}, $tag, $try) = @$fate;
-                @try = ($try);
-                $x = 'ALT postfix_prefix_meta_operator';
-            }
-            else {
-                $x = 'ALTLTM postfix_prefix_meta_operator';
-            }
-        }
-        else {
-            $x = 'ALTLTM postfix_prefix_meta_operator';
-        }
-        my $C = $C->cursor_xact($x);
-        my $xact = $C->{_xact};
+my @result = do {
+my ($tag, $try);
+my @try;
+my $relex;
+my $x;
+if (my $fate = $C->{'_fate'}) {
+if ($fate->[1] eq 'postfix_prefix_meta_operator') {
+$C->deb("Fate passed to postfix_prefix_meta_operator: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT postfix_prefix_meta_operator';
+}
+else {
+$x = 'ALTLTM postfix_prefix_meta_operator';
+}
+}
+else {
+$x = 'ALTLTM postfix_prefix_meta_operator';
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-        my @gather = ();
-        for (;;) {
-            unless (@try) {
-                $relex //= $C->cursor_fate('STD', 'postfix_prefix_meta_operator:*', $retree);
-                @try = $relex->($C) or last;
-            }
-            $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD', 'postfix_prefix_meta_operator:*', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-            if (ref $try) {
-                ($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
-            }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
+}
 
-            $C->deb("postfix_prefix_meta_operator trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-            push @gather, $C->$try(@_);
-            last if @gather;
-            last if $xact->[-2];  # committed?
-        }
-        $self->_MATCHIFYr($S, "postfix_prefix_meta_operator", @gather);
-    };
-    @result;
+$C->deb("postfix_prefix_meta_operator trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, $C->$try(@_);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+$self->_MATCHIFYr($S, "postfix_prefix_meta_operator", @gather);
+};
+@result;
 }
 ;
 ## token category:prefix_postfix_meta_operator { <sym> }
@@ -5459,56 +5464,56 @@ $self->_MATCHIFYr($S, "category__S_033prefix_postfix_meta_operator", $C->_EXACT(
 ## token prefix_postfix_meta_operator is unary {*}
 sub prefix_postfix_meta_operator__PEEK { $_[0]->_AUTOLEXpeek('prefix_postfix_meta_operator:*',$retree); }
 sub prefix_postfix_meta_operator {
-    my $self = shift;
-    my $subs;
+my $self = shift;
+my $subs;
 
-    local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
+local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-    my $C = $self->cursor_xact('RULE prefix_postfix_meta_operator');
-    my $S = $C->{'_pos'};
+my $C = $self->cursor_xact('RULE prefix_postfix_meta_operator');
+my $S = $C->{'_pos'};
 
-    my @result = do {
-        my ($tag, $try);
-        my @try;
-        my $relex;
-        my $x;
-        if (my $fate = $C->{'_fate'}) {
-            if ($fate->[1] eq 'prefix_postfix_meta_operator') {
-                $C->deb("Fate passed to prefix_postfix_meta_operator: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-                ($C->{'_fate'}, $tag, $try) = @$fate;
-                @try = ($try);
-                $x = 'ALT prefix_postfix_meta_operator';
-            }
-            else {
-                $x = 'ALTLTM prefix_postfix_meta_operator';
-            }
-        }
-        else {
-            $x = 'ALTLTM prefix_postfix_meta_operator';
-        }
-        my $C = $C->cursor_xact($x);
-        my $xact = $C->{_xact};
+my @result = do {
+my ($tag, $try);
+my @try;
+my $relex;
+my $x;
+if (my $fate = $C->{'_fate'}) {
+if ($fate->[1] eq 'prefix_postfix_meta_operator') {
+$C->deb("Fate passed to prefix_postfix_meta_operator: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT prefix_postfix_meta_operator';
+}
+else {
+$x = 'ALTLTM prefix_postfix_meta_operator';
+}
+}
+else {
+$x = 'ALTLTM prefix_postfix_meta_operator';
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-        my @gather = ();
-        for (;;) {
-            unless (@try) {
-                $relex //= $C->cursor_fate('STD', 'prefix_postfix_meta_operator:*', $retree);
-                @try = $relex->($C) or last;
-            }
-            $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD', 'prefix_postfix_meta_operator:*', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-            if (ref $try) {
-                ($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
-            }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
+}
 
-            $C->deb("prefix_postfix_meta_operator trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-            push @gather, $C->$try(@_);
-            last if @gather;
-            last if $xact->[-2];  # committed?
-        }
-        $self->_MATCHIFYr($S, "prefix_postfix_meta_operator", @gather);
-    };
-    @result;
+$C->deb("prefix_postfix_meta_operator trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, $C->$try(@_);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+$self->_MATCHIFYr($S, "prefix_postfix_meta_operator", @gather);
+};
+@result;
 }
 ;
 ## token category:prefix_circumfix_meta_operator { <sym> }
@@ -5530,56 +5535,56 @@ $self->_MATCHIFYr($S, "category__S_034prefix_circumfix_meta_operator", $C->_EXAC
 ## token prefix_circumfix_meta_operator is unary {*}
 sub prefix_circumfix_meta_operator__PEEK { $_[0]->_AUTOLEXpeek('prefix_circumfix_meta_operator:*',$retree); }
 sub prefix_circumfix_meta_operator {
-    my $self = shift;
-    my $subs;
+my $self = shift;
+my $subs;
 
-    local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
+local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-    my $C = $self->cursor_xact('RULE prefix_circumfix_meta_operator');
-    my $S = $C->{'_pos'};
+my $C = $self->cursor_xact('RULE prefix_circumfix_meta_operator');
+my $S = $C->{'_pos'};
 
-    my @result = do {
-        my ($tag, $try);
-        my @try;
-        my $relex;
-        my $x;
-        if (my $fate = $C->{'_fate'}) {
-            if ($fate->[1] eq 'prefix_circumfix_meta_operator') {
-                $C->deb("Fate passed to prefix_circumfix_meta_operator: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-                ($C->{'_fate'}, $tag, $try) = @$fate;
-                @try = ($try);
-                $x = 'ALT prefix_circumfix_meta_operator';
-            }
-            else {
-                $x = 'ALTLTM prefix_circumfix_meta_operator';
-            }
-        }
-        else {
-            $x = 'ALTLTM prefix_circumfix_meta_operator';
-        }
-        my $C = $C->cursor_xact($x);
-        my $xact = $C->{_xact};
+my @result = do {
+my ($tag, $try);
+my @try;
+my $relex;
+my $x;
+if (my $fate = $C->{'_fate'}) {
+if ($fate->[1] eq 'prefix_circumfix_meta_operator') {
+$C->deb("Fate passed to prefix_circumfix_meta_operator: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT prefix_circumfix_meta_operator';
+}
+else {
+$x = 'ALTLTM prefix_circumfix_meta_operator';
+}
+}
+else {
+$x = 'ALTLTM prefix_circumfix_meta_operator';
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-        my @gather = ();
-        for (;;) {
-            unless (@try) {
-                $relex //= $C->cursor_fate('STD', 'prefix_circumfix_meta_operator:*', $retree);
-                @try = $relex->($C) or last;
-            }
-            $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD', 'prefix_circumfix_meta_operator:*', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-            if (ref $try) {
-                ($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
-            }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
+}
 
-            $C->deb("prefix_circumfix_meta_operator trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-            push @gather, $C->$try(@_);
-            last if @gather;
-            last if $xact->[-2];  # committed?
-        }
-        $self->_MATCHIFYr($S, "prefix_circumfix_meta_operator", @gather);
-    };
-    @result;
+$C->deb("prefix_circumfix_meta_operator trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, $C->$try(@_);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+$self->_MATCHIFYr($S, "prefix_circumfix_meta_operator", @gather);
+};
+@result;
 }
 ;
 ## token category:terminator { <sym> }
@@ -5601,56 +5606,56 @@ $self->_MATCHIFYr($S, "category__S_035terminator", $C->_EXACT("terminator"));
 ## token terminator {*}
 sub terminator__PEEK { $_[0]->_AUTOLEXpeek('terminator:*',$retree); }
 sub terminator {
-    my $self = shift;
-    my $subs;
+my $self = shift;
+my $subs;
 
-    local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
+local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-    my $C = $self->cursor_xact('RULE terminator');
-    my $S = $C->{'_pos'};
+my $C = $self->cursor_xact('RULE terminator');
+my $S = $C->{'_pos'};
 
-    my @result = do {
-        my ($tag, $try);
-        my @try;
-        my $relex;
-        my $x;
-        if (my $fate = $C->{'_fate'}) {
-            if ($fate->[1] eq 'terminator') {
-                $C->deb("Fate passed to terminator: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-                ($C->{'_fate'}, $tag, $try) = @$fate;
-                @try = ($try);
-                $x = 'ALT terminator';
-            }
-            else {
-                $x = 'ALTLTM terminator';
-            }
-        }
-        else {
-            $x = 'ALTLTM terminator';
-        }
-        my $C = $C->cursor_xact($x);
-        my $xact = $C->{_xact};
+my @result = do {
+my ($tag, $try);
+my @try;
+my $relex;
+my $x;
+if (my $fate = $C->{'_fate'}) {
+if ($fate->[1] eq 'terminator') {
+$C->deb("Fate passed to terminator: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT terminator';
+}
+else {
+$x = 'ALTLTM terminator';
+}
+}
+else {
+$x = 'ALTLTM terminator';
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-        my @gather = ();
-        for (;;) {
-            unless (@try) {
-                $relex //= $C->cursor_fate('STD', 'terminator:*', $retree);
-                @try = $relex->($C) or last;
-            }
-            $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD', 'terminator:*', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-            if (ref $try) {
-                ($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
-            }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
+}
 
-            $C->deb("terminator trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-            push @gather, $C->$try(@_);
-            last if @gather;
-            last if $xact->[-2];  # committed?
-        }
-        $self->_MATCHIFYr($S, "terminator", @gather);
-    };
-    @result;
+$C->deb("terminator trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, $C->$try(@_);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+$self->_MATCHIFYr($S, "terminator", @gather);
+};
+@result;
 }
 ;
 ## token unspacey { <.unsp>? }
@@ -5752,38 +5757,38 @@ if (my ($C) = ($C->before(sub {
 my $C=shift;
 if (my ($C) = (do {
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'nofun_0') {
-        $C->deb("Fate passed to nofun_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT nofun_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM nofun_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'nofun_0') {
+$C->deb("Fate passed to nofun_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT nofun_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM nofun_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD', 'nofun_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD', 'nofun_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("nofun_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("nofun_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_EXACT("\(")
@@ -5812,11 +5817,11 @@ sub {
 my $C=shift;
 $C->_PATTERN(qr/\G\w/)
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 
 })) { ($C) } else { () }
@@ -6118,38 +6123,38 @@ $::MEMOS[$C->{'_pos'}]->{'endstmt'} ||= 1}, $C)
 $C->_BRACKET(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'stdstopper_0') {
-        $C->deb("Fate passed to stdstopper_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT stdstopper_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM stdstopper_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'stdstopper_0') {
+$C->deb("Fate passed to stdstopper_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT stdstopper_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM stdstopper_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD', 'stdstopper_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD', 'stdstopper_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("stdstopper_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("stdstopper_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->before(sub {
@@ -6178,11 +6183,11 @@ sub {
 my $C=shift;
 $C->_PATTERN(qr/\G\z/)
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 })));
 }
@@ -6212,11 +6217,11 @@ $C->_STARr(sub {
 my $C=shift;
 if (my ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-if (my ($C) = ($C->_NOTBEFORE(sub {
+if (my ($C) = ($C->before(sub {
 my $C=shift;
 if (my ($C) = ($C->before(sub {
 my $C=shift;
-$C->_EXACT("\:\{")
+$C->_PATTERN(qr/\G\:[a-zA-Z_\<\[\«]/)
 }))) { ($C) } else { () }
 }))) {
 $C->_SUBSUMEr(['colonpair'], sub {
@@ -6247,38 +6252,38 @@ $C->{'morename'} = [];
 $self->_MATCHIFYr($S, "name", $C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'name_0') {
-        $C->deb("Fate passed to name_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT name_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM name_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'name_0') {
+$C->deb("Fate passed to name_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT name_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM name_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD', 'name_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD', 'name_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("name_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("name_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (my ($C) = ($C->_SUBSUMEr(['identifier'], sub {
@@ -6304,11 +6309,11 @@ $C->morename
 })
 })
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }));
 }
@@ -6333,7 +6338,7 @@ $C->_OPTr(sub {
 my $C=shift;
 if (my ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -6345,38 +6350,38 @@ if (my ($C) = ($C->before(sub {
 my $C=shift;
 if (my ($C) = (do {
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'morename_0') {
-        $C->deb("Fate passed to morename_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT morename_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM morename_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'morename_0') {
+$C->deb("Fate passed to morename_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT morename_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM morename_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD', 'morename_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD', 'morename_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("morename_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("morename_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_EXACT("\(")
@@ -6385,11 +6390,11 @@ sub {
 my $C=shift;
 $C->_PATTERN(qr/\G[_[:alpha:]]/)
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 
 })) { ($C) } else { () }
@@ -6398,38 +6403,38 @@ $C->_PATTERN(qr/\G[_[:alpha:]]/)
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'morename_1') {
-        $C->deb("Fate passed to morename_1: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT morename_1';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM morename_1'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'morename_1') {
+$C->deb("Fate passed to morename_1: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT morename_1';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM morename_1'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD', 'morename_1', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD', 'morename_1', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("morename_1 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("morename_1 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_SUBSUMEr(['identifier'], sub {
@@ -6452,7 +6457,7 @@ $C->EXPR
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -6472,11 +6477,11 @@ $C
 } else { () }
 }))) { ($C) } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) {
 $C
@@ -6530,28 +6535,28 @@ if (not defined $rightbrack) {
 return $char, $char};
 while (substr($::ORIG,$pos,1) eq $char) {
 $pos++}
-    ;
+;
 my $len = $pos - $startpos;
 my $start = $char x $len;
 my $stop = $rightbrack x $len;
 return $start, $stop;
 };
 {     package STD::startstop;
-    require "mangle.pl";
-    our %INSTANTIATED;
-    sub __instantiate__ { my $self = shift;
-        my ($start, $stop) = @_;
-        my $mangle = ::mangle($start, $stop);
-        my $mixin = "STD::startstop::" . $mangle;
-        return $mixin if $INSTANTIATED{$mixin}++;
-        ::deb("         instantiating $mixin") if $::DEBUG & DEBUG::mixins;
-        my $eval = "package $mixin" . q{;
+require "mangle.pl";
+our %INSTANTIATED;
+sub __instantiate__ { my $self = shift;
+my ($start, $stop) = @_;
+my $mangle = ::mangle($start, $stop);
+my $mixin = "STD::startstop::" . $mangle;
+return $mixin if $INSTANTIATED{$mixin}++;
+::deb("         instantiating $mixin") if $::DEBUG & DEBUG::mixins;
+my $eval = "package $mixin" . q{;
 	    sub _PARAMS { { '$start' => $start, '$stop' => $stop } }
 use Moose::Role ':all' => { -prefix => "moose_" };
 use Encode;
 our $ALLROLES = { 'STD::startstop', 1 };
 our $REGEXES = {
-    ALL => [ qw/starter stopper/ ],
+ALL => [ qw/starter stopper/ ],
 };
 
 
@@ -6612,24 +6617,24 @@ $self->_MATCHIFYr($S, "stopper", $C->_EXACT($stop));
 	eval $eval;
 	die $@ if $@;
 	return $mixin;
-    }
-  1; };
+}
+1; };
 {     package STD::stop;
-    require "mangle.pl";
-    our %INSTANTIATED;
-    sub __instantiate__ { my $self = shift;
-        my ($stop) = @_;
-        my $mangle = ::mangle($stop);
-        my $mixin = "STD::stop::" . $mangle;
-        return $mixin if $INSTANTIATED{$mixin}++;
-        ::deb("         instantiating $mixin") if $::DEBUG & DEBUG::mixins;
-        my $eval = "package $mixin" . q{;
+require "mangle.pl";
+our %INSTANTIATED;
+sub __instantiate__ { my $self = shift;
+my ($stop) = @_;
+my $mangle = ::mangle($stop);
+my $mixin = "STD::stop::" . $mangle;
+return $mixin if $INSTANTIATED{$mixin}++;
+::deb("         instantiating $mixin") if $::DEBUG & DEBUG::mixins;
+my $eval = "package $mixin" . q{;
 	    sub _PARAMS { { '$stop' => $stop } }
 use Moose::Role ':all' => { -prefix => "moose_" };
 use Encode;
 our $ALLROLES = { 'STD::stop', 1 };
 our $REGEXES = {
-    ALL => [ qw/starter stopper/ ],
+ALL => [ qw/starter stopper/ ],
 };
 
 
@@ -6695,24 +6700,24 @@ $self->_MATCHIFYr($S, "stopper", $C->_EXACT($stop));
 	eval $eval;
 	die $@ if $@;
 	return $mixin;
-    }
-  1; };
+}
+1; };
 {     package STD::unitstop;
-    require "mangle.pl";
-    our %INSTANTIATED;
-    sub __instantiate__ { my $self = shift;
-        my ($stop) = @_;
-        my $mangle = ::mangle($stop);
-        my $mixin = "STD::unitstop::" . $mangle;
-        return $mixin if $INSTANTIATED{$mixin}++;
-        ::deb("         instantiating $mixin") if $::DEBUG & DEBUG::mixins;
-        my $eval = "package $mixin" . q{;
+require "mangle.pl";
+our %INSTANTIATED;
+sub __instantiate__ { my $self = shift;
+my ($stop) = @_;
+my $mangle = ::mangle($stop);
+my $mixin = "STD::unitstop::" . $mangle;
+return $mixin if $INSTANTIATED{$mixin}++;
+::deb("         instantiating $mixin") if $::DEBUG & DEBUG::mixins;
+my $eval = "package $mixin" . q{;
 	    sub _PARAMS { { '$stop' => $stop } }
 use Moose::Role ':all' => { -prefix => "moose_" };
 use Encode;
 our $ALLROLES = { 'STD::unitstop', 1 };
 our $REGEXES = {
-    ALL => [ qw/unitstopper/ ],
+ALL => [ qw/unitstopper/ ],
 };
 
 
@@ -6752,8 +6757,8 @@ $self->_MATCHIFYr($S, "unitstopper", $C->_EXACT($stop));
 	eval $eval;
 	die $@ if $@;
 	return $mixin;
-    }
-  1; };
+}
+1; };
 ## token unitstopper { $ }
 sub unitstopper__PEEK { $_[0]->_AUTOLEXpeek('unitstopper', $retree) }
 sub unitstopper {
@@ -6816,7 +6821,7 @@ local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 my $C = $self->cursor_xact("RULE charname");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
-$self->_MATCHIFYr($S, "charname", do {my $C = $C->cursor_xact('ALT ||');
+$self->_MATCHIFYr($S, "charname", do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -6824,38 +6829,38 @@ push @gather, do {
 if (my ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'charname_0') {
-        $C->deb("Fate passed to charname_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT charname_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM charname_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'charname_0') {
+$C->deb("Fate passed to charname_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT charname_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM charname_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD', 'charname_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD', 'charname_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("charname_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("charname_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_SUBSUMEr(['radint'], sub {
@@ -6879,38 +6884,38 @@ if (($C) = ($C->_PATTERN(qr/\G\s*+/))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'charname_1') {
-        $C->deb("Fate passed to charname_1: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT charname_1';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM charname_1'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'charname_1') {
+$C->deb("Fate passed to charname_1: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT charname_1';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM charname_1'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD', 'charname_1', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD', 'charname_1', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("charname_1 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("charname_1 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_EXACT("\,")
@@ -6923,11 +6928,11 @@ sub {
 my $C=shift;
 $C->_EXACT("\]")
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) {
 $C
@@ -6941,11 +6946,11 @@ $C->_SCANf())
 
 })) { ($C) } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) { ($C) } else { () }
 
@@ -7028,38 +7033,38 @@ my $S = $C->{'_pos'};
 $self->_MATCHIFYr($S, "charspec", $C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'charspec_0') {
-        $C->deb("Fate passed to charspec_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT charspec_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM charspec_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'charspec_0') {
+$C->deb("Fate passed to charspec_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT charspec_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM charspec_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD', 'charspec_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD', 'charspec_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("charspec_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("charspec_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (my ($C) = ($C->_BRACKETr(sub {
@@ -7075,7 +7080,7 @@ $C->charnames
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -7113,11 +7118,11 @@ and ($C) = ($C->sorry("Unrecognized \\c character"))) {
 $C->cursor_incr()
 } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }));
 }
@@ -7125,111 +7130,111 @@ $C->cursor_incr()
 ## token backslash {*}
 sub backslash__PEEK { $_[0]->_AUTOLEXpeek('backslash:*',$retree); }
 sub backslash {
-    my $self = shift;
-    my $subs;
+my $self = shift;
+my $subs;
 
-    local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
+local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-    my $C = $self->cursor_xact('RULE backslash');
-    my $S = $C->{'_pos'};
+my $C = $self->cursor_xact('RULE backslash');
+my $S = $C->{'_pos'};
 
-    my @result = do {
-        my ($tag, $try);
-        my @try;
-        my $relex;
-        my $x;
-        if (my $fate = $C->{'_fate'}) {
-            if ($fate->[1] eq 'backslash') {
-                $C->deb("Fate passed to backslash: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-                ($C->{'_fate'}, $tag, $try) = @$fate;
-                @try = ($try);
-                $x = 'ALT backslash';
-            }
-            else {
-                $x = 'ALTLTM backslash';
-            }
-        }
-        else {
-            $x = 'ALTLTM backslash';
-        }
-        my $C = $C->cursor_xact($x);
-        my $xact = $C->{_xact};
+my @result = do {
+my ($tag, $try);
+my @try;
+my $relex;
+my $x;
+if (my $fate = $C->{'_fate'}) {
+if ($fate->[1] eq 'backslash') {
+$C->deb("Fate passed to backslash: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT backslash';
+}
+else {
+$x = 'ALTLTM backslash';
+}
+}
+else {
+$x = 'ALTLTM backslash';
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-        my @gather = ();
-        for (;;) {
-            unless (@try) {
-                $relex //= $C->cursor_fate('STD', 'backslash:*', $retree);
-                @try = $relex->($C) or last;
-            }
-            $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD', 'backslash:*', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-            if (ref $try) {
-                ($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
-            }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
+}
 
-            $C->deb("backslash trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-            push @gather, $C->$try(@_);
-            last if @gather;
-            last if $xact->[-2];  # committed?
-        }
-        $self->_MATCHIFYr($S, "backslash", @gather);
-    };
-    @result;
+$C->deb("backslash trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, $C->$try(@_);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+$self->_MATCHIFYr($S, "backslash", @gather);
+};
+@result;
 }
 ;
 ## token escape {*}
 sub escape__PEEK { $_[0]->_AUTOLEXpeek('escape:*',$retree); }
 sub escape {
-    my $self = shift;
-    my $subs;
+my $self = shift;
+my $subs;
 
-    local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
+local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-    my $C = $self->cursor_xact('RULE escape');
-    my $S = $C->{'_pos'};
+my $C = $self->cursor_xact('RULE escape');
+my $S = $C->{'_pos'};
 
-    my @result = do {
-        my ($tag, $try);
-        my @try;
-        my $relex;
-        my $x;
-        if (my $fate = $C->{'_fate'}) {
-            if ($fate->[1] eq 'escape') {
-                $C->deb("Fate passed to escape: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-                ($C->{'_fate'}, $tag, $try) = @$fate;
-                @try = ($try);
-                $x = 'ALT escape';
-            }
-            else {
-                $x = 'ALTLTM escape';
-            }
-        }
-        else {
-            $x = 'ALTLTM escape';
-        }
-        my $C = $C->cursor_xact($x);
-        my $xact = $C->{_xact};
+my @result = do {
+my ($tag, $try);
+my @try;
+my $relex;
+my $x;
+if (my $fate = $C->{'_fate'}) {
+if ($fate->[1] eq 'escape') {
+$C->deb("Fate passed to escape: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT escape';
+}
+else {
+$x = 'ALTLTM escape';
+}
+}
+else {
+$x = 'ALTLTM escape';
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-        my @gather = ();
-        for (;;) {
-            unless (@try) {
-                $relex //= $C->cursor_fate('STD', 'escape:*', $retree);
-                @try = $relex->($C) or last;
-            }
-            $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD', 'escape:*', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-            if (ref $try) {
-                ($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
-            }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
+}
 
-            $C->deb("escape trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-            push @gather, $C->$try(@_);
-            last if @gather;
-            last if $xact->[-2];  # committed?
-        }
-        $self->_MATCHIFYr($S, "escape", @gather);
-    };
-    @result;
+$C->deb("escape trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, $C->$try(@_);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+$self->_MATCHIFYr($S, "escape", @gather);
+};
+@result;
 }
 ;
 ## token starter { <!> }
@@ -7313,7 +7318,7 @@ $C->stopper
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -7438,7 +7443,7 @@ scalar(do {
 my $M = $C;
 my $kv = $M->{'quotepair'}->[-1];
 $lang = ($lang->tweak($kv->{'k'}, $kv->{'v'})
-                or $lang->sorry("Unrecognized adverb :" . $kv->{'k'} . '(' . $kv->{'v'} . ')'));
+or $lang->sorry("Unrecognized adverb :" . $kv->{'k'} . '(' . $kv->{'v'} . ')'));
 }, $C)
 } else { () }
 }))) { ($C) } else { () }
@@ -7447,7 +7452,7 @@ scalar(do {
 my $M = $C;
 ($start,$stop) = $C->peek_delimiters();
 $lang = $start ne $stop ? $lang->balanced($start,$stop)
-                                : $lang->unbalanced($stop);
+: $lang->unbalanced($stop);
 $M->{'B'} = [$lang,$start,$stop];
 }, $C)
 } else { () }
@@ -7461,7 +7466,7 @@ use Moose ':all' => { -prefix => "moose_" };
 use Encode;
 our $ALLROLES = { 'STD::Herestub', 1 };
 our $REGEXES = {
-    ALL => [ qw// ],
+ALL => [ qw// ],
 };
 
 
@@ -7478,13 +7483,13 @@ $SIG{__WARN__} = sub { die @_,"   statement started at line ", 'STD::Cursor'->li
 moose_has 'delim' => (isa => 'Str', is => 'rw');
 moose_has 'orignode' => (is => 'rw');
 moose_has 'lang' => (is => 'rw');
-  1; };
+1; };
 { package STD::herestop;
 use Moose::Role ':all' => { -prefix => "moose_" };
 use Encode;
 our $ALLROLES = { 'STD::herestop', 1 };
 our $REGEXES = {
-    ALL => [ qw/stopper/ ],
+ALL => [ qw/stopper/ ],
 };
 
 
@@ -7581,7 +7586,7 @@ if (my ($C) = ($C->unv)) { ($C) } else { () }
 
 });
 }
-  1; };
+1; };
 ## method heredoc ()
 sub heredoc {
 no warnings 'recursion';
@@ -7599,7 +7604,7 @@ $herestub->orignode->{'doc'} = $doc;
 else {
 $self->panic("Ending delimiter $::DELIM not found")};
 }
-    ;
+;
 return $self->cursor($here->{'_pos'});
 };
 ## token quibble ($l) {
@@ -7634,7 +7639,7 @@ $C->nibble($lang)
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -7658,11 +7663,11 @@ my $M = $C;
 {
 if ($lang->{'_herelang'}) {
 push @herestub_queue,
-                'STD::Herestub'->new(
-                    delim => $M->{'nibble'}->{'nibbles'}->[0]->{'TEXT'},
-                    orignode => $C,
-                    lang => $lang->{'_herelang'},
-                )}}}, $C)
+'STD::Herestub'->new(
+delim => $M->{'nibble'}->{'nibbles'}->[0]->{'TEXT'},
+orignode => $C,
+lang => $lang->{'_herelang'},
+)}}}, $C)
 } else { () }
 
 });
@@ -7687,38 +7692,38 @@ if (($C) = ($C->_EXACT("\:"))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'quotepair_0') {
-        $C->deb("Fate passed to quotepair_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT quotepair_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM quotepair_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'quotepair_0') {
+$C->deb("Fate passed to quotepair_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT quotepair_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM quotepair_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD', 'quotepair_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD', 'quotepair_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("quotepair_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("quotepair_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (($C) = ($C->_EXACT("\!"))
@@ -7763,7 +7768,7 @@ my $M = $C;
 $key = $M->{'identifier'}->Str}, $C))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -7846,11 +7851,11 @@ $value = $M->{'n'}->Str;
 }, $C)
 } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) {
 scalar(do {
@@ -7891,7 +7896,7 @@ $C->nibble($C->cursor_fresh( $::LANG{'Q'} )->tweak('q' => 1)->unbalanced("'"))
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -7940,7 +7945,7 @@ $C->nibble($C->cursor_fresh( $::LANG{'Q'} )->tweak('qq' => 1)->unbalanced('"'))
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -7989,7 +7994,7 @@ $C->nibble($C->cursor_fresh( $::LANG{'Q'} )->tweak('qq' => 1)->tweak('ww' => 1)-
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -8038,7 +8043,7 @@ $C->nibble($C->cursor_fresh( $::LANG{'Q'} )->tweak('qq' => 1)->tweak('ww' => 1)-
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -8123,7 +8128,7 @@ $C->nibble($C->cursor_fresh( $::LANG{'Q'} )->tweak('q' => 1)->tweak('w' => 1)->b
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -8157,7 +8162,7 @@ local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 my $C = $self->cursor_xact("RULE ws");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
-$self->_MATCHIFYr($S, "ws", do {my $C = $C->cursor_xact('ALT ||');
+$self->_MATCHIFYr($S, "ws", do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -8165,38 +8170,38 @@ push @gather, do {
 if (my ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'ws_0') {
-        $C->deb("Fate passed to ws_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT ws_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM ws_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'ws_0') {
+$C->deb("Fate passed to ws_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT ws_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM ws_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD', 'ws_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD', 'ws_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("ws_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("ws_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (($C) = ($C->_PATTERN(qr/\G[\x20\t\r]++/))
@@ -8231,11 +8236,11 @@ and ($C) = ($C->sorry("Whitespace is required between alphanumeric tokens"))) {
 $C
 } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) { ($C) } else { () }
 
@@ -8249,38 +8254,38 @@ my $C=shift;
 if (my ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'ws_1') {
-        $C->deb("Fate passed to ws_1: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT ws_1';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM ws_1'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'ws_1') {
+$C->deb("Fate passed to ws_1: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT ws_1';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM ws_1'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD', 'ws_1', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD', 'ws_1', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("ws_1 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("ws_1 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (my ($C) = ($C->unsp)) { ($C) } else { () }
@@ -8303,11 +8308,11 @@ scalar(do {
 $C->moreinput }, $C)
 } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) { ($C) } else { () }
 }))) {
@@ -8318,7 +8323,7 @@ delete $::MEMOS[$C->{'_pos'}]->{'ws'}}
 else {
 $::MEMOS[$C->{'_pos'}]->{'ws'} = $startpos;
 $::MEMOS[$C->{'_pos'}]->{'endstmt'} = $::MEMOS[$startpos]->{'endstmt'}
-                if exists $::MEMOS[$startpos]->{'endstmt'};
+if exists $::MEMOS[$startpos]->{'endstmt'};
 }}}, $C)
 } else { () }
 
@@ -8350,38 +8355,38 @@ my $C=shift;
 if (my ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'unsp_0') {
-        $C->deb("Fate passed to unsp_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT unsp_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM unsp_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'unsp_0') {
+$C->deb("Fate passed to unsp_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT unsp_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM unsp_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD', 'unsp_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD', 'unsp_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("unsp_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("unsp_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_PATTERN(qr/\G\s/)
@@ -8390,11 +8395,11 @@ sub {
 my $C=shift;
 $C->_EXACT("\#")
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) { ($C) } else { () }
 }))) { ($C) } else { () }
@@ -8404,38 +8409,38 @@ my $C=shift;
 if (my ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'unsp_1') {
-        $C->deb("Fate passed to unsp_1: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT unsp_1';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM unsp_1'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'unsp_1') {
+$C->deb("Fate passed to unsp_1: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT unsp_1';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM unsp_1'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD', 'unsp_1', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD', 'unsp_1', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("unsp_1 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("unsp_1 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (my ($C) = ($C->vws)) { ($C) } else { () }
@@ -8451,11 +8456,11 @@ scalar(do {
 $C->moreinput }, $C)
 } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) { ($C) } else { () }
 })
@@ -8483,38 +8488,38 @@ my $C=shift;
 $C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'vws_0') {
-        $C->deb("Fate passed to vws_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT vws_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM vws_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'vws_0') {
+$C->deb("Fate passed to vws_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT vws_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM vws_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD', 'vws_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD', 'vws_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("vws_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("vws_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_PATTERN(qr/\G\n/)
@@ -8575,11 +8580,11 @@ $C->_SCANf())
 
 })) { ($C) } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 })
 }))) { ($C) } else { () }
@@ -8608,38 +8613,38 @@ my $S = $C->{'_pos'};
 $self->_MATCHIFYr($S, "unv", $C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'unv_0') {
-        $C->deb("Fate passed to unv_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT unv_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM unv_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'unv_0') {
+$C->deb("Fate passed to unv_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT unv_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM unv_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD', 'unv_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD', 'unv_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("unv_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("unv_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_PATTERN(qr/\G[\x20\t\r]++/)
@@ -8656,38 +8661,38 @@ if (($C) = ($C->_PATTERN(qr/\G[\x20\t\r]*+\=/))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'unv_1') {
-        $C->deb("Fate passed to unv_1: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT unv_1';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM unv_1'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'unv_1') {
+$C->deb("Fate passed to unv_1: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT unv_1';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM unv_1'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD', 'unv_1', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD', 'unv_1', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("unv_1 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("unv_1 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_PATTERN(qr/\G\w/)
@@ -8696,11 +8701,11 @@ sub {
 my $C=shift;
 $C->_EXACT("\\")
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) {
 $C
@@ -8722,11 +8727,11 @@ $C->comment
 })
 } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }));
 }
@@ -8750,7 +8755,7 @@ if (($C) = ($C->_EXACT("\#\`"))
 and ($C) = ($C->_COMMITLTM())
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -8817,38 +8822,38 @@ if (($C) = ($C->_PATTERN(qr/\G(?:[,;:])*+[\x20\t\r]*+/))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'comment__S_055SharpParenDotDotDotThesis_0') {
-        $C->deb("Fate passed to comment__S_055SharpParenDotDotDotThesis_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT comment__S_055SharpParenDotDotDotThesis_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM comment__S_055SharpParenDotDotDotThesis_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'comment__S_055SharpParenDotDotDotThesis_0') {
+$C->deb("Fate passed to comment__S_055SharpParenDotDotDotThesis_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT comment__S_055SharpParenDotDotDotThesis_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM comment__S_055SharpParenDotDotDotThesis_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD', 'comment__S_055SharpParenDotDotDotThesis_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD', 'comment__S_055SharpParenDotDotDotThesis_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("comment__S_055SharpParenDotDotDotThesis_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("comment__S_055SharpParenDotDotDotThesis_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_EXACT("\#")
@@ -8857,11 +8862,11 @@ sub {
 my $C=shift;
 $C->_PATTERN(qr/\G(?m:$)/)
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) {
 $C
@@ -9058,38 +9063,38 @@ if (my ($C) = ($C->unsp)) { ($C) } else { () }
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'pod_comment_0') {
-        $C->deb("Fate passed to pod_comment_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT pod_comment_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM pod_comment_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'pod_comment_0') {
+$C->deb("Fate passed to pod_comment_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT pod_comment_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM pod_comment_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD', 'pod_comment_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD', 'pod_comment_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("pod_comment_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("pod_comment_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (($C) = ($C->_PATTERN(qr/\Gbegin[\x20\t\r]++/))
@@ -9100,7 +9105,7 @@ $C->identifier
 and ($C) = ($C->_COMMITLTM())
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -9171,7 +9176,7 @@ and ($C) = ($C->_COMMITLTM())
 and ($C) = ($C->_PATTERN(qr/\G[\x20\t\r]*+/))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -9200,7 +9205,7 @@ $C->_EXACT("\n")
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -9244,7 +9249,7 @@ and ($C) = ($C->_COMMITLTM())
 and ($C) = ($C->_PATTERN(qr/\G[\x20\t\r]*+/))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -9280,7 +9285,7 @@ $C->_EXACT("\n")
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -9331,7 +9336,7 @@ $C
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -9359,11 +9364,11 @@ $C->_EXACT("\n")
 })
 } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) {
 $C
@@ -9401,7 +9406,7 @@ $C->statementlist
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -9672,76 +9677,76 @@ my $C = $C;
 if (($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'integer_0') {
-        $C->deb("Fate passed to integer_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT integer_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM integer_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'integer_0') {
+$C->deb("Fate passed to integer_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT integer_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM integer_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD', 'integer_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD', 'integer_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("integer_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("integer_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (($C) = ($C->_EXACT("0"))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'integer_1') {
-        $C->deb("Fate passed to integer_1: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT integer_1';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM integer_1'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'integer_1') {
+$C->deb("Fate passed to integer_1: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT integer_1';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM integer_1'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD', 'integer_1', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD', 'integer_1', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("integer_1 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("integer_1 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (my ($C) = ($C->_PATTERN(qr/\Gb_?+/))) {
@@ -9796,11 +9801,11 @@ $C->worry("Leading 0 does not indicate octal in Perl 6; please use 0o" . $M->{'d
 $C
 } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) {
 $C
@@ -9813,11 +9818,11 @@ my $C = shift;
 $C->decint
 })
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))
 and ($C) = ($C->_NOTBEFORE(sub {
@@ -9838,38 +9843,38 @@ my $C=shift;
 $C->{'terminator'} = [];
 if (my ($C) = (do {
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'integer_2') {
-        $C->deb("Fate passed to integer_2: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT integer_2';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM integer_2'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'integer_2') {
+$C->deb("Fate passed to integer_2: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT integer_2';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM integer_2'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD', 'integer_2', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD', 'integer_2', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("integer_2 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("integer_2 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_PATTERN(qr/\G\s/)
@@ -9889,11 +9894,11 @@ my $C = shift;
 $C->terminator
 })
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 
 })) { ($C) } else { () }
@@ -9943,38 +9948,38 @@ my $S = $C->{'_pos'};
 $self->_MATCHIFYr($S, "radint", $C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'radint_0') {
-        $C->deb("Fate passed to radint_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT radint_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM radint_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'radint_0') {
+$C->deb("Fate passed to radint_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT radint_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM radint_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD', 'radint_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD', 'radint_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("radint_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("radint_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_SUBSUMEr(['integer'], sub {
@@ -10000,18 +10005,18 @@ my $C=shift;
 (($C) x !!do {
 my $M = $C;
 defined $M->{'rad_number'}->{'intpart'}
-                        and
-                        not defined $M->{'rad_number'}->{'fracpart'}
-                    })
+and
+not defined $M->{'rad_number'}->{'fracpart'}
+})
 }))) {
 $C
 } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }));
 }
@@ -10057,38 +10062,38 @@ my $C = $C;
 if (($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'dec_number_0') {
-        $C->deb("Fate passed to dec_number_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT dec_number_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM dec_number_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'dec_number_0') {
+$C->deb("Fate passed to dec_number_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT dec_number_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM dec_number_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD', 'dec_number_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD', 'dec_number_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("dec_number_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("dec_number_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (my ($C) = ($C->_SUBSUMEr(['coeff'], sub {
@@ -10157,11 +10162,11 @@ $C->escale
 })
 } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))
 and ($C) = ($C->_OPTr(sub {
@@ -10265,7 +10270,7 @@ and ($C) = (scalar(do {
 }, $C))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -10275,38 +10280,38 @@ if (($C) = ($C->_EXACT("\<"))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'rad_number_0') {
-        $C->deb("Fate passed to rad_number_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT rad_number_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM rad_number_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'rad_number_0') {
+$C->deb("Fate passed to rad_number_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT rad_number_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM rad_number_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD', 'rad_number_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD', 'rad_number_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("rad_number_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("rad_number_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_SUBSUMEr(['coeff'], sub {
@@ -10354,11 +10359,11 @@ $C->alnumint
 })
 })
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))
 and ($C) = ($C->_OPTr(sub {
@@ -10372,7 +10377,7 @@ $C->radint
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -10745,39 +10750,39 @@ use Encode;
 moose_extends('STD');
 our $ALLROLES = { 'STD::P6', 1 };
 our $REGEXES = {
-    ALL => [ qw/POST PRE arglist args blast block blockoid capterm capture circumfix coloncircumfix colonpair comp_unit curlycheck declarator default_value deflongname desigilname dotty dottyop dottyopish eat_terminator fakesignature fatarrow infix infix_circumfix_meta_operator infix_postfix_meta_operator infix_prefix_meta_operator infixish infixstopper label lambda macro_def method_def methodop modifier_expr module_name multi_declarator multisig named_param nullterm nulltermish number old_rx_mods old_tr_mods package_declarator package_def param_sep param_var parameter pblock post_constraint postcircumfix postfix postfix_prefix_meta_operator postop prefix prefix_circumfix_meta_operator prefix_postfix_meta_operator privop quasiquibble quote quote_mod regex_block regex_declarator regex_def routine_declarator routine_def scope_declarator scoped semiarglist semilist sibble signature sigterm special_variable statement statement_control statement_mod_cond statement_mod_loop statement_prefix statementlist strtonum sublongname subshortname term terminator termish trait trait_mod tribble type_constraint type_declarator typename unitstart value variable variable_declarator version vnum xblock/ ],
-    circumfix => [ qw/circumfix__S_191sigil__PEEK circumfix__S_192Paren_Thesis__PEEK circumfix__S_193Bra_Ket__PEEK circumfix__S_214Cur_Ly__PEEK/ ],
-    dotty => [ qw/dotty__S_194DotStar__PEEK dotty__S_195Dot__PEEK/ ],
-    infix => [ qw/infix__S_190lambda__PEEK infix__S_216Dot__PEEK infix__S_222StarStar__PEEK infix__S_237Star__PEEK infix__S_238Slash__PEEK infix__S_239div__PEEK infix__S_240Percent__PEEK infix__S_241PercentPercent__PEEK infix__S_242mod__PEEK infix__S_243PlusAmp__PEEK infix__S_244LtLt__PEEK infix__S_245GtGt__PEEK infix__S_246TildeAmp__PEEK infix__S_247QuestionAmp__PEEK infix__S_248TildeLt__PEEK infix__S_249TildeGt__PEEK infix__S_250PlusLt__PEEK infix__S_251PlusGt__PEEK infix__S_252Plus__PEEK infix__S_253Minus__PEEK infix__S_254PlusVert__PEEK infix__S_255PlusCaret__PEEK infix__S_256TildeVert__PEEK infix__S_257TildeCaret__PEEK infix__S_258QuestionVert__PEEK infix__S_259QuestionCaret__PEEK infix__S_260x__PEEK infix__S_261xx__PEEK infix__S_262Tilde__PEEK infix__S_263Amp__PEEK infix__S_264Vert__PEEK infix__S_265Caret__PEEK infix__S_270LtEqualGt__PEEK infix__S_271cmp__PEEK infix__S_272leg__PEEK infix__S_273but__PEEK infix__S_274does__PEEK infix__S_275DotDot__PEEK infix__S_276CaretDotDot__PEEK infix__S_277DotDotCaret__PEEK infix__S_278CaretDotDotCaret__PEEK infix__S_279EqualEqual__PEEK infix__S_280BangEqual__PEEK infix__S_281Lt__PEEK infix__S_282LtEqual__PEEK infix__S_283Gt__PEEK infix__S_284GtEqual__PEEK infix__S_285TildeTilde__PEEK infix__S_286BangTilde__PEEK infix__S_287EqualTilde__PEEK infix__S_288eq__PEEK infix__S_289ne__PEEK infix__S_290lt__PEEK infix__S_291le__PEEK infix__S_292gt__PEEK infix__S_293ge__PEEK infix__S_294EqualColonEqual__PEEK infix__S_295EqualEqualEqual__PEEK infix__S_296eqv__PEEK infix__S_297before__PEEK infix__S_298after__PEEK infix__S_299AmpAmp__PEEK infix__S_300VertVert__PEEK infix__S_301CaretCaret__PEEK infix__S_302SlashSlash__PEEK infix__S_303min__PEEK infix__S_304max__PEEK infix__S_305QuestionQuestion_BangBang__PEEK infix__S_306BangBang__PEEK infix__S_307Question__PEEK infix__S_308ff__PEEK infix__S_309Caretff__PEEK infix__S_310ffCaret__PEEK infix__S_311CaretffCaret__PEEK infix__S_312fff__PEEK infix__S_313Caretfff__PEEK infix__S_314fffCaret__PEEK infix__S_315CaretfffCaret__PEEK infix__S_316Equal__PEEK infix__S_317ColonEqual__PEEK infix__S_318ColonColonEqual__PEEK infix__S_319DotEqual__PEEK infix__S_320EqualGt__PEEK infix__S_323Comma__PEEK infix__S_324Colon__PEEK infix__S_325X__PEEK infix__S_326Z__PEEK infix__S_327minmax__PEEK infix__S_328DotDotDot__PEEK infix__S_334and__PEEK infix__S_335andthen__PEEK infix__S_336or__PEEK infix__S_337orelse__PEEK infix__S_338xor__PEEK infix__S_339LtEqualEqual__PEEK infix__S_340EqualEqualGt__PEEK infix__S_341LtLtEqualEqual__PEEK infix__S_342EqualEqualGtGt__PEEK/ ],
-    infix_circumfix_meta_operator => [ qw/infix_circumfix_meta_operator__S_204Fre_Nch__PEEK infix_circumfix_meta_operator__S_205LtLt_GtGt__PEEK/ ],
-    infix_postfix_meta_operator => [ qw/infix_postfix_meta_operator__S_206Equal__PEEK/ ],
-    infix_prefix_meta_operator => [ qw/infix_prefix_meta_operator__S_199Bang__PEEK infix_prefix_meta_operator__S_200R__PEEK infix_prefix_meta_operator__S_201S__PEEK infix_prefix_meta_operator__S_202X__PEEK infix_prefix_meta_operator__S_203Z__PEEK/ ],
-    module_name => [ qw/module_name__S_039normal__PEEK/ ],
-    multi_declarator => [ qw/multi_declarator__S_058multi__PEEK multi_declarator__S_059proto__PEEK multi_declarator__S_060only__PEEK multi_declarator__S_061null__PEEK/ ],
-    package_declarator => [ qw/package_declarator__S_048class__PEEK package_declarator__S_049grammar__PEEK package_declarator__S_050module__PEEK package_declarator__S_051package__PEEK package_declarator__S_052role__PEEK package_declarator__S_053knowhow__PEEK package_declarator__S_054slang__PEEK package_declarator__S_055require__PEEK package_declarator__S_056trusts__PEEK package_declarator__S_057also__PEEK/ ],
-    postcircumfix => [ qw/postcircumfix__S_207Paren_Thesis__PEEK postcircumfix__S_208Bra_Ket__PEEK postcircumfix__S_209Cur_Ly__PEEK postcircumfix__S_210Lt_Gt__PEEK postcircumfix__S_211LtLt_GtGt__PEEK postcircumfix__S_212Fre_Nch__PEEK/ ],
-    postfix => [ qw/postfix__S_215i__PEEK postfix__S_217MinusGt__PEEK postfix__S_218PlusPlus__PEEK postfix__S_219MinusMinus__PEEK/ ],
-    postfix_prefix_meta_operator => [ qw/postfix_prefix_meta_operator__S_198Nch__PEEK/ ],
-    prefix => [ qw/prefix__S_220PlusPlus__PEEK prefix__S_221MinusMinus__PEEK prefix__S_223Bang__PEEK prefix__S_224Plus__PEEK prefix__S_225Minus__PEEK prefix__S_226TildeTilde__PEEK prefix__S_227Tilde__PEEK prefix__S_228QuestionQuestion__PEEK prefix__S_229Question__PEEK prefix__S_230TildeCaret__PEEK prefix__S_231PlusCaret__PEEK prefix__S_232QuestionCaret__PEEK prefix__S_233CaretCaret__PEEK prefix__S_234Caret__PEEK prefix__S_235VertVert__PEEK prefix__S_236Vert__PEEK prefix__S_266sleep__PEEK prefix__S_267abs__PEEK prefix__S_268let__PEEK prefix__S_269temp__PEEK prefix__S_321so__PEEK prefix__S_322not__PEEK/ ],
-    prefix_circumfix_meta_operator => [ qw/prefix_circumfix_meta_operator__S_196reduce__PEEK/ ],
-    prefix_postfix_meta_operator => [ qw/prefix_postfix_meta_operator__S_197Fre__PEEK/ ],
-    quote => [ qw/quote__S_141SlashSlash__PEEK quote__S_142Slash_Slash__PEEK quote__S_143qq__PEEK quote__S_144q__PEEK quote__S_145Q__PEEK quote__S_157rx__PEEK quote__S_158m__PEEK quote__S_159mm__PEEK quote__S_160s__PEEK quote__S_161ss__PEEK quote__S_162tr__PEEK quote__S_163y__PEEK quote__S_164quasi__PEEK/ ],
-    quote_mod => [ qw/quote_mod__S_146w__PEEK quote_mod__S_147ww__PEEK quote_mod__S_148p__PEEK quote_mod__S_149x__PEEK quote_mod__S_150to__PEEK quote_mod__S_151s__PEEK quote_mod__S_152a__PEEK quote_mod__S_153h__PEEK quote_mod__S_154f__PEEK quote_mod__S_155c__PEEK quote_mod__S_156b__PEEK/ ],
-    regex_declarator => [ qw/regex_declarator__S_066regex__PEEK regex_declarator__S_067token__PEEK regex_declarator__S_068rule__PEEK/ ],
-    routine_declarator => [ qw/routine_declarator__S_062sub__PEEK routine_declarator__S_063method__PEEK routine_declarator__S_064submethod__PEEK routine_declarator__S_065macro__PEEK/ ],
-    scope_declarator => [ qw/scope_declarator__S_041my__PEEK scope_declarator__S_042our__PEEK scope_declarator__S_043anon__PEEK scope_declarator__S_044state__PEEK scope_declarator__S_045has__PEEK scope_declarator__S_046augment__PEEK scope_declarator__S_047supersede__PEEK/ ],
-    special_variable => [ qw/special_variable__S_091Dollar_a2___PEEK special_variable__S_092DollarBang__PEEK special_variable__S_093DollarBangCur_Ly__PEEK special_variable__S_094DollarSlash__PEEK special_variable__S_095DollarTilde__PEEK special_variable__S_096DollarGrave__PEEK special_variable__S_097DollarAt__PEEK special_variable__S_098DollarSharp__PEEK special_variable__S_099DollarDollar__PEEK special_variable__S_100DollarPercent__PEEK special_variable__S_101DollarCaretX__PEEK special_variable__S_102DollarCaret__PEEK special_variable__S_103DollarAmp__PEEK special_variable__S_104DollarStar__PEEK special_variable__S_105DollarThesis__PEEK special_variable__S_106DollarMinus__PEEK special_variable__S_107DollarEqual__PEEK special_variable__S_108AtPlus__PEEK special_variable__S_109PercentPlus__PEEK special_variable__S_110DollarPlusBra_Ket__PEEK special_variable__S_111AtPlusBra_Ket__PEEK special_variable__S_112AtPlusCur_Ly__PEEK special_variable__S_113AtMinus__PEEK special_variable__S_114PercentMinus__PEEK special_variable__S_115DollarMinusBra_Ket__PEEK special_variable__S_116AtMinusBra_Ket__PEEK special_variable__S_117PercentMinusCur_Ly__PEEK special_variable__S_118DollarPlus__PEEK special_variable__S_119DollarCurCaret_Ly__PEEK special_variable__S_120ColonColonCur_Ly__PEEK special_variable__S_121DollarCur_Ly__PEEK special_variable__S_122DollarBra__PEEK special_variable__S_123DollarKet__PEEK special_variable__S_124DollarBack__PEEK special_variable__S_125DollarVert__PEEK special_variable__S_126DollarColon__PEEK special_variable__S_127DollarSemi__PEEK special_variable__S_128DollarSingle__PEEK special_variable__S_129DollarDouble__PEEK special_variable__S_130DollarComma__PEEK special_variable__S_131DollarLt__PEEK special_variable__S_132DollarGt__PEEK special_variable__S_133DollarDot__PEEK special_variable__S_134DollarQuestion__PEEK/ ],
-    statement_control => [ qw/statement_control__S_000need__PEEK statement_control__S_001import__PEEK statement_control__S_002use__PEEK statement_control__S_003no__PEEK statement_control__S_004if__PEEK statement_control__S_005unless__PEEK statement_control__S_006while__PEEK statement_control__S_007until__PEEK statement_control__S_008repeat__PEEK statement_control__S_009loop__PEEK statement_control__S_010for__PEEK statement_control__S_011foreach__PEEK statement_control__S_012given__PEEK statement_control__S_013when__PEEK statement_control__S_014default__PEEK statement_control__S_029CATCH__PEEK statement_control__S_030CONTROL__PEEK statement_control__S_031TEMP__PEEK/ ],
-    statement_mod_cond => [ qw/statement_mod_cond__S_032if__PEEK statement_mod_cond__S_033unless__PEEK statement_mod_cond__S_034when__PEEK/ ],
-    statement_mod_loop => [ qw/statement_mod_loop__S_035while__PEEK statement_mod_loop__S_036until__PEEK statement_mod_loop__S_037for__PEEK statement_mod_loop__S_038given__PEEK/ ],
-    statement_prefix => [ qw/statement_prefix__S_015BEGIN__PEEK statement_prefix__S_016CHECK__PEEK statement_prefix__S_017INIT__PEEK statement_prefix__S_018START__PEEK statement_prefix__S_019ENTER__PEEK statement_prefix__S_020FIRST__PEEK statement_prefix__S_021END__PEEK statement_prefix__S_022LEAVE__PEEK statement_prefix__S_023KEEP__PEEK statement_prefix__S_024UNDO__PEEK statement_prefix__S_025NEXT__PEEK statement_prefix__S_026LAST__PEEK statement_prefix__S_027PRE__PEEK statement_prefix__S_028POST__PEEK statement_prefix__S_168sink__PEEK statement_prefix__S_169try__PEEK statement_prefix__S_170quietly__PEEK statement_prefix__S_171gather__PEEK statement_prefix__S_172contend__PEEK statement_prefix__S_173async__PEEK statement_prefix__S_174maybe__PEEK statement_prefix__S_175lazy__PEEK statement_prefix__S_176do__PEEK statement_prefix__S_177lift__PEEK/ ],
-    strtonum => [ qw/strtonum__S_138rational__PEEK strtonum__S_139complex__PEEK strtonum__S_140number__PEEK/ ],
-    term => [ qw/term__S_076fatarrow__PEEK term__S_077variable__PEEK term__S_078package_declarator__PEEK term__S_079scope_declarator__PEEK term__S_080multi_declarator__PEEK term__S_081routine_declarator__PEEK term__S_082regex_declarator__PEEK term__S_083type_declarator__PEEK term__S_084circumfix__PEEK term__S_085dotty__PEEK term__S_086value__PEEK term__S_087capterm__PEEK term__S_088sigterm__PEEK term__S_089statement_prefix__PEEK term__S_090colonpair__PEEK term__S_178new__PEEK term__S_179ColonColonQuestionIDENT__PEEK term__S_180Object__PEEK term__S_181undef__PEEK term__S_182proceed__PEEK term__S_183time__PEEK term__S_184now__PEEK term__S_185self__PEEK term__S_186defer__PEEK term__S_187rand__PEEK term__S_188Star__PEEK term__S_189StarStar__PEEK term__S_213lambda__PEEK term__S_329DotDotDot__PEEK term__S_330QuestionQuestionQuestion__PEEK term__S_331BangBangBang__PEEK term__S_332identifier__PEEK term__S_333name__PEEK/ ],
-    terminator => [ qw/terminator__S_343Semi__PEEK terminator__S_344if__PEEK terminator__S_345unless__PEEK terminator__S_346while__PEEK terminator__S_347until__PEEK terminator__S_348for__PEEK terminator__S_349given__PEEK terminator__S_350when__PEEK terminator__S_351MinusMinusGt__PEEK terminator__S_352BangBang__PEEK/ ],
-    trait_mod => [ qw/trait_mod__S_069is__PEEK trait_mod__S_070hides__PEEK trait_mod__S_071does__PEEK trait_mod__S_072will__PEEK trait_mod__S_073of__PEEK trait_mod__S_074as__PEEK trait_mod__S_075handles__PEEK/ ],
-    type_declarator => [ qw/type_declarator__S_165subset__PEEK type_declarator__S_166enum__PEEK type_declarator__S_167constant__PEEK/ ],
-    value => [ qw/value__S_135quote__PEEK value__S_136number__PEEK value__S_137version__PEEK/ ],
-    version => [ qw/version__S_040v__PEEK/ ],
+ALL => [ qw/POST PRE arglist args blast block blockoid capterm capture circumfix coloncircumfix colonpair comp_unit curlycheck declarator default_value deflongname desigilname dotty dottyop dottyopish dumbsmart eat_terminator fakesignature fatarrow infix infix_circumfix_meta_operator infix_postfix_meta_operator infix_prefix_meta_operator infixish infixstopper label lambda macro_def method_def methodop modifier_expr module_name multi_declarator multisig named_param nullterm nulltermish number old_rx_mods old_tr_mods package_declarator package_def param_sep param_var parameter pblock post_constraint postcircumfix postfix postfix_prefix_meta_operator postop prefix prefix_circumfix_meta_operator prefix_postfix_meta_operator privop quasiquibble quote quote_mod regex_block regex_declarator regex_def routine_declarator routine_def scope_declarator scoped semiarglist semilist sibble signature sigterm special_variable statement statement_control statement_mod_cond statement_mod_loop statement_prefix statementlist strtonum sublongname subshortname term terminator termish trait trait_mod tribble type_constraint type_declarator typename unitstart value variable variable_declarator version vnum xblock/ ],
+circumfix => [ qw/circumfix__S_191sigil__PEEK circumfix__S_192Paren_Thesis__PEEK circumfix__S_193Bra_Ket__PEEK circumfix__S_214Cur_Ly__PEEK/ ],
+dotty => [ qw/dotty__S_194DotStar__PEEK dotty__S_195Dot__PEEK/ ],
+infix => [ qw/infix__S_190lambda__PEEK infix__S_216Dot__PEEK infix__S_222StarStar__PEEK infix__S_237Star__PEEK infix__S_238Slash__PEEK infix__S_239div__PEEK infix__S_240Percent__PEEK infix__S_241PercentPercent__PEEK infix__S_242mod__PEEK infix__S_243PlusAmp__PEEK infix__S_244LtLt__PEEK infix__S_245GtGt__PEEK infix__S_246TildeAmp__PEEK infix__S_247QuestionAmp__PEEK infix__S_248TildeLt__PEEK infix__S_249TildeGt__PEEK infix__S_250PlusLt__PEEK infix__S_251PlusGt__PEEK infix__S_252Plus__PEEK infix__S_253Minus__PEEK infix__S_254PlusVert__PEEK infix__S_255PlusCaret__PEEK infix__S_256TildeVert__PEEK infix__S_257TildeCaret__PEEK infix__S_258QuestionVert__PEEK infix__S_259QuestionCaret__PEEK infix__S_260x__PEEK infix__S_261xx__PEEK infix__S_262Tilde__PEEK infix__S_263Amp__PEEK infix__S_264Vert__PEEK infix__S_265Caret__PEEK infix__S_270LtEqualGt__PEEK infix__S_271cmp__PEEK infix__S_272leg__PEEK infix__S_273but__PEEK infix__S_274does__PEEK infix__S_275DotDot__PEEK infix__S_276CaretDotDot__PEEK infix__S_277DotDotCaret__PEEK infix__S_278CaretDotDotCaret__PEEK infix__S_279EqualEqual__PEEK infix__S_280BangEqual__PEEK infix__S_281Lt__PEEK infix__S_282LtEqual__PEEK infix__S_283Gt__PEEK infix__S_284GtEqual__PEEK infix__S_285TildeTilde__PEEK infix__S_286BangTilde__PEEK infix__S_287EqualTilde__PEEK infix__S_288eq__PEEK infix__S_289ne__PEEK infix__S_290lt__PEEK infix__S_291le__PEEK infix__S_292gt__PEEK infix__S_293ge__PEEK infix__S_294EqualColonEqual__PEEK infix__S_295EqualEqualEqual__PEEK infix__S_296eqv__PEEK infix__S_297before__PEEK infix__S_298after__PEEK infix__S_299AmpAmp__PEEK infix__S_300VertVert__PEEK infix__S_301CaretCaret__PEEK infix__S_302SlashSlash__PEEK infix__S_303min__PEEK infix__S_304max__PEEK infix__S_305QuestionQuestion_BangBang__PEEK infix__S_306BangBang__PEEK infix__S_307Question__PEEK infix__S_308ff__PEEK infix__S_309Caretff__PEEK infix__S_310ffCaret__PEEK infix__S_311CaretffCaret__PEEK infix__S_312fff__PEEK infix__S_313Caretfff__PEEK infix__S_314fffCaret__PEEK infix__S_315CaretfffCaret__PEEK infix__S_316Equal__PEEK infix__S_317ColonEqual__PEEK infix__S_318ColonColonEqual__PEEK infix__S_319DotEqual__PEEK infix__S_320EqualGt__PEEK infix__S_323Comma__PEEK infix__S_324Colon__PEEK infix__S_325X__PEEK infix__S_326Z__PEEK infix__S_327minmax__PEEK infix__S_328DotDotDot__PEEK infix__S_334and__PEEK infix__S_335andthen__PEEK infix__S_336or__PEEK infix__S_337orelse__PEEK infix__S_338xor__PEEK infix__S_339LtEqualEqual__PEEK infix__S_340EqualEqualGt__PEEK infix__S_341LtLtEqualEqual__PEEK infix__S_342EqualEqualGtGt__PEEK/ ],
+infix_circumfix_meta_operator => [ qw/infix_circumfix_meta_operator__S_204Fre_Nch__PEEK infix_circumfix_meta_operator__S_205LtLt_GtGt__PEEK/ ],
+infix_postfix_meta_operator => [ qw/infix_postfix_meta_operator__S_206Equal__PEEK/ ],
+infix_prefix_meta_operator => [ qw/infix_prefix_meta_operator__S_199Bang__PEEK infix_prefix_meta_operator__S_200R__PEEK infix_prefix_meta_operator__S_201S__PEEK infix_prefix_meta_operator__S_202X__PEEK infix_prefix_meta_operator__S_203Z__PEEK/ ],
+module_name => [ qw/module_name__S_039normal__PEEK/ ],
+multi_declarator => [ qw/multi_declarator__S_058multi__PEEK multi_declarator__S_059proto__PEEK multi_declarator__S_060only__PEEK multi_declarator__S_061null__PEEK/ ],
+package_declarator => [ qw/package_declarator__S_048class__PEEK package_declarator__S_049grammar__PEEK package_declarator__S_050module__PEEK package_declarator__S_051package__PEEK package_declarator__S_052role__PEEK package_declarator__S_053knowhow__PEEK package_declarator__S_054slang__PEEK package_declarator__S_055require__PEEK package_declarator__S_056trusts__PEEK package_declarator__S_057also__PEEK/ ],
+postcircumfix => [ qw/postcircumfix__S_207Paren_Thesis__PEEK postcircumfix__S_208Bra_Ket__PEEK postcircumfix__S_209Cur_Ly__PEEK postcircumfix__S_210Lt_Gt__PEEK postcircumfix__S_211LtLt_GtGt__PEEK postcircumfix__S_212Fre_Nch__PEEK/ ],
+postfix => [ qw/postfix__S_215i__PEEK postfix__S_217MinusGt__PEEK postfix__S_218PlusPlus__PEEK postfix__S_219MinusMinus__PEEK/ ],
+postfix_prefix_meta_operator => [ qw/postfix_prefix_meta_operator__S_198Nch__PEEK/ ],
+prefix => [ qw/prefix__S_220PlusPlus__PEEK prefix__S_221MinusMinus__PEEK prefix__S_223Bang__PEEK prefix__S_224Plus__PEEK prefix__S_225Minus__PEEK prefix__S_226TildeTilde__PEEK prefix__S_227Tilde__PEEK prefix__S_228QuestionQuestion__PEEK prefix__S_229Question__PEEK prefix__S_230TildeCaret__PEEK prefix__S_231PlusCaret__PEEK prefix__S_232QuestionCaret__PEEK prefix__S_233CaretCaret__PEEK prefix__S_234Caret__PEEK prefix__S_235VertVert__PEEK prefix__S_236Vert__PEEK prefix__S_266sleep__PEEK prefix__S_267abs__PEEK prefix__S_268let__PEEK prefix__S_269temp__PEEK prefix__S_321so__PEEK prefix__S_322not__PEEK/ ],
+prefix_circumfix_meta_operator => [ qw/prefix_circumfix_meta_operator__S_196reduce__PEEK/ ],
+prefix_postfix_meta_operator => [ qw/prefix_postfix_meta_operator__S_197Fre__PEEK/ ],
+quote => [ qw/quote__S_141SlashSlash__PEEK quote__S_142Slash_Slash__PEEK quote__S_143qq__PEEK quote__S_144q__PEEK quote__S_145Q__PEEK quote__S_157rx__PEEK quote__S_158m__PEEK quote__S_159mm__PEEK quote__S_160s__PEEK quote__S_161ss__PEEK quote__S_162tr__PEEK quote__S_163y__PEEK quote__S_164quasi__PEEK/ ],
+quote_mod => [ qw/quote_mod__S_146w__PEEK quote_mod__S_147ww__PEEK quote_mod__S_148p__PEEK quote_mod__S_149x__PEEK quote_mod__S_150to__PEEK quote_mod__S_151s__PEEK quote_mod__S_152a__PEEK quote_mod__S_153h__PEEK quote_mod__S_154f__PEEK quote_mod__S_155c__PEEK quote_mod__S_156b__PEEK/ ],
+regex_declarator => [ qw/regex_declarator__S_066regex__PEEK regex_declarator__S_067token__PEEK regex_declarator__S_068rule__PEEK/ ],
+routine_declarator => [ qw/routine_declarator__S_062sub__PEEK routine_declarator__S_063method__PEEK routine_declarator__S_064submethod__PEEK routine_declarator__S_065macro__PEEK/ ],
+scope_declarator => [ qw/scope_declarator__S_041my__PEEK scope_declarator__S_042our__PEEK scope_declarator__S_043anon__PEEK scope_declarator__S_044state__PEEK scope_declarator__S_045has__PEEK scope_declarator__S_046augment__PEEK scope_declarator__S_047supersede__PEEK/ ],
+special_variable => [ qw/special_variable__S_091Dollar_a2___PEEK special_variable__S_092DollarBang__PEEK special_variable__S_093DollarBangCur_Ly__PEEK special_variable__S_094DollarSlash__PEEK special_variable__S_095DollarTilde__PEEK special_variable__S_096DollarGrave__PEEK special_variable__S_097DollarAt__PEEK special_variable__S_098DollarSharp__PEEK special_variable__S_099DollarDollar__PEEK special_variable__S_100DollarPercent__PEEK special_variable__S_101DollarCaretX__PEEK special_variable__S_102DollarCaret__PEEK special_variable__S_103DollarAmp__PEEK special_variable__S_104DollarStar__PEEK special_variable__S_105DollarThesis__PEEK special_variable__S_106DollarMinus__PEEK special_variable__S_107DollarEqual__PEEK special_variable__S_108AtPlus__PEEK special_variable__S_109PercentPlus__PEEK special_variable__S_110DollarPlusBra_Ket__PEEK special_variable__S_111AtPlusBra_Ket__PEEK special_variable__S_112AtPlusCur_Ly__PEEK special_variable__S_113AtMinus__PEEK special_variable__S_114PercentMinus__PEEK special_variable__S_115DollarMinusBra_Ket__PEEK special_variable__S_116AtMinusBra_Ket__PEEK special_variable__S_117PercentMinusCur_Ly__PEEK special_variable__S_118DollarPlus__PEEK special_variable__S_119DollarCurCaret_Ly__PEEK special_variable__S_120ColonColonCur_Ly__PEEK special_variable__S_121DollarCur_Ly__PEEK special_variable__S_122DollarBra__PEEK special_variable__S_123DollarKet__PEEK special_variable__S_124DollarBack__PEEK special_variable__S_125DollarVert__PEEK special_variable__S_126DollarColon__PEEK special_variable__S_127DollarSemi__PEEK special_variable__S_128DollarSingle__PEEK special_variable__S_129DollarDouble__PEEK special_variable__S_130DollarComma__PEEK special_variable__S_131DollarLt__PEEK special_variable__S_132DollarGt__PEEK special_variable__S_133DollarDot__PEEK special_variable__S_134DollarQuestion__PEEK/ ],
+statement_control => [ qw/statement_control__S_000need__PEEK statement_control__S_001import__PEEK statement_control__S_002use__PEEK statement_control__S_003no__PEEK statement_control__S_004if__PEEK statement_control__S_005unless__PEEK statement_control__S_006while__PEEK statement_control__S_007until__PEEK statement_control__S_008repeat__PEEK statement_control__S_009loop__PEEK statement_control__S_010for__PEEK statement_control__S_011foreach__PEEK statement_control__S_012given__PEEK statement_control__S_013when__PEEK statement_control__S_014default__PEEK statement_control__S_029CATCH__PEEK statement_control__S_030CONTROL__PEEK statement_control__S_031TEMP__PEEK/ ],
+statement_mod_cond => [ qw/statement_mod_cond__S_032if__PEEK statement_mod_cond__S_033unless__PEEK statement_mod_cond__S_034when__PEEK/ ],
+statement_mod_loop => [ qw/statement_mod_loop__S_035while__PEEK statement_mod_loop__S_036until__PEEK statement_mod_loop__S_037for__PEEK statement_mod_loop__S_038given__PEEK/ ],
+statement_prefix => [ qw/statement_prefix__S_015BEGIN__PEEK statement_prefix__S_016CHECK__PEEK statement_prefix__S_017INIT__PEEK statement_prefix__S_018START__PEEK statement_prefix__S_019ENTER__PEEK statement_prefix__S_020FIRST__PEEK statement_prefix__S_021END__PEEK statement_prefix__S_022LEAVE__PEEK statement_prefix__S_023KEEP__PEEK statement_prefix__S_024UNDO__PEEK statement_prefix__S_025NEXT__PEEK statement_prefix__S_026LAST__PEEK statement_prefix__S_027PRE__PEEK statement_prefix__S_028POST__PEEK statement_prefix__S_168sink__PEEK statement_prefix__S_169try__PEEK statement_prefix__S_170quietly__PEEK statement_prefix__S_171gather__PEEK statement_prefix__S_172contend__PEEK statement_prefix__S_173async__PEEK statement_prefix__S_174maybe__PEEK statement_prefix__S_175lazy__PEEK statement_prefix__S_176do__PEEK statement_prefix__S_177lift__PEEK/ ],
+strtonum => [ qw/strtonum__S_138rational__PEEK strtonum__S_139complex__PEEK strtonum__S_140number__PEEK/ ],
+term => [ qw/term__S_076fatarrow__PEEK term__S_077variable__PEEK term__S_078package_declarator__PEEK term__S_079scope_declarator__PEEK term__S_080multi_declarator__PEEK term__S_081routine_declarator__PEEK term__S_082regex_declarator__PEEK term__S_083type_declarator__PEEK term__S_084circumfix__PEEK term__S_085dotty__PEEK term__S_086value__PEEK term__S_087capterm__PEEK term__S_088sigterm__PEEK term__S_089statement_prefix__PEEK term__S_090colonpair__PEEK term__S_178new__PEEK term__S_179ColonColonQuestionIDENT__PEEK term__S_180Object__PEEK term__S_181undef__PEEK term__S_182proceed__PEEK term__S_183time__PEEK term__S_184now__PEEK term__S_185self__PEEK term__S_186defer__PEEK term__S_187rand__PEEK term__S_188Star__PEEK term__S_189StarStar__PEEK term__S_213lambda__PEEK term__S_329DotDotDot__PEEK term__S_330QuestionQuestionQuestion__PEEK term__S_331BangBangBang__PEEK term__S_332identifier__PEEK term__S_333name__PEEK/ ],
+terminator => [ qw/terminator__S_343Semi__PEEK terminator__S_344if__PEEK terminator__S_345unless__PEEK terminator__S_346while__PEEK terminator__S_347until__PEEK terminator__S_348for__PEEK terminator__S_349given__PEEK terminator__S_350when__PEEK terminator__S_351MinusMinusGt__PEEK terminator__S_352BangBang__PEEK/ ],
+trait_mod => [ qw/trait_mod__S_069is__PEEK trait_mod__S_070hides__PEEK trait_mod__S_071does__PEEK trait_mod__S_072will__PEEK trait_mod__S_073of__PEEK trait_mod__S_074as__PEEK trait_mod__S_075handles__PEEK/ ],
+type_declarator => [ qw/type_declarator__S_165subset__PEEK type_declarator__S_166enum__PEEK type_declarator__S_167constant__PEEK/ ],
+value => [ qw/value__S_135quote__PEEK value__S_136number__PEEK value__S_137version__PEEK/ ],
+version => [ qw/version__S_040v__PEEK/ ],
 };
 
 
@@ -11805,6 +11810,19 @@ desigilname: !!perl/hash:RE_ast
             re: !!perl/hash:RE_string
               i: 0
               text: $
+        - !!perl/hash:RE_quantified_atom
+          atom: !!perl/hash:RE_bracket
+            re: !!perl/hash:RE_sequence
+              zyg:
+              - !!perl/hash:RE_assertion
+                assert: '?'
+                re: !!perl/hash:RE_block
+                  nobind: 1
+              - !!perl/hash:RE_method
+                name: panic
+                rest: 1
+          quant:
+          - '?'
         - !!perl/hash:RE_method
           name: variable
           rest: ''
@@ -11943,6 +11961,48 @@ dottyopish: !!perl/hash:RE_ast
     atom: !!perl/hash:RE_method
       name: dottyop
       rest: ''
+dumbsmart: !!perl/hash:RE_ast
+  dba: dumbsmart
+  dic: STD::P6
+  re: !!perl/hash:RE_quantified_atom
+    atom: !!perl/hash:RE_bracket
+      re: !!perl/hash:RE_sequence
+        zyg:
+        - !!perl/hash:RE_quantified_atom
+          atom: !!perl/hash:RE_meta
+            min: 1
+            text: \h
+          quant:
+          - '*'
+        - !!perl/hash:RE_bindpos
+          atom: !!perl/hash:RE_paren
+            re: &17 !!perl/hash:RE_any
+              altname: dumbsmart_0
+              dba: dumbsmart
+              dic: STD::P6
+              zyg:
+              - !!perl/hash:RE_string
+                alt: dumbsmart_0 0
+                i: 0
+                text: True
+              - !!perl/hash:RE_string
+                alt: dumbsmart_0 1
+                i: 0
+                text: False
+              - !!perl/hash:RE_string
+                alt: dumbsmart_0 2
+                i: 0
+                text: Bool::True
+              - !!perl/hash:RE_string
+                alt: dumbsmart_0 3
+                i: 0
+                text: Bool::False
+        - !!perl/hash:RE_meta
+          text: »
+        - !!perl/hash:RE_block {}
+    quant:
+    - '?'
+dumbsmart_0: *17
 eat_terminator: !!perl/hash:RE_ast
   dba: eat_terminator
   dic: STD::P6
@@ -11966,7 +12026,7 @@ eat_terminator: !!perl/hash:RE_ast
         re: !!perl/hash:RE_method_re
           name: before
           nobind: 1
-          re: &17 !!perl/hash:RE_any
+          re: &18 !!perl/hash:RE_any
             altname: eat_terminator_0
             dba: eat_terminator
             dic: STD::P6
@@ -12013,7 +12073,7 @@ eat_terminator: !!perl/hash:RE_ast
       - !!perl/hash:RE_method
         name: panic
         rest: 1
-eat_terminator_0: *17
+eat_terminator_0: *18
 fakesignature: !!perl/hash:RE_ast
   dba: fakesignature
   dic: STD::P6
@@ -12060,7 +12120,7 @@ infix__S_190lambda: !!perl/hash:RE_ast
       re: !!perl/hash:RE_method_re
         name: before
         nobind: 1
-        re: &18 !!perl/hash:RE_any
+        re: &19 !!perl/hash:RE_any
           altname: infix__S_190lambda_0
           dba: infix
           dic: STD::P6
@@ -12081,7 +12141,7 @@ infix__S_190lambda: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_190lambda_0: *18
+infix__S_190lambda_0: *19
 infix__S_216Dot: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
@@ -12712,7 +12772,7 @@ infix__S_275DotDot: !!perl/hash:RE_ast
             re: !!perl/hash:RE_method_re
               name: before
               nobind: 1
-              re: &19 !!perl/hash:RE_any
+              re: &20 !!perl/hash:RE_any
                 altname: infix__S_275DotDot_0
                 dba: infix
                 dic: STD::P6
@@ -12733,7 +12793,7 @@ infix__S_275DotDot: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-infix__S_275DotDot_0: *19
+infix__S_275DotDot_0: *20
 infix__S_276CaretDotDot: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
@@ -12896,43 +12956,11 @@ infix__S_285TildeTilde: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-    - !!perl/hash:RE_quantified_atom
-      atom: !!perl/hash:RE_assertion
-        assert: '?'
-        re: !!perl/hash:RE_method_re
-          name: before
-          nobind: 1
-          re: !!perl/hash:RE_sequence
-            zyg:
-            - !!perl/hash:RE_quantified_atom
-              atom: !!perl/hash:RE_meta
-                min: 1
-                text: \h
-              quant:
-              - '*'
-            - !!perl/hash:RE_bindpos
-              atom: !!perl/hash:RE_paren
-                re: &20 !!perl/hash:RE_any
-                  altname: infix__S_285TildeTilde_0
-                  dba: infix
-                  dic: STD::P6
-                  zyg:
-                  - !!perl/hash:RE_string
-                    alt: infix__S_285TildeTilde_0 0
-                    i: 0
-                    text: True
-                  - !!perl/hash:RE_string
-                    alt: infix__S_285TildeTilde_0 1
-                    i: 0
-                    text: False
-            - !!perl/hash:RE_meta
-              text: »
-            - !!perl/hash:RE_method
-              name: dumbsmart
-              rest: 1
-      quant:
-      - '?'
-infix__S_285TildeTilde_0: *20
+    - !!perl/hash:RE_assertion
+      assert: '?'
+      re: !!perl/hash:RE_method
+        name: dumbsmart
+        rest: ''
 infix__S_286BangTilde: !!perl/hash:RE_ast
   dba: infix
   dic: STD::P6
@@ -15607,6 +15635,7 @@ package_def: !!perl/hash:RE_ast
                   re: !!perl/hash:RE_sequence
                     zyg:
                     - !!perl/hash:RE_block {}
+                    - !!perl/hash:RE_block {}
                     - !!perl/hash:RE_method
                       name: blockoid
                       rest: ''
@@ -15643,6 +15672,7 @@ package_def: !!perl/hash:RE_ast
                         assert: '?'
                         re: !!perl/hash:RE_block
                           nobind: 1
+                      - !!perl/hash:RE_block {}
                       - !!perl/hash:RE_block {}
                       - !!perl/hash:RE_method
                         name: statementlist
@@ -15820,6 +15850,15 @@ param_var: !!perl/hash:RE_ast
                 atom: !!perl/hash:RE_method
                   name: identifier
                   rest: ''
+              - !!perl/hash:RE_sequence
+                zyg:
+                - !!perl/hash:RE_bindnamed
+                  atom: !!perl/hash:RE_method
+                    name: decint
+                    rest: ''
+                - !!perl/hash:RE_method
+                  name: panic
+                  rest: 1
               - !!perl/hash:RE_bindnamed
                 atom: !!perl/hash:RE_bracket
                   re: !!perl/hash:RE_cclass
@@ -18801,6 +18840,14 @@ signature: !!perl/hash:RE_ast
               - !!perl/hash:RE_method
                 name: type_constraint
                 rest: ''
+              - !!perl/hash:RE_sequence
+                zyg:
+                - !!perl/hash:RE_method
+                  name: longname
+                  rest: ''
+                - !!perl/hash:RE_method
+                  name: panic
+                  rest: 1
               - !!perl/hash:RE_method
                 name: panic
                 rest: 1
@@ -21332,49 +21379,17 @@ statement_control__S_013when: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: ws
       rest: ''
-    - !!perl/hash:RE_quantified_atom
-      atom: !!perl/hash:RE_assertion
-        assert: '?'
-        re: !!perl/hash:RE_method_re
-          name: before
-          nobind: 1
-          re: !!perl/hash:RE_sequence
-            zyg:
-            - !!perl/hash:RE_method
-              name: ws
-              rest: ''
-            - !!perl/hash:RE_bindpos
-              atom: !!perl/hash:RE_paren
-                re: &111 !!perl/hash:RE_any
-                  altname: statement_control__S_013when_0
-                  dba: statement_control
-                  dic: STD::P6
-                  zyg:
-                  - !!perl/hash:RE_string
-                    alt: statement_control__S_013when_0 0
-                    i: 0
-                    text: True
-                  - !!perl/hash:RE_string
-                    alt: statement_control__S_013when_0 1
-                    i: 0
-                    text: False
-            - !!perl/hash:RE_meta
-              text: »
-            - !!perl/hash:RE_method
-              name: dumbsmart
-              rest: 1
-      quant:
-      - '?'
-    - !!perl/hash:RE_method
-      name: ws
-      rest: ''
+    - !!perl/hash:RE_assertion
+      assert: '?'
+      re: !!perl/hash:RE_method
+        name: dumbsmart
+        rest: ''
     - !!perl/hash:RE_method
       name: xblock
       rest: ''
     - !!perl/hash:RE_method
       name: ws
       rest: ''
-statement_control__S_013when_0: *111
 statement_control__S_014default: !!perl/hash:RE_ast
   dba: statement_control
   dic: STD::P6
@@ -21530,55 +21545,17 @@ statement_mod_cond__S_034when: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: ws
       rest: ''
-    - !!perl/hash:RE_quantified_atom
-      atom: !!perl/hash:RE_assertion
-        assert: '?'
-        re: !!perl/hash:RE_method_re
-          name: before
-          nobind: 1
-          re: !!perl/hash:RE_sequence
-            zyg:
-            - !!perl/hash:RE_method
-              name: ws
-              rest: ''
-            - !!perl/hash:RE_quantified_atom
-              atom: !!perl/hash:RE_meta
-                min: 1
-                text: \h
-              quant:
-              - '*'
-            - !!perl/hash:RE_bindpos
-              atom: !!perl/hash:RE_paren
-                re: &112 !!perl/hash:RE_any
-                  altname: statement_mod_cond__S_034when_0
-                  dba: statement_mod_cond
-                  dic: STD::P6
-                  zyg:
-                  - !!perl/hash:RE_string
-                    alt: statement_mod_cond__S_034when_0 0
-                    i: 0
-                    text: True
-                  - !!perl/hash:RE_string
-                    alt: statement_mod_cond__S_034when_0 1
-                    i: 0
-                    text: False
-            - !!perl/hash:RE_meta
-              text: »
-            - !!perl/hash:RE_method
-              name: dumbsmart
-              rest: 1
-      quant:
-      - '?'
-    - !!perl/hash:RE_method
-      name: ws
-      rest: ''
+    - !!perl/hash:RE_assertion
+      assert: '?'
+      re: !!perl/hash:RE_method
+        name: dumbsmart
+        rest: ''
     - !!perl/hash:RE_method
       name: modifier_expr
       rest: ''
     - !!perl/hash:RE_method
       name: ws
       rest: ''
-statement_mod_cond__S_034when_0: *112
 statement_mod_loop__S_035while: !!perl/hash:RE_ast
   dba: statement_mod_loop
   dic: STD::P6
@@ -21995,7 +21972,7 @@ statementlist: !!perl/hash:RE_ast
       name: ws
       rest: ''
     - !!perl/hash:RE_bracket
-      re: &113 !!perl/hash:RE_any
+      re: &111 !!perl/hash:RE_any
         altname: statementlist_0
         dba: statement list
         dic: STD::P6
@@ -22044,7 +22021,7 @@ statementlist: !!perl/hash:RE_ast
             name: ws
             rest: ''
           - !!perl/hash:RE_block {}
-statementlist_0: *113
+statementlist_0: *111
 strtonum__S_138rational: !!perl/hash:RE_ast
   dba: strtonum
   dic: STD::P6
@@ -22136,7 +22113,7 @@ subshortname: !!perl/hash:RE_ast
   dba: subshortname
   dic: STD::P6
   re: !!perl/hash:RE_bracket
-    re: &114 !!perl/hash:RE_any
+    re: &112 !!perl/hash:RE_any
       altname: subshortname_0
       dba: subshortname
       dic: STD::P6
@@ -22157,7 +22134,7 @@ subshortname: !!perl/hash:RE_ast
         alt: subshortname_0 1
         name: desigilname
         rest: ''
-subshortname_0: *114
+subshortname_0: *112
 term__S_076fatarrow: !!perl/hash:RE_ast
   dba: term
   dic: STD::P6
@@ -22195,7 +22172,7 @@ term__S_080multi_declarator: !!perl/hash:RE_ast
       re: !!perl/hash:RE_method_re
         name: before
         nobind: 1
-        re: &115 !!perl/hash:RE_any
+        re: &113 !!perl/hash:RE_any
           altname: term__S_080multi_declarator_0
           dba: term
           dic: STD::P6
@@ -22215,7 +22192,7 @@ term__S_080multi_declarator: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: multi_declarator
       rest: ''
-term__S_080multi_declarator_0: *115
+term__S_080multi_declarator_0: *113
 term__S_081routine_declarator: !!perl/hash:RE_ast
   dba: term
   dic: STD::P6
@@ -22547,7 +22524,7 @@ term__S_187rand: !!perl/hash:RE_ast
                   quant:
                   - '*'
                 - !!perl/hash:RE_bracket
-                  re: &116 !!perl/hash:RE_any
+                  re: &114 !!perl/hash:RE_any
                     altname: term__S_187rand_0
                     dba: term
                     dic: STD::P6
@@ -22585,7 +22562,7 @@ term__S_187rand: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-term__S_187rand_0: *116
+term__S_187rand_0: *114
 term__S_188Star: !!perl/hash:RE_ast
   dba: term
   dic: STD::P6
@@ -22704,7 +22681,7 @@ term__S_332identifier: !!perl/hash:RE_ast
         nobind: 1
         re: !!perl/hash:RE_quantified_atom
           atom: !!perl/hash:RE_bracket
-            re: &117 !!perl/hash:RE_any
+            re: &115 !!perl/hash:RE_any
               altname: term__S_332identifier_0
               dba: term
               dic: STD::P6
@@ -22734,7 +22711,7 @@ term__S_332identifier: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-term__S_332identifier_0: *117
+term__S_332identifier_0: *115
 term__S_333name: !!perl/hash:RE_ast
   dba: term
   dic: STD::P6
@@ -22795,7 +22772,7 @@ term__S_333name: !!perl/hash:RE_ast
                     name: before
                     nobind: 1
                     re: !!perl/hash:RE_bracket
-                      re: &118 !!perl/hash:RE_any
+                      re: &116 !!perl/hash:RE_any
                         altname: term__S_333name_0
                         dba: namespace variable lookup
                         dic: STD::P6
@@ -22832,7 +22809,7 @@ term__S_333name: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: O
       rest: 1
-term__S_333name_0: *118
+term__S_333name_0: *116
 terminator__S_343Semi: !!perl/hash:RE_ast
   dba: terminator
   dic: STD::P6
@@ -22988,7 +22965,7 @@ termish: !!perl/hash:RE_ast
   re: !!perl/hash:RE_sequence
     zyg:
     - !!perl/hash:RE_bracket
-      re: &119 !!perl/hash:RE_any
+      re: &117 !!perl/hash:RE_any
         altname: termish_0
         dba: prefix or term
         dic: STD::P6
@@ -23047,9 +23024,10 @@ termish: !!perl/hash:RE_ast
                   assert: '?'
                   re: !!perl/hash:RE_block
                     nobind: 1
-                - !!perl/hash:RE_quantified_atom
-                  atom: !!perl/hash:RE_bracket
-                    re: !!perl/hash:RE_sequence
+                - !!perl/hash:RE_bracket
+                  re: !!perl/hash:RE_first
+                    zyg:
+                    - !!perl/hash:RE_sequence
                       zyg:
                       - !!perl/hash:RE_quantified_atom
                         atom: !!perl/hash:RE_bracket
@@ -23076,8 +23054,7 @@ termish: !!perl/hash:RE_ast
                           re: !!perl/hash:RE_cclass
                             i: 0
                             text: '[ \] } > ) ]'
-                  quant:
-                  - '?'
+                    - !!perl/hash:RE_block {}
               - !!perl/hash:RE_sequence
                 zyg:
                 - !!perl/hash:RE_quantified_atom
@@ -23119,7 +23096,7 @@ termish: !!perl/hash:RE_ast
             quant:
             - '*'
     - !!perl/hash:RE_block {}
-termish_0: *119
+termish_0: *117
 trait: !!perl/hash:RE_ast
   dba: trait
   dic: STD::P6
@@ -23129,7 +23106,7 @@ trait: !!perl/hash:RE_ast
       name: ws
       rest: ''
     - !!perl/hash:RE_bracket
-      re: &120 !!perl/hash:RE_any
+      re: &118 !!perl/hash:RE_any
         altname: trait_0
         dba: trait
         dic: STD::P6
@@ -23152,7 +23129,7 @@ trait: !!perl/hash:RE_ast
           - !!perl/hash:RE_method
             name: ws
             rest: ''
-trait_0: *120
+trait_0: *118
 trait_mod__S_069is: !!perl/hash:RE_ast
   dba: trait_mod
   dic: STD::P6
@@ -23264,7 +23241,7 @@ trait_mod__S_073of: !!perl/hash:RE_ast
   re: !!perl/hash:RE_sequence
     zyg:
     - !!perl/hash:RE_bracket
-      re: &121 !!perl/hash:RE_any
+      re: &119 !!perl/hash:RE_any
         altname: trait_mod__S_073of_0
         dba: trait_mod
         dic: STD::P6
@@ -23309,7 +23286,7 @@ trait_mod__S_073of: !!perl/hash:RE_ast
       name: ws
       rest: ''
     - !!perl/hash:RE_block {}
-trait_mod__S_073of_0: *121
+trait_mod__S_073of_0: *119
 trait_mod__S_074as: !!perl/hash:RE_ast
   dba: trait_mod
   dic: STD::P6
@@ -23413,7 +23390,7 @@ type_constraint: !!perl/hash:RE_ast
   re: !!perl/hash:RE_sequence
     zyg:
     - !!perl/hash:RE_bracket
-      re: &122 !!perl/hash:RE_any
+      re: &120 !!perl/hash:RE_any
         altname: type_constraint_0
         dba: type_constraint
         dic: STD::P6
@@ -23469,7 +23446,7 @@ type_constraint: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: ws
       rest: ''
-type_constraint_0: *122
+type_constraint_0: *120
 type_declarator__S_165subset: !!perl/hash:RE_ast
   dba: type_declarator
   dic: STD::P6
@@ -23582,7 +23559,7 @@ type_declarator__S_166enum: !!perl/hash:RE_ast
       name: ws
       rest: ''
     - !!perl/hash:RE_bracket
-      re: &123 !!perl/hash:RE_any
+      re: &121 !!perl/hash:RE_any
         altname: type_declarator__S_166enum_0
         dba: type_declarator
         dic: STD::P6
@@ -23633,7 +23610,7 @@ type_declarator__S_166enum: !!perl/hash:RE_ast
       name: ws
       rest: ''
     - !!perl/hash:RE_block {}
-type_declarator__S_166enum_0: *123
+type_declarator__S_166enum_0: *121
 type_declarator__S_167constant: !!perl/hash:RE_ast
   dba: type_declarator
   dic: STD::P6
@@ -23652,7 +23629,7 @@ type_declarator__S_167constant: !!perl/hash:RE_ast
       name: ws
       rest: ''
     - !!perl/hash:RE_bracket
-      re: &124 !!perl/hash:RE_any
+      re: &122 !!perl/hash:RE_any
         altname: type_declarator__S_167constant_0
         dba: type_declarator
         dic: STD::P6
@@ -23724,14 +23701,14 @@ type_declarator__S_167constant: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: getdecl
       rest: ''
-type_declarator__S_167constant_0: *124
+type_declarator__S_167constant_0: *122
 typename: !!perl/hash:RE_ast
   dba: typename
   dic: STD::P6
   re: !!perl/hash:RE_sequence
     zyg:
     - !!perl/hash:RE_bracket
-      re: &125 !!perl/hash:RE_any
+      re: &123 !!perl/hash:RE_any
         altname: typename_0
         dba: typename
         dic: STD::P6
@@ -23821,7 +23798,7 @@ typename: !!perl/hash:RE_ast
             rest: ''
       quant:
       - '?'
-typename_0: *125
+typename_0: *123
 unitstart: !!perl/hash:RE_ast
   dba: unitstart
   dic: STD::P6
@@ -23889,7 +23866,7 @@ variable: !!perl/hash:RE_ast
                   i: 0
                   text: '::'
                 - !!perl/hash:RE_bracket
-                  re: &126 !!perl/hash:RE_any
+                  re: &124 !!perl/hash:RE_any
                     altname: variable_0
                     dba: variable
                     dic: STD::P6
@@ -23915,7 +23892,7 @@ variable: !!perl/hash:RE_ast
             i: 0
             text: '&'
           - !!perl/hash:RE_bracket
-            re: &127 !!perl/hash:RE_any
+            re: &125 !!perl/hash:RE_any
               altname: variable_1
               dba: infix noun
               dic: STD::P6
@@ -23973,7 +23950,7 @@ variable: !!perl/hash:RE_ast
             name: name
             rest: ''
         - !!perl/hash:RE_bracket
-          re: &128 !!perl/hash:RE_any
+          re: &126 !!perl/hash:RE_any
             altname: variable_2
             dba: variable
             dic: STD::P6
@@ -24008,6 +23985,19 @@ variable: !!perl/hash:RE_ast
                 atom: !!perl/hash:RE_method
                   name: decint
                   rest: ''
+              - !!perl/hash:RE_quantified_atom
+                atom: !!perl/hash:RE_bracket
+                  re: !!perl/hash:RE_sequence
+                    zyg:
+                    - !!perl/hash:RE_assertion
+                      assert: '?'
+                      re: !!perl/hash:RE_block
+                        nobind: 1
+                    - !!perl/hash:RE_method
+                      name: panic
+                      rest: 1
+                quant:
+                - '?'
             - !!perl/hash:RE_sequence
               alt: variable_2 3
               zyg:
@@ -24019,24 +24009,57 @@ variable: !!perl/hash:RE_ast
                 re: !!perl/hash:RE_method_re
                   name: before
                   nobind: 1
-                  re: &129 !!perl/hash:RE_any
-                    altname: variable_3
-                    dba: variable
-                    dic: STD::P6
-                    zyg:
-                    - !!perl/hash:RE_string
-                      alt: variable_3 0
-                      i: 0
-                      text: <
-                    - !!perl/hash:RE_string
-                      alt: variable_3 1
-                      i: 0
-                      text: (
+                  re: !!perl/hash:RE_string
+                    i: 0
+                    text: <
               - !!perl/hash:RE_method
                 name: postcircumfix
                 rest: ''
+              - !!perl/hash:RE_quantified_atom
+                atom: !!perl/hash:RE_bracket
+                  re: !!perl/hash:RE_sequence
+                    zyg:
+                    - !!perl/hash:RE_assertion
+                      assert: '?'
+                      re: !!perl/hash:RE_block
+                        nobind: 1
+                    - !!perl/hash:RE_method
+                      name: panic
+                      rest: 1
+                quant:
+                - '?'
             - !!perl/hash:RE_sequence
               alt: variable_2 4
+              zyg:
+              - !!perl/hash:RE_method
+                name: sigil
+                rest: ''
+              - !!perl/hash:RE_assertion
+                assert: '?'
+                re: !!perl/hash:RE_method_re
+                  name: before
+                  nobind: 1
+                  re: !!perl/hash:RE_string
+                    i: 0
+                    text: (
+              - !!perl/hash:RE_method
+                name: postcircumfix
+                rest: ''
+              - !!perl/hash:RE_quantified_atom
+                atom: !!perl/hash:RE_bracket
+                  re: !!perl/hash:RE_sequence
+                    zyg:
+                    - !!perl/hash:RE_assertion
+                      assert: '?'
+                      re: !!perl/hash:RE_block
+                        nobind: 1
+                    - !!perl/hash:RE_method
+                      name: panic
+                      rest: 1
+                quant:
+                - '?'
+            - !!perl/hash:RE_sequence
+              alt: variable_2 5
               zyg:
               - !!perl/hash:RE_method
                 name: sigil
@@ -24046,7 +24069,7 @@ variable: !!perl/hash:RE_ast
                 re: !!perl/hash:RE_block
                   nobind: 1
             - !!perl/hash:RE_sequence
-              alt: variable_2 5
+              alt: variable_2 6
               zyg:
               - !!perl/hash:RE_assertion
                 assert: '?'
@@ -24063,21 +24086,21 @@ variable: !!perl/hash:RE_ast
             re: !!perl/hash:RE_block
               nobind: 1
           - !!perl/hash:RE_bracket
-            re: &130 !!perl/hash:RE_any
-              altname: variable_4
+            re: &127 !!perl/hash:RE_any
+              altname: variable_3
               dba: variable
               dic: STD::P6
               zyg:
               - !!perl/hash:RE_method
-                alt: variable_4 0
+                alt: variable_3 0
                 name: unsp
                 rest: ''
               - !!perl/hash:RE_string
-                alt: variable_4 1
+                alt: variable_3 1
                 i: 0
                 text: \
               - !!perl/hash:RE_assertion
-                alt: variable_4 2
+                alt: variable_3 2
                 assert: '?'
                 re: !!perl/hash:RE_noop
                   nobind: 1
@@ -24094,11 +24117,10 @@ variable: !!perl/hash:RE_ast
             rest: ''
       quant:
       - '?'
-variable_0: *126
-variable_1: *127
-variable_2: *128
-variable_3: *129
-variable_4: *130
+variable_0: *124
+variable_1: *125
+variable_2: *126
+variable_3: *127
 variable_declarator: !!perl/hash:RE_ast
   dba: variable_declarator
   dic: STD::P6
@@ -24121,7 +24143,7 @@ variable_declarator: !!perl/hash:RE_ast
           - !!perl/hash:RE_bindnamed
             atom: !!perl/hash:RE_quantified_atom
               atom: !!perl/hash:RE_bracket
-                re: &131 !!perl/hash:RE_any
+                re: &128 !!perl/hash:RE_any
                   altname: variable_declarator_0
                   dba: shape definition
                   dic: STD::P6
@@ -24230,7 +24252,7 @@ variable_declarator: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: getdecl
       rest: ''
-variable_declarator_0: *131
+variable_declarator_0: *128
 version__S_040v: !!perl/hash:RE_ast
   dba: version
   dic: STD::P6
@@ -24277,7 +24299,7 @@ version__S_040v: !!perl/hash:RE_ast
 vnum: !!perl/hash:RE_ast
   dba: vnum
   dic: STD::P6
-  re: &132 !!perl/hash:RE_any
+  re: &129 !!perl/hash:RE_any
     altname: vnum_0
     dba: vnum
     dic: STD::P6
@@ -24293,7 +24315,7 @@ vnum: !!perl/hash:RE_ast
       alt: vnum_0 1
       i: 0
       text: '*'
-vnum_0: *132
+vnum_0: *129
 xblock: !!perl/hash:RE_ast
   dba: xblock
   dic: STD::P6
@@ -24338,10 +24360,10 @@ $self->load_setting($::SETTINGNAME);
 my $oid = $::SETTING->id;
 my $id = 'MY:file<' . $::FILE->{'name'} . '>';
 $::CURLEX = Stash->new(
-                'OUTER::' => [$oid],
-                '!file' => $::FILE, '!line' => 0,
-                '!id' => [$id],
-            );
+'OUTER::' => [$oid],
+'!file' => $::FILE, '!line' => 0,
+'!id' => [$id],
+);
 $ALL->{$id} = $::CURLEX;
 $::UNIT = $::CURLEX;
 $ALL->{'UNIT'} = $::UNIT;
@@ -24356,7 +24378,7 @@ $C->statementlist
 and ($C) = ($C->ws)
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -24411,7 +24433,7 @@ $self->_MATCHIFYr($S, "pblock", do {
 my $C = $C;
 if (($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -24422,38 +24444,38 @@ if (my ($C) = ($C->before(sub {
 my $C=shift;
 if (my ($C) = (do {
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'pblock_0') {
-        $C->deb("Fate passed to pblock_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT pblock_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM pblock_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'pblock_0') {
+$C->deb("Fate passed to pblock_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT pblock_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM pblock_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'pblock_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'pblock_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("pblock_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("pblock_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (my ($C) = ($C->lambda)) { ($C) } else { () }
@@ -24462,11 +24484,11 @@ sub {
 my $C=shift;
 $C->_EXACT("\{")
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 
 })) { ($C) } else { () }
@@ -24499,38 +24521,38 @@ $C->panic("Missing block")}}}, $C)
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'pblock_1') {
-        $C->deb("Fate passed to pblock_1: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT pblock_1';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM pblock_1'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'pblock_1') {
+$C->deb("Fate passed to pblock_1: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT pblock_1';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM pblock_1'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'pblock_1', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'pblock_1', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("pblock_1 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("pblock_1 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (($C) = ($C->_SUBSUMEr(['lambda'], sub {
@@ -24568,11 +24590,11 @@ and ($C) = ($C->getsig)) {
 $C
 } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) {
 $C
@@ -24613,38 +24635,38 @@ my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $self->_MATCHIFYr($S, "lambda", do {
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'lambda_0') {
-        $C->deb("Fate passed to lambda_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT lambda_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM lambda_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'lambda_0') {
+$C->deb("Fate passed to lambda_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT lambda_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM lambda_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'lambda_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'lambda_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("lambda_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("lambda_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_EXACT("\-\>")
@@ -24653,11 +24675,11 @@ sub {
 my $C=shift;
 $C->_EXACT("\<\-\>")
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 
 });
@@ -24711,7 +24733,7 @@ $self->_MATCHIFYr($S, "block", do {
 my $C = $C;
 if (($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -24766,38 +24788,38 @@ if (($C) = ($C->finishlex)
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'blockoid_0') {
-        $C->deb("Fate passed to blockoid_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT blockoid_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM blockoid_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'blockoid_0') {
+$C->deb("Fate passed to blockoid_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT blockoid_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM blockoid_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'blockoid_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'blockoid_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("blockoid_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("blockoid_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (($C) = ($C->_EXACT("\{YOU_ARE_HERE\}"))
@@ -24820,7 +24842,7 @@ $C->statementlist
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -24864,11 +24886,11 @@ and ($C) = ($C->panic("Malformed block"))) {
 $C
 } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) {
 $C
@@ -24891,7 +24913,7 @@ my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $self->_MATCHIFYr($S, "curlycheck", $C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -24980,7 +25002,7 @@ scalar(do {
 my $M = $C;
 my $kv = $M->{'quotepair'}->[-1];
 $lang = ($lang->tweak($kv->{'k'}, $kv->{'v'})
-                    or $lang->panic("Unrecognized adverb :" . $kv->{'k'} . '(' . $kv->{'v'} . ')'));
+or $lang->panic("Unrecognized adverb :" . $kv->{'k'} . '(' . $kv->{'v'} . ')'));
 }, $C)
 } else { () }
 }))) { ($C) } else { () }
@@ -24988,38 +25010,38 @@ $lang = ($lang->tweak($kv->{'k'}, $kv->{'v'})
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'regex_block_0') {
-        $C->deb("Fate passed to regex_block_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT regex_block_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM regex_block_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'regex_block_0') {
+$C->deb("Fate passed to regex_block_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT regex_block_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM regex_block_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'regex_block_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'regex_block_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("regex_block_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("regex_block_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (($C) = ($C->_EXACT("\{\*\}"))
@@ -25043,7 +25065,7 @@ $C->nibble( $C->cursor_fresh($lang)->unbalanced('}') )
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -25063,11 +25085,11 @@ $C
 } else { () }
 }))) { ($C) } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))
 and ($C) = ($C->curlycheck)) {
@@ -25097,38 +25119,38 @@ if (($C) = ($C->ws)
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'statementlist_0') {
-        $C->deb("Fate passed to statementlist_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT statementlist_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM statementlist_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'statementlist_0') {
+$C->deb("Fate passed to statementlist_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT statementlist_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM statementlist_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'statementlist_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'statementlist_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("statementlist_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("statementlist_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (($C) = ($C->_PATTERN(qr/\G\z/))
@@ -25173,11 +25195,11 @@ my $M = $C;
 $self->mark_sinks($M->{'statement'}) }, $C)
 } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) {
 $C
@@ -25206,38 +25228,38 @@ if (($C) = ($C->ws)
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'semilist_0') {
-        $C->deb("Fate passed to semilist_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT semilist_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM semilist_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'semilist_0') {
+$C->deb("Fate passed to semilist_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT semilist_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM semilist_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'semilist_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'semilist_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("semilist_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("semilist_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (my ($C) = ($C->before(sub {
@@ -25273,11 +25295,11 @@ and ($C) = ($C->ws)) {
 $C
 } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) {
 $C
@@ -25376,38 +25398,38 @@ $C = $::LANG{'MAIN'}->bless($C);
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'statement_0') {
-        $C->deb("Fate passed to statement_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT statement_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM statement_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'statement_0') {
+$C->deb("Fate passed to statement_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT statement_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM statement_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'statement_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'statement_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("statement_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("statement_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (my ($C) = ($C->_SUBSUMEr(['label'], sub {
@@ -25435,7 +25457,7 @@ $C->EXPR
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -25457,38 +25479,38 @@ my $C=shift;
 if (my ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'statement_1') {
-        $C->deb("Fate passed to statement_1: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT statement_1';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM statement_1'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'statement_1') {
+$C->deb("Fate passed to statement_1: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT statement_1';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM statement_1'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'statement_1', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'statement_1', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("statement_1 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("statement_1 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (my ($C) = ($C->_SUBSUMEr(['statement_mod_loop'], sub {
@@ -25514,7 +25536,7 @@ $C->statement_mod_cond
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -25548,11 +25570,11 @@ $C->statement_mod_loop
 $C
 } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) { ($C) } else { () }
 })
@@ -25597,11 +25619,11 @@ and ($C) = ($C->panic("Bogus statement"))) {
 $C
 } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) {
 $C->_OPTr(sub {
@@ -25620,38 +25642,38 @@ if (my ($C) = ($C->before(sub {
 my $C=shift;
 if (my ($C) = (do {
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'statement_2') {
-        $C->deb("Fate passed to statement_2: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT statement_2';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM statement_2'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'statement_2') {
+$C->deb("Fate passed to statement_2: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT statement_2';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM statement_2'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'statement_2', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'statement_2', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("statement_2 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("statement_2 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_EXACT("\;")
@@ -25668,11 +25690,11 @@ sub {
 my $C=shift;
 $C->_EXACT("\}")
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 
 })) { ($C) } else { () }
@@ -25708,7 +25730,7 @@ my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $self->_MATCHIFYr($S, "eat_terminator", $C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -25738,38 +25760,38 @@ if (my ($C) = ($C->before(sub {
 my $C=shift;
 if (my ($C) = (do {
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'eat_terminator_0') {
-        $C->deb("Fate passed to eat_terminator_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT eat_terminator_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM eat_terminator_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'eat_terminator_0') {
+$C->deb("Fate passed to eat_terminator_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT eat_terminator_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM eat_terminator_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'eat_terminator_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'eat_terminator_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("eat_terminator_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("eat_terminator_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_EXACT("\)")
@@ -25782,11 +25804,11 @@ sub {
 my $C=shift;
 $C->_EXACT("\}")
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 
 })) { ($C) } else { () }
@@ -25884,38 +25906,38 @@ my $C=shift;
 if (my ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'statement_control__S_000need_0') {
-        $C->deb("Fate passed to statement_control__S_000need_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT statement_control__S_000need_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM statement_control__S_000need_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'statement_control__S_000need_0') {
+$C->deb("Fate passed to statement_control__S_000need_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT statement_control__S_000need_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM statement_control__S_000need_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'statement_control__S_000need_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'statement_control__S_000need_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("statement_control__S_000need_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("statement_control__S_000need_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (($C) = ($C->_SUBSUMEr(['version'], sub {
@@ -25943,11 +25965,11 @@ $C->do_need($longname->{'name'});
 }}, $C)
 } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) { ($C) } else { () }
 }))
@@ -25983,7 +26005,7 @@ $C->term
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -26044,38 +26066,38 @@ and ($C) = ($C->ws)
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'statement_control__S_002use_0') {
-        $C->deb("Fate passed to statement_control__S_002use_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT statement_control__S_002use_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM statement_control__S_002use_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'statement_control__S_002use_0') {
+$C->deb("Fate passed to statement_control__S_002use_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT statement_control__S_002use_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM statement_control__S_002use_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'statement_control__S_002use_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'statement_control__S_002use_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("statement_control__S_002use_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("statement_control__S_002use_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_SUBSUMEr(['version'], sub {
@@ -26098,7 +26120,7 @@ $::MONKEY_TYPING = 1};
 }}, $C))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -26129,11 +26151,11 @@ $C->do_use($longname->{'name'}, '')}}, $C)
 $C
 } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))
 and ($C) = ($C->ws)
@@ -26222,38 +26244,38 @@ if (($C) = ($C->ws)
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'statement_control__S_004if_0') {
-        $C->deb("Fate passed to statement_control__S_004if_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT statement_control__S_004if_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM statement_control__S_004if_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'statement_control__S_004if_0') {
+$C->deb("Fate passed to statement_control__S_004if_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT statement_control__S_004if_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM statement_control__S_004if_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'statement_control__S_004if_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'statement_control__S_004if_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("statement_control__S_004if_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("statement_control__S_004if_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (($C) = ($C->_PATTERN(qr/\Gelse[\x20\t\r]*+if/))
@@ -26279,11 +26301,11 @@ and ($C) = ($C->ws)) {
 $C
 } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) {
 $C
@@ -26344,7 +26366,7 @@ $C->xblock
 and ($C) = ($C->ws)
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -26508,38 +26530,38 @@ and ($C) = ($C->ws)
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'statement_control__S_008repeat_0') {
-        $C->deb("Fate passed to statement_control__S_008repeat_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT statement_control__S_008repeat_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM statement_control__S_008repeat_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'statement_control__S_008repeat_0') {
+$C->deb("Fate passed to statement_control__S_008repeat_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT statement_control__S_008repeat_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM statement_control__S_008repeat_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'statement_control__S_008repeat_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'statement_control__S_008repeat_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("statement_control__S_008repeat_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("statement_control__S_008repeat_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (($C) = ($C->_SUBSUMEr(['wu'], sub {
@@ -26547,38 +26569,38 @@ my $C = shift;
 $C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'statement_control__S_008repeat_1') {
-        $C->deb("Fate passed to statement_control__S_008repeat_1: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT statement_control__S_008repeat_1';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM statement_control__S_008repeat_1'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'statement_control__S_008repeat_1') {
+$C->deb("Fate passed to statement_control__S_008repeat_1: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT statement_control__S_008repeat_1';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM statement_control__S_008repeat_1'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'statement_control__S_008repeat_1', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'statement_control__S_008repeat_1', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("statement_control__S_008repeat_1 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("statement_control__S_008repeat_1 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_EXACT("while")
@@ -26587,11 +26609,11 @@ sub {
 my $C=shift;
 $C->_EXACT("until")
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 })
 }))
@@ -26617,38 +26639,38 @@ my $C = shift;
 $C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'statement_control__S_008repeat_2') {
-        $C->deb("Fate passed to statement_control__S_008repeat_2: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT statement_control__S_008repeat_2';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM statement_control__S_008repeat_2'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'statement_control__S_008repeat_2') {
+$C->deb("Fate passed to statement_control__S_008repeat_2: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT statement_control__S_008repeat_2';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM statement_control__S_008repeat_2'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'statement_control__S_008repeat_2', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'statement_control__S_008repeat_2', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("statement_control__S_008repeat_2 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("statement_control__S_008repeat_2 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_EXACT("while")
@@ -26657,17 +26679,17 @@ sub {
 my $C=shift;
 $C->_EXACT("until")
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 })
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -26695,11 +26717,11 @@ and ($C) = ($C->ws)) {
 $C
 } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) {
 $C
@@ -26738,7 +26760,7 @@ my $C = $C;
 if (($C) = ($C->_EXACT("\("))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -27001,85 +27023,10 @@ my $C = $C;
 if (($C) = ($C->_EXACT("when"))
 and ($C) = ($C->spacey)
 and ($C) = ($C->ws)
-and ($C) = ($C->_OPTr(sub {
+and ($C) = ($C->before(sub {
 my $C=shift;
-if (my ($C) = ($C->before(sub {
-my $C=shift;
-if (my ($C) = ($C->before(sub {
-my $C=shift;
-$C->{'0'} = [];
-do {
-my $C = $C;
-if (($C) = ($C->ws)
-and ($C) = ($C->_SUBSUMEr(['0'], sub {
-my $C = shift;
-$C->_PAREN( sub {
-my $C=shift;
-if (my ($C) = (do {
-do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
-
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'statement_control__S_013when_0') {
-        $C->deb("Fate passed to statement_control__S_013when_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT statement_control__S_013when_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM statement_control__S_013when_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
-
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'statement_control__S_013when_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
-
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
-
-        $C->deb("statement_control__S_013when_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
-sub {
-my $C=shift;
-$C->_EXACT("True")
-},
-sub {
-my $C=shift;
-$C->_EXACT("False")
-}
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
-};
-
-})) { ($C) } else { () }
-
-})
+if (my ($C) = ($C->dumbsmart)) { ($C) } else { () }
 }))
-and ($C) = ($C->_PATTERN(qr/\G\b/))
-and ($C) = (do {
-my $M = $C;
-$C->dumbsmart($M->{0}->Str)
-})) {
-$C
-} else { () }
-};
-}))) { ($C) } else { () }
-}))) { ($C) } else { () }
-}))
-and ($C) = ($C->ws)
 and ($C) = ($C->_SUBSUMEr(['xblock'], sub {
 my $C = shift;
 $C->xblock
@@ -27636,7 +27583,7 @@ $C
 });
 }
 ;
-## rule statement_mod_cond:when   {<sym> <?before \h*('True'|'False')»<.dumbsmart($0[0].Str)>>? <modifi
+## rule statement_mod_cond:when   {<sym> <?dumbsmart> <modifier_expr> }
 sub statement_mod_cond__S_034when__PEEK { $_[0]->_AUTOLEXpeek('statement_mod_cond__S_034when', $retree) }
 sub statement_mod_cond__S_034when {
 no warnings 'recursion';
@@ -27655,86 +27602,10 @@ my $C = $C;
 if (($C) = ($C->_EXACT("when"))
 and ($C) = ($C->nofun)
 and ($C) = ($C->ws)
-and ($C) = ($C->_OPTr(sub {
+and ($C) = ($C->before(sub {
 my $C=shift;
-if (my ($C) = ($C->before(sub {
-my $C=shift;
-if (my ($C) = ($C->before(sub {
-my $C=shift;
-$C->{'0'} = [];
-do {
-my $C = $C;
-if (($C) = ($C->ws)
-and ($C) = ($C->_PATTERN(qr/\G[\x20\t\r]*+/))
-and ($C) = ($C->_SUBSUMEr(['0'], sub {
-my $C = shift;
-$C->_PAREN( sub {
-my $C=shift;
-if (my ($C) = (do {
-do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
-
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'statement_mod_cond__S_034when_0') {
-        $C->deb("Fate passed to statement_mod_cond__S_034when_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT statement_mod_cond__S_034when_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM statement_mod_cond__S_034when_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
-
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'statement_mod_cond__S_034when_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
-
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
-
-        $C->deb("statement_mod_cond__S_034when_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
-sub {
-my $C=shift;
-$C->_EXACT("True")
-},
-sub {
-my $C=shift;
-$C->_EXACT("False")
-}
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
-};
-
-})) { ($C) } else { () }
-
-})
+if (my ($C) = ($C->dumbsmart)) { ($C) } else { () }
 }))
-and ($C) = ($C->_PATTERN(qr/\G\b/))
-and ($C) = (do {
-my $M = $C;
-$C->dumbsmart($M->{0}->[0]->Str)
-})) {
-$C
-} else { () }
-};
-}))) { ($C) } else { () }
-}))) { ($C) } else { () }
-}))
-and ($C) = ($C->ws)
 and ($C) = ($C->_SUBSUMEr(['modifier_expr'], sub {
 my $C = shift;
 $C->modifier_expr
@@ -27909,7 +27780,7 @@ $C->arglist
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -27951,38 +27822,38 @@ my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $self->_MATCHIFYr($S, "vnum", do {
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'vnum_0') {
-        $C->deb("Fate passed to vnum_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT vnum_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM vnum_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'vnum_0') {
+$C->deb("Fate passed to vnum_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT vnum_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM vnum_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'vnum_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'vnum_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("vnum_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("vnum_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_PATTERN(qr/\G\d++/)
@@ -27991,11 +27862,11 @@ sub {
 my $C=shift;
 $C->_EXACT("\*")
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 
 });
@@ -28087,38 +27958,38 @@ my $C = shift;
 $C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'variable_declarator_0') {
-        $C->deb("Fate passed to variable_declarator_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT variable_declarator_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM variable_declarator_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'variable_declarator_0') {
+$C->deb("Fate passed to variable_declarator_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT variable_declarator_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM variable_declarator_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'variable_declarator_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'variable_declarator_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("variable_declarator_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("variable_declarator_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (my ($C) = ($C->_BRACKETr(sub {
@@ -28134,7 +28005,7 @@ $C->signature
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -28158,18 +28029,18 @@ scalar(do {
 given (substr($var,0,1)) {
 when ('&') {
 $C->sorry("The () shape syntax in routine declarations is reserved (maybe use :() to declare a longname?)")}
-                        ;
+;
 when ('@') {
 $C->sorry("The () shape syntax in array declarations is reserved")}
-                        ;
+;
 when ('%') {
 $C->sorry("The () shape syntax in hash declarations is reserved")}
-                        ;
+;
 default {
 $C->sorry("The () shape syntax in variable declarations is reserved")}
-                    ;
+;
 }
-                }}, $C)
+}}, $C)
 } else { () }
 },
 sub {
@@ -28187,7 +28058,7 @@ $C->semilist
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -28222,7 +28093,7 @@ $C->semilist
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -28260,11 +28131,11 @@ $C->postcircumfix
 })
 } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 })
 })
@@ -28309,7 +28180,7 @@ my $C = $self->cursor_xact("RULE scoped");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{'typename'} = [];
-$self->_MATCHIFYr($S, "scoped", do {my $C = $C->cursor_xact('ALT ||');
+$self->_MATCHIFYr($S, "scoped", do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -28319,38 +28190,38 @@ if (($C) = ($C->ws)
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'scoped_0') {
-        $C->deb("Fate passed to scoped_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT scoped_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM scoped_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'scoped_0') {
+$C->deb("Fate passed to scoped_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT scoped_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM scoped_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'scoped_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'scoped_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("scoped_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("scoped_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (($C) = ($C->_SUBSUMEr(['declarator'], sub {
@@ -28421,11 +28292,11 @@ and ($C) = ($C->ws)) {
 $C
 } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) {
 $C
@@ -28884,7 +28755,7 @@ and ($C) = ($C->spacey)
 and ($C) = ($C->ws)
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -28997,7 +28868,7 @@ my $S = $C->{'_pos'};
 $C->{'longname'} = [];
 $C->{'signature'} = [];
 $C->{'trait'} = [];
-$self->_MATCHIFYr($S, "package_def", do {my $C = $C->cursor_xact('ALT ||');
+$self->_MATCHIFYr($S, "package_def", do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -29052,7 +28923,7 @@ $C->signature
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -29090,7 +28961,7 @@ and ($C) = ($C->getdecl)
 and ($C) = ($C->ws)
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -29123,6 +28994,8 @@ $self->deb("added my " . $::CURPKG->id) if $::DEBUG & DEBUG::symtab;
 $::begin_compunit = 0;
 $::UNIT->{'$?LONGNAME'} ||= $longname ? $longname->{'name'}->Str : '';
 }}, $C))
+and ($C) = (scalar(do {
+$::IN_DECL = ''}, $C))
 and ($C) = ($C->_SUBSUMEr(['blockoid'], sub {
 my $C = shift;
 $C->blockoid
@@ -29153,7 +29026,7 @@ $C->_EXACT("\;")
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -29173,18 +29046,10 @@ my $shortname = $longname->{'name'}->Str;
 $::CURPKG = $::NEWPKG // $::CURPKG->{$shortname . '::'};
 $::begin_compunit = 0;
 $::CURLEX = $outer;
-if ($shortname eq 'CORE' and $::CORE->id =~ /NULL/) {
-$::UNIT->{'OUTER::'} = [''];
-$::CORE = $::UNIT;
-$::SETTING = $::UNIT;
-$ALL = {
-CORE => $::UNIT,
-                                SETTING => $::UNIT,
-                                $::UNIT->id => $::UNIT,
-                            };
-};
 $::UNIT->{'$?LONGNAME'} = $longname->{'name'}->Str;
 }}, $C))
+and ($C) = (scalar(do {
+$::IN_DECL = ''}, $C))
 and ($C) = ($C->_SUBSUMEr(['statementlist'], sub {
 my $C = shift;
 $C->statementlist
@@ -29268,38 +29133,38 @@ $C->{'trait'} = [];
 $self->_MATCHIFYr($S, "declarator", $C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'declarator_0') {
-        $C->deb("Fate passed to declarator_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT declarator_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM declarator_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'declarator_0') {
+$C->deb("Fate passed to declarator_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT declarator_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM declarator_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'declarator_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'declarator_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("declarator_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("declarator_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (my ($C) = ($C->_SUBSUMEr(['variable_declarator'], sub {
@@ -29344,7 +29209,7 @@ $C->signature
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -29393,11 +29258,11 @@ my $C = shift;
 $C->type_declarator
 })
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }));
 }
@@ -29423,7 +29288,7 @@ and ($C) = ($C->spacey)
 and ($C) = ($C->ws)
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -29476,7 +29341,7 @@ and ($C) = ($C->spacey)
 and ($C) = ($C->ws)
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -29529,7 +29394,7 @@ and ($C) = ($C->spacey)
 and ($C) = ($C->ws)
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -29808,7 +29673,7 @@ $C->signature(++$signum)
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -29849,21 +29714,21 @@ my $startsym = $statements->[0]->{'EXPR'}->{'sym'} // '';
 given ($startsym) {
 when ('...') {
 $::DECLARAND->{'stub'} = 1 }
-                ;
+;
 when ('!!!') {
 $::DECLARAND->{'stub'} = 1 }
-                ;
+;
 when ('???') {
 $::DECLARAND->{'stub'} = 1 }
-                ;
+;
 when ('*') {
 if ($::MULTINESS eq 'proto' and $statements->elems == 1) {
 delete $self->{'blockoid'};
 $self->{'onlystar'} = 1;
 }}
-            ;
+;
 }
-        ;
+;
 };
 return $self;
 };
@@ -29885,7 +29750,7 @@ $C->{'deflongname'} = [];
 $C->{'multisig'} = [];
 $C->{'sigil'} = [];
 $C->{'trait'} = [];
-$self->_MATCHIFYr($S, "routine_def", do {my $C = $C->cursor_xact('ALT ||');
+$self->_MATCHIFYr($S, "routine_def", do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -29899,38 +29764,38 @@ my $C=shift;
 if (my ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'routine_def_0') {
-        $C->deb("Fate passed to routine_def_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT routine_def_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM routine_def_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'routine_def_0') {
+$C->deb("Fate passed to routine_def_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT routine_def_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM routine_def_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'routine_def_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'routine_def_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("routine_def_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("routine_def_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (($C) = ($C->ws)
@@ -29964,11 +29829,11 @@ and ($C) = ($C->ws)) {
 $C
 } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) { ($C) } else { () }
 }))
@@ -29980,38 +29845,38 @@ my $C=shift;
 if (my ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'routine_def_1') {
-        $C->deb("Fate passed to routine_def_1: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT routine_def_1';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM routine_def_1'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'routine_def_1') {
+$C->deb("Fate passed to routine_def_1: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT routine_def_1';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM routine_def_1'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'routine_def_1', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'routine_def_1', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("routine_def_1 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("routine_def_1 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (($C) = ($C->ws)
@@ -30034,11 +29899,11 @@ and ($C) = ($C->ws)) {
 $C
 } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) { ($C) } else { () }
 }))
@@ -30115,7 +29980,7 @@ my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{'multisig'} = [];
 $C->{'trait'} = [];
-$self->_MATCHIFYr($S, "method_def", do {my $C = $C->cursor_xact('ALT ||');
+$self->_MATCHIFYr($S, "method_def", do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -30129,38 +29994,38 @@ my $C=shift;
 if (($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'method_def_0') {
-        $C->deb("Fate passed to method_def_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT method_def_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM method_def_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'method_def_0') {
+$C->deb("Fate passed to method_def_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT method_def_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM method_def_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'method_def_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'method_def_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("method_def_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("method_def_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (($C) = ($C->_SUBSUMEr(['type'], sub {
@@ -30180,38 +30045,38 @@ my $C=shift;
 if (my ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'method_def_1') {
-        $C->deb("Fate passed to method_def_1: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT method_def_1';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM method_def_1'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'method_def_1') {
+$C->deb("Fate passed to method_def_1: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT method_def_1';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM method_def_1'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'method_def_1', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'method_def_1', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("method_def_1 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("method_def_1 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (($C) = ($C->ws)
@@ -30234,11 +30099,11 @@ and ($C) = ($C->ws)) {
 $C
 } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) { ($C) } else { () }
 }))
@@ -30276,38 +30141,38 @@ and ($C) = ($C->ws)
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'method_def_2') {
-        $C->deb("Fate passed to method_def_2: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT method_def_2';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM method_def_2'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'method_def_2') {
+$C->deb("Fate passed to method_def_2: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT method_def_2';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM method_def_2'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'method_def_2', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'method_def_2', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("method_def_2 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("method_def_2 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (($C) = ($C->_BRACKETr(sub {
@@ -30323,7 +30188,7 @@ $C->signature
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -30361,7 +30226,7 @@ $C->signature
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -30399,7 +30264,7 @@ $C->signature
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -30441,11 +30306,11 @@ and ($C) = ($C->ws)) {
 $C
 } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))
 and ($C) = ($C->_STARr(sub {
@@ -30466,11 +30331,11 @@ my $C=shift;
 $C
 }))) { ($C) } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))
 and ($C) = (scalar(do {
@@ -30525,7 +30390,7 @@ my $S = $C->{'_pos'};
 $C->{'deflongname'} = [];
 $C->{'signature'} = [];
 $C->{'trait'} = [];
-$self->_MATCHIFYr($S, "regex_def", do {my $C = $C->cursor_xact('ALT ||');
+$self->_MATCHIFYr($S, "regex_def", do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -30543,38 +30408,38 @@ my $C=shift;
 if (my ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'regex_def_0') {
-        $C->deb("Fate passed to regex_def_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT regex_def_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM regex_def_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'regex_def_0') {
+$C->deb("Fate passed to regex_def_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT regex_def_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM regex_def_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'regex_def_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'regex_def_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("regex_def_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("regex_def_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (($C) = ($C->ws)
@@ -30601,11 +30466,11 @@ and ($C) = ($C->ws)) {
 $C
 } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) { ($C) } else { () }
 }))
@@ -30617,38 +30482,38 @@ my $C=shift;
 if (my ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'regex_def_1') {
-        $C->deb("Fate passed to regex_def_1: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT regex_def_1';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM regex_def_1'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'regex_def_1') {
+$C->deb("Fate passed to regex_def_1: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT regex_def_1';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM regex_def_1'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'regex_def_1', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'regex_def_1', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("regex_def_1 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("regex_def_1 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (($C) = ($C->ws)
@@ -30679,11 +30544,11 @@ and ($C) = ($C->ws)) {
 $C
 } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) { ($C) } else { () }
 }))
@@ -30759,7 +30624,7 @@ my $S = $C->{'_pos'};
 $C->{'deflongname'} = [];
 $C->{'multisig'} = [];
 $C->{'trait'} = [];
-$self->_MATCHIFYr($S, "macro_def", do {my $C = $C->cursor_xact('ALT ||');
+$self->_MATCHIFYr($S, "macro_def", do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -30773,38 +30638,38 @@ my $C=shift;
 if (my ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'macro_def_0') {
-        $C->deb("Fate passed to macro_def_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT macro_def_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM macro_def_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'macro_def_0') {
+$C->deb("Fate passed to macro_def_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT macro_def_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM macro_def_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'macro_def_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'macro_def_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("macro_def_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("macro_def_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (($C) = ($C->ws)
@@ -30831,11 +30696,11 @@ and ($C) = ($C->ws)) {
 $C
 } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) { ($C) } else { () }
 }))
@@ -30847,38 +30712,38 @@ my $C=shift;
 if (my ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'macro_def_1') {
-        $C->deb("Fate passed to macro_def_1: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT macro_def_1';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM macro_def_1'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'macro_def_1') {
+$C->deb("Fate passed to macro_def_1: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT macro_def_1';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM macro_def_1'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'macro_def_1', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'macro_def_1', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("macro_def_1 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("macro_def_1 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (($C) = ($C->ws)
@@ -30901,11 +30766,11 @@ and ($C) = ($C->ws)) {
 $C
 } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) { ($C) } else { () }
 }))
@@ -30983,38 +30848,38 @@ if (($C) = ($C->ws)
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'trait_0') {
-        $C->deb("Fate passed to trait_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT trait_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM trait_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'trait_0') {
+$C->deb("Fate passed to trait_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT trait_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM trait_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'trait_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'trait_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("trait_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("trait_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (($C) = ($C->_SUBSUMEr(['trait_mod'], sub {
@@ -31035,11 +30900,11 @@ and ($C) = ($C->ws)) {
 $C
 } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) {
 $C
@@ -31206,38 +31071,38 @@ my $C = $C;
 if (($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'trait_mod__S_073of_0') {
-        $C->deb("Fate passed to trait_mod__S_073of_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT trait_mod__S_073of_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM trait_mod__S_073of_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'trait_mod__S_073of_0') {
+$C->deb("Fate passed to trait_mod__S_073of_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT trait_mod__S_073of_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM trait_mod__S_073of_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'trait_mod__S_073of_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'trait_mod__S_073of_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("trait_mod__S_073of_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("trait_mod__S_073of_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_EXACT("of")
@@ -31246,11 +31111,11 @@ sub {
 my $C=shift;
 $C->_EXACT("returns")
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))
 and ($C) = ($C->ws)
@@ -31377,38 +31242,38 @@ my $S = $C->{'_pos'};
 $self->_MATCHIFYr($S, "nulltermish", $C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'nulltermish_0') {
-        $C->deb("Fate passed to nulltermish_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT nulltermish_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM nulltermish_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'nulltermish_0') {
+$C->deb("Fate passed to nulltermish_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT nulltermish_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM nulltermish_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'nulltermish_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'nulltermish_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("nulltermish_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("nulltermish_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (my ($C) = ($C->before(sub {
@@ -31437,11 +31302,11 @@ my $C=shift;
 $C
 }))) { ($C) } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }));
 }
@@ -31465,38 +31330,38 @@ my $C = $C;
 if (($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'termish_0') {
-        $C->deb("Fate passed to termish_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT termish_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM termish_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'termish_0') {
+$C->deb("Fate passed to termish_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT termish_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM termish_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'termish_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'termish_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("termish_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("termish_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (($C) = ($C->_SUBSUMEr(['PRE'], sub {
@@ -31525,7 +31390,7 @@ $C->PRE
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -31566,16 +31431,16 @@ my $C = shift;
 $C->term
 })
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -31588,21 +31453,25 @@ $::QSIGIL })
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
 push @gather, do {
-if (my ($C) = ($C->before(sub {
+my $C = $C;
+if (($C) = ($C->before(sub {
 my $C=shift;
 (($C) x !!do {
 $::QSIGIL eq '$' })
-}))) {
-$C->_OPTr(sub {
+}))
+and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-if (my ($C) = ($C->_BRACKETr(sub {
-my $C=shift;
-STD::LazyMap::lazymap(sub {
+do {    my $C = $C->cursor_xact('ALT ||');
+my $xact = $C->xact;
+my @gather;
+do {
+push @gather, do {
+if (my ($C) = (STD::LazyMap::lazymap(sub {
 my $C=shift;
 if (my ($C) = ($C->before(sub {
 my $C=shift;
@@ -31629,9 +31498,20 @@ $C->POST
 })
 } else { () }
 }))) { ($C) } else { () }
-}))
-}))) { ($C) } else { () }
-})
+})))) { ($C) } else { () }
+
+}
+}
+or $xact->[-2] or
+do {
+push @gather, scalar(do {
+my $M = $C;
+$M->{'POST'} = [] }, $C)
+};
+@gather;
+}
+}))) {
+$C
 } else { () }
 
 }
@@ -31818,38 +31698,38 @@ if (my ($C) = ($C->before(sub {
 my $C=shift;
 if (my ($C) = (do {
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'term__S_080multi_declarator_0') {
-        $C->deb("Fate passed to term__S_080multi_declarator_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT term__S_080multi_declarator_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM term__S_080multi_declarator_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'term__S_080multi_declarator_0') {
+$C->deb("Fate passed to term__S_080multi_declarator_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT term__S_080multi_declarator_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM term__S_080multi_declarator_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'term__S_080multi_declarator_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'term__S_080multi_declarator_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("term__S_080multi_declarator_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("term__S_080multi_declarator_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_EXACT("multi")
@@ -31862,11 +31742,11 @@ sub {
 my $C=shift;
 $C->_EXACT("only")
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 
 })) { ($C) } else { () }
@@ -32127,38 +32007,38 @@ my $S = $C->{'_pos'};
 $self->_MATCHIFYr($S, "coloncircumfix", $C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'coloncircumfix_0') {
-        $C->deb("Fate passed to coloncircumfix_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT coloncircumfix_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM coloncircumfix_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'coloncircumfix_0') {
+$C->deb("Fate passed to coloncircumfix_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT coloncircumfix_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM coloncircumfix_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'coloncircumfix_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'coloncircumfix_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("coloncircumfix_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("coloncircumfix_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (($C) = ($C->_EXACT("\<\>"))
@@ -32173,11 +32053,11 @@ my $C = shift;
 $C->circumfix
 })
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }));
 }
@@ -32200,45 +32080,45 @@ if (($C) = ($C->_EXACT("\:"))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'colonpair_0') {
-        $C->deb("Fate passed to colonpair_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT colonpair_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM colonpair_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'colonpair_0') {
+$C->deb("Fate passed to colonpair_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT colonpair_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM colonpair_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'colonpair_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'colonpair_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("colonpair_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("colonpair_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (($C) = ($C->_EXACT("\!"))
 and ($C) = ($C->_COMMITLTM())
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -32326,7 +32206,7 @@ my $M = $C;
 $key = $M->{'identifier'}->Str}, $C))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -32373,7 +32253,7 @@ $C->fakesignature
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -32423,38 +32303,38 @@ and ($C) = (scalar(do {
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'colonpair_1') {
-        $C->deb("Fate passed to colonpair_1: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT colonpair_1';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM colonpair_1'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'colonpair_1') {
+$C->deb("Fate passed to colonpair_1: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT colonpair_1';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM colonpair_1'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'colonpair_1', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'colonpair_1', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("colonpair_1 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("colonpair_1 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (my ($C) = ($C->_OPTr(sub {
@@ -32480,11 +32360,11 @@ $C->desigilname
 $C->_EXACT("\>")
 } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) {
 $C
@@ -32501,11 +32381,11 @@ $C->check_variable($value);
 }, $C)
 } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) {
 scalar(do {
@@ -32589,38 +32469,38 @@ and ($C) = (scalar(do {
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'special_variable__S_093DollarBangCur_Ly_0') {
-        $C->deb("Fate passed to special_variable__S_093DollarBangCur_Ly_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT special_variable__S_093DollarBangCur_Ly_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM special_variable__S_093DollarBangCur_Ly_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'special_variable__S_093DollarBangCur_Ly_0') {
+$C->deb("Fate passed to special_variable__S_093DollarBangCur_Ly_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT special_variable__S_093DollarBangCur_Ly_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM special_variable__S_093DollarBangCur_Ly_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'special_variable__S_093DollarBangCur_Ly_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'special_variable__S_093DollarBangCur_Ly_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("special_variable__S_093DollarBangCur_Ly_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("special_variable__S_093DollarBangCur_Ly_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_SUBSUMEr(['identifier'], sub {
@@ -32635,16 +32515,16 @@ my $C = shift;
 $C->statementlist
 })
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -32710,7 +32590,7 @@ $C
 }))) { ($C) } else { () }
 }))
 and ($C) = ($C->obs('$/ variable as input record separator',
-                 "the filehandle's :irs attribute"))) {
+"the filehandle's :irs attribute"))) {
 $C
 } else { () }
 }))) { ($C) } else { () }
@@ -32743,38 +32623,38 @@ if (my ($C) = ($C->before(sub {
 my $C=shift;
 if (my ($C) = (do {
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'special_variable__S_095DollarTilde_0') {
-        $C->deb("Fate passed to special_variable__S_095DollarTilde_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT special_variable__S_095DollarTilde_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM special_variable__S_095DollarTilde_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'special_variable__S_095DollarTilde_0') {
+$C->deb("Fate passed to special_variable__S_095DollarTilde_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT special_variable__S_095DollarTilde_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM special_variable__S_095DollarTilde_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'special_variable__S_095DollarTilde_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'special_variable__S_095DollarTilde_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("special_variable__S_095DollarTilde_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("special_variable__S_095DollarTilde_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_PATTERN(qr/\G\s/)
@@ -32794,11 +32674,11 @@ my $C = shift;
 $C->terminator
 })
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 
 })) { ($C) } else { () }
@@ -32834,38 +32714,38 @@ if (my ($C) = ($C->before(sub {
 my $C=shift;
 if (my ($C) = (do {
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'special_variable__S_096DollarGrave_0') {
-        $C->deb("Fate passed to special_variable__S_096DollarGrave_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT special_variable__S_096DollarGrave_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM special_variable__S_096DollarGrave_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'special_variable__S_096DollarGrave_0') {
+$C->deb("Fate passed to special_variable__S_096DollarGrave_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT special_variable__S_096DollarGrave_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM special_variable__S_096DollarGrave_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'special_variable__S_096DollarGrave_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'special_variable__S_096DollarGrave_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("special_variable__S_096DollarGrave_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("special_variable__S_096DollarGrave_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_PATTERN(qr/\G\s/)
@@ -32881,11 +32761,11 @@ my $C = shift;
 $C->terminator
 })
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 
 })) { ($C) } else { () }
@@ -32948,7 +32828,7 @@ if (($C) = ($C->_EXACT("\$\#"))
 and ($C) = ($C->_COMMITLTM())
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -33014,38 +32894,38 @@ if (my ($C) = ($C->before(sub {
 my $C=shift;
 if (my ($C) = (do {
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'special_variable__S_099DollarDollar_0') {
-        $C->deb("Fate passed to special_variable__S_099DollarDollar_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT special_variable__S_099DollarDollar_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM special_variable__S_099DollarDollar_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'special_variable__S_099DollarDollar_0') {
+$C->deb("Fate passed to special_variable__S_099DollarDollar_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT special_variable__S_099DollarDollar_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM special_variable__S_099DollarDollar_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'special_variable__S_099DollarDollar_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'special_variable__S_099DollarDollar_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("special_variable__S_099DollarDollar_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("special_variable__S_099DollarDollar_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_PATTERN(qr/\G\s/)
@@ -33061,11 +32941,11 @@ my $C = shift;
 $C->terminator
 })
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 
 })) { ($C) } else { () }
@@ -33174,38 +33054,38 @@ if (my ($C) = ($C->before(sub {
 my $C=shift;
 if (my ($C) = (do {
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'special_variable__S_102DollarCaret_0') {
-        $C->deb("Fate passed to special_variable__S_102DollarCaret_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT special_variable__S_102DollarCaret_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM special_variable__S_102DollarCaret_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'special_variable__S_102DollarCaret_0') {
+$C->deb("Fate passed to special_variable__S_102DollarCaret_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT special_variable__S_102DollarCaret_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM special_variable__S_102DollarCaret_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'special_variable__S_102DollarCaret_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'special_variable__S_102DollarCaret_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("special_variable__S_102DollarCaret_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("special_variable__S_102DollarCaret_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_PATTERN(qr/\G\s/)
@@ -33225,11 +33105,11 @@ my $C = shift;
 $C->terminator
 })
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 
 })) { ($C) } else { () }
@@ -33265,38 +33145,38 @@ if (my ($C) = ($C->before(sub {
 my $C=shift;
 if (my ($C) = (do {
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'special_variable__S_103DollarAmp_0') {
-        $C->deb("Fate passed to special_variable__S_103DollarAmp_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT special_variable__S_103DollarAmp_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM special_variable__S_103DollarAmp_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'special_variable__S_103DollarAmp_0') {
+$C->deb("Fate passed to special_variable__S_103DollarAmp_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT special_variable__S_103DollarAmp_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM special_variable__S_103DollarAmp_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'special_variable__S_103DollarAmp_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'special_variable__S_103DollarAmp_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("special_variable__S_103DollarAmp_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("special_variable__S_103DollarAmp_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_PATTERN(qr/\G\s/)
@@ -33312,11 +33192,11 @@ my $C = shift;
 $C->terminator
 })
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 
 })) { ($C) } else { () }
@@ -33352,38 +33232,38 @@ if (my ($C) = ($C->before(sub {
 my $C=shift;
 if (my ($C) = (do {
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'special_variable__S_104DollarStar_0') {
-        $C->deb("Fate passed to special_variable__S_104DollarStar_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT special_variable__S_104DollarStar_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM special_variable__S_104DollarStar_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'special_variable__S_104DollarStar_0') {
+$C->deb("Fate passed to special_variable__S_104DollarStar_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT special_variable__S_104DollarStar_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM special_variable__S_104DollarStar_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'special_variable__S_104DollarStar_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'special_variable__S_104DollarStar_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("special_variable__S_104DollarStar_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("special_variable__S_104DollarStar_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_PATTERN(qr/\G\s/)
@@ -33403,11 +33283,11 @@ my $C = shift;
 $C->terminator
 })
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 
 })) { ($C) } else { () }
@@ -33447,38 +33327,38 @@ if (my ($C) = ($C->before(sub {
 my $C=shift;
 if (my ($C) = (do {
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'special_variable__S_105DollarThesis_0') {
-        $C->deb("Fate passed to special_variable__S_105DollarThesis_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT special_variable__S_105DollarThesis_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM special_variable__S_105DollarThesis_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'special_variable__S_105DollarThesis_0') {
+$C->deb("Fate passed to special_variable__S_105DollarThesis_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT special_variable__S_105DollarThesis_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM special_variable__S_105DollarThesis_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'special_variable__S_105DollarThesis_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'special_variable__S_105DollarThesis_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("special_variable__S_105DollarThesis_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("special_variable__S_105DollarThesis_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_PATTERN(qr/\G\s/)
@@ -33494,11 +33374,11 @@ my $C = shift;
 $C->terminator
 })
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 
 })) { ($C) } else { () }
@@ -33534,38 +33414,38 @@ if (my ($C) = ($C->before(sub {
 my $C=shift;
 if (my ($C) = (do {
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'special_variable__S_106DollarMinus_0') {
-        $C->deb("Fate passed to special_variable__S_106DollarMinus_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT special_variable__S_106DollarMinus_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM special_variable__S_106DollarMinus_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'special_variable__S_106DollarMinus_0') {
+$C->deb("Fate passed to special_variable__S_106DollarMinus_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT special_variable__S_106DollarMinus_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM special_variable__S_106DollarMinus_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'special_variable__S_106DollarMinus_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'special_variable__S_106DollarMinus_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("special_variable__S_106DollarMinus_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("special_variable__S_106DollarMinus_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_PATTERN(qr/\G\s/)
@@ -33585,11 +33465,11 @@ my $C = shift;
 $C->terminator
 })
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 
 })) { ($C) } else { () }
@@ -33625,38 +33505,38 @@ if (my ($C) = ($C->before(sub {
 my $C=shift;
 if (my ($C) = (do {
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'special_variable__S_107DollarEqual_0') {
-        $C->deb("Fate passed to special_variable__S_107DollarEqual_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT special_variable__S_107DollarEqual_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM special_variable__S_107DollarEqual_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'special_variable__S_107DollarEqual_0') {
+$C->deb("Fate passed to special_variable__S_107DollarEqual_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT special_variable__S_107DollarEqual_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM special_variable__S_107DollarEqual_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'special_variable__S_107DollarEqual_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'special_variable__S_107DollarEqual_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("special_variable__S_107DollarEqual_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("special_variable__S_107DollarEqual_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_PATTERN(qr/\G\s/)
@@ -33676,11 +33556,11 @@ my $C = shift;
 $C->terminator
 })
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 
 })) { ($C) } else { () }
@@ -33716,38 +33596,38 @@ if (my ($C) = ($C->before(sub {
 my $C=shift;
 if (my ($C) = (do {
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'special_variable__S_108AtPlus_0') {
-        $C->deb("Fate passed to special_variable__S_108AtPlus_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT special_variable__S_108AtPlus_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM special_variable__S_108AtPlus_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'special_variable__S_108AtPlus_0') {
+$C->deb("Fate passed to special_variable__S_108AtPlus_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT special_variable__S_108AtPlus_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM special_variable__S_108AtPlus_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'special_variable__S_108AtPlus_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'special_variable__S_108AtPlus_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("special_variable__S_108AtPlus_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("special_variable__S_108AtPlus_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_PATTERN(qr/\G\s/)
@@ -33763,11 +33643,11 @@ my $C = shift;
 $C->terminator
 })
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 
 })) { ($C) } else { () }
@@ -33803,38 +33683,38 @@ if (my ($C) = ($C->before(sub {
 my $C=shift;
 if (my ($C) = (do {
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'special_variable__S_109PercentPlus_0') {
-        $C->deb("Fate passed to special_variable__S_109PercentPlus_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT special_variable__S_109PercentPlus_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM special_variable__S_109PercentPlus_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'special_variable__S_109PercentPlus_0') {
+$C->deb("Fate passed to special_variable__S_109PercentPlus_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT special_variable__S_109PercentPlus_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM special_variable__S_109PercentPlus_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'special_variable__S_109PercentPlus_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'special_variable__S_109PercentPlus_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("special_variable__S_109PercentPlus_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("special_variable__S_109PercentPlus_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_PATTERN(qr/\G\s/)
@@ -33850,11 +33730,11 @@ my $C = shift;
 $C->terminator
 })
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 
 })) { ($C) } else { () }
@@ -33959,38 +33839,38 @@ if (my ($C) = ($C->before(sub {
 my $C=shift;
 if (my ($C) = (do {
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'special_variable__S_113AtMinus_0') {
-        $C->deb("Fate passed to special_variable__S_113AtMinus_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT special_variable__S_113AtMinus_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM special_variable__S_113AtMinus_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'special_variable__S_113AtMinus_0') {
+$C->deb("Fate passed to special_variable__S_113AtMinus_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT special_variable__S_113AtMinus_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM special_variable__S_113AtMinus_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'special_variable__S_113AtMinus_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'special_variable__S_113AtMinus_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("special_variable__S_113AtMinus_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("special_variable__S_113AtMinus_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_PATTERN(qr/\G\s/)
@@ -34006,11 +33886,11 @@ my $C = shift;
 $C->terminator
 })
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 
 })) { ($C) } else { () }
@@ -34046,38 +33926,38 @@ if (my ($C) = ($C->before(sub {
 my $C=shift;
 if (my ($C) = (do {
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'special_variable__S_114PercentMinus_0') {
-        $C->deb("Fate passed to special_variable__S_114PercentMinus_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT special_variable__S_114PercentMinus_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM special_variable__S_114PercentMinus_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'special_variable__S_114PercentMinus_0') {
+$C->deb("Fate passed to special_variable__S_114PercentMinus_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT special_variable__S_114PercentMinus_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM special_variable__S_114PercentMinus_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'special_variable__S_114PercentMinus_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'special_variable__S_114PercentMinus_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("special_variable__S_114PercentMinus_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("special_variable__S_114PercentMinus_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_PATTERN(qr/\G\s/)
@@ -34093,11 +33973,11 @@ my $C = shift;
 $C->terminator
 })
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 
 })) { ($C) } else { () }
@@ -34202,38 +34082,38 @@ if (my ($C) = ($C->before(sub {
 my $C=shift;
 if (my ($C) = (do {
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'special_variable__S_118DollarPlus_0') {
-        $C->deb("Fate passed to special_variable__S_118DollarPlus_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT special_variable__S_118DollarPlus_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM special_variable__S_118DollarPlus_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'special_variable__S_118DollarPlus_0') {
+$C->deb("Fate passed to special_variable__S_118DollarPlus_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT special_variable__S_118DollarPlus_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM special_variable__S_118DollarPlus_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'special_variable__S_118DollarPlus_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'special_variable__S_118DollarPlus_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("special_variable__S_118DollarPlus_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("special_variable__S_118DollarPlus_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_PATTERN(qr/\G\s/)
@@ -34249,11 +34129,11 @@ my $C = shift;
 $C->terminator
 })
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 
 })) { ($C) } else { () }
@@ -34321,96 +34201,96 @@ when ('$') {
 given ($name) {
 when ('MATCH')         {
 $repl = '$/' }
-                    ;
+;
 when ('PREMATCH')      {
 $repl = 'an explicit pattern before <(' }
-                    ;
+;
 when ('POSTMATCH')     {
 $repl = 'an explicit pattern after )>' }
-                    ;
+;
 when ('ENCODING')      {
 $repl = '$?ENCODING' }
-                    ;
+;
 when ('UNICODE')       {
 $repl = '$?UNICODE' }
-                    ;
+;
 when ('TAINT')         {
 $repl = '$*TAINT' }
-                    ;
+;
 when ('OPEN')          {
 $repl = 'filehandle introspection' }
-                    ;
+;
 when ('N')             {
 $repl = '$-1' }
-                    ;
+;
 when ('L')             {
 $repl = 'Form module' }
-                    ;
+;
 when ('A')             {
 $repl = 'Form module' }
-                    ;
+;
 when ('E')             {
 $repl = '$!.extended_os_error' }
-                    ;
+;
 when ('C')             {
 $repl = 'COMPILING namespace' }
-                    ;
+;
 when ('D')             {
 $repl = '$*DEBUGGING' }
-                    ;
+;
 when ('F')             {
 $repl = '$*SYSTEM_FD_MAX' }
-                    ;
+;
 when ('H')             {
 $repl = '$?FOO variables' }
-                    ;
+;
 when ('I')             {
 $repl = '$*INPLACE' }
-                    ;
+;
 when ('O')             {
 $repl = '$?OS or $*OS' }
-                    ;
+;
 when ('P')             {
 $repl = 'whatever debugger Perl 6 comes with' }
-                    ;
+;
 when ('R')             {
 $repl = 'an explicit result variable' }
-                    ;
+;
 when ('S')             {
 $repl = 'the context function' }
-                    ;
+;
 when ('T')             {
 $repl = '$*BASETIME' }
-                    ;
+;
 when ('V')             {
 $repl = '$*PERL_VERSION' }
-                    ;
+;
 when ('W')             {
 $repl = '$*WARNING' }
-                    ;
+;
 when ('X')             {
 $repl = '$*EXECUTABLE_NAME' }
-                    ;
+;
 default               {
 $repl = "a global form such as $sigil*$name" }
-                ;
+;
 }
-            }
-            ;
+}
+;
 when ('%') {
 given ($name) {
 when ('H')             {
 $repl = '$?FOO variables' }
-                    ;
+;
 default               {
 $repl = "a global form such as $sigil*$name" }
-                ;
+;
 }
-            }
-            ;
+}
+;
 default {
 $repl = "a global form such as $sigil*$name" }
-        ;
+;
 };
 return $self->obs("$var variable", $repl);
 };
@@ -34520,38 +34400,38 @@ if (my ($C) = ($C->before(sub {
 my $C=shift;
 if (my ($C) = (do {
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'special_variable__S_122DollarBra_0') {
-        $C->deb("Fate passed to special_variable__S_122DollarBra_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT special_variable__S_122DollarBra_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM special_variable__S_122DollarBra_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'special_variable__S_122DollarBra_0') {
+$C->deb("Fate passed to special_variable__S_122DollarBra_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT special_variable__S_122DollarBra_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM special_variable__S_122DollarBra_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'special_variable__S_122DollarBra_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'special_variable__S_122DollarBra_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("special_variable__S_122DollarBra_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("special_variable__S_122DollarBra_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_PATTERN(qr/\G\s/)
@@ -34571,11 +34451,11 @@ my $C = shift;
 $C->terminator
 })
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 
 })) { ($C) } else { () }
@@ -34611,38 +34491,38 @@ if (my ($C) = ($C->before(sub {
 my $C=shift;
 if (my ($C) = (do {
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'special_variable__S_123DollarKet_0') {
-        $C->deb("Fate passed to special_variable__S_123DollarKet_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT special_variable__S_123DollarKet_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM special_variable__S_123DollarKet_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'special_variable__S_123DollarKet_0') {
+$C->deb("Fate passed to special_variable__S_123DollarKet_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT special_variable__S_123DollarKet_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM special_variable__S_123DollarKet_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'special_variable__S_123DollarKet_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'special_variable__S_123DollarKet_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("special_variable__S_123DollarKet_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("special_variable__S_123DollarKet_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_PATTERN(qr/\G\s/)
@@ -34658,11 +34538,11 @@ my $C = shift;
 $C->terminator
 })
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 
 })) { ($C) } else { () }
@@ -34698,38 +34578,38 @@ if (my ($C) = ($C->before(sub {
 my $C=shift;
 if (my ($C) = (do {
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'special_variable__S_124DollarBack_0') {
-        $C->deb("Fate passed to special_variable__S_124DollarBack_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT special_variable__S_124DollarBack_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM special_variable__S_124DollarBack_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'special_variable__S_124DollarBack_0') {
+$C->deb("Fate passed to special_variable__S_124DollarBack_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT special_variable__S_124DollarBack_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM special_variable__S_124DollarBack_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'special_variable__S_124DollarBack_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'special_variable__S_124DollarBack_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("special_variable__S_124DollarBack_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("special_variable__S_124DollarBack_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_PATTERN(qr/\G\s/)
@@ -34749,11 +34629,11 @@ my $C = shift;
 $C->terminator
 })
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 
 })) { ($C) } else { () }
@@ -34789,38 +34669,38 @@ if (my ($C) = ($C->before(sub {
 my $C=shift;
 if (my ($C) = (do {
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'special_variable__S_125DollarVert_0') {
-        $C->deb("Fate passed to special_variable__S_125DollarVert_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT special_variable__S_125DollarVert_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM special_variable__S_125DollarVert_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'special_variable__S_125DollarVert_0') {
+$C->deb("Fate passed to special_variable__S_125DollarVert_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT special_variable__S_125DollarVert_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM special_variable__S_125DollarVert_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'special_variable__S_125DollarVert_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'special_variable__S_125DollarVert_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("special_variable__S_125DollarVert_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("special_variable__S_125DollarVert_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_PATTERN(qr/\G\s/)
@@ -34840,11 +34720,11 @@ my $C = shift;
 $C->terminator
 })
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 
 })) { ($C) } else { () }
@@ -34910,38 +34790,38 @@ if (my ($C) = ($C->before(sub {
 my $C=shift;
 if (my ($C) = (do {
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'special_variable__S_127DollarSemi_0') {
-        $C->deb("Fate passed to special_variable__S_127DollarSemi_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT special_variable__S_127DollarSemi_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM special_variable__S_127DollarSemi_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'special_variable__S_127DollarSemi_0') {
+$C->deb("Fate passed to special_variable__S_127DollarSemi_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT special_variable__S_127DollarSemi_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM special_variable__S_127DollarSemi_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'special_variable__S_127DollarSemi_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'special_variable__S_127DollarSemi_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("special_variable__S_127DollarSemi_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("special_variable__S_127DollarSemi_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_PATTERN(qr/\G\s/)
@@ -34961,11 +34841,11 @@ my $C = shift;
 $C->terminator
 })
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 
 })) { ($C) } else { () }
@@ -35001,38 +34881,38 @@ if (my ($C) = ($C->before(sub {
 my $C=shift;
 if (my ($C) = (do {
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'special_variable__S_128DollarSingle_0') {
-        $C->deb("Fate passed to special_variable__S_128DollarSingle_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT special_variable__S_128DollarSingle_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM special_variable__S_128DollarSingle_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'special_variable__S_128DollarSingle_0') {
+$C->deb("Fate passed to special_variable__S_128DollarSingle_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT special_variable__S_128DollarSingle_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM special_variable__S_128DollarSingle_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'special_variable__S_128DollarSingle_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'special_variable__S_128DollarSingle_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("special_variable__S_128DollarSingle_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("special_variable__S_128DollarSingle_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_PATTERN(qr/\G\s/)
@@ -35048,11 +34928,11 @@ my $C = shift;
 $C->terminator
 })
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 
 })) { ($C) } else { () }
@@ -35093,38 +34973,38 @@ if (my ($C) = ($C->before(sub {
 my $C=shift;
 if (my ($C) = (do {
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'special_variable__S_129DollarDouble_0') {
-        $C->deb("Fate passed to special_variable__S_129DollarDouble_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT special_variable__S_129DollarDouble_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM special_variable__S_129DollarDouble_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'special_variable__S_129DollarDouble_0') {
+$C->deb("Fate passed to special_variable__S_129DollarDouble_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT special_variable__S_129DollarDouble_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM special_variable__S_129DollarDouble_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'special_variable__S_129DollarDouble_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'special_variable__S_129DollarDouble_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("special_variable__S_129DollarDouble_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("special_variable__S_129DollarDouble_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_PATTERN(qr/\G\s/)
@@ -35144,11 +35024,11 @@ my $C = shift;
 $C->terminator
 })
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 
 })) { ($C) } else { () }
@@ -35184,38 +35064,38 @@ if (my ($C) = ($C->before(sub {
 my $C=shift;
 if (my ($C) = (do {
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'special_variable__S_130DollarComma_0') {
-        $C->deb("Fate passed to special_variable__S_130DollarComma_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT special_variable__S_130DollarComma_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM special_variable__S_130DollarComma_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'special_variable__S_130DollarComma_0') {
+$C->deb("Fate passed to special_variable__S_130DollarComma_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT special_variable__S_130DollarComma_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM special_variable__S_130DollarComma_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'special_variable__S_130DollarComma_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'special_variable__S_130DollarComma_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("special_variable__S_130DollarComma_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("special_variable__S_130DollarComma_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_PATTERN(qr/\G\s/)
@@ -35231,11 +35111,11 @@ my $C = shift;
 $C->terminator
 })
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 
 })) { ($C) } else { () }
@@ -35313,38 +35193,38 @@ if (my ($C) = ($C->before(sub {
 my $C=shift;
 if (my ($C) = (do {
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'special_variable__S_132DollarGt_0') {
-        $C->deb("Fate passed to special_variable__S_132DollarGt_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT special_variable__S_132DollarGt_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM special_variable__S_132DollarGt_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'special_variable__S_132DollarGt_0') {
+$C->deb("Fate passed to special_variable__S_132DollarGt_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT special_variable__S_132DollarGt_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM special_variable__S_132DollarGt_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'special_variable__S_132DollarGt_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'special_variable__S_132DollarGt_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("special_variable__S_132DollarGt_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("special_variable__S_132DollarGt_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_PATTERN(qr/\G\s/)
@@ -35360,11 +35240,11 @@ my $C = shift;
 $C->terminator
 })
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 
 })) { ($C) } else { () }
@@ -35400,38 +35280,38 @@ if (my ($C) = ($C->before(sub {
 my $C=shift;
 if (my ($C) = (do {
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'special_variable__S_133DollarDot_0') {
-        $C->deb("Fate passed to special_variable__S_133DollarDot_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT special_variable__S_133DollarDot_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM special_variable__S_133DollarDot_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'special_variable__S_133DollarDot_0') {
+$C->deb("Fate passed to special_variable__S_133DollarDot_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT special_variable__S_133DollarDot_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM special_variable__S_133DollarDot_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'special_variable__S_133DollarDot_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'special_variable__S_133DollarDot_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("special_variable__S_133DollarDot_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("special_variable__S_133DollarDot_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_PATTERN(qr/\G\s/)
@@ -35447,11 +35327,11 @@ my $C = shift;
 $C->terminator
 })
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 
 })) { ($C) } else { () }
@@ -35487,38 +35367,38 @@ if (my ($C) = ($C->before(sub {
 my $C=shift;
 if (my ($C) = (do {
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'special_variable__S_134DollarQuestion_0') {
-        $C->deb("Fate passed to special_variable__S_134DollarQuestion_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT special_variable__S_134DollarQuestion_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM special_variable__S_134DollarQuestion_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'special_variable__S_134DollarQuestion_0') {
+$C->deb("Fate passed to special_variable__S_134DollarQuestion_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT special_variable__S_134DollarQuestion_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM special_variable__S_134DollarQuestion_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'special_variable__S_134DollarQuestion_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'special_variable__S_134DollarQuestion_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("special_variable__S_134DollarQuestion_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("special_variable__S_134DollarQuestion_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_PATTERN(qr/\G\s/)
@@ -35534,11 +35414,11 @@ my $C = shift;
 $C->terminator
 })
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 
 })) { ($C) } else { () }
@@ -35566,38 +35446,38 @@ my $S = $C->{'_pos'};
 $self->_MATCHIFYr($S, "desigilname", $C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'desigilname_0') {
-        $C->deb("Fate passed to desigilname_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT desigilname_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM desigilname_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'desigilname_0') {
+$C->deb("Fate passed to desigilname_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT desigilname_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM desigilname_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'desigilname_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'desigilname_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("desigilname_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("desigilname_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (($C) = ($C->before(sub {
@@ -35607,6 +35487,20 @@ my $C=shift;
 $C->_EXACT("\$")
 }))) { ($C) } else { () }
 }))
+and ($C) = ($C->_OPTr(sub {
+my $C=shift;
+if (my ($C) = ($C->_BRACKETr(sub {
+my $C=shift;
+if (($C) = ($C->before(sub {
+my $C=shift;
+(($C) x !!do {
+$::IN_DECL })
+}))
+and ($C) = ($C->panic("Can't declare an indirect variable name"))) {
+$C
+} else { () }
+}))) { ($C) } else { () }
+}))
 and ($C) = ($C->_SUBSUMEr(['variable'], sub {
 my $C = shift;
 $C->variable
@@ -35614,7 +35508,7 @@ $C->variable
 scalar(do {
 my $M = $C;
 $::VAR = $M->{'variable'};
-$self->check_variable($::VAR) if substr($::VAR,1,1) ne '$' ;
+$self->check_variable($::VAR) if substr($::VAR,1,1) ne '$';
 }, $C)
 } else { () }
 },
@@ -35651,11 +35545,11 @@ my $C = shift;
 $C->longname
 })
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }));
 }
@@ -35697,7 +35591,7 @@ and ($C) = (scalar(do {
 }, $C))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -35724,38 +35618,38 @@ if (($C) = ($C->_EXACT("\:\:"))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'variable_0') {
-        $C->deb("Fate passed to variable_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT variable_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM variable_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'variable_0') {
+$C->deb("Fate passed to variable_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT variable_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM variable_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'variable_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'variable_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("variable_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("variable_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_EXACT("\{")
@@ -35768,11 +35662,11 @@ sub {
 my $C=shift;
 $C->_EXACT("\(")
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) {
 $C
@@ -35796,38 +35690,38 @@ if (($C) = ($C->_EXACT("\&"))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'variable_1') {
-        $C->deb("Fate passed to variable_1: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT variable_1';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM variable_1'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'variable_1') {
+$C->deb("Fate passed to variable_1: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT variable_1';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM variable_1'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'variable_1', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'variable_1', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("variable_1 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("variable_1 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (($C) = ($C->_OPTr(sub {
@@ -35861,7 +35755,7 @@ $C->infixish('[]')
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -35881,11 +35775,11 @@ $C
 } else { () }
 }))) { ($C) } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) {
 $C
@@ -35926,38 +35820,38 @@ push @gather, do {
 if (my ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'variable_2') {
-        $C->deb("Fate passed to variable_2: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT variable_2';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM variable_2'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'variable_2') {
+$C->deb("Fate passed to variable_2: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT variable_2';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM variable_2'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'variable_2', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'variable_2', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("variable_2 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("variable_2 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (($C) = ($C->_SUBSUMEr(['sigil'], sub {
@@ -35989,13 +35883,27 @@ $C->special_variable
 },
 sub {
 my $C=shift;
-if (my ($C) = ($C->_SUBSUMEr(['sigil'], sub {
+if (($C) = ($C->_SUBSUMEr(['sigil'], sub {
 my $C = shift;
 $C->sigil
-}))) {
-$C->_SUBSUMEr(['index'], sub {
+}))
+and ($C) = ($C->_SUBSUMEr(['index'], sub {
 my $C = shift;
 $C->decint
+}))) {
+$C->_OPTr(sub {
+my $C=shift;
+if (my ($C) = ($C->_BRACKETr(sub {
+my $C=shift;
+if (($C) = ($C->before(sub {
+my $C=shift;
+(($C) x !!do {
+$::IN_DECL })
+}))
+and ($C) = ($C->panic("Can't declare a numeric variable"))) {
+$C
+} else { () }
+}))) { ($C) } else { () }
 })
 } else { () }
 },
@@ -36009,61 +35917,59 @@ and ($C) = ($C->before(sub {
 my $C=shift;
 if (my ($C) = ($C->before(sub {
 my $C=shift;
-if (my ($C) = (do {
-do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
-
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'variable_3') {
-        $C->deb("Fate passed to variable_3: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT variable_3';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM variable_3'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
-
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'variable_3', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
-
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
-
-        $C->deb("variable_3 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
-sub {
-my $C=shift;
 $C->_EXACT("\<")
+}))) { ($C) } else { () }
+}))
+and ($C) = ($C->_SUBSUMEr(['postcircumfix'], sub {
+my $C = shift;
+$C->postcircumfix
+}))) {
+$C->_OPTr(sub {
+my $C=shift;
+if (my ($C) = ($C->_BRACKETr(sub {
+my $C=shift;
+if (($C) = ($C->before(sub {
+my $C=shift;
+(($C) x !!do {
+$::IN_DECL })
+}))
+and ($C) = ($C->panic("Can't declare a match variable"))) {
+$C
+} else { () }
+}))) { ($C) } else { () }
+})
+} else { () }
 },
 sub {
 my $C=shift;
+if (($C) = ($C->_SUBSUMEr(['sigil'], sub {
+my $C = shift;
+$C->sigil
+}))
+and ($C) = ($C->before(sub {
+my $C=shift;
+if (my ($C) = ($C->before(sub {
+my $C=shift;
 $C->_EXACT("\(")
-}
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
-};
-
-})) { ($C) } else { () }
 }))) { ($C) } else { () }
-}))) {
-$C->_SUBSUMEr(['postcircumfix'], sub {
+}))
+and ($C) = ($C->_SUBSUMEr(['postcircumfix'], sub {
 my $C = shift;
 $C->postcircumfix
+}))) {
+$C->_OPTr(sub {
+my $C=shift;
+if (my ($C) = ($C->_BRACKETr(sub {
+my $C=shift;
+if (($C) = ($C->before(sub {
+my $C=shift;
+(($C) x !!do {
+$::IN_DECL })
+}))
+and ($C) = ($C->panic("Can't declare a contextualizer"))) {
+$C
+} else { () }
+}))) { ($C) } else { () }
 })
 } else { () }
 },
@@ -36095,11 +36001,11 @@ else {
 $C->sorry("Non-declarative sigil is missing its name")}}}, $C)
 } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) { ($C) } else { () }
 
@@ -36125,38 +36031,38 @@ $twigil eq '.' })
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'variable_4') {
-        $C->deb("Fate passed to variable_4: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT variable_4';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM variable_4'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'variable_3') {
+$C->deb("Fate passed to variable_3: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT variable_3';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM variable_3'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'variable_4', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'variable_3', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("variable_4 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("variable_3 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (my ($C) = ($C->unsp)) { ($C) } else { () }
@@ -36172,11 +36078,11 @@ my $C=shift;
 $C
 }))) { ($C) } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))
 and ($C) = ($C->before(sub {
@@ -36220,38 +36126,38 @@ $C->name
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'deflongname_0') {
-        $C->deb("Fate passed to deflongname_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT deflongname_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM deflongname_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'deflongname_0') {
+$C->deb("Fate passed to deflongname_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT deflongname_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM deflongname_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'deflongname_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'deflongname_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("deflongname_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("deflongname_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (my ($C) = ($C->_PLUSr(sub {
@@ -36271,11 +36177,11 @@ scalar(do {
 my $M = $C;
 $C->add_routine($M->{'name'}->Str) if $::IN_DECL}, $C)
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) {
 $C
@@ -36300,38 +36206,38 @@ $C->{'colonpair'} = [];
 $self->_MATCHIFYr($S, "subshortname", $C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'subshortname_0') {
-        $C->deb("Fate passed to subshortname_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT subshortname_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM subshortname_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'subshortname_0') {
+$C->deb("Fate passed to subshortname_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT subshortname_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM subshortname_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'subshortname_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'subshortname_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("subshortname_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("subshortname_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (my ($C) = ($C->_SUBSUMEr(['category'], sub {
@@ -36354,11 +36260,11 @@ my $C = shift;
 $C->desigilname
 })
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }));
 }
@@ -36470,38 +36376,38 @@ my $C = $C;
 if (($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'typename_0') {
-        $C->deb("Fate passed to typename_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT typename_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM typename_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'typename_0') {
+$C->deb("Fate passed to typename_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT typename_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM typename_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'typename_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'typename_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("typename_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("typename_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (my ($C) = ($C->_EXACT("\:\:\?"))) {
@@ -36527,17 +36433,17 @@ if (substr($longname, 0, 2) eq '::') {
 $C->add_my_name(substr($longname, 2))}
 else {
 $C->is_name($longname)
-            };
+};
 }})
 }))) {
 $C
 } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))
 and ($C) = ($C->_OPTr(sub {
@@ -36618,38 +36524,38 @@ my $S = $C->{'_pos'};
 $self->_MATCHIFYr($S, "number", $C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'number_0') {
-        $C->deb("Fate passed to number_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT number_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM number_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'number_0') {
+$C->deb("Fate passed to number_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT number_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM number_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'number_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'number_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("number_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("number_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_PATTERN(qr/\GNaN\b/)
@@ -36679,11 +36585,11 @@ sub {
 my $C=shift;
 $C->_PATTERN(qr/\GInf\b/)
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }));
 }
@@ -36815,7 +36721,7 @@ $C->nibble($lang)
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -36836,7 +36742,7 @@ if (my ($C) = ($C->panic("Couldn't find terminator $stop"))) { ($C) } else { () 
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -36850,7 +36756,7 @@ $start ne $stop })
 and ($C) = ($C->ws)
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -36871,7 +36777,7 @@ $C->panic("Missing assignment operator")
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -36969,7 +36875,7 @@ $C->nibble($lang)
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -36992,7 +36898,7 @@ and ($C) = (scalar(do {
 $::CCSTATE = ''}, $C))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -37072,7 +36978,7 @@ $::LANG{'MAIN'} = $lang;
 }, $C))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -37116,7 +37022,7 @@ $C->statementlist
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -37197,7 +37103,7 @@ $C->nibble( $C->cursor_fresh( $::LANG{'Regex'} )->unbalanced("/") )
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -37241,38 +37147,38 @@ if (($C) = ($C->_EXACT("qq"))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'quote__S_143qq_0') {
-        $C->deb("Fate passed to quote__S_143qq_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT quote__S_143qq_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM quote__S_143qq_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'quote__S_143qq_0') {
+$C->deb("Fate passed to quote__S_143qq_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT quote__S_143qq_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM quote__S_143qq_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'quote__S_143qq_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'quote__S_143qq_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("quote__S_143qq_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("quote__S_143qq_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (($C) = ($C->_SUBSUMEr(['quote_mod'], sub {
@@ -37314,11 +37220,11 @@ $C->quibble($C->cursor_fresh( $::LANG{'Q'} )->tweak('qq' => 1))
 })
 } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) {
 $C
@@ -37346,38 +37252,38 @@ if (($C) = ($C->_EXACT("q"))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'quote__S_144q_0') {
-        $C->deb("Fate passed to quote__S_144q_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT quote__S_144q_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM quote__S_144q_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'quote__S_144q_0') {
+$C->deb("Fate passed to quote__S_144q_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT quote__S_144q_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM quote__S_144q_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'quote__S_144q_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'quote__S_144q_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("quote__S_144q_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("quote__S_144q_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (($C) = ($C->_SUBSUMEr(['quote_mod'], sub {
@@ -37418,11 +37324,11 @@ $C->quibble($C->cursor_fresh( $::LANG{'Q'} )->tweak('q' => 1))
 })
 } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) {
 $C
@@ -37450,38 +37356,38 @@ if (($C) = ($C->_EXACT("Q"))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'quote__S_145Q_0') {
-        $C->deb("Fate passed to quote__S_145Q_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT quote__S_145Q_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM quote__S_145Q_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'quote__S_145Q_0') {
+$C->deb("Fate passed to quote__S_145Q_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT quote__S_145Q_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM quote__S_145Q_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'quote__S_145Q_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'quote__S_145Q_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("quote__S_145Q_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("quote__S_145Q_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (($C) = ($C->_SUBSUMEr(['quote_mod'], sub {
@@ -37522,11 +37428,11 @@ $C->quibble($C->cursor_fresh( $::LANG{'Q'} ))
 })
 } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) {
 $C
@@ -38020,7 +37926,7 @@ $_ =~ /c/ and $C->worryobs('/c',':c or :p');
 $_ =~ /e/ and $C->worryobs('/e','interpolated {...} or s{} = ... form');
 $C->obs('suffix regex modifiers','prefix adverbs');
 }
-        }}, $C)
+}}, $C)
 } else { () }
 
 });
@@ -38059,7 +37965,7 @@ $_ =~ /d/ and $C->worryobs('/g',':d');
 $_ =~ /s/ and $C->worryobs('/s',':s');
 $C->obs('suffix transliteration modifiers','prefix adverbs');
 }
-        }}, $C)
+}}, $C)
 } else { () }
 
 });
@@ -38116,38 +38022,38 @@ if (($C) = ($C->_EXACT("\\"))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'capterm_0') {
-        $C->deb("Fate passed to capterm_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT capterm_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM capterm_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'capterm_0') {
+$C->deb("Fate passed to capterm_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT capterm_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM capterm_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'capterm_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'capterm_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("capterm_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("capterm_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (($C) = ($C->_EXACT("\("))
@@ -38184,11 +38090,11 @@ and ($C) = ($C->panic("You can't backslash that"))) {
 $C
 } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) {
 $C
@@ -38248,7 +38154,7 @@ $C->fakesignature
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -38287,38 +38193,38 @@ if (($C) = ($C->ws)
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'param_sep_0') {
-        $C->deb("Fate passed to param_sep_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT param_sep_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM param_sep_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'param_sep_0') {
+$C->deb("Fate passed to param_sep_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT param_sep_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM param_sep_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'param_sep_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'param_sep_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("param_sep_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("param_sep_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_EXACT("\,")
@@ -38335,11 +38241,11 @@ sub {
 my $C=shift;
 $C->_EXACT("\;\;")
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))
 and ($C) = ($C->ws)) {
@@ -38385,6 +38291,7 @@ local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 my $C = $self->cursor_xact("RULE signature");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
+$C->{'longname'} = [];
 $C->{'param_sep'} = [];
 $C->{'parameter'} = [];
 $C->{'type_constraint'} = [];
@@ -38394,44 +38301,44 @@ if (($C) = ($C->ws)
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'signature_0') {
-        $C->deb("Fate passed to signature_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT signature_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM signature_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'signature_0') {
+$C->deb("Fate passed to signature_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT signature_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM signature_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'signature_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'signature_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("signature_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("signature_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (($C) = ($C->_EXACT("\\\|"))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -38453,7 +38360,7 @@ if (my ($C) = ($C->panic("\\| signature must contain one variable"))) { ($C) } e
 and ($C) = ($C->ws)
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -38464,38 +38371,38 @@ if (my ($C) = ($C->before(sub {
 my $C=shift;
 if (my ($C) = (do {
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'signature_1') {
-        $C->deb("Fate passed to signature_1: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT signature_1';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM signature_1'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'signature_1') {
+$C->deb("Fate passed to signature_1: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT signature_1';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM signature_1'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'signature_1', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'signature_1', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("signature_1 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("signature_1 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_EXACT("\-\-\>")
@@ -38508,11 +38415,11 @@ sub {
 my $C=shift;
 $C->_EXACT("\]")
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 
 })) { ($C) } else { () }
@@ -38547,38 +38454,38 @@ my $C=shift;
 if (my ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'signature_2') {
-        $C->deb("Fate passed to signature_2: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT signature_2';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM signature_2'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'signature_2') {
+$C->deb("Fate passed to signature_2: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT signature_2';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM signature_2'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'signature_2', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'signature_2', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("signature_2 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("signature_2 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (my ($C) = ($C->before(sub {
@@ -38587,38 +38494,38 @@ if (my ($C) = ($C->before(sub {
 my $C=shift;
 if (my ($C) = (do {
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'signature_3') {
-        $C->deb("Fate passed to signature_3: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT signature_3';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM signature_3'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'signature_3') {
+$C->deb("Fate passed to signature_3: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT signature_3';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM signature_3'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'signature_3', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'signature_3', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("signature_3 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("signature_3 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_EXACT("\-\-\>")
@@ -38643,11 +38550,11 @@ sub {
 my $C=shift;
 $C->_EXACT("\;\;")
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 
 })) { ($C) } else { () }
@@ -38658,7 +38565,7 @@ sub {
 my $C=shift;
 if (my ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -38678,20 +38585,20 @@ if (my ($C) = ($C->panic("Malformed parameter"))) { ($C) } else { () }
 }
 }))) { ($C) } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) { ($C) } else { () }
 })
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))
 and ($C) = ($C->ws)
@@ -38705,7 +38612,7 @@ if (($C) = ($C->_EXACT("\-\-\>"))
 and ($C) = ($C->ws)
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -38713,6 +38620,23 @@ push @gather, $C->_SUBSUMEr(['type_constraint'], sub {
 my $C = shift;
 $C->type_constraint
 })
+}
+or $xact->[-2] or
+do {
+push @gather, do {
+my $C = $C;
+if (($C) = ($C->_SUBSUMEr(['longname'], sub {
+my $C = shift;
+$C->longname
+}))
+and ($C) = (do {
+my $M = $C;
+$C->panic("Typename " . $M->{'longname'}->[0]->Str . " must be predeclared")
+})) {
+$C
+} else { () }
+
+}
 }
 or $xact->[-2] or
 do {
@@ -38760,7 +38684,7 @@ $C->{'EXPR'} = [];
 $C->{'longname'} = [];
 $C->{'trait'} = [];
 $C->{sym} = "subset";
-$self->_MATCHIFYr($S, "type_declarator__S_165subset", do {my $C = $C->cursor_xact('ALT ||');
+$self->_MATCHIFYr($S, "type_declarator__S_165subset", do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -38859,38 +38783,38 @@ and ($C) = ($C->ws)
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'type_declarator__S_166enum_0') {
-        $C->deb("Fate passed to type_declarator__S_166enum_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT type_declarator__S_166enum_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM type_declarator__S_166enum_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'type_declarator__S_166enum_0') {
+$C->deb("Fate passed to type_declarator__S_166enum_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT type_declarator__S_166enum_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM type_declarator__S_166enum_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'type_declarator__S_166enum_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'type_declarator__S_166enum_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("type_declarator__S_166enum_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("type_declarator__S_166enum_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (my ($C) = ($C->_SUBSUMEr(['name','longname'], sub {
@@ -38920,11 +38844,11 @@ my $C=shift;
 $C
 }))) { ($C) } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))
 and ($C) = (scalar(do {
@@ -38980,38 +38904,38 @@ and ($C) = ($C->ws)
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'type_declarator__S_167constant_0') {
-        $C->deb("Fate passed to type_declarator__S_167constant_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT type_declarator__S_167constant_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM type_declarator__S_167constant_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'type_declarator__S_167constant_0') {
+$C->deb("Fate passed to type_declarator__S_167constant_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT type_declarator__S_167constant_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM type_declarator__S_167constant_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'type_declarator__S_167constant_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'type_declarator__S_167constant_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("type_declarator__S_167constant_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("type_declarator__S_167constant_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (my ($C) = ($C->_SUBSUMEr(['identifier'], sub {
@@ -39041,11 +38965,11 @@ my $C=shift;
 $C
 }))) { ($C) } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))
 and ($C) = (scalar(do {
@@ -39060,7 +38984,7 @@ $C->trait
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -39126,38 +39050,38 @@ my $C = $C;
 if (($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'type_constraint_0') {
-        $C->deb("Fate passed to type_constraint_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT type_constraint_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM type_constraint_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'type_constraint_0') {
+$C->deb("Fate passed to type_constraint_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT type_constraint_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM type_constraint_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'type_constraint_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'type_constraint_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("type_constraint_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("type_constraint_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_SUBSUMEr(['value'], sub {
@@ -39200,11 +39124,11 @@ $C->EXPR(\%chaining)
 })
 } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))
 and ($C) = ($C->ws)) {
@@ -39232,38 +39156,38 @@ if (($C) = ($C->ws)
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'post_constraint_0') {
-        $C->deb("Fate passed to post_constraint_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT post_constraint_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM post_constraint_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'post_constraint_0') {
+$C->deb("Fate passed to post_constraint_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT post_constraint_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM post_constraint_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'post_constraint_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'post_constraint_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("post_constraint_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("post_constraint_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (($C) = ($C->_BRACKETr(sub {
@@ -39279,7 +39203,7 @@ $C->signature
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -39317,7 +39241,7 @@ $C->signature
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -39352,11 +39276,11 @@ and ($C) = ($C->ws)) {
 $C
 } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) {
 $C
@@ -39383,38 +39307,38 @@ if (($C) = ($C->_EXACT("\:"))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'named_param_0') {
-        $C->deb("Fate passed to named_param_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT named_param_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM named_param_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'named_param_0') {
+$C->deb("Fate passed to named_param_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT named_param_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM named_param_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'named_param_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'named_param_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("named_param_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("named_param_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (($C) = ($C->_SUBSUMEr(['name'], sub {
@@ -39426,38 +39350,38 @@ and ($C) = ($C->ws)
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'named_param_1') {
-        $C->deb("Fate passed to named_param_1: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT named_param_1';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM named_param_1'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'named_param_1') {
+$C->deb("Fate passed to named_param_1: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT named_param_1';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM named_param_1'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'named_param_1', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'named_param_1', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("named_param_1 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("named_param_1 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_SUBSUMEr(['named_param'], sub {
@@ -39475,16 +39399,16 @@ and ($C) = ($C->ws)) {
 $C
 } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -39510,11 +39434,11 @@ my $C = shift;
 $C->param_var(1)
 })
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) {
 $C
@@ -39542,38 +39466,38 @@ $C->{'twigil'} = [];
 $self->_MATCHIFYr($S, "param_var", $C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'param_var_0') {
-        $C->deb("Fate passed to param_var_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT param_var_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM param_var_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'param_var_0') {
+$C->deb("Fate passed to param_var_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT param_var_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM param_var_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'param_var_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'param_var_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("param_var_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("param_var_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (my ($C) = ($C->_BRACKETr(sub {
@@ -39589,7 +39513,7 @@ $C->signature
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -39624,7 +39548,7 @@ $C->signature
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -39661,7 +39585,7 @@ and ($C) = ($C->_OPTr(sub {
 my $C=shift;
 if (my ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -39728,6 +39652,20 @@ $C->identifier
 }
 or $xact->[-2] or
 do {
+push @gather, do {
+my $C = $C;
+if (($C) = ($C->_SUBSUMEr(['name'], sub {
+my $C = shift;
+$C->decint
+}))
+and ($C) = ($C->panic("Can't declare a numeric parameter"))) {
+$C
+} else { () }
+
+}
+}
+or $xact->[-2] or
+do {
 push @gather, $C->_SUBSUMEr(['name'], sub {
 my $C = shift;
 $C->_BRACKETr(sub {
@@ -39756,29 +39694,29 @@ when ('') {
 $self->add_my_name($vname) if $n ne '';
 $::CURLEX->{$vname}->{'used'} = 1 if $named and $n;
 }
-                    ;
+;
 when ('.') {
 }
-                    ;
+;
 when ('!') {
 }
-                    ;
+;
 when ('*') {
 }
-                    ;
+;
 default {
 $self->panic("You may not use the $twigil twigil in a signature")}
-                ;
+;
 }
-            ;
+;
 }}, $C)
 } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }));
 }
@@ -39804,38 +39742,38 @@ my $C = $C;
 if (($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'parameter_0') {
-        $C->deb("Fate passed to parameter_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT parameter_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM parameter_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'parameter_0') {
+$C->deb("Fate passed to parameter_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT parameter_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM parameter_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'parameter_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'parameter_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("parameter_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("parameter_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (($C) = ($C->_PLUSr(sub {
@@ -39852,43 +39790,43 @@ my $t = $M->{'type_constraint'};
 my @t = grep {
 substr($_->Str,0,2) ne '::' }  @$t;
 @t > 1 and $C->sorry("Multiple prefix constraints not yet supported")
-            ;
+;
 }}, $C))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'parameter_1') {
-        $C->deb("Fate passed to parameter_1: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT parameter_1';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM parameter_1'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'parameter_1') {
+$C->deb("Fate passed to parameter_1: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT parameter_1';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM parameter_1'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'parameter_1', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'parameter_1', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("parameter_1 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("parameter_1 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (($C) = ($C->_EXACT("\*\*"))
@@ -39946,38 +39884,38 @@ my $C=shift;
 if (($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'parameter_2') {
-        $C->deb("Fate passed to parameter_2: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT parameter_2';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM parameter_2'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'parameter_2') {
+$C->deb("Fate passed to parameter_2: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT parameter_2';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM parameter_2'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'parameter_2', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'parameter_2', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("parameter_2 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("parameter_2 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (my ($C) = ($C->_SUBSUMEr(['param_var'], sub {
@@ -40002,48 +39940,48 @@ $kind = '*';
 }, $C)
 } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'parameter_3') {
-        $C->deb("Fate passed to parameter_3: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT parameter_3';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM parameter_3'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'parameter_3') {
+$C->deb("Fate passed to parameter_3: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT parameter_3';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM parameter_3'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'parameter_3', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'parameter_3', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("parameter_3 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("parameter_3 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (my ($C) = ($C->_EXACT("\?"))) {
@@ -40069,11 +40007,11 @@ my $C=shift;
 $C
 }))) { ($C) } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) {
 $C
@@ -40091,11 +40029,11 @@ $kind = '!' ;
 }, $C)
 } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) {
 $C
@@ -40158,38 +40096,38 @@ my $C=shift;
 if (($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'parameter_4') {
-        $C->deb("Fate passed to parameter_4: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT parameter_4';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM parameter_4'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'parameter_4') {
+$C->deb("Fate passed to parameter_4: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT parameter_4';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM parameter_4'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'parameter_4', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'parameter_4', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("parameter_4 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("parameter_4 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (my ($C) = ($C->_SUBSUMEr(['param_var'], sub {
@@ -40214,48 +40152,48 @@ $kind = '*';
 }, $C)
 } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'parameter_5') {
-        $C->deb("Fate passed to parameter_5: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT parameter_5';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM parameter_5'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'parameter_5') {
+$C->deb("Fate passed to parameter_5: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT parameter_5';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM parameter_5'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'parameter_5', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'parameter_5', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("parameter_5 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("parameter_5 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (my ($C) = ($C->_EXACT("\?"))) {
@@ -40281,11 +40219,11 @@ my $C=shift;
 $C
 }))) { ($C) } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) {
 $C
@@ -40306,11 +40244,11 @@ $C->panic("In parameter declaration, typename '" . $M->{'longname'}->Str . "' mu
 $C
 } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))
 and ($C) = ($C->_STARr(sub {
@@ -40341,21 +40279,21 @@ and ($C) = (scalar(do {
 given ($quant) {
 when ('!') {
 $C->sorry("Can't put a default on a required parameter") }
-                  ;
+;
 when ('*') {
 $C->sorry("Can't put a default on a slurpy parameter") }
-                  ;
+;
 when ('**') {
 $C->sorry("Can't put a default on a slice parameter") }
-                  ;
+;
 when ('|') {
 $C->sorry("Can't put a default on an slurpy capture parameter") }
-                  ;
+;
 when ('\\') {
 $C->sorry("Can't put a default on a capture parameter") }
-                ;
+;
 }
-                ;
+;
 $kind = '?' if $kind eq '!';
 }}, $C))
 and ($C) = ($C->_OPTr(sub {
@@ -40426,29 +40364,29 @@ when ('!') {
 given ($::zone) {
 when ('posopt') {
 $C->sorry("Can't put required parameter after optional parameters")}
-                        ;
+;
 when ('var') {
 $C->sorry("Can't put required parameter after variadic parameters")}
-                    ;
+;
 }
-                }
-                ;
+}
+;
 when ('?') {
 given ($::zone) {
 when ('posreq') {
 $::zone = 'posopt' }
-                        ;
+;
 when ('var') {
 $C->sorry("Can't put optional positional parameter after variadic parameters")}
-                    ;
+;
 }
-                }
-                ;
+}
+;
 when ('*') {
 $::zone = 'var'}
-            ;
+;
 }
-        }}, $C)
+}}, $C)
 } else { () }
 
 });
@@ -40747,38 +40685,38 @@ and ($C) = ($C->ws)
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'blast_0') {
-        $C->deb("Fate passed to blast_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT blast_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM blast_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'blast_0') {
+$C->deb("Fate passed to blast_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT blast_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM blast_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'blast_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'blast_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("blast_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("blast_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_SUBSUMEr(['block'], sub {
@@ -40793,11 +40731,11 @@ my $C = shift;
 $C->statement
 })
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) {
 $C
@@ -40933,7 +40871,7 @@ $C->_PATTERN(qr/\G[\x20\t\r]*+\$\//)
 }))) { ($C) } else { () }
 }))
 and ($C) = ($C->obs('$/ variable as input record separator',
-                 "the filehandle's .slurp method"))) {
+"the filehandle's .slurp method"))) {
 $C
 } else { () }
 }))) { ($C) } else { () }
@@ -40950,7 +40888,7 @@ $C->{'sigil'} = [];
 $C->{'twigil'} = [];
 if (my ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -41144,38 +41082,38 @@ if (($C) = ($C->_PATTERN(qr/\G\(?+[\x20\t\r]*+/))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'term__S_187rand_0') {
-        $C->deb("Fate passed to term__S_187rand_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT term__S_187rand_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM term__S_187rand_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'term__S_187rand_0') {
+$C->deb("Fate passed to term__S_187rand_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT term__S_187rand_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM term__S_187rand_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'term__S_187rand_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'term__S_187rand_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("term__S_187rand_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("term__S_187rand_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_PATTERN(qr/\G\d/)
@@ -41184,11 +41122,11 @@ sub {
 my $C=shift;
 $C->_EXACT("\$")
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) {
 $C
@@ -41295,38 +41233,38 @@ if (my ($C) = ($C->before(sub {
 my $C=shift;
 if (my ($C) = (do {
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'infix__S_190lambda_0') {
-        $C->deb("Fate passed to infix__S_190lambda_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT infix__S_190lambda_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM infix__S_190lambda_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'infix__S_190lambda_0') {
+$C->deb("Fate passed to infix__S_190lambda_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT infix__S_190lambda_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM infix__S_190lambda_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'infix__S_190lambda_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'infix__S_190lambda_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("infix__S_190lambda_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("infix__S_190lambda_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_EXACT("\{")
@@ -41335,11 +41273,11 @@ sub {
 my $C=shift;
 $C->_EXACT("\-\>")
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 
 })) { ($C) } else { () }
@@ -41361,13 +41299,13 @@ next unless $m;
 if ($line - ($m->{'line'}//-123) < 5) {
 if ($m->{'ctx'} eq '(') {
 $C->panic("Word '$_' interpreted as '$_" . "()' function call; please use whitespace " .
-                        ($needparens ? 'around the parens' : 'instead of parens') . $m->{'token'}->locmess .
-                        "\nUnexpected block in infix position (two terms in a row)")}
+($needparens ? 'around the parens' : 'instead of parens') . $m->{'token'}->locmess .
+"\nUnexpected block in infix position (two terms in a row)")}
 else {
 $C->panic("Word '$_' interpreted as a listop; please use 'do $_' to introduce the statement control word" . $m->{'token'}->cursor($m->{'token'}->from)->locmess .
-                        "\nUnexpected block in infix position (two terms in a row)")}};
+"\nUnexpected block in infix position (two terms in a row)")}};
 }
-            ;
+;
 return () if $::IN_REDUCE;
 my $endpos = $C->{'_pos'};
 my $startpos = $::MEMOS[$endpos]->{'ws'} // $endpos;
@@ -41419,7 +41357,7 @@ $C->semilist
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -41477,7 +41415,7 @@ $C->semilist
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -41533,7 +41471,7 @@ $C->semilist
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -41581,38 +41519,38 @@ my $C = $C;
 if (($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'PRE_0') {
-        $C->deb("Fate passed to PRE_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT PRE_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM PRE_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'PRE_0') {
+$C->deb("Fate passed to PRE_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT PRE_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM PRE_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'PRE_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'PRE_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("PRE_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("PRE_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (my ($C) = ($C->_SUBSUMEr(['prefix'], sub {
@@ -41639,11 +41577,11 @@ $M->{'sym'} = $M->{'prefix_circumfix_meta_operator'}->Str ;
 }, $C)
 } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))
 and ($C) = ($C->_STARr(sub {
@@ -41687,38 +41625,38 @@ if (my ($C) = ($C->infixstopper)) { ($C) } else { () }
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'infixish_0') {
-        $C->deb("Fate passed to infixish_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT infixish_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM infixish_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'infixish_0') {
+$C->deb("Fate passed to infixish_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT infixish_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM infixish_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'infixish_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'infixish_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("infixish_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("infixish_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (my ($C) = ($C->_SUBSUMEr(['colonpair'], sub {
@@ -41740,38 +41678,38 @@ my $C=shift;
 if (my ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'infixish_1') {
-        $C->deb("Fate passed to infixish_1: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT infixish_1';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM infixish_1'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'infixish_1') {
+$C->deb("Fate passed to infixish_1: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT infixish_1';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM infixish_1'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'infixish_1', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'infixish_1', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("infixish_1 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("infixish_1 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (my ($C) = ($C->_BRACKETr(sub {
@@ -41787,7 +41725,7 @@ $C->infixish('[]')
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -41876,11 +41814,11 @@ and ($C) = ($C->panic("Postfix found where infix expected (omit whitespace?)")))
 $C
 } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) {
 $C->_OPTr(sub {
@@ -41914,11 +41852,11 @@ $M->{'sym'} = $M->{'infix_postfix_meta_operator'}->[0]->{'sym'};
 })
 } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) {
 $C
@@ -41953,38 +41891,38 @@ if (($C) = ($C->_EXACT("\."))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'dotty__S_194DotStar_0') {
-        $C->deb("Fate passed to dotty__S_194DotStar_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT dotty__S_194DotStar_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM dotty__S_194DotStar_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'dotty__S_194DotStar_0') {
+$C->deb("Fate passed to dotty__S_194DotStar_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT dotty__S_194DotStar_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM dotty__S_194DotStar_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'dotty__S_194DotStar_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'dotty__S_194DotStar_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("dotty__S_194DotStar_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("dotty__S_194DotStar_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_PATTERN(qr/\G[+*?=]/)
@@ -41993,11 +41931,11 @@ sub {
 my $C=shift;
 $C->_PATTERN(qr/\G\^\!?+/)
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) {
 $C
@@ -42116,38 +42054,38 @@ my $S = $C->{'_pos'};
 $self->_MATCHIFYr($S, "dottyop", $C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'dottyop_0') {
-        $C->deb("Fate passed to dottyop_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT dottyop_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM dottyop_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'dottyop_0') {
+$C->deb("Fate passed to dottyop_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT dottyop_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM dottyop_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'dottyop_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'dottyop_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("dottyop_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("dottyop_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_SUBSUMEr(['methodop'], sub {
@@ -42179,11 +42117,11 @@ $M->{'sym'} = $M->{'postop'}->{'sym'};
 }, $C)
 } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }));
 }
@@ -42217,38 +42155,38 @@ my $C=shift;
 if (my ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'POST_0') {
-        $C->deb("Fate passed to POST_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT POST_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM POST_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'POST_0') {
+$C->deb("Fate passed to POST_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT POST_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM POST_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'POST_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'POST_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("POST_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("POST_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (my ($C) = ($C->unsp)) { ($C) } else { () }
@@ -42257,11 +42195,11 @@ sub {
 my $C=shift;
 $C->_EXACT("\\")
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) { ($C) } else { () }
 }))
@@ -42295,38 +42233,38 @@ if (my ($C) = ($C->unsp)) { ($C) } else { () }
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'POST_1') {
-        $C->deb("Fate passed to POST_1: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT POST_1';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM POST_1'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'POST_1') {
+$C->deb("Fate passed to POST_1: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT POST_1';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM POST_1'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'POST_1', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'POST_1', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("POST_1 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("POST_1 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (my ($C) = ($C->_SUBSUMEr(['dotty'], sub {
@@ -42369,11 +42307,11 @@ $M->{'~CAPS'} = $M->{'postop'}->{'~CAPS'};
 }, $C)
 } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) {
 scalar(do {
@@ -42392,7 +42330,7 @@ my $op = @_ ? shift() : undef;
 die 'Required argument meta omitted' unless @_;
 my $meta = @_ ? shift() : undef;
 !$op->{'O'}->{'fiddly'} ||
-            $self->sorry("Can't " . $meta . " " . $op->{'sym'} . " because " . $op->{'O'}->{'dba'} . " operators are too fiddly");
+$self->sorry("Can't " . $meta . " " . $op->{'sym'} . " because " . $op->{'O'}->{'dba'} . " operators are too fiddly");
 $self;
 };
 ## regex prefix_circumfix_meta_operator:reduce {
@@ -42426,7 +42364,7 @@ my $M = $C;
 $M->{'sym'} = $M->{'s'}->Str}, $C))) {
 $C->_BRACKET(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -42482,7 +42420,7 @@ $C->O($op->Opairs, %list_prefix, assoc => 'unary', uassoc => 'left')
 },
 $C->_BRACKET(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -42522,38 +42460,38 @@ if (my ($C) = ($C->_EXACT("\]"))) {
 $C->_BRACKET(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'prefix_circumfix_meta_operator__S_196reduce_0') {
-        $C->deb("Fate passed to prefix_circumfix_meta_operator__S_196reduce_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT prefix_circumfix_meta_operator__S_196reduce_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM prefix_circumfix_meta_operator__S_196reduce_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'prefix_circumfix_meta_operator__S_196reduce_0') {
+$C->deb("Fate passed to prefix_circumfix_meta_operator__S_196reduce_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT prefix_circumfix_meta_operator__S_196reduce_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM prefix_circumfix_meta_operator__S_196reduce_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'prefix_circumfix_meta_operator__S_196reduce_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'prefix_circumfix_meta_operator__S_196reduce_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("prefix_circumfix_meta_operator__S_196reduce_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("prefix_circumfix_meta_operator__S_196reduce_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_EXACT("«")
@@ -42565,18 +42503,18 @@ my $C=shift;
 $C
 })
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 })
 } else { () }
 },
 $C->_BRACKET(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -42656,38 +42594,38 @@ my $S = $C->{'_pos'};
 $C->{sym} = "«";
 $self->_MATCHIFYr($S, "prefix_postfix_meta_operator__S_197Fre", do {
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'prefix_postfix_meta_operator__S_197Fre_0') {
-        $C->deb("Fate passed to prefix_postfix_meta_operator__S_197Fre_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT prefix_postfix_meta_operator__S_197Fre_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM prefix_postfix_meta_operator__S_197Fre_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'prefix_postfix_meta_operator__S_197Fre_0') {
+$C->deb("Fate passed to prefix_postfix_meta_operator__S_197Fre_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT prefix_postfix_meta_operator__S_197Fre_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM prefix_postfix_meta_operator__S_197Fre_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'prefix_postfix_meta_operator__S_197Fre_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'prefix_postfix_meta_operator__S_197Fre_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("prefix_postfix_meta_operator__S_197Fre_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("prefix_postfix_meta_operator__S_197Fre_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_EXACT("«")
@@ -42696,11 +42634,11 @@ sub {
 my $C=shift;
 $C->_EXACT("\<\<")
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 
 });
@@ -42724,38 +42662,38 @@ my $C = $C;
 if (($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'postfix_prefix_meta_operator__S_198Nch_0') {
-        $C->deb("Fate passed to postfix_prefix_meta_operator__S_198Nch_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT postfix_prefix_meta_operator__S_198Nch_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM postfix_prefix_meta_operator__S_198Nch_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'postfix_prefix_meta_operator__S_198Nch_0') {
+$C->deb("Fate passed to postfix_prefix_meta_operator__S_198Nch_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT postfix_prefix_meta_operator__S_198Nch_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM postfix_prefix_meta_operator__S_198Nch_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'postfix_prefix_meta_operator__S_198Nch_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'postfix_prefix_meta_operator__S_198Nch_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("postfix_prefix_meta_operator__S_198Nch_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("postfix_prefix_meta_operator__S_198Nch_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_EXACT("»")
@@ -42764,16 +42702,16 @@ sub {
 my $C=shift;
 $C->_EXACT("\>\>")
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -42835,7 +42773,7 @@ and ($C) = (scalar(do {
 }, $C))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -42856,7 +42794,7 @@ if (my ($C) = ($C->panic("Negation metaoperator not followed by valid infix"))) 
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -43133,38 +43071,38 @@ my $C = $C;
 if (($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'infix_circumfix_meta_operator__S_204Fre_Nch_0') {
-        $C->deb("Fate passed to infix_circumfix_meta_operator__S_204Fre_Nch_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT infix_circumfix_meta_operator__S_204Fre_Nch_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM infix_circumfix_meta_operator__S_204Fre_Nch_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'infix_circumfix_meta_operator__S_204Fre_Nch_0') {
+$C->deb("Fate passed to infix_circumfix_meta_operator__S_204Fre_Nch_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT infix_circumfix_meta_operator__S_204Fre_Nch_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM infix_circumfix_meta_operator__S_204Fre_Nch_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'infix_circumfix_meta_operator__S_204Fre_Nch_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'infix_circumfix_meta_operator__S_204Fre_Nch_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("infix_circumfix_meta_operator__S_204Fre_Nch_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("infix_circumfix_meta_operator__S_204Fre_Nch_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_EXACT("«")
@@ -43173,11 +43111,11 @@ sub {
 my $C=shift;
 $C->_EXACT("»")
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))
 and ($C) = (scalar(do {
@@ -43188,45 +43126,45 @@ $C->infixish('hyper')
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
 push @gather, do {
 if (my ($C) = (do {
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'infix_circumfix_meta_operator__S_204Fre_Nch_1') {
-        $C->deb("Fate passed to infix_circumfix_meta_operator__S_204Fre_Nch_1: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT infix_circumfix_meta_operator__S_204Fre_Nch_1';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM infix_circumfix_meta_operator__S_204Fre_Nch_1'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'infix_circumfix_meta_operator__S_204Fre_Nch_1') {
+$C->deb("Fate passed to infix_circumfix_meta_operator__S_204Fre_Nch_1: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT infix_circumfix_meta_operator__S_204Fre_Nch_1';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM infix_circumfix_meta_operator__S_204Fre_Nch_1'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'infix_circumfix_meta_operator__S_204Fre_Nch_1', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'infix_circumfix_meta_operator__S_204Fre_Nch_1', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("infix_circumfix_meta_operator__S_204Fre_Nch_1 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("infix_circumfix_meta_operator__S_204Fre_Nch_1 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_EXACT("«")
@@ -43235,11 +43173,11 @@ sub {
 my $C=shift;
 $C->_EXACT("»")
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 
 })) { ($C) } else { () }
@@ -43290,38 +43228,38 @@ my $C = $C;
 if (($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'infix_circumfix_meta_operator__S_205LtLt_GtGt_0') {
-        $C->deb("Fate passed to infix_circumfix_meta_operator__S_205LtLt_GtGt_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT infix_circumfix_meta_operator__S_205LtLt_GtGt_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM infix_circumfix_meta_operator__S_205LtLt_GtGt_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'infix_circumfix_meta_operator__S_205LtLt_GtGt_0') {
+$C->deb("Fate passed to infix_circumfix_meta_operator__S_205LtLt_GtGt_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT infix_circumfix_meta_operator__S_205LtLt_GtGt_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM infix_circumfix_meta_operator__S_205LtLt_GtGt_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'infix_circumfix_meta_operator__S_205LtLt_GtGt_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'infix_circumfix_meta_operator__S_205LtLt_GtGt_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("infix_circumfix_meta_operator__S_205LtLt_GtGt_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("infix_circumfix_meta_operator__S_205LtLt_GtGt_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_EXACT("\<\<")
@@ -43330,11 +43268,11 @@ sub {
 my $C=shift;
 $C->_EXACT("\>\>")
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))
 and ($C) = (scalar(do {
@@ -43345,45 +43283,45 @@ $C->infixish('HYPER')
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
 push @gather, do {
 if (my ($C) = (do {
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'infix_circumfix_meta_operator__S_205LtLt_GtGt_1') {
-        $C->deb("Fate passed to infix_circumfix_meta_operator__S_205LtLt_GtGt_1: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT infix_circumfix_meta_operator__S_205LtLt_GtGt_1';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM infix_circumfix_meta_operator__S_205LtLt_GtGt_1'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'infix_circumfix_meta_operator__S_205LtLt_GtGt_1') {
+$C->deb("Fate passed to infix_circumfix_meta_operator__S_205LtLt_GtGt_1: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT infix_circumfix_meta_operator__S_205LtLt_GtGt_1';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM infix_circumfix_meta_operator__S_205LtLt_GtGt_1'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'infix_circumfix_meta_operator__S_205LtLt_GtGt_1', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'infix_circumfix_meta_operator__S_205LtLt_GtGt_1', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("infix_circumfix_meta_operator__S_205LtLt_GtGt_1 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("infix_circumfix_meta_operator__S_205LtLt_GtGt_1 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_EXACT("\<\<")
@@ -43392,11 +43330,11 @@ sub {
 my $C=shift;
 $C->_EXACT("\>\>")
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 
 })) { ($C) } else { () }
@@ -43450,7 +43388,7 @@ if (($C) = ($C->_EXACT("\="))
 and ($C) = ($C->can_meta($op, "make assignment out of"))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -43512,7 +43450,7 @@ $C->semiarglist
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -43568,7 +43506,7 @@ $C->semilist
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -43627,7 +43565,7 @@ $C->semilist
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -43677,7 +43615,7 @@ and ($C) = (scalar(do {
 $pos = $C->{'_pos'} }, $C))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -43704,38 +43642,38 @@ if (($C) = ($C->_PATTERN(qr/\G[\x20\t\r]*+/))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'postcircumfix__S_210Lt_Gt_0') {
-        $C->deb("Fate passed to postcircumfix__S_210Lt_Gt_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT postcircumfix__S_210Lt_Gt_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM postcircumfix__S_210Lt_Gt_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'postcircumfix__S_210Lt_Gt_0') {
+$C->deb("Fate passed to postcircumfix__S_210Lt_Gt_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT postcircumfix__S_210Lt_Gt_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM postcircumfix__S_210Lt_Gt_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'postcircumfix__S_210Lt_Gt_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'postcircumfix__S_210Lt_Gt_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("postcircumfix__S_210Lt_Gt_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("postcircumfix__S_210Lt_Gt_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_PATTERN(qr/\G\d/)
@@ -43751,11 +43689,11 @@ sub {
 my $C=shift;
 $C->_EXACT("\:")
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) {
 $C
@@ -43808,7 +43746,7 @@ $C->nibble($C->cursor_fresh( $::LANG{'Q'} )->tweak('qq' => 1)->tweak('ww' => 1)-
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -43855,7 +43793,7 @@ $C->nibble($C->cursor_fresh( $::LANG{'Q'} )->tweak('qq' => 1)->tweak('ww' => 1)-
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -43894,38 +43832,38 @@ my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $self->_MATCHIFYr($S, "postop", do {
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'postop_0') {
-        $C->deb("Fate passed to postop_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT postop_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM postop_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'postop_0') {
+$C->deb("Fate passed to postop_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT postop_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM postop_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'postop_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'postop_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("postop_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("postop_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (my ($C) = ($C->_SUBSUMEr(['postfix'], sub {
@@ -43952,11 +43890,11 @@ $M->{'sym'} = $M->{'postcircumfix'}->{'sym'};
 }, $C)
 } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 
 });
@@ -43981,38 +43919,38 @@ my $C = $C;
 if (($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'methodop_0') {
-        $C->deb("Fate passed to methodop_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT methodop_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM methodop_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'methodop_0') {
+$C->deb("Fate passed to methodop_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT methodop_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM methodop_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'methodop_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'methodop_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("methodop_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("methodop_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_SUBSUMEr(['longname'], sub {
@@ -44028,38 +43966,38 @@ if (my ($C) = ($C->before(sub {
 my $C=shift;
 if (my ($C) = (do {
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'methodop_1') {
-        $C->deb("Fate passed to methodop_1: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT methodop_1';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM methodop_1'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'methodop_1') {
+$C->deb("Fate passed to methodop_1: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT methodop_1';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM methodop_1'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'methodop_1', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'methodop_1', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("methodop_1 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("methodop_1 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_EXACT("\$")
@@ -44072,11 +44010,11 @@ sub {
 my $C=shift;
 $C->_EXACT("\&")
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 
 })) { ($C) } else { () }
@@ -44088,7 +44026,7 @@ $C->variable
 }))) {
 scalar(do {
 my $M = $C;
-$::VAR = $M->{'variable'} }, $C)
+$C->check_variable($M->{'variable'}) }, $C)
 } else { () }
 },
 sub {
@@ -44102,7 +44040,7 @@ $C->_PATTERN(qr/\G['"]/)
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -44149,7 +44087,7 @@ $C->quote
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -44160,38 +44098,38 @@ if (my ($C) = ($C->before(sub {
 my $C=shift;
 if (my ($C) = (do {
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'methodop_2') {
-        $C->deb("Fate passed to methodop_2: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT methodop_2';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM methodop_2'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'methodop_2') {
+$C->deb("Fate passed to methodop_2: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT methodop_2';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM methodop_2'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'methodop_2', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'methodop_2', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("methodop_2 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("methodop_2 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_EXACT("\(")
@@ -44204,11 +44142,11 @@ sub {
 my $C=shift;
 $C->_EXACT("\\")
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 
 })) { ($C) } else { () }
@@ -44234,11 +44172,11 @@ $t =~ /\W/ or $t =~ /^(WHO|WHAT|WHERE|WHEN|WHY|HOW)$/ or $C->worry("Useless use 
 }, $C)
 } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))
 and ($C) = ($C->_OPTr(sub {
@@ -44250,38 +44188,38 @@ my $C=shift;
 if (my ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'methodop_3') {
-        $C->deb("Fate passed to methodop_3: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT methodop_3';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM methodop_3'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'methodop_3') {
+$C->deb("Fate passed to methodop_3: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT methodop_3';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM methodop_3'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'methodop_3', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'methodop_3', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("methodop_3 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("methodop_3 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (($C) = ($C->_EXACT("\:"))
@@ -44291,38 +44229,38 @@ if (my ($C) = ($C->before(sub {
 my $C=shift;
 if (my ($C) = (do {
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'methodop_4') {
-        $C->deb("Fate passed to methodop_4: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT methodop_4';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM methodop_4'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'methodop_4') {
+$C->deb("Fate passed to methodop_4: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT methodop_4';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM methodop_4'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'methodop_4', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'methodop_4', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("methodop_4 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("methodop_4 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_PATTERN(qr/\G\s/)
@@ -44331,11 +44269,11 @@ sub {
 my $C=shift;
 $C->_EXACT("\{")
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 
 })) { ($C) } else { () }
@@ -44369,11 +44307,11 @@ my $C=shift;
 scalar(do {
 $::MEMOS[$C->{'_pos'}]->{'baremeth'} = 1 }, $C)
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) { ($C) } else { () }
 })
@@ -44432,38 +44370,38 @@ if (($C) = ($C->ws)
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'arglist_0') {
-        $C->deb("Fate passed to arglist_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT arglist_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM arglist_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'arglist_0') {
+$C->deb("Fate passed to arglist_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT arglist_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM arglist_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'arglist_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'arglist_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("arglist_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("arglist_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (my ($C) = ($C->before(sub {
@@ -44485,15 +44423,15 @@ for (@$delims) {
 if ($_->{'infix'}->{'wascolon'} // '') {
 if ($inv_ok) {
 $::INVOCANT_IS = $M->{'EXPR'}->{'list'}->[0]}}}
-            ;
+;
 }}, $C)
 } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) {
 $C
@@ -44648,38 +44586,38 @@ if (($C) = ($C->_EXACT("\-\>"))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'postfix__S_217MinusGt_0') {
-        $C->deb("Fate passed to postfix__S_217MinusGt_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT postfix__S_217MinusGt_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM postfix__S_217MinusGt_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'postfix__S_217MinusGt_0') {
+$C->deb("Fate passed to postfix__S_217MinusGt_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT postfix__S_217MinusGt_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM postfix__S_217MinusGt_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'postfix__S_217MinusGt_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'postfix__S_217MinusGt_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("postfix__S_217MinusGt_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("postfix__S_217MinusGt_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (($C) = ($C->_SUBSUMEr(['brack'], sub {
@@ -44697,11 +44635,11 @@ sub {
 my $C=shift;
 if (my ($C) = ($C->obs('-> as postfix', 'either . to call a method, or whitespace to delimit a pointy block'))) { ($C) } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) {
 $C
@@ -45482,7 +45420,7 @@ my $C = $C;
 if (($C) = ($C->_EXACT("\~\<"))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -45551,7 +45489,7 @@ my $C = $C;
 if (($C) = ($C->_EXACT("\~\>"))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -45620,7 +45558,7 @@ my $C = $C;
 if (($C) = ($C->_EXACT("\+\<"))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -45689,7 +45627,7 @@ my $C = $C;
 if (($C) = ($C->_EXACT("\+\>"))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -46371,38 +46309,38 @@ if (my ($C) = ($C->before(sub {
 my $C=shift;
 if (my ($C) = (do {
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'infix__S_275DotDot_0') {
-        $C->deb("Fate passed to infix__S_275DotDot_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT infix__S_275DotDot_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM infix__S_275DotDot_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'infix__S_275DotDot_0') {
+$C->deb("Fate passed to infix__S_275DotDot_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT infix__S_275DotDot_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM infix__S_275DotDot_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'infix__S_275DotDot_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'infix__S_275DotDot_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("infix__S_275DotDot_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("infix__S_275DotDot_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_EXACT("\)")
@@ -46411,11 +46349,11 @@ sub {
 my $C=shift;
 $C->_EXACT("\]")
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 
 })) { ($C) } else { () }
@@ -46702,16 +46640,34 @@ if (($C) = ($C->_EXACT("\~\~"))
 and ($C) = ($C->_SUBSUMEr(['O'], sub {
 my $C = shift;
 $C->O(%chaining)
+}))
+and ($C) = ($C->before(sub {
+my $C=shift;
+if (my ($C) = ($C->dumbsmart)) { ($C) } else { () }
 }))) {
-$C->_OPTr(sub {
-my $C=shift;
-if (my ($C) = ($C->before(sub {
-my $C=shift;
-if (my ($C) = ($C->before(sub {
-my $C=shift;
+$C
+} else { () }
+
+});
+}
+;
+## token dumbsmart {
+sub dumbsmart__PEEK { $_[0]->_AUTOLEXpeek('dumbsmart', $retree) }
+sub dumbsmart {
+no warnings 'recursion';
+my $self = shift;
+
+
+local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
+
+my $C = $self->cursor_xact("RULE dumbsmart");
+my $xact = $C->xact;
+my $S = $C->{'_pos'};
 $C->{'0'} = [];
-do {
-my $C = $C;
+$self->_MATCHIFYr($S, "dumbsmart", $C->_OPTr(sub {
+my $C=shift;
+if (my ($C) = ($C->_BRACKETr(sub {
+my $C=shift;
 if (($C) = ($C->_PATTERN(qr/\G[\x20\t\r]*+/))
 and ($C) = ($C->_SUBSUMEr(['0'], sub {
 my $C = shift;
@@ -46719,38 +46675,38 @@ $C->_PAREN( sub {
 my $C=shift;
 if (my ($C) = (do {
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'infix__S_285TildeTilde_0') {
-        $C->deb("Fate passed to infix__S_285TildeTilde_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT infix__S_285TildeTilde_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM infix__S_285TildeTilde_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'dumbsmart_0') {
+$C->deb("Fate passed to dumbsmart_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT dumbsmart_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM dumbsmart_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'infix__S_285TildeTilde_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'dumbsmart_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("infix__S_285TildeTilde_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("dumbsmart_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_EXACT("True")
@@ -46758,47 +46714,42 @@ $C->_EXACT("True")
 sub {
 my $C=shift;
 $C->_EXACT("False")
+},
+sub {
+my $C=shift;
+$C->_EXACT("Bool\:\:True")
+},
+sub {
+my $C=shift;
+$C->_EXACT("Bool\:\:False")
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 
 })) { ($C) } else { () }
 
 })
 }))
-and ($C) = ($C->_PATTERN(qr/\G\b/))
-and ($C) = (do {
+and ($C) = ($C->_PATTERN(qr/\G\b/))) {
+scalar(do {
 my $M = $C;
-$C->dumbsmart($M->{0}->[0]->Str)
-})) {
-$C
+my $litbool = $M->{0}->[0]->Str;
+my $true = $litbool =~ /True/;
+$self->worry("Smartmatch against $litbool always " .
+($true ? 'matches' : 'fails') .
+"; if you mean to test the topic for\n    truthiness, please use " .
+($true ? ':so or *.so or ?*' : ':!so or *.not or !*') .
+' instead');
+}, $C)
 } else { () }
-};
 }))) { ($C) } else { () }
-}))) { ($C) } else { () }
-})
-} else { () }
-
-});
+}));
 }
 ;
-## method dumbsmart ($litbool)
-sub dumbsmart {
-no warnings 'recursion';
-my $self = shift;
-die 'Required argument litbool omitted' unless @_;
-my $litbool = @_ ? shift() : undef;
-$self->worry("Smartmatch against $litbool always " .
-            ($litbool eq 'True' ? 'matches' : 'fails') .
-            "; if you mean to test the topic for\n    truthiness, please use " .
-            ($litbool eq 'True' ? ':so or *.so or ?*' : ':!so or *.not or !*') .
-            ' instead');
-$self;
-};
 ## token infix:sym<!~>
 sub infix__S_286BangTilde__PEEK { $_[0]->_AUTOLEXpeek('infix__S_286BangTilde', $retree) }
 sub infix__S_286BangTilde {
@@ -47282,7 +47233,7 @@ $C->EXPR(\%item_assignment)
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -47408,7 +47359,7 @@ if (($C) = ($C->_EXACT("\!\!"))
 and ($C) = ($C->_COMMITLTM())
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -47709,7 +47660,7 @@ my $C = $C;
 if (($C) = ($C->_EXACT("\="))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -47809,9 +47760,9 @@ if (my ($C) = ($C->_EXACT("\.\="))) {
 $C->_SUBSUMEr(['O'], sub {
 my $C = shift;
 $C->O(%item_assignment,
-            nextterm => 'dottyopish',
-            _reducecheck => 'check_doteq'
-        )
+nextterm => 'dottyopish',
+_reducecheck => 'check_doteq'
+)
 })
 } else { () }
 
@@ -47827,7 +47778,8 @@ my $ok = 0;
 eval {
 my $methop = $self->{'right'}->{'methodop'};
 my $name = $methop->{'longname'}->Str;
-if ($name eq 'new' or $name eq 'sort' or $name eq 'subst' or $name eq 'trans' or $name eq 'reverse' or $name eq 'uniq' or $name eq 'map' or $name eq 'samecase' or $name eq 'substr' or $name eq 'flip' or $name eq 'fmt' or $name eq 'pick') {
+if (grep {
+$_ eq $name }  <new clone sort subst trans reverse uniq map samecase substr flip fmt pick>) {
 $ok = 1}
 elsif (not $methop->{'args'}->[0]) {
 $ok = 1};
@@ -47970,38 +47922,38 @@ if (my ($C) = ($C->before(sub {
 my $C=shift;
 if (my ($C) = (do {
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'infix__S_324Colon_0') {
-        $C->deb("Fate passed to infix__S_324Colon_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT infix__S_324Colon_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM infix__S_324Colon_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'infix__S_324Colon_0') {
+$C->deb("Fate passed to infix__S_324Colon_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT infix__S_324Colon_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM infix__S_324Colon_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'infix__S_324Colon_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'infix__S_324Colon_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("infix__S_324Colon_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("infix__S_324Colon_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_PATTERN(qr/\G\s/)
@@ -48013,11 +47965,11 @@ my $C = shift;
 $C->terminator
 })
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 
 })) { ($C) } else { () }
@@ -48234,12 +48186,12 @@ $C->O(%list_prefix)
 }
 ;
 my %deftrap = (
-        'say' => 1, 'print' => 1, 'abs' => 1, 'alarm' => 1, 'chomp' => 1, 'chop' => 1, 'chr' => 1, 'chroot' => 1, 'cos' => 1,
-        'defined' => 1, 'eval' => 1, 'exp' => 1, 'glob' => 1, 'lc' => 1, 'lcfirst' => 1, 'log' => 1, 'lstat' => 1, 'mkdir' => 1,
-        'ord' => 1, 'readlink' => 1, 'readpipe' => 1, 'require' => 1, 'reverse' => 1, 'rmdir' => 1, 'sin' => 1,
-        'split' => 1, 'sqrt' => 1, 'stat' => 1, 'uc' => 1, 'ucfirst' => 1, 'unlink' => 1,
-        'WHAT' => 1, 'WHICH' => 1, 'WHERE' => 1, 'HOW' => 1, 'WHENCE' => 1, 'VAR' => 1,
-    );
+'say' => 1, 'print' => 1, 'abs' => 1, 'alarm' => 1, 'chomp' => 1, 'chop' => 1, 'chr' => 1, 'chroot' => 1, 'cos' => 1,
+'defined' => 1, 'eval' => 1, 'exp' => 1, 'glob' => 1, 'lc' => 1, 'lcfirst' => 1, 'log' => 1, 'lstat' => 1, 'mkdir' => 1,
+'ord' => 1, 'readlink' => 1, 'readpipe' => 1, 'require' => 1, 'reverse' => 1, 'rmdir' => 1, 'sin' => 1,
+'split' => 1, 'sqrt' => 1, 'stat' => 1, 'uc' => 1, 'ucfirst' => 1, 'unlink' => 1,
+'WHAT' => 1, 'WHICH' => 1, 'WHERE' => 1, 'HOW' => 1, 'WHENCE' => 1, 'VAR' => 1,
+);
 ## token term:identifier
 sub term__S_332identifier__PEEK { $_[0]->_AUTOLEXpeek('term__S_332identifier', $retree) }
 sub term__S_332identifier {
@@ -48269,38 +48221,38 @@ my $C=shift;
 if (my ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'term__S_332identifier_0') {
-        $C->deb("Fate passed to term__S_332identifier_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT term__S_332identifier_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM term__S_332identifier_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'term__S_332identifier_0') {
+$C->deb("Fate passed to term__S_332identifier_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT term__S_332identifier_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM term__S_332identifier_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'term__S_332identifier_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'term__S_332identifier_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("term__S_332identifier_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("term__S_332identifier_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_SUBSUMEr(['unsp'], sub {
@@ -48312,11 +48264,11 @@ sub {
 my $C=shift;
 $C->_EXACT("\(")
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) { ($C) } else { () }
 })
@@ -48386,38 +48338,38 @@ my $C = $C;
 if (($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'args_0') {
-        $C->deb("Fate passed to args_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT args_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM args_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'args_0') {
+$C->deb("Fate passed to args_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT args_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM args_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'args_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'args_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("args_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("args_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (my ($C) = ($C->_BRACKETr(sub {
@@ -48433,7 +48385,7 @@ $C->semiarglist
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -48469,7 +48421,7 @@ $C->semiarglist
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -48525,11 +48477,11 @@ $C->arglist
 })
 } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))
 and ($C) = (scalar(do {
@@ -48537,7 +48489,7 @@ my $M = $C;
 $M->{'invocant'} = $::INVOCANT_IS}, $C))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -48614,7 +48566,7 @@ $pos = $C->{'_pos'};
 }, $C))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -48624,7 +48576,7 @@ if (($C) = ($C->before(sub {
 my $C=shift;
 (($C) x !!do {
 $C->is_name($name) or substr($name,0,2) eq '::'
-            })
+})
 }))
 and ($C) = (scalar(do {
 $C->check_nodecl($name)}, $C))
@@ -48668,38 +48620,38 @@ my $C=shift;
 if (my ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'term__S_333name_0') {
-        $C->deb("Fate passed to term__S_333name_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT term__S_333name_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM term__S_333name_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'term__S_333name_0') {
+$C->deb("Fate passed to term__S_333name_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT term__S_333name_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM term__S_333name_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'term__S_333name_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'term__S_333name_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("term__S_333name_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("term__S_333name_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_EXACT("«")
@@ -48716,11 +48668,11 @@ sub {
 my $C=shift;
 $C->_EXACT("\<\<")
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) { ($C) } else { () }
 }))) { ($C) } else { () }
@@ -49272,38 +49224,38 @@ my $S = $C->{'_pos'};
 $self->_MATCHIFY($S, "infixstopper", $C->_BRACKET(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'infixstopper_0') {
-        $C->deb("Fate passed to infixstopper_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT infixstopper_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM infixstopper_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'infixstopper_0') {
+$C->deb("Fate passed to infixstopper_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT infixstopper_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM infixstopper_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'infixstopper_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'infixstopper_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("infixstopper_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("infixstopper_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->before(sub {
@@ -49342,38 +49294,38 @@ my $C=shift;
 $C->before(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'infixstopper_1') {
-        $C->deb("Fate passed to infixstopper_1: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT infixstopper_1';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM infixstopper_1'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'infixstopper_1') {
+$C->deb("Fate passed to infixstopper_1: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT infixstopper_1';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM infixstopper_1'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::P6', 'infixstopper_1', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::P6', 'infixstopper_1', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("infixstopper_1 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("infixstopper_1 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_EXACT("\{")
@@ -49385,11 +49337,11 @@ my $C = shift;
 $C->lambda
 })
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))
 },
@@ -49401,23 +49353,23 @@ my $C=shift;
 $::GOAL eq 'endargs' and $::MEMOS[$C->{'_pos'}]->{'endargs'} })
 })
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }));
 }
 ;
-  1; };
+1; };
 { package STD::Q;
 use Moose ':all' => { -prefix => "moose_" };
 use Encode;
 moose_extends('STD');
 our $ALLROLES = { 'STD::Q', 1 };
 our $REGEXES = {
-    ALL => [ qw// ],
+ALL => [ qw// ],
 };
 
 
@@ -49436,9 +49388,9 @@ use Moose::Role ':all' => { -prefix => "moose_" };
 use Encode;
 our $ALLROLES = { 'STD::Q::b1', 1 };
 our $REGEXES = {
-    ALL => [ qw/backslash escape/ ],
-    backslash => [ qw/backslash__S_001qq__PEEK backslash__S_002Back__PEEK backslash__S_003stopper__PEEK backslash__S_004a__PEEK backslash__S_005b__PEEK backslash__S_006c__PEEK backslash__S_007e__PEEK backslash__S_008f__PEEK backslash__S_009n__PEEK backslash__S_010o__PEEK backslash__S_011r__PEEK backslash__S_012t__PEEK backslash__S_013x__PEEK backslash__S_0140__PEEK/ ],
-    escape => [ qw/escape__S_000Back__PEEK/ ],
+ALL => [ qw/backslash escape/ ],
+backslash => [ qw/backslash__S_001qq__PEEK backslash__S_002Back__PEEK backslash__S_003stopper__PEEK backslash__S_004a__PEEK backslash__S_005b__PEEK backslash__S_006c__PEEK backslash__S_007e__PEEK backslash__S_008f__PEEK backslash__S_009n__PEEK backslash__S_010o__PEEK backslash__S_011r__PEEK backslash__S_012t__PEEK backslash__S_013x__PEEK backslash__S_0140__PEEK/ ],
+escape => [ qw/escape__S_000Back__PEEK/ ],
 };
 
 
@@ -49876,38 +49828,38 @@ if (($C) = ($C->_EXACT("o"))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'backslash__S_010o_0') {
-        $C->deb("Fate passed to backslash__S_010o_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT backslash__S_010o_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM backslash__S_010o_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'backslash__S_010o_0') {
+$C->deb("Fate passed to backslash__S_010o_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT backslash__S_010o_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM backslash__S_010o_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::Q::b1', 'backslash__S_010o_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::Q::b1', 'backslash__S_010o_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("backslash__S_010o_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("backslash__S_010o_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_SUBSUMEr(['octint'], sub {
@@ -49930,7 +49882,7 @@ $C->octints
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -49950,11 +49902,11 @@ $C
 } else { () }
 }))) { ($C) } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) {
 $C
@@ -50014,38 +49966,38 @@ if (($C) = ($C->_EXACT("x"))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'backslash__S_013x_0') {
-        $C->deb("Fate passed to backslash__S_013x_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT backslash__S_013x_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM backslash__S_013x_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'backslash__S_013x_0') {
+$C->deb("Fate passed to backslash__S_013x_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT backslash__S_013x_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM backslash__S_013x_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::Q::b1', 'backslash__S_013x_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::Q::b1', 'backslash__S_013x_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("backslash__S_013x_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("backslash__S_013x_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_SUBSUMEr(['hexint'], sub {
@@ -50068,7 +50020,7 @@ $C->hexints
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -50088,11 +50040,11 @@ $C
 } else { () }
 }))) { ($C) } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) {
 $C
@@ -50116,14 +50068,14 @@ my $S = $C->{'_pos'};
 $self->_MATCHIFYr($S, "backslash__S_0140", $C->_EXACT("0"));
 }
 ;
-  1; };
+1; };
 { package STD::Q::b0;
 use Moose::Role ':all' => { -prefix => "moose_" };
 use Encode;
 our $ALLROLES = { 'STD::Q::b0', 1 };
 our $REGEXES = {
-    ALL => [ qw/escape/ ],
-    escape => [ qw/escape__S_000Back__PEEK/ ],
+ALL => [ qw/escape/ ],
+escape => [ qw/escape__S_000Back__PEEK/ ],
 };
 
 
@@ -50165,14 +50117,14 @@ my $C=shift;
 $C
 }));
 }
-  1; };
+1; };
 { package STD::Q::c1;
 use Moose::Role ':all' => { -prefix => "moose_" };
 use Encode;
 our $ALLROLES = { 'STD::Q::c1', 1 };
 our $REGEXES = {
-    ALL => [ qw/escape/ ],
-    escape => [ qw/escape__S_000Cur_Ly__PEEK/ ],
+ALL => [ qw/escape/ ],
+escape => [ qw/escape__S_000Cur_Ly__PEEK/ ],
 };
 
 
@@ -50245,14 +50197,14 @@ $C
 
 });
 }
-  1; };
+1; };
 { package STD::Q::c0;
 use Moose::Role ':all' => { -prefix => "moose_" };
 use Encode;
 our $ALLROLES = { 'STD::Q::c0', 1 };
 our $REGEXES = {
-    ALL => [ qw/escape/ ],
-    escape => [ qw/escape__S_000Cur_Ly__PEEK/ ],
+ALL => [ qw/escape/ ],
+escape => [ qw/escape__S_000Cur_Ly__PEEK/ ],
 };
 
 
@@ -50294,14 +50246,14 @@ my $C=shift;
 $C
 }));
 }
-  1; };
+1; };
 { package STD::Q::s1;
 use Moose::Role ':all' => { -prefix => "moose_" };
 use Encode;
 our $ALLROLES = { 'STD::Q::s1', 1 };
 our $REGEXES = {
-    ALL => [ qw/escape/ ],
-    escape => [ qw/escape__S_000Dollar__PEEK/ ],
+ALL => [ qw/escape/ ],
+escape => [ qw/escape__S_000Dollar__PEEK/ ],
 };
 
 
@@ -50356,7 +50308,7 @@ my $C = $self->cursor_xact("RULE escape__S_000Dollar");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\$";
-$self->_MATCHIFYr($S, "escape__S_000Dollar", do {my $C = $C->cursor_xact('ALT ||');
+$self->_MATCHIFYr($S, "escape__S_000Dollar", do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -50393,14 +50345,14 @@ if (my ($C) = ($C->panic("Non-variable \$ must be backslashed"))) { ($C) } else 
 @gather;
 });
 }
-  1; };
+1; };
 { package STD::Q::s0;
 use Moose::Role ':all' => { -prefix => "moose_" };
 use Encode;
 our $ALLROLES = { 'STD::Q::s0', 1 };
 our $REGEXES = {
-    ALL => [ qw/escape/ ],
-    escape => [ qw/escape__S_000Dollar__PEEK/ ],
+ALL => [ qw/escape/ ],
+escape => [ qw/escape__S_000Dollar__PEEK/ ],
 };
 
 
@@ -50442,14 +50394,14 @@ my $C=shift;
 $C
 }));
 }
-  1; };
+1; };
 { package STD::Q::a1;
 use Moose::Role ':all' => { -prefix => "moose_" };
 use Encode;
 our $ALLROLES = { 'STD::Q::a1', 1 };
 our $REGEXES = {
-    ALL => [ qw/escape/ ],
-    escape => [ qw/escape__S_000At__PEEK/ ],
+ALL => [ qw/escape/ ],
+escape => [ qw/escape__S_000At__PEEK/ ],
 };
 
 
@@ -50523,38 +50475,38 @@ $C->_EXACT("\@")
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'escape__S_000At_0') {
-        $C->deb("Fate passed to escape__S_000At_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT escape__S_000At_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM escape__S_000At_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'escape__S_000At_0') {
+$C->deb("Fate passed to escape__S_000At_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT escape__S_000At_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM escape__S_000At_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::Q::a1', 'escape__S_000At_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::Q::a1', 'escape__S_000At_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("escape__S_000At_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("escape__S_000At_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (my ($C) = (do {
@@ -50574,11 +50526,11 @@ my $C=shift;
 $C
 }))) { ($C) } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) {
 $C
@@ -50586,14 +50538,14 @@ $C
 
 });
 }
-  1; };
+1; };
 { package STD::Q::a0;
 use Moose::Role ':all' => { -prefix => "moose_" };
 use Encode;
 our $ALLROLES = { 'STD::Q::a0', 1 };
 our $REGEXES = {
-    ALL => [ qw/escape/ ],
-    escape => [ qw/escape__S_000At__PEEK/ ],
+ALL => [ qw/escape/ ],
+escape => [ qw/escape__S_000At__PEEK/ ],
 };
 
 
@@ -50635,14 +50587,14 @@ my $C=shift;
 $C
 }));
 }
-  1; };
+1; };
 { package STD::Q::h1;
 use Moose::Role ':all' => { -prefix => "moose_" };
 use Encode;
 our $ALLROLES = { 'STD::Q::h1', 1 };
 our $REGEXES = {
-    ALL => [ qw/escape/ ],
-    escape => [ qw/escape__S_000Percent__PEEK/ ],
+ALL => [ qw/escape/ ],
+escape => [ qw/escape__S_000Percent__PEEK/ ],
 };
 
 
@@ -50716,38 +50668,38 @@ $C->_EXACT("\%")
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'escape__S_000Percent_0') {
-        $C->deb("Fate passed to escape__S_000Percent_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT escape__S_000Percent_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM escape__S_000Percent_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'escape__S_000Percent_0') {
+$C->deb("Fate passed to escape__S_000Percent_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT escape__S_000Percent_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM escape__S_000Percent_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::Q::h1', 'escape__S_000Percent_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::Q::h1', 'escape__S_000Percent_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("escape__S_000Percent_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("escape__S_000Percent_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (my ($C) = (do {
@@ -50767,11 +50719,11 @@ my $C=shift;
 $C
 }))) { ($C) } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) {
 $C
@@ -50779,14 +50731,14 @@ $C
 
 });
 }
-  1; };
+1; };
 { package STD::Q::h0;
 use Moose::Role ':all' => { -prefix => "moose_" };
 use Encode;
 our $ALLROLES = { 'STD::Q::h0', 1 };
 our $REGEXES = {
-    ALL => [ qw/escape/ ],
-    escape => [ qw/escape__S_000Percent__PEEK/ ],
+ALL => [ qw/escape/ ],
+escape => [ qw/escape__S_000Percent__PEEK/ ],
 };
 
 
@@ -50828,14 +50780,14 @@ my $C=shift;
 $C
 }));
 }
-  1; };
+1; };
 { package STD::Q::f1;
 use Moose::Role ':all' => { -prefix => "moose_" };
 use Encode;
 our $ALLROLES = { 'STD::Q::f1', 1 };
 our $REGEXES = {
-    ALL => [ qw/escape/ ],
-    escape => [ qw/escape__S_000Amp__PEEK/ ],
+ALL => [ qw/escape/ ],
+escape => [ qw/escape__S_000Amp__PEEK/ ],
 };
 
 
@@ -50909,38 +50861,38 @@ $C->_EXACT("\&")
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'escape__S_000Amp_0') {
-        $C->deb("Fate passed to escape__S_000Amp_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT escape__S_000Amp_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM escape__S_000Amp_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'escape__S_000Amp_0') {
+$C->deb("Fate passed to escape__S_000Amp_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT escape__S_000Amp_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM escape__S_000Amp_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::Q::f1', 'escape__S_000Amp_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::Q::f1', 'escape__S_000Amp_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("escape__S_000Amp_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("escape__S_000Amp_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (my ($C) = (do {
@@ -50960,11 +50912,11 @@ my $C=shift;
 $C
 }))) { ($C) } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) {
 $C
@@ -50972,14 +50924,14 @@ $C
 
 });
 }
-  1; };
+1; };
 { package STD::Q::f0;
 use Moose::Role ':all' => { -prefix => "moose_" };
 use Encode;
 our $ALLROLES = { 'STD::Q::f0', 1 };
 our $REGEXES = {
-    ALL => [ qw/escape/ ],
-    escape => [ qw/escape__S_000Amp__PEEK/ ],
+ALL => [ qw/escape/ ],
+escape => [ qw/escape__S_000Amp__PEEK/ ],
 };
 
 
@@ -51021,13 +50973,13 @@ my $C=shift;
 $C
 }));
 }
-  1; };
+1; };
 { package STD::Q::p1;
 use Moose::Role ':all' => { -prefix => "moose_" };
 use Encode;
 our $ALLROLES = { 'STD::Q::p1', 1 };
 our $REGEXES = {
-    ALL => [ qw// ],
+ALL => [ qw// ],
 };
 
 
@@ -51053,7 +51005,7 @@ use Moose::Role ':all' => { -prefix => "moose_" };
 use Encode;
 our $ALLROLES = { 'STD::Q::p0', 1 };
 our $REGEXES = {
-    ALL => [ qw// ],
+ALL => [ qw// ],
 };
 
 
@@ -51079,7 +51031,7 @@ use Moose::Role ':all' => { -prefix => "moose_" };
 use Encode;
 our $ALLROLES = { 'STD::Q::w1', 1 };
 our $REGEXES = {
-    ALL => [ qw// ],
+ALL => [ qw// ],
 };
 
 
@@ -51105,7 +51057,7 @@ use Moose::Role ':all' => { -prefix => "moose_" };
 use Encode;
 our $ALLROLES = { 'STD::Q::w0', 1 };
 our $REGEXES = {
-    ALL => [ qw// ],
+ALL => [ qw// ],
 };
 
 
@@ -51131,7 +51083,7 @@ use Moose::Role ':all' => { -prefix => "moose_" };
 use Encode;
 our $ALLROLES = { 'STD::Q::ww1', 1 };
 our $REGEXES = {
-    ALL => [ qw// ],
+ALL => [ qw// ],
 };
 
 
@@ -51157,7 +51109,7 @@ use Moose::Role ':all' => { -prefix => "moose_" };
 use Encode;
 our $ALLROLES = { 'STD::Q::ww0', 1 };
 our $REGEXES = {
-    ALL => [ qw// ],
+ALL => [ qw// ],
 };
 
 
@@ -51183,7 +51135,7 @@ use Moose::Role ':all' => { -prefix => "moose_" };
 use Encode;
 our $ALLROLES = { 'STD::Q::x1', 1 };
 our $REGEXES = {
-    ALL => [ qw// ],
+ALL => [ qw// ],
 };
 
 
@@ -51209,7 +51161,7 @@ use Moose::Role ':all' => { -prefix => "moose_" };
 use Encode;
 our $ALLROLES = { 'STD::Q::x0', 1 };
 our $REGEXES = {
-    ALL => [ qw// ],
+ALL => [ qw// ],
 };
 
 
@@ -51235,9 +51187,9 @@ use Moose::Role ':all' => { -prefix => "moose_" };
 use Encode;
 our $ALLROLES = { 'STD::Q::q', 1 };
 our $REGEXES = {
-    ALL => [ qw/backslash escape stopper/ ],
-    backslash => [ qw/backslash__S_001qq__PEEK backslash__S_002Back__PEEK backslash__S_003stopper__PEEK backslash__S_004misc__PEEK/ ],
-    escape => [ qw/escape__S_000Back__PEEK/ ],
+ALL => [ qw/backslash escape stopper/ ],
+backslash => [ qw/backslash__S_001qq__PEEK backslash__S_002Back__PEEK backslash__S_003stopper__PEEK backslash__S_004misc__PEEK/ ],
+escape => [ qw/escape__S_000Back__PEEK/ ],
 };
 
 
@@ -51461,40 +51413,40 @@ $M->{'text'} = "\\" . $M->{0}->Str}, $C)
 ;
 ## method tweak (:cclass(:$cc)!)
 ;
- moose_around tweak  => sub {
-    my $orig = shift;
-    no warnings 'recursion';
+moose_around tweak  => sub {
+my $orig = shift;
+no warnings 'recursion';
 {
-    local @_ = @_;
-    return scalar do { # work around #38809
-        my $self = shift;
+local @_ = @_;
+return scalar do { # work around #38809
+my $self = shift;
 my %args = @_;
 last unless exists $args{single} || exists $args{q};
 my $q = exists $args{single} ? delete $args{single} : exists $args{q} ? delete $args{q} : undef;
 $self->panic("Too late for :q")     };
 }
 {
-    local @_ = @_;
-    return scalar do { # work around #38809
-        my $self = shift;
+local @_ = @_;
+return scalar do { # work around #38809
+my $self = shift;
 my %args = @_;
 last unless exists $args{double} || exists $args{qq};
 my $qq = exists $args{double} ? delete $args{double} : exists $args{qq} ? delete $args{qq} : undef;
 $self->panic("Too late for :qq")     };
 }
 {
-    local @_ = @_;
-    return scalar do { # work around #38809
-        my $self = shift;
+local @_ = @_;
+return scalar do { # work around #38809
+my $self = shift;
 my %args = @_;
 last unless exists $args{cclass} || exists $args{cc};
 my $cc = exists $args{cclass} ? delete $args{cclass} : exists $args{cc} ? delete $args{cc} : undef;
 $self->panic("Too late for :cc")     };
 }
-    $orig->(@_);
+$orig->(@_);
 };
 
- 1; };
+1; };
 { package STD::Q::qq;
 use Moose::Role ':all' => { -prefix => "moose_" };
 use Encode;
@@ -51505,8 +51457,8 @@ moose_with('STD::Q::a1');
 moose_with('STD::Q::h1');
 moose_with('STD::Q::f1');
 our $REGEXES = {
-    ALL => [ qw/backslash stopper/ ],
-    backslash => [ qw/backslash__S_000misc__PEEK/ ],
+ALL => [ qw/backslash stopper/ ],
+backslash => [ qw/backslash__S_000misc__PEEK/ ],
 };
 
 
@@ -51597,38 +51549,38 @@ if (($C) = (scalar(do {
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'backslash__S_000misc_0') {
-        $C->deb("Fate passed to backslash__S_000misc_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT backslash__S_000misc_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM backslash__S_000misc_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'backslash__S_000misc_0') {
+$C->deb("Fate passed to backslash__S_000misc_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT backslash__S_000misc_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM backslash__S_000misc_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::Q::qq', 'backslash__S_000misc_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::Q::qq', 'backslash__S_000misc_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("backslash__S_000misc_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("backslash__S_000misc_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (my ($C) = ($C->_SUBSUMEr(['0'], sub {
@@ -51661,11 +51613,11 @@ $C->sorry("Unrecognized backslash sequence: '\\" . $M->{'x'}->Str . "'")
 $C
 } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) {
 $C
@@ -51680,48 +51632,48 @@ $C
 ;
 ## method tweak (:cclass(:$cc)!)
 ;
- moose_around tweak  => sub {
-    my $orig = shift;
-    no warnings 'recursion';
+moose_around tweak  => sub {
+my $orig = shift;
+no warnings 'recursion';
 {
-    local @_ = @_;
-    return scalar do { # work around #38809
-        my $self = shift;
+local @_ = @_;
+return scalar do { # work around #38809
+my $self = shift;
 my %args = @_;
 last unless exists $args{single} || exists $args{q};
 my $q = exists $args{single} ? delete $args{single} : exists $args{q} ? delete $args{q} : undef;
 $self->panic("Too late for :q")     };
 }
 {
-    local @_ = @_;
-    return scalar do { # work around #38809
-        my $self = shift;
+local @_ = @_;
+return scalar do { # work around #38809
+my $self = shift;
 my %args = @_;
 last unless exists $args{double} || exists $args{qq};
 my $qq = exists $args{double} ? delete $args{double} : exists $args{qq} ? delete $args{qq} : undef;
 $self->panic("Too late for :qq")     };
 }
 {
-    local @_ = @_;
-    return scalar do { # work around #38809
-        my $self = shift;
+local @_ = @_;
+return scalar do { # work around #38809
+my $self = shift;
 my %args = @_;
 last unless exists $args{cclass} || exists $args{cc};
 my $cc = exists $args{cclass} ? delete $args{cclass} : exists $args{cc} ? delete $args{cc} : undef;
 $self->panic("Too late for :cc")     };
 }
-    $orig->(@_);
+$orig->(@_);
 };
 
- 1; };
+1; };
 { package STD::Q::cc;
 use Moose::Role ':all' => { -prefix => "moose_" };
 use Encode;
 our $ALLROLES = { 'STD::Q::cc', 1 };
 our $REGEXES = {
-    ALL => [ qw/backslash escape stopper/ ],
-    backslash => [ qw/backslash__S_006stopper__PEEK backslash__S_007a__PEEK backslash__S_008b__PEEK backslash__S_009c__PEEK backslash__S_010d__PEEK backslash__S_011e__PEEK backslash__S_012f__PEEK backslash__S_013h__PEEK backslash__S_014n__PEEK backslash__S_015o__PEEK backslash__S_016r__PEEK backslash__S_017s__PEEK backslash__S_018t__PEEK backslash__S_019v__PEEK backslash__S_020w__PEEK backslash__S_021x__PEEK backslash__S_0220__PEEK backslash__S_023misc__PEEK/ ],
-    escape => [ qw/escape__S_000ws__PEEK escape__S_001Sharp__PEEK escape__S_002Back__PEEK escape__S_003DotDot__PEEK escape__S_004Minus__PEEK escape__S_005ch__PEEK/ ],
+ALL => [ qw/backslash escape stopper/ ],
+backslash => [ qw/backslash__S_006stopper__PEEK backslash__S_007a__PEEK backslash__S_008b__PEEK backslash__S_009c__PEEK backslash__S_010d__PEEK backslash__S_011e__PEEK backslash__S_012f__PEEK backslash__S_013h__PEEK backslash__S_014n__PEEK backslash__S_015o__PEEK backslash__S_016r__PEEK backslash__S_017s__PEEK backslash__S_018t__PEEK backslash__S_019v__PEEK backslash__S_020w__PEEK backslash__S_021x__PEEK backslash__S_0220__PEEK backslash__S_023misc__PEEK/ ],
+escape => [ qw/escape__S_000ws__PEEK escape__S_001Sharp__PEEK escape__S_002Back__PEEK escape__S_003DotDot__PEEK escape__S_004Minus__PEEK escape__S_005ch__PEEK/ ],
 };
 
 
@@ -52285,7 +52237,7 @@ my $C = $C;
 if (($C) = ($C->_EXACT("\.\."))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -52600,38 +52552,38 @@ if (($C) = ($C->_PATTERN(qr/\G(?i:o)/))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'backslash__S_015o_0') {
-        $C->deb("Fate passed to backslash__S_015o_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT backslash__S_015o_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM backslash__S_015o_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'backslash__S_015o_0') {
+$C->deb("Fate passed to backslash__S_015o_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT backslash__S_015o_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM backslash__S_015o_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::Q::cc', 'backslash__S_015o_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::Q::cc', 'backslash__S_015o_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("backslash__S_015o_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("backslash__S_015o_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_SUBSUMEr(['octint'], sub {
@@ -52654,7 +52606,7 @@ $C->octints
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -52674,11 +52626,11 @@ $C
 } else { () }
 }))) { ($C) } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) {
 $C
@@ -52804,38 +52756,38 @@ if (($C) = ($C->_PATTERN(qr/\G(?i:x)/))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'backslash__S_021x_0') {
-        $C->deb("Fate passed to backslash__S_021x_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT backslash__S_021x_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM backslash__S_021x_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'backslash__S_021x_0') {
+$C->deb("Fate passed to backslash__S_021x_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT backslash__S_021x_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM backslash__S_021x_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::Q::cc', 'backslash__S_021x_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::Q::cc', 'backslash__S_021x_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("backslash__S_021x_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("backslash__S_021x_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_SUBSUMEr(['hexint'], sub {
@@ -52858,7 +52810,7 @@ $C->hexints
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -52878,11 +52830,11 @@ $C
 } else { () }
 }))) { ($C) } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) {
 $C
@@ -52926,38 +52878,38 @@ if (($C) = (scalar(do {
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'backslash__S_023misc_0') {
-        $C->deb("Fate passed to backslash__S_023misc_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT backslash__S_023misc_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM backslash__S_023misc_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'backslash__S_023misc_0') {
+$C->deb("Fate passed to backslash__S_023misc_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT backslash__S_023misc_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM backslash__S_023misc_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::Q::cc', 'backslash__S_023misc_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::Q::cc', 'backslash__S_023misc_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("backslash__S_023misc_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("backslash__S_023misc_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (my ($C) = ($C->_SUBSUMEr(['0'], sub {
@@ -52990,11 +52942,11 @@ $C->sorry("Unrecognized backslash sequence: '\\" . $M->{'x'}->Str . "'")
 $C
 } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) {
 $C
@@ -53009,46 +52961,46 @@ $C
 ;
 ## method tweak (:cclass(:$cc)!)
 ;
- moose_around tweak  => sub {
-    my $orig = shift;
-    no warnings 'recursion';
+moose_around tweak  => sub {
+my $orig = shift;
+no warnings 'recursion';
 {
-    local @_ = @_;
-    return scalar do { # work around #38809
-        my $self = shift;
+local @_ = @_;
+return scalar do { # work around #38809
+my $self = shift;
 my %args = @_;
 last unless exists $args{single} || exists $args{q};
 my $q = exists $args{single} ? delete $args{single} : exists $args{q} ? delete $args{q} : undef;
 $self->panic("Too late for :q")     };
 }
 {
-    local @_ = @_;
-    return scalar do { # work around #38809
-        my $self = shift;
+local @_ = @_;
+return scalar do { # work around #38809
+my $self = shift;
 my %args = @_;
 last unless exists $args{double} || exists $args{qq};
 my $qq = exists $args{double} ? delete $args{double} : exists $args{qq} ? delete $args{qq} : undef;
 $self->panic("Too late for :qq")     };
 }
 {
-    local @_ = @_;
-    return scalar do { # work around #38809
-        my $self = shift;
+local @_ = @_;
+return scalar do { # work around #38809
+my $self = shift;
 my %args = @_;
 last unless exists $args{cclass} || exists $args{cc};
 my $cc = exists $args{cclass} ? delete $args{cclass} : exists $args{cc} ? delete $args{cc} : undef;
 $self->panic("Too late for :cc")     };
 }
-    $orig->(@_);
+$orig->(@_);
 };
 
- 1; };
+1; };
 { package STD::Q::p5;
 use Moose::Role ':all' => { -prefix => "moose_" };
 use Encode;
 our $ALLROLES = { 'STD::Q::p5', 1 };
 our $REGEXES = {
-    ALL => [ qw// ],
+ALL => [ qw// ],
 };
 
 
@@ -53076,76 +53028,76 @@ $SIG{__WARN__} = sub { die @_,"   statement started at line ", 'STD::Cursor'->li
 ;
 ## method tweak (:$c!)
 ;
- moose_around tweak  => sub {
-    my $orig = shift;
-    no warnings 'recursion';
+moose_around tweak  => sub {
+my $orig = shift;
+no warnings 'recursion';
 {
-    local @_ = @_;
-    return scalar do { # work around #38809
-        my $self = shift;
+local @_ = @_;
+return scalar do { # work around #38809
+my $self = shift;
 my %args = @_;
 last unless exists $args{g};
 my $g = exists $args{g} ? delete $args{g} : undef;
 $self     };
 }
 {
-    local @_ = @_;
-    return scalar do { # work around #38809
-        my $self = shift;
+local @_ = @_;
+return scalar do { # work around #38809
+my $self = shift;
 my %args = @_;
 last unless exists $args{i};
 my $i = exists $args{i} ? delete $args{i} : undef;
 $self     };
 }
 {
-    local @_ = @_;
-    return scalar do { # work around #38809
-        my $self = shift;
+local @_ = @_;
+return scalar do { # work around #38809
+my $self = shift;
 my %args = @_;
 last unless exists $args{m};
 my $m = exists $args{m} ? delete $args{m} : undef;
 $self     };
 }
 {
-    local @_ = @_;
-    return scalar do { # work around #38809
-        my $self = shift;
+local @_ = @_;
+return scalar do { # work around #38809
+my $self = shift;
 my %args = @_;
 last unless exists $args{s};
 my $s = exists $args{s} ? delete $args{s} : undef;
 $self     };
 }
 {
-    local @_ = @_;
-    return scalar do { # work around #38809
-        my $self = shift;
+local @_ = @_;
+return scalar do { # work around #38809
+my $self = shift;
 my %args = @_;
 last unless exists $args{x};
 my $x = exists $args{x} ? delete $args{x} : undef;
 $self     };
 }
 {
-    local @_ = @_;
-    return scalar do { # work around #38809
-        my $self = shift;
+local @_ = @_;
+return scalar do { # work around #38809
+my $self = shift;
 my %args = @_;
 last unless exists $args{p};
 my $p = exists $args{p} ? delete $args{p} : undef;
 $self     };
 }
 {
-    local @_ = @_;
-    return scalar do { # work around #38809
-        my $self = shift;
+local @_ = @_;
+return scalar do { # work around #38809
+my $self = shift;
 my %args = @_;
 last unless exists $args{c};
 my $c = exists $args{c} ? delete $args{c} : undef;
 $self     };
 }
-    $orig->(@_);
+$orig->(@_);
 };
 
- 1; };
+1; };
 ## method tweak (:single(:$q)!)
 ;
 ## method tweak (:double(:$qq)!)
@@ -53178,174 +53130,174 @@ $self     };
 ;
 ## method tweak (*%x)
 ;
- moose_around tweak  => sub {
-    my $orig = shift;
-    no warnings 'recursion';
+moose_around tweak  => sub {
+my $orig = shift;
+no warnings 'recursion';
 {
-    local @_ = @_;
-    return scalar do { # work around #38809
-        my $self = shift;
+local @_ = @_;
+return scalar do { # work around #38809
+my $self = shift;
 my %args = @_;
 last unless exists $args{single} || exists $args{q};
 my $q = exists $args{single} ? delete $args{single} : exists $args{q} ? delete $args{q} : undef;
 $self->truly($q,':q');
 $self->mixin( 'STD::Q::q' );
-    };
+};
 }
 {
-    local @_ = @_;
-    return scalar do { # work around #38809
-        my $self = shift;
+local @_ = @_;
+return scalar do { # work around #38809
+my $self = shift;
 my %args = @_;
 last unless exists $args{double} || exists $args{qq};
 my $qq = exists $args{double} ? delete $args{double} : exists $args{qq} ? delete $args{qq} : undef;
 $self->truly($qq, ':qq');
 $self->mixin( 'STD::Q::qq' );
-    };
+};
 }
 {
-    local @_ = @_;
-    return scalar do { # work around #38809
-        my $self = shift;
+local @_ = @_;
+return scalar do { # work around #38809
+my $self = shift;
 my %args = @_;
 last unless exists $args{cclass} || exists $args{cc};
 my $cc = exists $args{cclass} ? delete $args{cclass} : exists $args{cc} ? delete $args{cc} : undef;
 $self->truly($cc, ':cc');
 $self->mixin( 'STD::Q::cc' );
-    };
+};
 }
 {
-    local @_ = @_;
-    return scalar do { # work around #38809
-        my $self = shift;
+local @_ = @_;
+return scalar do { # work around #38809
+my $self = shift;
 my %args = @_;
 last unless exists $args{backslash} || exists $args{b};
 my $b = exists $args{backslash} ? delete $args{backslash} : exists $args{b} ? delete $args{b} : undef;
 $self->mixin($b ? 'STD::Q::b1' : 'STD::Q::b0')     };
 }
 {
-    local @_ = @_;
-    return scalar do { # work around #38809
-        my $self = shift;
+local @_ = @_;
+return scalar do { # work around #38809
+my $self = shift;
 my %args = @_;
 last unless exists $args{scalar} || exists $args{s};
 my $s = exists $args{scalar} ? delete $args{scalar} : exists $args{s} ? delete $args{s} : undef;
 $self->mixin($s ? 'STD::Q::s1' : 'STD::Q::s0')     };
 }
 {
-    local @_ = @_;
-    return scalar do { # work around #38809
-        my $self = shift;
+local @_ = @_;
+return scalar do { # work around #38809
+my $self = shift;
 my %args = @_;
 last unless exists $args{array} || exists $args{a};
 my $a = exists $args{array} ? delete $args{array} : exists $args{a} ? delete $args{a} : undef;
 $self->mixin($a ? 'STD::Q::a1' : 'STD::Q::a0')     };
 }
 {
-    local @_ = @_;
-    return scalar do { # work around #38809
-        my $self = shift;
+local @_ = @_;
+return scalar do { # work around #38809
+my $self = shift;
 my %args = @_;
 last unless exists $args{hash} || exists $args{h};
 my $h = exists $args{hash} ? delete $args{hash} : exists $args{h} ? delete $args{h} : undef;
 $self->mixin($h ? 'STD::Q::h1' : 'STD::Q::h0')     };
 }
 {
-    local @_ = @_;
-    return scalar do { # work around #38809
-        my $self = shift;
+local @_ = @_;
+return scalar do { # work around #38809
+my $self = shift;
 my %args = @_;
 last unless exists $args{function} || exists $args{f};
 my $f = exists $args{function} ? delete $args{function} : exists $args{f} ? delete $args{f} : undef;
 $self->mixin($f ? 'STD::Q::f1' : 'STD::Q::f0')     };
 }
 {
-    local @_ = @_;
-    return scalar do { # work around #38809
-        my $self = shift;
+local @_ = @_;
+return scalar do { # work around #38809
+my $self = shift;
 my %args = @_;
 last unless exists $args{closure} || exists $args{c};
 my $c = exists $args{closure} ? delete $args{closure} : exists $args{c} ? delete $args{c} : undef;
 $self->mixin($c ? 'STD::Q::c1' : 'STD::Q::c0')     };
 }
 {
-    local @_ = @_;
-    return scalar do { # work around #38809
-        my $self = shift;
+local @_ = @_;
+return scalar do { # work around #38809
+my $self = shift;
 my %args = @_;
 last unless exists $args{path} || exists $args{p};
 my $p = exists $args{path} ? delete $args{path} : exists $args{p} ? delete $args{p} : undef;
 $self->mixin($p ? 'STD::Q::p1' : 'STD::Q::p0')     };
 }
 {
-    local @_ = @_;
-    return scalar do { # work around #38809
-        my $self = shift;
+local @_ = @_;
+return scalar do { # work around #38809
+my $self = shift;
 my %args = @_;
 last unless exists $args{exec} || exists $args{x};
 my $x = exists $args{exec} ? delete $args{exec} : exists $args{x} ? delete $args{x} : undef;
 $self->mixin($x ? 'STD::Q::x1' : 'STD::Q::x0')     };
 }
 {
-    local @_ = @_;
-    return scalar do { # work around #38809
-        my $self = shift;
+local @_ = @_;
+return scalar do { # work around #38809
+my $self = shift;
 my %args = @_;
 last unless exists $args{words} || exists $args{w};
 my $w = exists $args{words} ? delete $args{words} : exists $args{w} ? delete $args{w} : undef;
 $self->mixin($w ? 'STD::Q::w1' : 'STD::Q::w0')     };
 }
 {
-    local @_ = @_;
-    return scalar do { # work around #38809
-        my $self = shift;
+local @_ = @_;
+return scalar do { # work around #38809
+my $self = shift;
 my %args = @_;
 last unless exists $args{quotewords} || exists $args{ww};
 my $ww = exists $args{quotewords} ? delete $args{quotewords} : exists $args{ww} ? delete $args{ww} : undef;
 $self->mixin($ww ? 'STD::Q::ww1' : 'STD::Q::ww0')     };
 }
 {
-    local @_ = @_;
-    return scalar do { # work around #38809
-        my $self = shift;
+local @_ = @_;
+return scalar do { # work around #38809
+my $self = shift;
 my %args = @_;
 last unless exists $args{heredoc} || exists $args{to};
 my $to = exists $args{heredoc} ? delete $args{heredoc} : exists $args{to} ? delete $args{to} : undef;
 $self->truly($to, ':to');
 $self->cursor_herelang;
-    };
+};
 }
 {
-    local @_ = @_;
-    return scalar do { # work around #38809
-        my $self = shift;
+local @_ = @_;
+return scalar do { # work around #38809
+my $self = shift;
 my %args = @_;
 last unless exists $args{regex};
 my $regex = exists $args{regex} ? delete $args{regex} : undef;
 return $::LANG{'Regex'}    };
 }
 {
-    local @_ = @_;
-    return scalar do { # work around #38809
-        my $self = shift;
+local @_ = @_;
+return scalar do { # work around #38809
+my $self = shift;
 my %args = @_;
 my %x = %args;
 my @k = keys(%x);
 $self->sorry("Unrecognized quote modifier: " . join('',@k));
-    };
+};
 }
-    $orig->(@_);
+$orig->(@_);
 };
 
- 1; };
+1; };
 { package STD::Quasi;
 use Moose ':all' => { -prefix => "moose_" };
 use Encode;
 moose_extends('STD::P6');
 our $ALLROLES = { 'STD::Quasi', 1 };
 our $REGEXES = {
-    ALL => [ qw/term/ ],
-    term => [ qw/term__S_000unquote__PEEK/ ],
+ALL => [ qw/term/ ],
+term => [ qw/term__S_000unquote__PEEK/ ],
 };
 
 
@@ -53431,7 +53383,7 @@ $C->starter
 and ($C) = ($C->ws)
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -53483,61 +53435,61 @@ $C
 ;
 ## method tweak (*%x)
 ;
- moose_around tweak  => sub {
-    my $orig = shift;
-    no warnings 'recursion';
+moose_around tweak  => sub {
+my $orig = shift;
+no warnings 'recursion';
 {
-    local @_ = @_;
-    return scalar do { # work around #38809
-        my $self = shift;
+local @_ = @_;
+return scalar do { # work around #38809
+my $self = shift;
 my %args = @_;
 last unless exists $args{ast};
 my $ast = exists $args{ast} ? delete $args{ast} : undef;
 $self    };
 }
 {
-    local @_ = @_;
-    return scalar do { # work around #38809
-        my $self = shift;
+local @_ = @_;
+return scalar do { # work around #38809
+my $self = shift;
 my %args = @_;
 last unless exists $args{lang};
 my $lang = exists $args{lang} ? delete $args{lang} : undef;
 $self->cursor_fresh( $lang )    };
 }
 {
-    local @_ = @_;
-    return scalar do { # work around #38809
-        my $self = shift;
+local @_ = @_;
+return scalar do { # work around #38809
+my $self = shift;
 my %args = @_;
 last unless exists $args{unquote};
 my $unquote = exists $args{unquote} ? delete $args{unquote} : undef;
 $self    };
 }
 {
-    local @_ = @_;
-    return scalar do { # work around #38809
-        my $self = shift;
+local @_ = @_;
+return scalar do { # work around #38809
+my $self = shift;
 my %args = @_;
 last unless exists $args{COMPILING};
 my $COMPILING = exists $args{COMPILING} ? delete $args{COMPILING} : undef;
 $::QUASIMODO = 1;
 $self;
-    };
+};
 }
 {
-    local @_ = @_;
-    return scalar do { # work around #38809
-        my $self = shift;
+local @_ = @_;
+return scalar do { # work around #38809
+my $self = shift;
 my %args = @_;
 my %x = %args;
 my @k = keys(%x);
 $self->sorry("Unrecognized quasiquote modifier: " . join('',@k));
-    };
+};
 }
-    $orig->(@_);
+$orig->(@_);
 };
 
- 1; };
+1; };
 ## method EXPR ($preclvl?)
 sub EXPR {
 no warnings 'recursion';
@@ -53570,7 +53522,7 @@ last if $op->{'O'}->{'prec'} ne $opstack[-1]->{'O'}->{'prec'};
 push @chain, pop(@termstack);
 push @chain, pop(@opstack);
 }
-                ;
+;
 push @chain, pop(@termstack);
 my $endpos = $chain[0]->{'_pos'};
 @chain = reverse @chain if @chain > 1;
@@ -53587,13 +53539,13 @@ for (@chain) {
 push(@caps, $i++ % 2 ? 'op' : 'term' );
 push(@caps, $_);
 }
-                ;
+;
 $nop->{'~CAPS'} = \@caps;
 push @termstack, $nop->_REDUCE($startpos, 'CHAIN');
 delete $termstack[-1]->{'PRE'};
 delete $termstack[-1]->{'POST'};
 }
-            ;
+;
 when ('list') {
 $self->deb("reducing list") if $::DEBUG & DEBUG::EXPR;
 my @list;
@@ -53608,7 +53560,7 @@ else {
 $self->worry("Missing term in " . $sym . " list")};
 push @delims, pop(@opstack);
 }
-                ;
+;
 if (@termstack and defined $termstack[0]) {
 push @list, pop(@termstack)}
 else {
@@ -53635,14 +53587,14 @@ my $l = $list[$_+1];
 push @caps, 'delim', $d;
 push @caps, 'elem', $l if $l;
 }
-                    ;
+;
 $nop->{'~CAPS'} = \@caps;
 };
 push @termstack, $nop->_REDUCE($startpos, 'LIST');
 delete $termstack[-1]->{'PRE'};
 delete $termstack[-1]->{'POST'};
 }
-            ;
+;
 when ('unary') {
 $self->deb("reducing") if $::DEBUG & DEBUG::EXPR;
 $self->deb("Termstack size: ", 0+@termstack) if $::DEBUG & DEBUG::EXPR;
@@ -53667,7 +53619,7 @@ delete $termstack[-1]->{'PRE'};
 delete $termstack[-1]->{'POST'};
 };
 }
-            ;
+;
 default {
 $self->deb("reducing") if $::DEBUG & DEBUG::EXPR;
 $self->deb("Termstack size: ", 0+@termstack) if $::DEBUG & DEBUG::EXPR;
@@ -53690,12 +53642,12 @@ push @termstack, $op->_REDUCE($op->from, 'INFIX');
 delete $termstack[-1]->{'PRE'};
 delete $termstack[-1]->{'POST'};
 }
-        ;
+;
 }
-    ;
+;
 };
 TERM:
-    for (;;) {
+for (;;) {
 $self->deb("In loop, at ", $here->{'_pos'}) if $::DEBUG & DEBUG::EXPR;
 my $oldpos = $here->{'_pos'};
 $here = $here->cursor_fresh();
@@ -53725,7 +53677,7 @@ push @opstack, shift @PRE}
 else {
 $here->sorry('"' . $PRE[0]->{'sym'} . '" and "' . $POST[0]->{'sym'} . '" are not associative')};
 }
-        ;
+;
 push @opstack, @PRE,@POST;
 push @termstack, $here->{'term'};
 delete $termstack[-1]->{'POST'};
@@ -53762,8 +53714,8 @@ $inO->{'prec'} = $inO->{'sub'} if $inO->{'sub'};
 while ($opstack[-1]->{'O'}->{'prec'} gt $inprec) {
 $reduce->()}
 
-            # Not much point in reducing the sentinels...
-            ;
+# Not much point in reducing the sentinels...
+;
 last if $inprec lt $LOOSEST;
 if ($infix->{'fake'}) {
 push @opstack, $infix;
@@ -53775,27 +53727,27 @@ my $assoc = 1;
 given ($inO->{'assoc'}) {
 when ('non')   {
 $assoc = 0}
-                    ;
+;
 when ('left')  {
 $reduce->() }
-                    ;
+;
 when ('right') {
 }
-                    ;
+;
 when ('chain') {
 }
-                    ;
+;
 when ('unary') {
 }
-                    ;
+;
 when ('list')  {
 $assoc = 0 unless $infix->{'sym'} eq $opstack[-1]->{'sym'}}
-                    ;
+;
 default {
 $here->panic('Unknown associativity "' . $_ . '" for "' . $infix->{'sym'} . '"') }
-                ;
+;
 }
-                ;
+;
 if (not $assoc) {
 $here->sorry('"' . $opstack[-1]->{'sym'} . '" and "' . $infix->Str . '" are non-associative and require parens')};
 };
@@ -53818,14 +53770,14 @@ use Encode;
 moose_extends('STD');
 our $ALLROLES = { 'STD::Regex', 1 };
 our $REGEXES = {
-    ALL => [ qw/assertion atom backslash category cclass_elem infixish infixstopper metachar mod_arg mod_internal nibbler normspace quant_atom_list quantified_atom quantifier quantmod regex_infix sign termish unsp ws/ ],
-    assertion => [ qw/assertion__S_072DotDotDot__PEEK assertion__S_073QuestionQuestionQuestion__PEEK assertion__S_074BangBangBang__PEEK assertion__S_075Question__PEEK assertion__S_076Bang__PEEK assertion__S_077Star__PEEK assertion__S_078Cur_Ly__PEEK assertion__S_079variable__PEEK assertion__S_080method__PEEK assertion__S_081name__PEEK assertion__S_082Bra__PEEK assertion__S_083Plus__PEEK assertion__S_084Minus__PEEK assertion__S_085Dot__PEEK assertion__S_086Comma__PEEK assertion__S_087TildeTilde__PEEK assertion__S_088bogus__PEEK/ ],
-    backslash => [ qw/backslash__S_047unspace__PEEK backslash__S_0480__PEEK backslash__S_049A__PEEK backslash__S_050a__PEEK backslash__S_051B__PEEK backslash__S_052b__PEEK backslash__S_053c__PEEK backslash__S_054d__PEEK backslash__S_055e__PEEK backslash__S_056f__PEEK backslash__S_057h__PEEK backslash__S_058n__PEEK backslash__S_059o__PEEK backslash__S_060Q__PEEK backslash__S_061r__PEEK backslash__S_062s__PEEK backslash__S_063t__PEEK backslash__S_064v__PEEK backslash__S_065w__PEEK backslash__S_066x__PEEK backslash__S_067z__PEEK backslash__S_068Z__PEEK backslash__S_069misc__PEEK backslash__S_070oldbackref__PEEK backslash__S_071oops__PEEK/ ],
-    category => [ qw/category__S_000metachar__PEEK category__S_001backslash__PEEK category__S_002assertion__PEEK category__S_003quantifier__PEEK category__S_004mod_internal__PEEK/ ],
-    metachar => [ qw/metachar__S_009Gt__PEEK metachar__S_010AmpAmp__PEEK metachar__S_011Amp__PEEK metachar__S_012VertVert__PEEK metachar__S_013Vert__PEEK metachar__S_014Ket__PEEK metachar__S_015Thesis__PEEK metachar__S_016Semi__PEEK metachar__S_017CurStarLy__PEEK metachar__S_018BraStarKet__PEEK metachar__S_019quant__PEEK metachar__S_020sigwhite__PEEK metachar__S_021unsp__PEEK metachar__S_022Cur_Ly__PEEK metachar__S_023mod__PEEK metachar__S_024Minus__PEEK metachar__S_025Colon__PEEK metachar__S_026ColonColon__PEEK metachar__S_027ColonColonColon__PEEK metachar__S_028Bra_Ket__PEEK metachar__S_029Paren_Thesis__PEEK metachar__S_030LtParen__PEEK metachar__S_031ThesisGt__PEEK metachar__S_032LtLt__PEEK metachar__S_033GtGt__PEEK metachar__S_034Fre__PEEK metachar__S_035Nch__PEEK metachar__S_036qw__PEEK metachar__S_037Lt_Gt__PEEK metachar__S_038Back__PEEK metachar__S_039Dot__PEEK metachar__S_040CaretCaret__PEEK metachar__S_041Caret__PEEK metachar__S_042DollarDollar__PEEK metachar__S_043Dollar__PEEK metachar__S_044Single_Single__PEEK metachar__S_045Double_Double__PEEK metachar__S_046var__PEEK/ ],
-    mod_internal => [ qw/mod_internal__S_089Colonmy__PEEK mod_internal__S_090Coloni__PEEK mod_internal__S_091ColonBangi__PEEK mod_internal__S_092ColoniParen_Thesis__PEEK mod_internal__S_093Colon0i__PEEK mod_internal__S_094Colona__PEEK mod_internal__S_095ColonBanga__PEEK mod_internal__S_096ColonaParen_Thesis__PEEK mod_internal__S_097Colon0a__PEEK mod_internal__S_098Colons__PEEK mod_internal__S_099ColonBangs__PEEK mod_internal__S_100ColonsParen_Thesis__PEEK mod_internal__S_101Colon0s__PEEK mod_internal__S_102Colonr__PEEK mod_internal__S_103ColonBangr__PEEK mod_internal__S_104ColonrParen_Thesis__PEEK mod_internal__S_105Colon0r__PEEK mod_internal__S_106ColonPerl5__PEEK mod_internal__S_107p6adv__PEEK mod_internal__S_108oops__PEEK/ ],
-    quantifier => [ qw/quantifier__S_109Star__PEEK quantifier__S_110Plus__PEEK quantifier__S_111Question__PEEK quantifier__S_112Colon__PEEK quantifier__S_113StarStar__PEEK quantifier__S_114Tilde__PEEK quantifier__S_115TildeTilde__PEEK/ ],
-    regex_infix => [ qw/regex_infix__S_005VertVert__PEEK regex_infix__S_006AmpAmp__PEEK regex_infix__S_007Vert__PEEK regex_infix__S_008Amp__PEEK/ ],
+ALL => [ qw/assertion atom backslash category cclass_elem infixish infixstopper metachar mod_arg mod_internal nibbler normspace quant_atom_list quantified_atom quantifier quantmod regex_infix sign termish unsp ws/ ],
+assertion => [ qw/assertion__S_072DotDotDot__PEEK assertion__S_073QuestionQuestionQuestion__PEEK assertion__S_074BangBangBang__PEEK assertion__S_075Question__PEEK assertion__S_076Bang__PEEK assertion__S_077Star__PEEK assertion__S_078Cur_Ly__PEEK assertion__S_079variable__PEEK assertion__S_080method__PEEK assertion__S_081name__PEEK assertion__S_082Bra__PEEK assertion__S_083Plus__PEEK assertion__S_084Minus__PEEK assertion__S_085Dot__PEEK assertion__S_086Comma__PEEK assertion__S_087TildeTilde__PEEK assertion__S_088bogus__PEEK/ ],
+backslash => [ qw/backslash__S_047unspace__PEEK backslash__S_0480__PEEK backslash__S_049A__PEEK backslash__S_050a__PEEK backslash__S_051B__PEEK backslash__S_052b__PEEK backslash__S_053c__PEEK backslash__S_054d__PEEK backslash__S_055e__PEEK backslash__S_056f__PEEK backslash__S_057h__PEEK backslash__S_058n__PEEK backslash__S_059o__PEEK backslash__S_060Q__PEEK backslash__S_061r__PEEK backslash__S_062s__PEEK backslash__S_063t__PEEK backslash__S_064v__PEEK backslash__S_065w__PEEK backslash__S_066x__PEEK backslash__S_067z__PEEK backslash__S_068Z__PEEK backslash__S_069misc__PEEK backslash__S_070oldbackref__PEEK backslash__S_071oops__PEEK/ ],
+category => [ qw/category__S_000metachar__PEEK category__S_001backslash__PEEK category__S_002assertion__PEEK category__S_003quantifier__PEEK category__S_004mod_internal__PEEK/ ],
+metachar => [ qw/metachar__S_009Gt__PEEK metachar__S_010AmpAmp__PEEK metachar__S_011Amp__PEEK metachar__S_012VertVert__PEEK metachar__S_013Vert__PEEK metachar__S_014Ket__PEEK metachar__S_015Thesis__PEEK metachar__S_016Semi__PEEK metachar__S_017CurStarLy__PEEK metachar__S_018BraStarKet__PEEK metachar__S_019quant__PEEK metachar__S_020sigwhite__PEEK metachar__S_021unsp__PEEK metachar__S_022Cur_Ly__PEEK metachar__S_023mod__PEEK metachar__S_024Minus__PEEK metachar__S_025Colon__PEEK metachar__S_026ColonColon__PEEK metachar__S_027ColonColonColon__PEEK metachar__S_028Bra_Ket__PEEK metachar__S_029Paren_Thesis__PEEK metachar__S_030LtParen__PEEK metachar__S_031ThesisGt__PEEK metachar__S_032LtLt__PEEK metachar__S_033GtGt__PEEK metachar__S_034Fre__PEEK metachar__S_035Nch__PEEK metachar__S_036qw__PEEK metachar__S_037Lt_Gt__PEEK metachar__S_038Back__PEEK metachar__S_039Dot__PEEK metachar__S_040CaretCaret__PEEK metachar__S_041Caret__PEEK metachar__S_042DollarDollar__PEEK metachar__S_043Dollar__PEEK metachar__S_044Single_Single__PEEK metachar__S_045Double_Double__PEEK metachar__S_046var__PEEK/ ],
+mod_internal => [ qw/mod_internal__S_089Colonmy__PEEK mod_internal__S_090Coloni__PEEK mod_internal__S_091ColonBangi__PEEK mod_internal__S_092ColoniParen_Thesis__PEEK mod_internal__S_093Colon0i__PEEK mod_internal__S_094Colona__PEEK mod_internal__S_095ColonBanga__PEEK mod_internal__S_096ColonaParen_Thesis__PEEK mod_internal__S_097Colon0a__PEEK mod_internal__S_098Colons__PEEK mod_internal__S_099ColonBangs__PEEK mod_internal__S_100ColonsParen_Thesis__PEEK mod_internal__S_101Colon0s__PEEK mod_internal__S_102Colonr__PEEK mod_internal__S_103ColonBangr__PEEK mod_internal__S_104ColonrParen_Thesis__PEEK mod_internal__S_105Colon0r__PEEK mod_internal__S_106ColonPerl5__PEEK mod_internal__S_107p6adv__PEEK mod_internal__S_108oops__PEEK/ ],
+quantifier => [ qw/quantifier__S_109Star__PEEK quantifier__S_110Plus__PEEK quantifier__S_111Question__PEEK quantifier__S_112Colon__PEEK quantifier__S_113StarStar__PEEK quantifier__S_114Tilde__PEEK quantifier__S_115TildeTilde__PEEK quantifier__S_116CurNCommaMLy__PEEK/ ],
+regex_infix => [ qw/regex_infix__S_005VertVert__PEEK regex_infix__S_006AmpAmp__PEEK regex_infix__S_007Vert__PEEK regex_infix__S_008Amp__PEEK/ ],
 };
 
 
@@ -56302,6 +56254,43 @@ quantifier__S_115TildeTilde: !!perl/hash:RE_ast
       name: quantified_atom
       rest: ''
 quantifier__S_115TildeTilde_0: *27
+quantifier__S_116CurNCommaMLy: !!perl/hash:RE_ast
+  dba: quantifier
+  dic: STD::Regex
+  re: !!perl/hash:RE_sequence
+    zyg:
+    - !!perl/hash:RE_block {}
+    - !!perl/hash:RE_string
+      i: 0
+      text: '{'
+    - !!perl/hash:RE_bindpos
+      atom: !!perl/hash:RE_paren
+        re: !!perl/hash:RE_quantified_atom
+          atom: !!perl/hash:RE_meta
+            min: 1
+            text: \d
+          quant:
+          - +
+    - !!perl/hash:RE_bindpos
+      atom: !!perl/hash:RE_paren
+        re: !!perl/hash:RE_quantified_atom
+          atom: !!perl/hash:RE_string
+            i: 0
+            text: ','
+          quant:
+          - '?'
+    - !!perl/hash:RE_bindpos
+      atom: !!perl/hash:RE_paren
+        re: !!perl/hash:RE_quantified_atom
+          atom: !!perl/hash:RE_meta
+            min: 1
+            text: \d
+          quant:
+          - '*'
+    - !!perl/hash:RE_string
+      i: 0
+      text: '}'
+    - !!perl/hash:RE_block {}
 quantmod: !!perl/hash:RE_ast
   dba: quantmod
   dic: STD::Regex
@@ -56592,56 +56581,56 @@ $self->_MATCHIFYr($S, "category__S_000metachar", $C->_EXACT("metachar"));
 ## token metachar {*}
 sub metachar__PEEK { $_[0]->_AUTOLEXpeek('metachar:*',$retree); }
 sub metachar {
-    my $self = shift;
-    my $subs;
+my $self = shift;
+my $subs;
 
-    local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
+local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-    my $C = $self->cursor_xact('RULE metachar');
-    my $S = $C->{'_pos'};
+my $C = $self->cursor_xact('RULE metachar');
+my $S = $C->{'_pos'};
 
-    my @result = do {
-        my ($tag, $try);
-        my @try;
-        my $relex;
-        my $x;
-        if (my $fate = $C->{'_fate'}) {
-            if ($fate->[1] eq 'metachar') {
-                $C->deb("Fate passed to metachar: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-                ($C->{'_fate'}, $tag, $try) = @$fate;
-                @try = ($try);
-                $x = 'ALT metachar';
-            }
-            else {
-                $x = 'ALTLTM metachar';
-            }
-        }
-        else {
-            $x = 'ALTLTM metachar';
-        }
-        my $C = $C->cursor_xact($x);
-        my $xact = $C->{_xact};
+my @result = do {
+my ($tag, $try);
+my @try;
+my $relex;
+my $x;
+if (my $fate = $C->{'_fate'}) {
+if ($fate->[1] eq 'metachar') {
+$C->deb("Fate passed to metachar: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT metachar';
+}
+else {
+$x = 'ALTLTM metachar';
+}
+}
+else {
+$x = 'ALTLTM metachar';
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-        my @gather = ();
-        for (;;) {
-            unless (@try) {
-                $relex //= $C->cursor_fate('STD::Regex', 'metachar:*', $retree);
-                @try = $relex->($C) or last;
-            }
-            $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::Regex', 'metachar:*', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-            if (ref $try) {
-                ($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
-            }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
+}
 
-            $C->deb("metachar trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-            push @gather, $C->$try(@_);
-            last if @gather;
-            last if $xact->[-2];  # committed?
-        }
-        $self->_MATCHIFYr($S, "metachar", @gather);
-    };
-    @result;
+$C->deb("metachar trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, $C->$try(@_);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+$self->_MATCHIFYr($S, "metachar", @gather);
+};
+@result;
 }
 ;
 ## token category:backslash { <sym> }
@@ -56663,56 +56652,56 @@ $self->_MATCHIFYr($S, "category__S_001backslash", $C->_EXACT("backslash"));
 ## token backslash {*}
 sub backslash__PEEK { $_[0]->_AUTOLEXpeek('backslash:*',$retree); }
 sub backslash {
-    my $self = shift;
-    my $subs;
+my $self = shift;
+my $subs;
 
-    local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
+local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-    my $C = $self->cursor_xact('RULE backslash');
-    my $S = $C->{'_pos'};
+my $C = $self->cursor_xact('RULE backslash');
+my $S = $C->{'_pos'};
 
-    my @result = do {
-        my ($tag, $try);
-        my @try;
-        my $relex;
-        my $x;
-        if (my $fate = $C->{'_fate'}) {
-            if ($fate->[1] eq 'backslash') {
-                $C->deb("Fate passed to backslash: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-                ($C->{'_fate'}, $tag, $try) = @$fate;
-                @try = ($try);
-                $x = 'ALT backslash';
-            }
-            else {
-                $x = 'ALTLTM backslash';
-            }
-        }
-        else {
-            $x = 'ALTLTM backslash';
-        }
-        my $C = $C->cursor_xact($x);
-        my $xact = $C->{_xact};
+my @result = do {
+my ($tag, $try);
+my @try;
+my $relex;
+my $x;
+if (my $fate = $C->{'_fate'}) {
+if ($fate->[1] eq 'backslash') {
+$C->deb("Fate passed to backslash: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT backslash';
+}
+else {
+$x = 'ALTLTM backslash';
+}
+}
+else {
+$x = 'ALTLTM backslash';
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-        my @gather = ();
-        for (;;) {
-            unless (@try) {
-                $relex //= $C->cursor_fate('STD::Regex', 'backslash:*', $retree);
-                @try = $relex->($C) or last;
-            }
-            $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::Regex', 'backslash:*', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-            if (ref $try) {
-                ($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
-            }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
+}
 
-            $C->deb("backslash trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-            push @gather, $C->$try(@_);
-            last if @gather;
-            last if $xact->[-2];  # committed?
-        }
-        $self->_MATCHIFYr($S, "backslash", @gather);
-    };
-    @result;
+$C->deb("backslash trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, $C->$try(@_);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+$self->_MATCHIFYr($S, "backslash", @gather);
+};
+@result;
 }
 ;
 ## token category:assertion { <sym> }
@@ -56734,56 +56723,56 @@ $self->_MATCHIFYr($S, "category__S_002assertion", $C->_EXACT("assertion"));
 ## token assertion {*}
 sub assertion__PEEK { $_[0]->_AUTOLEXpeek('assertion:*',$retree); }
 sub assertion {
-    my $self = shift;
-    my $subs;
+my $self = shift;
+my $subs;
 
-    local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
+local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-    my $C = $self->cursor_xact('RULE assertion');
-    my $S = $C->{'_pos'};
+my $C = $self->cursor_xact('RULE assertion');
+my $S = $C->{'_pos'};
 
-    my @result = do {
-        my ($tag, $try);
-        my @try;
-        my $relex;
-        my $x;
-        if (my $fate = $C->{'_fate'}) {
-            if ($fate->[1] eq 'assertion') {
-                $C->deb("Fate passed to assertion: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-                ($C->{'_fate'}, $tag, $try) = @$fate;
-                @try = ($try);
-                $x = 'ALT assertion';
-            }
-            else {
-                $x = 'ALTLTM assertion';
-            }
-        }
-        else {
-            $x = 'ALTLTM assertion';
-        }
-        my $C = $C->cursor_xact($x);
-        my $xact = $C->{_xact};
+my @result = do {
+my ($tag, $try);
+my @try;
+my $relex;
+my $x;
+if (my $fate = $C->{'_fate'}) {
+if ($fate->[1] eq 'assertion') {
+$C->deb("Fate passed to assertion: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT assertion';
+}
+else {
+$x = 'ALTLTM assertion';
+}
+}
+else {
+$x = 'ALTLTM assertion';
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-        my @gather = ();
-        for (;;) {
-            unless (@try) {
-                $relex //= $C->cursor_fate('STD::Regex', 'assertion:*', $retree);
-                @try = $relex->($C) or last;
-            }
-            $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::Regex', 'assertion:*', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-            if (ref $try) {
-                ($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
-            }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
+}
 
-            $C->deb("assertion trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-            push @gather, $C->$try(@_);
-            last if @gather;
-            last if $xact->[-2];  # committed?
-        }
-        $self->_MATCHIFYr($S, "assertion", @gather);
-    };
-    @result;
+$C->deb("assertion trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, $C->$try(@_);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+$self->_MATCHIFYr($S, "assertion", @gather);
+};
+@result;
 }
 ;
 ## token category:quantifier { <sym> }
@@ -56805,56 +56794,56 @@ $self->_MATCHIFYr($S, "category__S_003quantifier", $C->_EXACT("quantifier"));
 ## token quantifier {*}
 sub quantifier__PEEK { $_[0]->_AUTOLEXpeek('quantifier:*',$retree); }
 sub quantifier {
-    my $self = shift;
-    my $subs;
+my $self = shift;
+my $subs;
 
-    local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
+local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-    my $C = $self->cursor_xact('RULE quantifier');
-    my $S = $C->{'_pos'};
+my $C = $self->cursor_xact('RULE quantifier');
+my $S = $C->{'_pos'};
 
-    my @result = do {
-        my ($tag, $try);
-        my @try;
-        my $relex;
-        my $x;
-        if (my $fate = $C->{'_fate'}) {
-            if ($fate->[1] eq 'quantifier') {
-                $C->deb("Fate passed to quantifier: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-                ($C->{'_fate'}, $tag, $try) = @$fate;
-                @try = ($try);
-                $x = 'ALT quantifier';
-            }
-            else {
-                $x = 'ALTLTM quantifier';
-            }
-        }
-        else {
-            $x = 'ALTLTM quantifier';
-        }
-        my $C = $C->cursor_xact($x);
-        my $xact = $C->{_xact};
+my @result = do {
+my ($tag, $try);
+my @try;
+my $relex;
+my $x;
+if (my $fate = $C->{'_fate'}) {
+if ($fate->[1] eq 'quantifier') {
+$C->deb("Fate passed to quantifier: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT quantifier';
+}
+else {
+$x = 'ALTLTM quantifier';
+}
+}
+else {
+$x = 'ALTLTM quantifier';
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-        my @gather = ();
-        for (;;) {
-            unless (@try) {
-                $relex //= $C->cursor_fate('STD::Regex', 'quantifier:*', $retree);
-                @try = $relex->($C) or last;
-            }
-            $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::Regex', 'quantifier:*', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-            if (ref $try) {
-                ($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
-            }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
+}
 
-            $C->deb("quantifier trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-            push @gather, $C->$try(@_);
-            last if @gather;
-            last if $xact->[-2];  # committed?
-        }
-        $self->_MATCHIFYr($S, "quantifier", @gather);
-    };
-    @result;
+$C->deb("quantifier trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, $C->$try(@_);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+$self->_MATCHIFYr($S, "quantifier", @gather);
+};
+@result;
 }
 ;
 ## token category:mod_internal { <sym> }
@@ -56876,111 +56865,111 @@ $self->_MATCHIFYr($S, "category__S_004mod_internal", $C->_EXACT("mod_internal"))
 ## token mod_internal {*}
 sub mod_internal__PEEK { $_[0]->_AUTOLEXpeek('mod_internal:*',$retree); }
 sub mod_internal {
-    my $self = shift;
-    my $subs;
+my $self = shift;
+my $subs;
 
-    local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
+local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-    my $C = $self->cursor_xact('RULE mod_internal');
-    my $S = $C->{'_pos'};
+my $C = $self->cursor_xact('RULE mod_internal');
+my $S = $C->{'_pos'};
 
-    my @result = do {
-        my ($tag, $try);
-        my @try;
-        my $relex;
-        my $x;
-        if (my $fate = $C->{'_fate'}) {
-            if ($fate->[1] eq 'mod_internal') {
-                $C->deb("Fate passed to mod_internal: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-                ($C->{'_fate'}, $tag, $try) = @$fate;
-                @try = ($try);
-                $x = 'ALT mod_internal';
-            }
-            else {
-                $x = 'ALTLTM mod_internal';
-            }
-        }
-        else {
-            $x = 'ALTLTM mod_internal';
-        }
-        my $C = $C->cursor_xact($x);
-        my $xact = $C->{_xact};
+my @result = do {
+my ($tag, $try);
+my @try;
+my $relex;
+my $x;
+if (my $fate = $C->{'_fate'}) {
+if ($fate->[1] eq 'mod_internal') {
+$C->deb("Fate passed to mod_internal: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT mod_internal';
+}
+else {
+$x = 'ALTLTM mod_internal';
+}
+}
+else {
+$x = 'ALTLTM mod_internal';
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-        my @gather = ();
-        for (;;) {
-            unless (@try) {
-                $relex //= $C->cursor_fate('STD::Regex', 'mod_internal:*', $retree);
-                @try = $relex->($C) or last;
-            }
-            $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::Regex', 'mod_internal:*', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-            if (ref $try) {
-                ($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
-            }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
+}
 
-            $C->deb("mod_internal trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-            push @gather, $C->$try(@_);
-            last if @gather;
-            last if $xact->[-2];  # committed?
-        }
-        $self->_MATCHIFYr($S, "mod_internal", @gather);
-    };
-    @result;
+$C->deb("mod_internal trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, $C->$try(@_);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+$self->_MATCHIFYr($S, "mod_internal", @gather);
+};
+@result;
 }
 ;
 ## token regex_infix {*}
 sub regex_infix__PEEK { $_[0]->_AUTOLEXpeek('regex_infix:*',$retree); }
 sub regex_infix {
-    my $self = shift;
-    my $subs;
+my $self = shift;
+my $subs;
 
-    local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
+local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-    my $C = $self->cursor_xact('RULE regex_infix');
-    my $S = $C->{'_pos'};
+my $C = $self->cursor_xact('RULE regex_infix');
+my $S = $C->{'_pos'};
 
-    my @result = do {
-        my ($tag, $try);
-        my @try;
-        my $relex;
-        my $x;
-        if (my $fate = $C->{'_fate'}) {
-            if ($fate->[1] eq 'regex_infix') {
-                $C->deb("Fate passed to regex_infix: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-                ($C->{'_fate'}, $tag, $try) = @$fate;
-                @try = ($try);
-                $x = 'ALT regex_infix';
-            }
-            else {
-                $x = 'ALTLTM regex_infix';
-            }
-        }
-        else {
-            $x = 'ALTLTM regex_infix';
-        }
-        my $C = $C->cursor_xact($x);
-        my $xact = $C->{_xact};
+my @result = do {
+my ($tag, $try);
+my @try;
+my $relex;
+my $x;
+if (my $fate = $C->{'_fate'}) {
+if ($fate->[1] eq 'regex_infix') {
+$C->deb("Fate passed to regex_infix: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT regex_infix';
+}
+else {
+$x = 'ALTLTM regex_infix';
+}
+}
+else {
+$x = 'ALTLTM regex_infix';
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-        my @gather = ();
-        for (;;) {
-            unless (@try) {
-                $relex //= $C->cursor_fate('STD::Regex', 'regex_infix:*', $retree);
-                @try = $relex->($C) or last;
-            }
-            $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::Regex', 'regex_infix:*', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-            if (ref $try) {
-                ($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
-            }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;       # next candidate fate
+}
 
-            $C->deb("regex_infix trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-            push @gather, $C->$try(@_);
-            last if @gather;
-            last if $xact->[-2];  # committed?
-        }
-        $self->_MATCHIFYr($S, "regex_infix", @gather);
-    };
-    @result;
+$C->deb("regex_infix trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, $C->$try(@_);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+$self->_MATCHIFYr($S, "regex_infix", @gather);
+};
+@result;
 }
 ;
 ## token ws { <?> }
@@ -57021,38 +57010,38 @@ if (my ($C) = ($C->before(sub {
 my $C=shift;
 if (my ($C) = (do {
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'normspace_0') {
-        $C->deb("Fate passed to normspace_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT normspace_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM normspace_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'normspace_0') {
+$C->deb("Fate passed to normspace_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT normspace_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM normspace_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::Regex', 'normspace_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::Regex', 'normspace_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("normspace_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("normspace_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_PATTERN(qr/\G\s/)
@@ -57061,11 +57050,11 @@ sub {
 my $C=shift;
 $C->_EXACT("\#")
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 
 })) { ($C) } else { () }
@@ -57107,38 +57096,38 @@ if (my ($C) = ($C->before(sub {
 my $C=shift;
 if (my ($C) = (do {
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'unsp_0') {
-        $C->deb("Fate passed to unsp_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT unsp_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM unsp_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'unsp_0') {
+$C->deb("Fate passed to unsp_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT unsp_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM unsp_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::Regex', 'unsp_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::Regex', 'unsp_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("unsp_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("unsp_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_PATTERN(qr/\G\s/)
@@ -57147,11 +57136,11 @@ sub {
 my $C=shift;
 $C->_EXACT("\#")
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 
 })) { ($C) } else { () }
@@ -57206,7 +57195,7 @@ $C->EXPR
 and ($C) = ($C->ws)
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -57290,7 +57279,7 @@ my $C = $C;
 if (($C) = ($C->ws)
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -57321,7 +57310,7 @@ $C->normspace
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -57333,38 +57322,38 @@ if (my ($C) = ($C->before(sub {
 my $C=shift;
 if (my ($C) = (do {
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'termish_0') {
-        $C->deb("Fate passed to termish_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT termish_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM termish_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'termish_0') {
+$C->deb("Fate passed to termish_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT termish_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM termish_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::Regex', 'termish_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::Regex', 'termish_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("termish_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("termish_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_SUBSUMEr(['stopper'], sub {
@@ -57376,11 +57365,11 @@ sub {
 my $C=shift;
 $C->_PATTERN(qr/\G[&|~]/)
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 
 })) { ($C) } else { () }
@@ -57533,38 +57522,38 @@ my $S = $C->{'_pos'};
 $self->_MATCHIFY($S, "infixstopper", $C->_BRACKET(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'infixstopper_0') {
-        $C->deb("Fate passed to infixstopper_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT infixstopper_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM infixstopper_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'infixstopper_0') {
+$C->deb("Fate passed to infixstopper_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT infixstopper_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM infixstopper_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::Regex', 'infixstopper_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::Regex', 'infixstopper_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("infixstopper_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("infixstopper_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->before(sub {
@@ -57589,11 +57578,11 @@ $C->stopper
 })
 })
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }));
 }
@@ -57760,38 +57749,38 @@ my $S = $C->{'_pos'};
 $self->_MATCHIFYr($S, "atom", $C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'atom_0') {
-        $C->deb("Fate passed to atom_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT atom_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM atom_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'atom_0') {
+$C->deb("Fate passed to atom_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT atom_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM atom_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::Regex', 'atom_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::Regex', 'atom_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("atom_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("atom_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_PATTERN(qr/\G\w/)
@@ -57805,11 +57794,11 @@ $C->metachar
 $C->_COMMITLTM()
 } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }));
 }
@@ -58023,7 +58012,7 @@ and ($C) = (scalar(do {
 }, $C))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -58398,7 +58387,7 @@ $C->nibbler
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -58455,7 +58444,7 @@ $C->nibbler
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -58636,7 +58625,7 @@ $C->assertion
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -58792,38 +58781,38 @@ if (my ($C) = ($C->before(sub {
 my $C=shift;
 if (my ($C) = (do {
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'metachar__S_043Dollar_0') {
-        $C->deb("Fate passed to metachar__S_043Dollar_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT metachar__S_043Dollar_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM metachar__S_043Dollar_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'metachar__S_043Dollar_0') {
+$C->deb("Fate passed to metachar__S_043Dollar_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT metachar__S_043Dollar_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM metachar__S_043Dollar_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::Regex', 'metachar__S_043Dollar_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::Regex', 'metachar__S_043Dollar_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("metachar__S_043Dollar_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("metachar__S_043Dollar_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_PATTERN(qr/\G\s/)
@@ -58856,11 +58845,11 @@ sub {
 my $C=shift;
 if (my ($C) = ($C->stopper)) { ($C) } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 
 })) { ($C) } else { () }
@@ -59283,38 +59272,38 @@ if (($C) = ($C->_PATTERN(qr/\G(?i:o)/))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'backslash__S_059o_0') {
-        $C->deb("Fate passed to backslash__S_059o_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT backslash__S_059o_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM backslash__S_059o_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'backslash__S_059o_0') {
+$C->deb("Fate passed to backslash__S_059o_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT backslash__S_059o_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM backslash__S_059o_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::Regex', 'backslash__S_059o_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::Regex', 'backslash__S_059o_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("backslash__S_059o_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("backslash__S_059o_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_SUBSUMEr(['octint'], sub {
@@ -59337,7 +59326,7 @@ $C->octints
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -59357,11 +59346,11 @@ $C
 } else { () }
 }))) { ($C) } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) {
 $C
@@ -59492,38 +59481,38 @@ if (($C) = ($C->_PATTERN(qr/\G(?i:x)/))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'backslash__S_066x_0') {
-        $C->deb("Fate passed to backslash__S_066x_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT backslash__S_066x_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM backslash__S_066x_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'backslash__S_066x_0') {
+$C->deb("Fate passed to backslash__S_066x_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT backslash__S_066x_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM backslash__S_066x_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::Regex', 'backslash__S_066x_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::Regex', 'backslash__S_066x_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("backslash__S_066x_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("backslash__S_066x_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_SUBSUMEr(['hexint'], sub {
@@ -59546,7 +59535,7 @@ $C->hexints
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -59566,11 +59555,11 @@ $C
 } else { () }
 }))) { ($C) } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) {
 $C
@@ -59768,38 +59757,38 @@ if (($C) = ($C->_EXACT("\?"))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'assertion__S_075Question_0') {
-        $C->deb("Fate passed to assertion__S_075Question_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT assertion__S_075Question_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM assertion__S_075Question_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'assertion__S_075Question_0') {
+$C->deb("Fate passed to assertion__S_075Question_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT assertion__S_075Question_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM assertion__S_075Question_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::Regex', 'assertion__S_075Question_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::Regex', 'assertion__S_075Question_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("assertion__S_075Question_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("assertion__S_075Question_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (my ($C) = ($C->before(sub {
@@ -59817,11 +59806,11 @@ my $C = shift;
 $C->assertion
 })
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) {
 $C
@@ -59849,38 +59838,38 @@ if (($C) = ($C->_EXACT("\!"))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'assertion__S_076Bang_0') {
-        $C->deb("Fate passed to assertion__S_076Bang_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT assertion__S_076Bang_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM assertion__S_076Bang_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'assertion__S_076Bang_0') {
+$C->deb("Fate passed to assertion__S_076Bang_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT assertion__S_076Bang_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM assertion__S_076Bang_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::Regex', 'assertion__S_076Bang_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::Regex', 'assertion__S_076Bang_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("assertion__S_076Bang_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("assertion__S_076Bang_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (my ($C) = ($C->before(sub {
@@ -59898,11 +59887,11 @@ my $C = shift;
 $C->assertion
 })
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) {
 $C
@@ -59930,38 +59919,38 @@ if (($C) = ($C->_EXACT("\*"))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'assertion__S_077Star_0') {
-        $C->deb("Fate passed to assertion__S_077Star_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT assertion__S_077Star_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM assertion__S_077Star_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'assertion__S_077Star_0') {
+$C->deb("Fate passed to assertion__S_077Star_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT assertion__S_077Star_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM assertion__S_077Star_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::Regex', 'assertion__S_077Star_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::Regex', 'assertion__S_077Star_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("assertion__S_077Star_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("assertion__S_077Star_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (my ($C) = ($C->before(sub {
@@ -59981,11 +59970,11 @@ $C->nibbler
 })
 } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) {
 $C
@@ -60072,38 +60061,38 @@ if (($C) = ($C->_EXACT("\."))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'assertion__S_080method_0') {
-        $C->deb("Fate passed to assertion__S_080method_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT assertion__S_080method_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM assertion__S_080method_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'assertion__S_080method_0') {
+$C->deb("Fate passed to assertion__S_080method_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT assertion__S_080method_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM assertion__S_080method_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::Regex', 'assertion__S_080method_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::Regex', 'assertion__S_080method_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("assertion__S_080method_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("assertion__S_080method_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (my ($C) = ($C->before(sub {
@@ -60131,11 +60120,11 @@ $C->dottyop
 })
 }))) { ($C) } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) {
 $C
@@ -60175,38 +60164,38 @@ my $C=shift;
 if (my ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'assertion__S_081name_0') {
-        $C->deb("Fate passed to assertion__S_081name_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT assertion__S_081name_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM assertion__S_081name_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'assertion__S_081name_0') {
+$C->deb("Fate passed to assertion__S_081name_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT assertion__S_081name_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM assertion__S_081name_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::Regex', 'assertion__S_081name_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::Regex', 'assertion__S_081name_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("assertion__S_081name_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("assertion__S_081name_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (my ($C) = ($C->before(sub {
@@ -60273,7 +60262,7 @@ $C->arglist
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -60292,11 +60281,11 @@ if (my ($C) = ($C->panic("Assertion call missing right parenthesis"))) { ($C) } 
 $C
 } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) { ($C) } else { () }
 })
@@ -60458,38 +60447,38 @@ if (($C) = ($C->_EXACT("\~\~"))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'assertion__S_087TildeTilde_0') {
-        $C->deb("Fate passed to assertion__S_087TildeTilde_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT assertion__S_087TildeTilde_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM assertion__S_087TildeTilde_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'assertion__S_087TildeTilde_0') {
+$C->deb("Fate passed to assertion__S_087TildeTilde_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT assertion__S_087TildeTilde_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM assertion__S_087TildeTilde_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::Regex', 'assertion__S_087TildeTilde_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::Regex', 'assertion__S_087TildeTilde_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("assertion__S_087TildeTilde_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("assertion__S_087TildeTilde_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (my ($C) = ($C->before(sub {
@@ -60511,11 +60500,11 @@ my $C = shift;
 $C->desigilname
 })
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) {
 $C
@@ -60554,38 +60543,38 @@ my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $self->_MATCHIFYr($S, "sign", do {
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'sign_0') {
-        $C->deb("Fate passed to sign_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT sign_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM sign_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'sign_0') {
+$C->deb("Fate passed to sign_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT sign_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM sign_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::Regex', 'sign_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::Regex', 'sign_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("sign_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("sign_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_EXACT("\+")
@@ -60601,11 +60590,11 @@ my $C=shift;
 $C
 }))) { ($C) } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 
 });
@@ -60636,38 +60625,38 @@ if (my ($C) = ($C->normspace)) { ($C) } else { () }
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'cclass_elem_0') {
-        $C->deb("Fate passed to cclass_elem_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT cclass_elem_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM cclass_elem_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'cclass_elem_0') {
+$C->deb("Fate passed to cclass_elem_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT cclass_elem_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM cclass_elem_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::Regex', 'cclass_elem_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::Regex', 'cclass_elem_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("cclass_elem_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("cclass_elem_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_SUBSUMEr(['name'], sub {
@@ -60690,11 +60679,11 @@ $C->quibble($C->cursor_fresh( $::LANG{'Q'} )->tweak('cc' => 1))
 })
 } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) {
 $C->_OPTr(sub {
@@ -60736,7 +60725,7 @@ $C->semilist
 }))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
-do {my $C = $C->cursor_xact('ALT ||');
+do {    my $C = $C->cursor_xact('ALT ||');
 my $xact = $C->xact;
 my @gather;
 do {
@@ -60780,38 +60769,38 @@ my $C=shift;
 if (my ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'mod_internal__S_089Colonmy_0') {
-        $C->deb("Fate passed to mod_internal__S_089Colonmy_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT mod_internal__S_089Colonmy_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM mod_internal__S_089Colonmy_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'mod_internal__S_089Colonmy_0') {
+$C->deb("Fate passed to mod_internal__S_089Colonmy_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT mod_internal__S_089Colonmy_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM mod_internal__S_089Colonmy_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::Regex', 'mod_internal__S_089Colonmy_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::Regex', 'mod_internal__S_089Colonmy_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("mod_internal__S_089Colonmy_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("mod_internal__S_089Colonmy_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_EXACT("my")
@@ -60840,11 +60829,11 @@ sub {
 my $C=shift;
 $C->_EXACT("let")
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) {
 $C->_PATTERN(qr/\G\s/)
@@ -60894,38 +60883,38 @@ my $C = shift;
 $C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'mod_internal__S_090Coloni_0') {
-        $C->deb("Fate passed to mod_internal__S_090Coloni_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT mod_internal__S_090Coloni_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM mod_internal__S_090Coloni_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'mod_internal__S_090Coloni_0') {
+$C->deb("Fate passed to mod_internal__S_090Coloni_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT mod_internal__S_090Coloni_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM mod_internal__S_090Coloni_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::Regex', 'mod_internal__S_090Coloni_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::Regex', 'mod_internal__S_090Coloni_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("mod_internal__S_090Coloni_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("mod_internal__S_090Coloni_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_EXACT("\:i")
@@ -60934,11 +60923,11 @@ sub {
 my $C=shift;
 $C->_EXACT("\:ignorecase")
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 })
 }))
@@ -60970,38 +60959,38 @@ my $C = shift;
 $C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'mod_internal__S_091ColonBangi_0') {
-        $C->deb("Fate passed to mod_internal__S_091ColonBangi_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT mod_internal__S_091ColonBangi_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM mod_internal__S_091ColonBangi_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'mod_internal__S_091ColonBangi_0') {
+$C->deb("Fate passed to mod_internal__S_091ColonBangi_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT mod_internal__S_091ColonBangi_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM mod_internal__S_091ColonBangi_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::Regex', 'mod_internal__S_091ColonBangi_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::Regex', 'mod_internal__S_091ColonBangi_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("mod_internal__S_091ColonBangi_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("mod_internal__S_091ColonBangi_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_EXACT("\:\!i")
@@ -61010,11 +60999,11 @@ sub {
 my $C=shift;
 $C->_EXACT("\:\!ignorecase")
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 })
 }))
@@ -61046,38 +61035,38 @@ my $C = shift;
 $C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'mod_internal__S_092ColoniParen_Thesis_0') {
-        $C->deb("Fate passed to mod_internal__S_092ColoniParen_Thesis_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT mod_internal__S_092ColoniParen_Thesis_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM mod_internal__S_092ColoniParen_Thesis_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'mod_internal__S_092ColoniParen_Thesis_0') {
+$C->deb("Fate passed to mod_internal__S_092ColoniParen_Thesis_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT mod_internal__S_092ColoniParen_Thesis_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM mod_internal__S_092ColoniParen_Thesis_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::Regex', 'mod_internal__S_092ColoniParen_Thesis_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::Regex', 'mod_internal__S_092ColoniParen_Thesis_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("mod_internal__S_092ColoniParen_Thesis_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("mod_internal__S_092ColoniParen_Thesis_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_EXACT("\:i")
@@ -61086,11 +61075,11 @@ sub {
 my $C=shift;
 $C->_EXACT("\:ignorecase")
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 })
 }))
@@ -61133,38 +61122,38 @@ $C->_PATTERN(qr/\G\d++/)
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'mod_internal__S_093Colon0i_0') {
-        $C->deb("Fate passed to mod_internal__S_093Colon0i_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT mod_internal__S_093Colon0i_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM mod_internal__S_093Colon0i_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'mod_internal__S_093Colon0i_0') {
+$C->deb("Fate passed to mod_internal__S_093Colon0i_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT mod_internal__S_093Colon0i_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM mod_internal__S_093Colon0i_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::Regex', 'mod_internal__S_093Colon0i_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::Regex', 'mod_internal__S_093Colon0i_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("mod_internal__S_093Colon0i_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("mod_internal__S_093Colon0i_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_EXACT("i")
@@ -61173,11 +61162,11 @@ sub {
 my $C=shift;
 $C->_EXACT("ignorecase")
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) {
 scalar(do {
@@ -61208,38 +61197,38 @@ my $C = shift;
 $C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'mod_internal__S_094Colona_0') {
-        $C->deb("Fate passed to mod_internal__S_094Colona_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT mod_internal__S_094Colona_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM mod_internal__S_094Colona_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'mod_internal__S_094Colona_0') {
+$C->deb("Fate passed to mod_internal__S_094Colona_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT mod_internal__S_094Colona_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM mod_internal__S_094Colona_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::Regex', 'mod_internal__S_094Colona_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::Regex', 'mod_internal__S_094Colona_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("mod_internal__S_094Colona_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("mod_internal__S_094Colona_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_EXACT("\:a")
@@ -61248,11 +61237,11 @@ sub {
 my $C=shift;
 $C->_EXACT("\:ignoreaccent")
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 })
 }))
@@ -61284,38 +61273,38 @@ my $C = shift;
 $C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'mod_internal__S_095ColonBanga_0') {
-        $C->deb("Fate passed to mod_internal__S_095ColonBanga_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT mod_internal__S_095ColonBanga_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM mod_internal__S_095ColonBanga_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'mod_internal__S_095ColonBanga_0') {
+$C->deb("Fate passed to mod_internal__S_095ColonBanga_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT mod_internal__S_095ColonBanga_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM mod_internal__S_095ColonBanga_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::Regex', 'mod_internal__S_095ColonBanga_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::Regex', 'mod_internal__S_095ColonBanga_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("mod_internal__S_095ColonBanga_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("mod_internal__S_095ColonBanga_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_EXACT("\:\!a")
@@ -61324,11 +61313,11 @@ sub {
 my $C=shift;
 $C->_EXACT("\:\!ignoreaccent")
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 })
 }))
@@ -61360,38 +61349,38 @@ my $C = shift;
 $C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'mod_internal__S_096ColonaParen_Thesis_0') {
-        $C->deb("Fate passed to mod_internal__S_096ColonaParen_Thesis_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT mod_internal__S_096ColonaParen_Thesis_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM mod_internal__S_096ColonaParen_Thesis_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'mod_internal__S_096ColonaParen_Thesis_0') {
+$C->deb("Fate passed to mod_internal__S_096ColonaParen_Thesis_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT mod_internal__S_096ColonaParen_Thesis_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM mod_internal__S_096ColonaParen_Thesis_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::Regex', 'mod_internal__S_096ColonaParen_Thesis_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::Regex', 'mod_internal__S_096ColonaParen_Thesis_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("mod_internal__S_096ColonaParen_Thesis_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("mod_internal__S_096ColonaParen_Thesis_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_EXACT("\:a")
@@ -61400,11 +61389,11 @@ sub {
 my $C=shift;
 $C->_EXACT("\:ignoreaccent")
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 })
 }))
@@ -61447,38 +61436,38 @@ $C->_PATTERN(qr/\G\d++/)
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'mod_internal__S_097Colon0a_0') {
-        $C->deb("Fate passed to mod_internal__S_097Colon0a_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT mod_internal__S_097Colon0a_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM mod_internal__S_097Colon0a_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'mod_internal__S_097Colon0a_0') {
+$C->deb("Fate passed to mod_internal__S_097Colon0a_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT mod_internal__S_097Colon0a_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM mod_internal__S_097Colon0a_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::Regex', 'mod_internal__S_097Colon0a_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::Regex', 'mod_internal__S_097Colon0a_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("mod_internal__S_097Colon0a_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("mod_internal__S_097Colon0a_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_EXACT("a")
@@ -61487,11 +61476,11 @@ sub {
 my $C=shift;
 $C->_EXACT("ignoreaccent")
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) {
 scalar(do {
@@ -61730,38 +61719,38 @@ my $C = $C;
 if (($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'mod_internal__S_106ColonPerl5_0') {
-        $C->deb("Fate passed to mod_internal__S_106ColonPerl5_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT mod_internal__S_106ColonPerl5_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM mod_internal__S_106ColonPerl5_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'mod_internal__S_106ColonPerl5_0') {
+$C->deb("Fate passed to mod_internal__S_106ColonPerl5_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT mod_internal__S_106ColonPerl5_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM mod_internal__S_106ColonPerl5_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::Regex', 'mod_internal__S_106ColonPerl5_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::Regex', 'mod_internal__S_106ColonPerl5_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("mod_internal__S_106ColonPerl5_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("mod_internal__S_106ColonPerl5_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_EXACT("\:Perl5")
@@ -61770,11 +61759,11 @@ sub {
 my $C=shift;
 $C->_EXACT("\:P5")
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))
 and ($C) = ($C->require_P5)
@@ -61818,38 +61807,38 @@ if (($C) = ($C->_EXACT("\:"))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'mod_internal__S_107p6adv_0') {
-        $C->deb("Fate passed to mod_internal__S_107p6adv_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT mod_internal__S_107p6adv_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM mod_internal__S_107p6adv_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'mod_internal__S_107p6adv_0') {
+$C->deb("Fate passed to mod_internal__S_107p6adv_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT mod_internal__S_107p6adv_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM mod_internal__S_107p6adv_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::Regex', 'mod_internal__S_107p6adv_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::Regex', 'mod_internal__S_107p6adv_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("mod_internal__S_107p6adv_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("mod_internal__S_107p6adv_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_EXACT("dba")
@@ -61858,11 +61847,11 @@ sub {
 my $C=shift;
 $C->_EXACT("lang")
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) {
 $C->_PATTERN(qr/\G\b/)
@@ -62064,38 +62053,38 @@ $C->normspace
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'quantifier__S_113StarStar_0') {
-        $C->deb("Fate passed to quantifier__S_113StarStar_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT quantifier__S_113StarStar_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM quantifier__S_113StarStar_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'quantifier__S_113StarStar_0') {
+$C->deb("Fate passed to quantifier__S_113StarStar_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT quantifier__S_113StarStar_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM quantifier__S_113StarStar_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::Regex', 'quantifier__S_113StarStar_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::Regex', 'quantifier__S_113StarStar_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("quantifier__S_113StarStar_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("quantifier__S_113StarStar_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 if (($C) = ($C->_PATTERN(qr/\G\d++\s++\.\./))
@@ -62114,38 +62103,38 @@ if (($C) = ($C->_EXACT("\.\."))
 and ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'quantifier__S_113StarStar_1') {
-        $C->deb("Fate passed to quantifier__S_113StarStar_1: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT quantifier__S_113StarStar_1';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM quantifier__S_113StarStar_1'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'quantifier__S_113StarStar_1') {
+$C->deb("Fate passed to quantifier__S_113StarStar_1: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT quantifier__S_113StarStar_1';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM quantifier__S_113StarStar_1'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::Regex', 'quantifier__S_113StarStar_1', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::Regex', 'quantifier__S_113StarStar_1', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("quantifier__S_113StarStar_1 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("quantifier__S_113StarStar_1 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_PATTERN(qr/\G\d++/)
@@ -62158,11 +62147,11 @@ sub {
 my $C=shift;
 if (my ($C) = ($C->panic("Malformed range"))) { ($C) } else { () }
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) {
 $C
@@ -62185,11 +62174,11 @@ my $C = shift;
 $C->quantified_atom
 })
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) {
 $C
@@ -62262,38 +62251,38 @@ my $C = $C;
 if (($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'quantifier__S_115TildeTilde_0') {
-        $C->deb("Fate passed to quantifier__S_115TildeTilde_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT quantifier__S_115TildeTilde_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM quantifier__S_115TildeTilde_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'quantifier__S_115TildeTilde_0') {
+$C->deb("Fate passed to quantifier__S_115TildeTilde_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT quantifier__S_115TildeTilde_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM quantifier__S_115TildeTilde_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::Regex', 'quantifier__S_115TildeTilde_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::Regex', 'quantifier__S_115TildeTilde_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("quantifier__S_115TildeTilde_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("quantifier__S_115TildeTilde_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_EXACT("\!\~\~")
@@ -62302,11 +62291,11 @@ sub {
 my $C=shift;
 $C->_EXACT("\~\~")
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))
 and ($C) = ($C->_SUBSUMEr(['normspace'], sub {
@@ -62341,38 +62330,38 @@ my $C=shift;
 if (my ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 do {
-    my ($tag, $try);
-    my @try;
-    my $relex;
+my ($tag, $try);
+my @try;
+my $relex;
 
-    my $fate;
-    my $x;
-    if ($fate = $C->{'_fate'} and $fate->[1] eq 'quantmod_0') {
-        $C->deb("Fate passed to quantmod_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
-        ($C->{'_fate'}, $tag, $try) = @$fate;
-        @try = ($try);
-        $x = 'ALT quantmod_0';    # some outer ltm is controlling us
-    }
-    else {
-        $x = 'ALTLTM quantmod_0'; # we are top level ltm
-    }
-    my $C = $C->cursor_xact($x);
-    my $xact = $C->{_xact};
+my $fate;
+my $x;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'quantmod_0') {
+$C->deb("Fate passed to quantmod_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+($C->{'_fate'}, $tag, $try) = @$fate;
+@try = ($try);
+$x = 'ALT quantmod_0';    # some outer ltm is controlling us
+}
+else {
+$x = 'ALTLTM quantmod_0'; # we are top level ltm
+}
+my $C = $C->cursor_xact($x);
+my $xact = $C->{_xact};
 
-    my @gather = ();
-    for (;;) {
-        unless (@try) {
-            $relex //= $C->cursor_fate('STD::Regex', 'quantmod_0', $retree);
-            @try = $relex->($C) or last;
-        }
-        $try = shift(@try) // next;
+my @gather = ();
+for (;;) {
+unless (@try) {
+$relex //= $C->cursor_fate('STD::Regex', 'quantmod_0', $retree);
+@try = $relex->($C) or last;
+}
+$try = shift(@try) // next;
 
-        if (ref $try) {
-            ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
-        }
+if (ref $try) {
+($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
+}
 
-        $C->deb("quantmod_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
-        push @gather, ((
+$C->deb("quantmod_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+push @gather, ((
 sub {
 my $C=shift;
 $C->_EXACT("\?")
@@ -62385,11 +62374,11 @@ sub {
 my $C=shift;
 $C->_EXACT("\+")
 }
-        )[$try])->($C);
-        last if @gather;
-        last if $xact->[-2];  # committed?
-    }
-    @gather;
+)[$try])->($C);
+last if @gather;
+last if $xact->[-2];  # committed?
+}
+@gather;
 };
 }))) { ($C) } else { () }
 })
@@ -62398,244 +62387,299 @@ $C->_EXACT("\+")
 });
 }
 ;
- moose_around tweak  => sub {
-    my $orig = shift;
-    no warnings 'recursion';
+## token quantifier:sym<{N,M}> {
+sub quantifier__S_116CurNCommaMLy__PEEK { $_[0]->_AUTOLEXpeek('quantifier__S_116CurNCommaMLy', $retree) }
+sub quantifier__S_116CurNCommaMLy {
+no warnings 'recursion';
+my $self = shift;
+
+
+local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
+
+my $C = $self->cursor_xact("RULE quantifier__S_116CurNCommaMLy");
+my $xact = $C->xact;
+my $S = $C->{'_pos'};
+$C->{sym} = "\{N\,M\}";
+$self->_MATCHIFYr($S, "quantifier__S_116CurNCommaMLy", do {
+my $C = $C;
+if (($C) = (scalar(do {
+}, $C))
+and ($C) = ($C->_EXACT("\{"))
+and ($C) = ($C->_SUBSUMEr(['0'], sub {
+my $C = shift;
+$C->_PAREN( sub {
+my $C=shift;
+$C->_PATTERN(qr/\G\d++/)
+
+})
+}))
+and ($C) = ($C->_SUBSUMEr(['1'], sub {
+my $C = shift;
+$C->_PAREN( sub {
+my $C=shift;
+$C->_PATTERN(qr/\G\,?+/)
+
+})
+}))
+and ($C) = ($C->_SUBSUMEr(['2'], sub {
+my $C = shift;
+$C->_PAREN( sub {
+my $C=shift;
+$C->_PATTERN(qr/\G\d*+/)
+
+})
+}))
+and ($C) = ($C->_EXACT("\}"))) {
+scalar(do {
+my $M = $C;
+my $all = substr($::ORIG, $self->{'_pos'}, $C->{'_pos'} - $self->{'_pos'});
+my $repl = length($M->{1}->Str) ?
+($M->{0}->Str . '..' . ($M->{2}->Str || '*')) : $M->{0}->Str;
+$C->sorryobs($all . " as general quantifier", 'X**' . $repl);
+}, $C)
+} else { () }
+
+});
+}
+;
+moose_around tweak  => sub {
+my $orig = shift;
+no warnings 'recursion';
 {
-    local @_ = @_;
-    return scalar do { # work around #38809
-        my $self = shift;
+local @_ = @_;
+return scalar do { # work around #38809
+my $self = shift;
 my %args = @_;
 last unless exists $args{Perl5} || exists $args{P5};
 my $P5 = exists $args{Perl5} ? delete $args{Perl5} : exists $args{P5} ? delete $args{P5} : undef;
 $self->require_P5;
 $self->cursor_fresh( $::LANG{'Q'} )->mixin( 'STD::Q::q' )->mixin( 'STD::Q::p5' ) ;
-    };
+};
 }
 {
-    local @_ = @_;
-    return scalar do { # work around #38809
-        my $self = shift;
+local @_ = @_;
+return scalar do { # work around #38809
+my $self = shift;
 my %args = @_;
 last unless exists $args{overlap} || exists $args{ov};
 my $ov = exists $args{overlap} ? delete $args{overlap} : exists $args{ov} ? delete $args{ov} : undef;
 $::RX{'ov'} = $ov;
 $self;
-    };
+};
 }
 {
-    local @_ = @_;
-    return scalar do { # work around #38809
-        my $self = shift;
+local @_ = @_;
+return scalar do { # work around #38809
+my $self = shift;
 my %args = @_;
 last unless exists $args{exhaustive} || exists $args{ex};
 my $ex = exists $args{exhaustive} ? delete $args{exhaustive} : exists $args{ex} ? delete $args{ex} : undef;
 $::RX{'ex'} = $ex;
 $self;
-    };
+};
 }
 {
-    local @_ = @_;
-    return scalar do { # work around #38809
-        my $self = shift;
+local @_ = @_;
+return scalar do { # work around #38809
+my $self = shift;
 my %args = @_;
 last unless exists $args{continue} || exists $args{c};
 my $c = exists $args{continue} ? delete $args{continue} : exists $args{c} ? delete $args{c} : undef;
 $::RX{'c'} = $c;
 $self;
-    };
+};
 }
 {
-    local @_ = @_;
-    return scalar do { # work around #38809
-        my $self = shift;
+local @_ = @_;
+return scalar do { # work around #38809
+my $self = shift;
 my %args = @_;
 last unless exists $args{pos} || exists $args{p};
 my $p = exists $args{pos} ? delete $args{pos} : exists $args{p} ? delete $args{p} : undef;
 $::RX{'p'} = $p;
 $self;
-    };
+};
 }
 {
-    local @_ = @_;
-    return scalar do { # work around #38809
-        my $self = shift;
+local @_ = @_;
+return scalar do { # work around #38809
+my $self = shift;
 my %args = @_;
 last unless exists $args{sigspace} || exists $args{s};
 my $s = exists $args{sigspace} ? delete $args{sigspace} : exists $args{s} ? delete $args{s} : undef;
 $::RX{'s'} = $s;
 $self;
-    };
+};
 }
 {
-    local @_ = @_;
-    return scalar do { # work around #38809
-        my $self = shift;
+local @_ = @_;
+return scalar do { # work around #38809
+my $self = shift;
 my %args = @_;
 last unless exists $args{ratchet} || exists $args{r};
 my $r = exists $args{ratchet} ? delete $args{ratchet} : exists $args{r} ? delete $args{r} : undef;
 $::RX{'r'} = $r;
 $self;
-    };
+};
 }
 {
-    local @_ = @_;
-    return scalar do { # work around #38809
-        my $self = shift;
+local @_ = @_;
+return scalar do { # work around #38809
+my $self = shift;
 my %args = @_;
 last unless exists $args{global} || exists $args{g};
 my $g = exists $args{global} ? delete $args{global} : exists $args{g} ? delete $args{g} : undef;
 $::RX{'g'} = $g;
 $self;
-    };
+};
 }
 {
-    local @_ = @_;
-    return scalar do { # work around #38809
-        my $self = shift;
+local @_ = @_;
+return scalar do { # work around #38809
+my $self = shift;
 my %args = @_;
 last unless exists $args{ignorecase} || exists $args{i};
 my $i = exists $args{ignorecase} ? delete $args{ignorecase} : exists $args{i} ? delete $args{i} : undef;
 $::RX{'i'} = $i;
 $self;
-    };
+};
 }
 {
-    local @_ = @_;
-    return scalar do { # work around #38809
-        my $self = shift;
+local @_ = @_;
+return scalar do { # work around #38809
+my $self = shift;
 my %args = @_;
 last unless exists $args{ignoreaccent} || exists $args{a};
 my $a = exists $args{ignoreaccent} ? delete $args{ignoreaccent} : exists $args{a} ? delete $args{a} : undef;
 $::RX{'a'} = $a;
 $self;
-    };
+};
 }
 {
-    local @_ = @_;
-    return scalar do { # work around #38809
-        my $self = shift;
+local @_ = @_;
+return scalar do { # work around #38809
+my $self = shift;
 my %args = @_;
 last unless exists $args{samecase} || exists $args{ii};
 my $ii = exists $args{samecase} ? delete $args{samecase} : exists $args{ii} ? delete $args{ii} : undef;
 $::RX{'ii'} = $ii;
 $self;
-    };
+};
 }
 {
-    local @_ = @_;
-    return scalar do { # work around #38809
-        my $self = shift;
+local @_ = @_;
+return scalar do { # work around #38809
+my $self = shift;
 my %args = @_;
 last unless exists $args{sameaccent} || exists $args{aa};
 my $aa = exists $args{sameaccent} ? delete $args{sameaccent} : exists $args{aa} ? delete $args{aa} : undef;
 $::RX{'aa'} = $aa;
 $self;
-    };
+};
 }
 {
-    local @_ = @_;
-    return scalar do { # work around #38809
-        my $self = shift;
+local @_ = @_;
+return scalar do { # work around #38809
+my $self = shift;
 my %args = @_;
 last unless exists $args{nth};
 my $nth = exists $args{nth} ? delete $args{nth} : undef;
 $::RX{'nth'} = $nth;
 $self;
-    };
+};
 }
 {
-    local @_ = @_;
-    return scalar do { # work around #38809
-        my $self = shift;
+local @_ = @_;
+return scalar do { # work around #38809
+my $self = shift;
 my %args = @_;
 last unless exists $args{st} || exists $args{nd};
 my $nd = exists $args{st} ? delete $args{st} : exists $args{nd} ? delete $args{nd} : undef;
 $::RX{'nth'} = $nd;
 $self;
-    };
+};
 }
 {
-    local @_ = @_;
-    return scalar do { # work around #38809
-        my $self = shift;
+local @_ = @_;
+return scalar do { # work around #38809
+my $self = shift;
 my %args = @_;
 last unless exists $args{rd} || exists $args{th};
 my $th = exists $args{rd} ? delete $args{rd} : exists $args{th} ? delete $args{th} : undef;
 $::RX{'nth'} = $th;
 $self;
-    };
+};
 }
 {
-    local @_ = @_;
-    return scalar do { # work around #38809
-        my $self = shift;
+local @_ = @_;
+return scalar do { # work around #38809
+my $self = shift;
 my %args = @_;
 last unless exists $args{x};
 my $x = exists $args{x} ? delete $args{x} : undef;
 $::RX{'x'} = $x;
 $self;
-    };
+};
 }
 {
-    local @_ = @_;
-    return scalar do { # work around #38809
-        my $self = shift;
+local @_ = @_;
+return scalar do { # work around #38809
+my $self = shift;
 my %args = @_;
 last unless exists $args{bytes};
 my $bytes = exists $args{bytes} ? delete $args{bytes} : undef;
 $::RX{'bytes'} = $bytes;
 $self;
-    };
+};
 }
 {
-    local @_ = @_;
-    return scalar do { # work around #38809
-        my $self = shift;
+local @_ = @_;
+return scalar do { # work around #38809
+my $self = shift;
 my %args = @_;
 last unless exists $args{codes};
 my $codes = exists $args{codes} ? delete $args{codes} : undef;
 $::RX{'codes'} = $codes;
 $self;
-    };
+};
 }
 {
-    local @_ = @_;
-    return scalar do { # work around #38809
-        my $self = shift;
+local @_ = @_;
+return scalar do { # work around #38809
+my $self = shift;
 my %args = @_;
 last unless exists $args{graphs};
 my $graphs = exists $args{graphs} ? delete $args{graphs} : undef;
 $::RX{'graphs'} = $graphs;
 $self;
-    };
+};
 }
 {
-    local @_ = @_;
-    return scalar do { # work around #38809
-        my $self = shift;
+local @_ = @_;
+return scalar do { # work around #38809
+my $self = shift;
 my %args = @_;
 last unless exists $args{chars};
 my $chars = exists $args{chars} ? delete $args{chars} : undef;
 $::RX{'chars'} = $chars;
 $self;
-    };
+};
 }
 {
-    local @_ = @_;
-    return scalar do { # work around #38809
-        my $self = shift;
+local @_ = @_;
+return scalar do { # work around #38809
+my $self = shift;
 my %args = @_;
 last unless exists $args{rw};
 my $rw = exists $args{rw} ? delete $args{rw} : undef;
 $::RX{'rw'} = $rw;
 $self;
-    };
+};
 }
-    $orig->(@_);
+$orig->(@_);
 };
 
- 1; };
+1; };
 ## method require_P5
 sub require_P5 {
 no warnings 'recursion';
@@ -62668,15 +62712,16 @@ $id = $::CURLEX->id;
 else {
 $id = 'MY:file<' . $::FILE->{'name'} . '>:line(' . $line . '):pos(' . $self->{'_pos'} . ')';
 $::CURLEX = Stash->new(
-            'OUTER::' => [$oid],
-            '!file' => $::FILE, '!line' => $line,
-            '!id' => [$id],
-        );
+'OUTER::' => [$oid],
+'!file' => $::FILE, '!line' => $line,
+'!id' => [$id],
+);
 };
 $::CURLEX->{'!NEEDSIG'} = 1 if $needsig;
 $::CURLEX->{'!IN_DECL'} = $::IN_DECL if $::IN_DECL;
 $ALL->{$id} = $::CURLEX;
 $self->{'LEX'} = $::CURLEX;
+$::DECLARAND->{'curlex'} = $::CURLEX if $::DECLARAND;
 $self;
 };
 ## method finishlex
@@ -62726,7 +62771,7 @@ next if $desc->{'stub'};
 my $pos = $desc->{'declaredat'} // $self->{'_pos'};
 $self->cursor($pos)->worry("$_ is declared but not used");
 }
-    };
+};
 $self;
 };
 ## method getdecl
@@ -62772,7 +62817,7 @@ return 0 unless $curpkg;
 };
 $self->deb("Found $pkg okay") if $::DEBUG & DEBUG::symtab;
 }
-    ;
+;
 };
 $name = shift(@components)//'';
 $self->deb("Looking for $name") if $::DEBUG & DEBUG::symtab;
@@ -62788,7 +62833,7 @@ return 1;
 my $oid = $lex->{'OUTER::'}->[0] || last;
 $lex = $ALL->{$oid};
 }
-    ;
+;
 return 1 if $curpkg->{$name};
 return 1 if $::GLOBAL->{$name};
 $self->deb("$name not found") if $::DEBUG & DEBUG::symtab;
@@ -62829,7 +62874,7 @@ return () unless $curlex;
 };
 $self->deb("Found $lex okay") if $::DEBUG & DEBUG::symtab;
 }
-    ;
+;
 };
 $name = shift(@components)//'';
 return $curlex if $name eq '';
@@ -62839,7 +62884,7 @@ return $_ if $_ = $lex->{$name};
 my $oid = $lex->{'OUTER::'}->[0] || last;
 $lex = $ALL->{$oid};
 }
-    ;
+;
 return $_ if $_ = $curlex->{$name};
 return $_ if $_ = $::GLOBAL->{$name};
 return ();
@@ -62870,7 +62915,7 @@ return $lex->{$name} if $lex->{$name};
 my $oid = $lex->{'OUTER::'}->[0] || last;
 $lex = $ALL->{$oid};
 }
-    ;
+;
 return 0;
 };
 ## method add_name ($name)
@@ -62885,9 +62930,9 @@ return $self if $scope eq 'anon' or $pkgdecl eq 'slang';
 $self->deb("Adding $scope $name") if $::DEBUG & DEBUG::symtab;
 if ($scope eq 'augment' or $scope eq 'supersede') {
 $self->is_name($name) or
-            $self->worry("Can't $scope $pkgdecl $name because it doesn't exist");
+$self->worry("Can't $scope $pkgdecl $name because it doesn't exist");
 $::MONKEY_TYPING or
-            $self->sorry("Can't $scope $pkgdecl $name without MONKEY_TYPING");
+$self->sorry("Can't $scope $pkgdecl $name without MONKEY_TYPING");
 }
 else {
 if ($scope eq 'our') {
@@ -62914,13 +62959,13 @@ while (@components > 1) {
 my $pkg = shift @components;
 $sid .= "::$pkg";
 my $newstash = $curstash->{$pkg} //= Stash->new(
-            'PARENT::' => $curstash->idref,
-            '!stub' => 1,
-            '!id' => [$sid] );
+'PARENT::' => $curstash->idref,
+'!stub' => 1,
+'!id' => [$sid] );
 $self->deb("Adding new package $pkg in ", $curstash->id) if $::DEBUG & DEBUG::symtab;
 $curstash = $newstash;
 }
-    ;
+;
 $name = my $shortname = shift @components;
 return $self unless defined $name and $name ne '';
 return $self if $name eq '$' or $name eq '@' or $name eq '%';
@@ -62928,13 +62973,12 @@ return $self->add_categorical(substr($name,1)) if $name =~ /^\&\w+\:/;
 if ($shortname =~ /\:/) {
 $shortname =~ s/\:.*//};
 my $declaring = $d // NAME->new(
-        xlex => $curstash->idref,
-        name => $name,
-        file => $::FILE, line => $self->line,
-        mult => ($::MULTINESS||'only'),
-        of   => $::OFTYPE,
-        scope => $::SCOPE,
-    );
+name => $name,
+file => $::FILE, line => $self->line,
+mult => ($::MULTINESS||'only'),
+of   => $::OFTYPE,
+scope => $::SCOPE,
+);
 my $old = $curstash->{$name};
 if ($old and $old->{'line'} and not $old->{'stub'}) {
 $self->deb("$name exists, curstash = ", $curstash->id) if $::DEBUG & DEBUG::symtab;
@@ -62989,10 +63033,10 @@ $curstash->{"&$shortname"} //= $curstash->{$shortname};
 $curstash->{"&$shortname"}->{'used'} = 1;
 $sid .= "::$name";
 if ($name !~ /\:\</) {
-$::NEWLEX = $curstash->{$name . '::'} = ($p // Stash->new(
-                    'PARENT::' => $curstash->idref,
-                    '!file' => $::FILE, '!line' => $self->line,
-                    '!id' => [$sid] ))};
+$::NEWPKG = $curstash->{$name . '::'} = ($p // Stash->new(
+'PARENT::' => $curstash->idref,
+'!file' => $::FILE, '!line' => $self->line,
+'!id' => [$sid] ))};
 };
 };
 $self;
@@ -63023,25 +63067,24 @@ while (@components > 1) {
 my $pkg = shift @components;
 $sid .= "::$pkg";
 my $newstash = $curstash->{$pkg} //= Stash->new(
-            'PARENT::' => $curstash->idref,
-            '!stub' => 1,
-            '!id' => [$sid] );
+'PARENT::' => $curstash->idref,
+'!stub' => 1,
+'!id' => [$sid] );
 $curstash = $newstash;
 $self->deb("Adding new package $pkg in $curstash ") if $::DEBUG & DEBUG::symtab;
 }
-    ;
+;
 $name = my $shortname = shift @components;
 return $self unless defined $name and $name ne '';
 if ($shortname =~ /\:/) {
 $shortname =~ s/\:.*//};
 my $declaring = $::DECLARAND // NAME->new(
-        xlex => $curstash->idref,
-        name => $name,
-        file => $::FILE, line => $self->line,
-        mult => ($::MULTINESS||'only'),
-        of   => $::OFTYPE,
-        scope => $::SCOPE,
-    );
+name => $name,
+file => $::FILE, line => $self->line,
+mult => ($::MULTINESS||'only'),
+of   => $::OFTYPE,
+scope => $::SCOPE,
+);
 my $old = $curstash->{$name};
 if ($old and $old->{'line'} and not $old->{'stub'}) {
 my $omult = $old->{'mult'} // '';
@@ -63085,9 +63128,9 @@ $curstash->{"&$shortname"} //= $declaring;
 $curstash->{"&$shortname"}->{'used'} = 1;
 $sid .= "::$name";
 $::NEWPKG = $curstash->{$name . '::'} //= Stash->new(
-                'PARENT::' => $curstash->idref,
-                '!file' => $::FILE, '!line' => $self->line,
-                '!id' => [$sid] );
+'PARENT::' => $curstash->idref,
+'!file' => $::FILE, '!line' => $self->line,
+'!id' => [$sid] );
 };
 };
 $self->add_my_name($n, $declaring, $curstash->{$name . '::'}) if $curstash == $::CURPKG;
@@ -63137,27 +63180,27 @@ $unk_types{$_} = $::MYSTERY{$_}}
 else {
 $unk_routines{$_} = $::MYSTERY{$_}};
 }
-    ;
+;
 if (%post_types) {
 my @tmp = sort keys(%post_types);
 $m .= "Illegally post-declared type" . ('s' x (@tmp != 1)) . ":\n";
 for (@tmp) {
 $m .= "\t'$_' used at line " . $post_types{$_}->{'line'} . "\n"}
-    ;
+;
 };
 if (%unk_types) {
 my @tmp = sort keys(%unk_types);
 $m .= "Undeclared name" . ('s' x (@tmp != 1)) . ":\n";
 for (@tmp) {
 $m .= "\t'$_' used at line " . $unk_types{$_}->{'line'} . "\n"}
-    ;
+;
 };
 if (%unk_routines) {
 my @tmp = sort keys(%unk_routines);
 $m .= "Undeclared routine" . ('s' x (@tmp != 1)) . ":\n";
 for (@tmp) {
 $m .= "\t'$_' used at line " . $unk_routines{$_}->{'line'} . "\n"}
-    ;
+;
 };
 $self->sorry($m) if $m;
 $self;
@@ -63174,9 +63217,9 @@ $::CORE->{'!id'} //= ['CORE'];
 $::SETTING = $ALL->{'SETTING'};
 $::CURLEX = $::SETTING;
 $::GLOBAL = $::CORE->{'GLOBAL::'} = Stash->new(
-        '!file' => $::FILE, '!line' => 1,
-        '!id' => ['GLOBAL'],
-    );
+'!file' => $::FILE, '!line' => 1,
+'!id' => ['GLOBAL'],
+);
 $::CURPKG = $::GLOBAL;
 };
 ## method is_known ($n, $curlex = $*CURLEX)
@@ -63218,7 +63261,7 @@ return 0 unless $curpkg;
 };
 $self->deb("Found $pkg okay, now in $curpkg ") if $::DEBUG & DEBUG::symtab;
 }
-    ;
+;
 };
 $name = shift(@components)//'';
 $self->deb("Final component is $name") if $::DEBUG & DEBUG::symtab;
@@ -63261,15 +63304,14 @@ my $outline = $outlex->{$name}->{'line'};
 $outname = '<' . $outname . '>' unless $outname =~ /\:\:\</;
 $outname = "OUTER::" . $outname;
 $lex->{$name} = NAME->new(
-            xlex => $lex->idref,
-            olex => $lex->idref,
-            name => $outname,
-            file => $outfile, line => $outline,
-            rebind => $self->line,
-            varbind => $varbind,
-            mult => 'only',
-            scope => $lex->{$name}->{'scope'},
-        );
+olex => $lex->idref,
+name => $outname,
+file => $outfile, line => $outline,
+rebind => $self->line,
+varbind => $varbind,
+mult => 'only',
+scope => $lex->{$name}->{'scope'},
+);
 $varbind->{'truename'} = $outname;
 return 1;
 };
@@ -63384,20 +63426,20 @@ return $variable->sorry("Variable $name is not predeclared");
 elsif ($::CURLEX->{$name}) {
 $::CURLEX->{$name}->{'used'}++};
 }
-        ;
+;
 when ('^') {
 local $::MULTINESS = 'multi';
 $variable->add_placeholder($name);
 }
-        ;
+;
 when (':') {
 local $::MULTINESS = 'multi';
 $variable->add_placeholder($name);
 }
-        ;
+;
 when ('~') {
 return @::LANG{substr($name,2)}}
-        ;
+;
 when ('?') {
 if ($name =~ /\:\:/) {
 my ($first) = $self->canonicalize_name($name);
@@ -63407,9 +63449,9 @@ else {
 my $v = $variable->lookup_compiler_var($name);
 $variable->{'value'} = $v if $v;
 }}
-    ;
+;
 }
-    ;
+;
 $self;
 };
 ## method lookup_compiler_var($name, $default = Nil)
@@ -63428,76 +63470,76 @@ return $lex->{'value'}}};
 given ($name) {
 when ('$?FILE')     {
 return $::FILE->{'name'}}
-        ;
+;
 when ('$?LINE')     {
 return $self->lineof($self->{'_pos'})}
-        ;
+;
 when ('$?POSITION') {
 return $self->{'_pos'}}
 
-        ;
+;
 when ('$?LANG')     {
 return \%::LANG}
 
-        ;
+;
 when ('$?LEXINFO')   {
 return $::CURLEX}
 
-        ;
+;
 when ('$?PACKAGE')  {
 return $::CURPKG}
-        ;
+;
 when ('$?MODULE')   {
 return $::CURPKG}
-        ;
+;
 when ('$?CLASS')    {
 return $::CURPKG}
-        ;
+;
 when ('$?ROLE')     {
 return $::CURPKG}
-        ;
+;
 when ('$?GRAMMAR')  {
 return $::CURPKG}
 
-        ;
+;
 when ('$?PACKAGENAME') {
 return $::CURPKG->id }
 
-        ;
+;
 when ('$?OS')       {
 return 'unimpl'}
-        ;
+;
 when ('$?DISTRO')   {
 return 'unimpl'}
-        ;
+;
 when ('$?VM')       {
 return 'unimpl'}
-        ;
+;
 when ('$?XVM')      {
 return 'unimpl'}
-        ;
+;
 when ('$?PERL')     {
 return 'unimpl'}
 
-        ;
+;
 when ('$?USAGE')    {
 return 'unimpl'}
 
-        ;
+;
 when ('&?ROUTINE')  {
 return 'unimpl'}
-        ;
+;
 when ('&?BLOCK')    {
 return 'unimpl'}
 
-        ;
+;
 when ('%?CONFIG')    {
 return 'unimpl'}
-        ;
+;
 when ('%?DEEPMAGIC') {
 return 'unimpl'}
 
-        ;
+;
 my $dynvar = $self->lookup_dynvar($name);
 return $dynvar if defined $dynvar;
 return $default if defined $default;
@@ -63505,7 +63547,7 @@ default {
 $self->worry("Unrecognized variable: $name");
 return 0;
 }
-    ;
+;
 }
 ;
 };
@@ -63588,7 +63630,7 @@ $::IN_PANIC--;
 die $m if $::IN_SUPPOSE;
 $::IN_PANIC++;
 print STDERR $STD::Cursor::RED, '===', $STD::Cursor::CLEAR, 'SORRY!', $STD::Cursor::RED, '===', $STD::Cursor::CLEAR, "\n"
-        unless $::FATALS++;
+unless $::FATALS++;
 print STDERR $m;
 $self->explain_mystery();
 $::IN_PANIC--;
@@ -63673,7 +63715,7 @@ die 'Required argument s omitted' unless @_;
 my $s = @_ ? shift() : undef;
 $self->deb("sorry $s") if $::DEBUG;
 print STDERR $STD::Cursor::RED, '===', $STD::Cursor::CLEAR, 'SORRY!', $STD::Cursor::RED, '===', $STD::Cursor::CLEAR, "\n"
-        unless $::IN_SUPPOSE or $::FATALS++;
+unless $::IN_SUPPOSE or $::FATALS++;
 if ($s) {
 my $m = $s;
 $m .= $self->locmess . "\n" unless $m =~ /\n$/;
@@ -63777,4 +63819,4 @@ $C
 });
 }
 ;
-  1; }
+1; }
