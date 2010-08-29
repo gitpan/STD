@@ -19,7 +19,7 @@ my %module_build_args = (
     'Pawel Murias <pawelmurias@gmail.com>'
   ],
   'dist_name' => 'STD',
-  'dist_version' => '32055',
+  'dist_version' => '32115',
   'license' => 'artistic_2',
   'module_name' => 'STD',
   'recommends' => {},
@@ -30,7 +30,9 @@ my %module_build_args = (
     'YAML::XS' => '0',
     'perl' => 'v5.10'
   },
-  'script_files' => [],
+  'script_files' => [
+    'bin/viv'
+  ],
   'share_dir' => {
     'dist' => 'data'
   }

@@ -2,6 +2,14 @@ Build.PL
 LICENSE
 MANIFEST
 META.yml
+bin/viv
+data/syml/CORE.syml
+data/syml/Cursor.syml
+data/syml/CursorBase.syml
+data/syml/DEBUG.syml
+data/syml/NAME.syml
+data/syml/STD.syml
+data/syml/Stash.syml
 data/uniprops
 inc/MyBuilder.pm
 lib/CursorBase.pm
@@ -15,4 +23,3 @@ lib/STD/LazyMap.pm
 lib/STD_P5.pm
 lib/Stash.pm
 lib/mangle.pl
-lib/viv
