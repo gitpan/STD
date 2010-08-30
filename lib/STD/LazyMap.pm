@@ -105,7 +105,7 @@ sub iter {
 	    return () unless @$lazies;
 	    my $lazy = $$lazies[0];
 	    # recursive lazies?  delegate to lower ->iter
-	    if (ref($lazy) =~ /^Lazy/) {
+	    if (ref($lazy) =~ /STD::Lazy/) {
 		my $todo = $lazy->iter;
 		if (defined $todo) {
 		    @$called = $self->{B}->($todo);
@@ -123,7 +123,7 @@ sub iter {
 	}
 
 	# evaluating the blocks may have returned something lazy, so delegate again
-	while (@$called and ref($$called[0]) =~ /^Lazy/) {
+	while (@$called and ref($$called[0]) =~ /STD::Lazy/) {
 	    my $really = $$called[0]->iter;
 	    if ($really) {
 		unshift @$called, $really;
@@ -134,7 +134,7 @@ sub iter {
 	}
 
 	# finally have at least one real cursor, grep for first with live transaction
-	while (@$called and ref($$called[0]) !~ /^Lazy/) {
+	while (@$called and ref($$called[0]) !~ /STD::Lazy/) {
 	    my $candidate = shift @$called;
 	    # make sure its transaction doesn't have a prior commitment
 	    my $xact = $candidate->{_xact};

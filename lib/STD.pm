@@ -1,7 +1,7 @@
 use 5.010;
 use utf8;
 { package STD;BEGIN {
-$STD::VERSION = 32115
+$STD::VERSION = 32116
 }
 use Moose ':all' => { -prefix => "moose_" };
 use Encode;
