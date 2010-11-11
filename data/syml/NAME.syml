@@ -98,7 +98,7 @@ MY:file<STD.pm6>: !!perl/hash:Stash
           used: 1
           xlex: *9
         'OUTER::':
-        - MY:file<CORE.setting>:line(507):pos(11404)
+        - MY:file<CORE.setting>:line(507):pos(11402)
         STD: *8
         'STD::': !!perl/hash:Stash
           '!file': *6
@@ -131,9 +131,9 @@ MY:file<STD.pm6>: !!perl/hash:Stash
           line: 1
           name: $/
           scope: my
-        $?CORE_ID: MY:file<CORE.setting>:line(507):pos(11404)
+        $?CORE_ID: MY:file<CORE.setting>:line(507):pos(11402)
         $?LONGNAME: DEBUG
-        $?SETTING_ID: MY:file<CORE.setting>:line(507):pos(11404)
+        $?SETTING_ID: MY:file<CORE.setting>:line(507):pos(11402)
         $_: !!perl/hash:NAME
           dynamic: 1
           file: *11
@@ -337,7 +337,7 @@ MY:file<STD.pm6>: !!perl/hash:Stash
           'PARENT::': *3
         EXPR: *14
         'OUTER::':
-        - MY:file<CORE.setting>:line(507):pos(11404)
+        - MY:file<CORE.setting>:line(507):pos(11402)
         autolexer: *15
         callm_show_subnames: *16
         cursors: *17
@@ -514,7 +514,7 @@ MY:file<STD.pm6>: !!perl/hash:Stash
     'PARENT::': *3
   EXPR: *14
   'OUTER::':
-  - MY:file<CORE.setting>:line(507):pos(11404)
+  - MY:file<CORE.setting>:line(507):pos(11402)
   STD: *27
   'STD::': !!perl/hash:Stash
     '!file': *2
@@ -560,9 +560,9 @@ MY:file<lib/DEBUG.pm6>: !!perl/hash:Stash
     line: 1
     name: $/
     scope: my
-  $?CORE_ID: MY:file<CORE.setting>:line(507):pos(11404)
+  $?CORE_ID: MY:file<CORE.setting>:line(507):pos(11402)
   $?LONGNAME: DEBUG
-  $?SETTING_ID: MY:file<CORE.setting>:line(507):pos(11404)
+  $?SETTING_ID: MY:file<CORE.setting>:line(507):pos(11402)
   $_: !!perl/hash:NAME
     dynamic: 1
     file: *29
@@ -766,7 +766,7 @@ MY:file<lib/DEBUG.pm6>: !!perl/hash:Stash
     'PARENT::': *30
   EXPR: *33
   'OUTER::':
-  - MY:file<CORE.setting>:line(507):pos(11404)
+  - MY:file<CORE.setting>:line(507):pos(11402)
   autolexer: *34
   callm_show_subnames: *35
   cursors: *36
@@ -805,9 +805,9 @@ MY:file<lib/NAME.pm6>: &46 !!perl/hash:Stash
     line: 1
     name: $/
     scope: my
-  $?CORE_ID: MY:file<CORE.setting>:line(507):pos(11404)
+  $?CORE_ID: MY:file<CORE.setting>:line(507):pos(11402)
   $?LONGNAME: NAME
-  $?SETTING_ID: MY:file<CORE.setting>:line(507):pos(11404)
+  $?SETTING_ID: MY:file<CORE.setting>:line(507):pos(11402)
   $_: !!perl/hash:NAME
     dynamic: 1
     file: *47
@@ -833,7 +833,7 @@ MY:file<lib/NAME.pm6>: &46 !!perl/hash:Stash
     '!line': 1
     'PARENT::': *48
   'OUTER::':
-  - MY:file<CORE.setting>:line(507):pos(11404)
+  - MY:file<CORE.setting>:line(507):pos(11402)
 MY:file<lib/NAME.pm6>:line(1):pos(13): !!perl/hash:Stash
   '!IN_DECL': package
   '!file': *47

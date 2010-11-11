@@ -20,4 +20,4 @@ requires:
   Moose: 0
   YAML::XS: 0
   perl: v5.10
-version: 32116
+version: 20101111

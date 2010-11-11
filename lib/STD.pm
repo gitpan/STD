@@ -1,7 +1,7 @@
 use 5.010;
 use utf8;
 { package STD;BEGIN {
-$STD::VERSION = 32116
+$STD::VERSION = 20101111
 }
 use Moose ':all' => { -prefix => "moose_" };
 use Encode;
@@ -15471,6 +15471,9 @@ package_declarator__S_055require: !!perl/hash:RE_ast
           - !!perl/hash:RE_method
             name: module_name
             rest: ''
+          - !!perl/hash:RE_method
+            name: ws
+            rest: ''
           - !!perl/hash:RE_quantified_atom
             atom: !!perl/hash:RE_method
               name: EXPR
@@ -28766,10 +28769,12 @@ my $xact = $C->xact;
 my @gather;
 do {
 push @gather, do {
-if (my ($C) = ($C->_SUBSUMEr(['module_name'], sub {
+my $C = $C;
+if (($C) = ($C->_SUBSUMEr(['module_name'], sub {
 my $C = shift;
 $C->module_name
-}))) {
+}))
+and ($C) = ($C->ws)) {
 $C->_OPTr(sub {
 my $C=shift;
 $C->_SUBSUMEr(['EXPR'], sub {
@@ -53793,12 +53798,12 @@ moose_extends('STD');
 our $ALLROLES = { 'STD::Regex', 1 };
 our $REGEXES = {
 ALL => [ qw/assertion atom backslash category cclass_elem infixish infixstopper metachar mod_arg mod_internal nibbler normspace quant_atom_list quantified_atom quantifier quantmod regex_infix sign termish unsp ws/ ],
-assertion => [ qw/assertion__S_073DotDotDot__PEEK assertion__S_074QuestionQuestionQuestion__PEEK assertion__S_075BangBangBang__PEEK assertion__S_076Question__PEEK assertion__S_077Bang__PEEK assertion__S_078Star__PEEK assertion__S_079Cur_Ly__PEEK assertion__S_080variable__PEEK assertion__S_081method__PEEK assertion__S_082name__PEEK assertion__S_083Bra__PEEK assertion__S_084Plus__PEEK assertion__S_085Minus__PEEK assertion__S_086Dot__PEEK assertion__S_087Comma__PEEK assertion__S_088TildeTilde__PEEK assertion__S_089bogus__PEEK/ ],
-backslash => [ qw/backslash__S_047unspace__PEEK backslash__S_0480__PEEK backslash__S_049A__PEEK backslash__S_050a__PEEK backslash__S_051B__PEEK backslash__S_052b__PEEK backslash__S_053c__PEEK backslash__S_054d__PEEK backslash__S_055e__PEEK backslash__S_056f__PEEK backslash__S_057h__PEEK backslash__S_058n__PEEK backslash__S_059o__PEEK backslash__S_060p__PEEK backslash__S_061Q__PEEK backslash__S_062r__PEEK backslash__S_063s__PEEK backslash__S_064t__PEEK backslash__S_065v__PEEK backslash__S_066w__PEEK backslash__S_067x__PEEK backslash__S_068z__PEEK backslash__S_069Z__PEEK backslash__S_070misc__PEEK backslash__S_071oldbackref__PEEK backslash__S_072oops__PEEK/ ],
+assertion => [ qw/assertion__S_074DotDotDot__PEEK assertion__S_075QuestionQuestionQuestion__PEEK assertion__S_076BangBangBang__PEEK assertion__S_077Question__PEEK assertion__S_078Bang__PEEK assertion__S_079Star__PEEK assertion__S_080Cur_Ly__PEEK assertion__S_081variable__PEEK assertion__S_082method__PEEK assertion__S_083name__PEEK assertion__S_084Colon__PEEK assertion__S_085Bra__PEEK assertion__S_086Plus__PEEK assertion__S_087Minus__PEEK assertion__S_088Dot__PEEK assertion__S_089Comma__PEEK assertion__S_090TildeTilde__PEEK assertion__S_091bogus__PEEK/ ],
+backslash => [ qw/backslash__S_048unspace__PEEK backslash__S_0490__PEEK backslash__S_050A__PEEK backslash__S_051a__PEEK backslash__S_052B__PEEK backslash__S_053b__PEEK backslash__S_054c__PEEK backslash__S_055d__PEEK backslash__S_056e__PEEK backslash__S_057f__PEEK backslash__S_058h__PEEK backslash__S_059n__PEEK backslash__S_060o__PEEK backslash__S_061p__PEEK backslash__S_062Q__PEEK backslash__S_063r__PEEK backslash__S_064s__PEEK backslash__S_065t__PEEK backslash__S_066v__PEEK backslash__S_067w__PEEK backslash__S_068x__PEEK backslash__S_069z__PEEK backslash__S_070Z__PEEK backslash__S_071misc__PEEK backslash__S_072oldbackref__PEEK backslash__S_073oops__PEEK/ ],
 category => [ qw/category__S_000metachar__PEEK category__S_001backslash__PEEK category__S_002assertion__PEEK category__S_003quantifier__PEEK category__S_004mod_internal__PEEK/ ],
-metachar => [ qw/metachar__S_009Gt__PEEK metachar__S_010AmpAmp__PEEK metachar__S_011Amp__PEEK metachar__S_012VertVert__PEEK metachar__S_013Vert__PEEK metachar__S_014Ket__PEEK metachar__S_015Thesis__PEEK metachar__S_016Semi__PEEK metachar__S_017CurStarLy__PEEK metachar__S_018BraStarKet__PEEK metachar__S_019quant__PEEK metachar__S_020sigwhite__PEEK metachar__S_021unsp__PEEK metachar__S_022Cur_Ly__PEEK metachar__S_023mod__PEEK metachar__S_024Minus__PEEK metachar__S_025Colon__PEEK metachar__S_026ColonColon__PEEK metachar__S_027ColonColonColon__PEEK metachar__S_028Bra_Ket__PEEK metachar__S_029Paren_Thesis__PEEK metachar__S_030LtParen__PEEK metachar__S_031ThesisGt__PEEK metachar__S_032LtLt__PEEK metachar__S_033GtGt__PEEK metachar__S_034Fre__PEEK metachar__S_035Nch__PEEK metachar__S_036qw__PEEK metachar__S_037Lt_Gt__PEEK metachar__S_038Back__PEEK metachar__S_039Dot__PEEK metachar__S_040CaretCaret__PEEK metachar__S_041Caret__PEEK metachar__S_042DollarDollar__PEEK metachar__S_043Dollar__PEEK metachar__S_044Single_Single__PEEK metachar__S_045Double_Double__PEEK metachar__S_046var__PEEK/ ],
-mod_internal => [ qw/mod_internal__S_090Colonmy__PEEK mod_internal__S_091Coloni__PEEK mod_internal__S_092ColonBangi__PEEK mod_internal__S_093ColoniParen_Thesis__PEEK mod_internal__S_094Colon0i__PEEK mod_internal__S_095Colona__PEEK mod_internal__S_096ColonBanga__PEEK mod_internal__S_097ColonaParen_Thesis__PEEK mod_internal__S_098Colon0a__PEEK mod_internal__S_099Colons__PEEK mod_internal__S_100ColonBangs__PEEK mod_internal__S_101ColonsParen_Thesis__PEEK mod_internal__S_102Colon0s__PEEK mod_internal__S_103Colonr__PEEK mod_internal__S_104ColonBangr__PEEK mod_internal__S_105ColonrParen_Thesis__PEEK mod_internal__S_106Colon0r__PEEK mod_internal__S_107ColonPerl5__PEEK mod_internal__S_108p6adv__PEEK mod_internal__S_109oops__PEEK/ ],
-quantifier => [ qw/quantifier__S_110Star__PEEK quantifier__S_111Plus__PEEK quantifier__S_112Question__PEEK quantifier__S_113Colon__PEEK quantifier__S_114StarStar__PEEK quantifier__S_115Tilde__PEEK quantifier__S_116TildeTilde__PEEK quantifier__S_117CurNCommaMLy__PEEK/ ],
+metachar => [ qw/metachar__S_009Gt__PEEK metachar__S_010AmpAmp__PEEK metachar__S_011Amp__PEEK metachar__S_012VertVert__PEEK metachar__S_013Vert__PEEK metachar__S_014Ket__PEEK metachar__S_015Thesis__PEEK metachar__S_016Semi__PEEK metachar__S_017CurStarLy__PEEK metachar__S_018BraStarKet__PEEK metachar__S_019quant__PEEK metachar__S_020sigwhite__PEEK metachar__S_021unsp__PEEK metachar__S_022Cur_Ly__PEEK metachar__S_023mod__PEEK metachar__S_024Minus__PEEK metachar__S_025Colon__PEEK metachar__S_026ColonColon__PEEK metachar__S_027ColonColonGt__PEEK metachar__S_028ColonColonColon__PEEK metachar__S_029Bra_Ket__PEEK metachar__S_030Paren_Thesis__PEEK metachar__S_031LtParen__PEEK metachar__S_032ThesisGt__PEEK metachar__S_033LtLt__PEEK metachar__S_034GtGt__PEEK metachar__S_035Fre__PEEK metachar__S_036Nch__PEEK metachar__S_037qw__PEEK metachar__S_038Lt_Gt__PEEK metachar__S_039Back__PEEK metachar__S_040Dot__PEEK metachar__S_041CaretCaret__PEEK metachar__S_042Caret__PEEK metachar__S_043DollarDollar__PEEK metachar__S_044Dollar__PEEK metachar__S_045Single_Single__PEEK metachar__S_046Double_Double__PEEK metachar__S_047var__PEEK/ ],
+mod_internal => [ qw/mod_internal__S_092Colonmy__PEEK mod_internal__S_093Coloni__PEEK mod_internal__S_094ColonBangi__PEEK mod_internal__S_095ColoniParen_Thesis__PEEK mod_internal__S_096Colon0i__PEEK mod_internal__S_097Colona__PEEK mod_internal__S_098ColonBanga__PEEK mod_internal__S_099ColonaParen_Thesis__PEEK mod_internal__S_100Colon0a__PEEK mod_internal__S_101Colons__PEEK mod_internal__S_102ColonBangs__PEEK mod_internal__S_103ColonsParen_Thesis__PEEK mod_internal__S_104Colon0s__PEEK mod_internal__S_105Colonr__PEEK mod_internal__S_106ColonBangr__PEEK mod_internal__S_107ColonrParen_Thesis__PEEK mod_internal__S_108Colon0r__PEEK mod_internal__S_109ColonPerl5__PEEK mod_internal__S_110p6adv__PEEK mod_internal__S_111oops__PEEK/ ],
+quantifier => [ qw/quantifier__S_112Star__PEEK quantifier__S_113Plus__PEEK quantifier__S_114Question__PEEK quantifier__S_115Colon__PEEK quantifier__S_116StarStar__PEEK quantifier__S_117Tilde__PEEK quantifier__S_118TildeTilde__PEEK quantifier__S_119CurNCommaMLy__PEEK/ ],
 regex_infix => [ qw/regex_infix__S_005VertVert__PEEK regex_infix__S_006AmpAmp__PEEK regex_infix__S_007Vert__PEEK regex_infix__S_008Amp__PEEK/ ],
 };
 
@@ -53817,7 +53822,7 @@ $retree = YAML::XS::Load(Encode::encode_utf8(<<'RETREE_END'));
 ---
 assertion:*:
   dic: STD::Regex
-assertion__S_073DotDotDot: !!perl/hash:RE_ast
+assertion__S_074DotDotDot: !!perl/hash:RE_ast
   dba: assertion
   dic: STD::Regex
   re: !!perl/hash:RE_method
@@ -53825,7 +53830,7 @@ assertion__S_073DotDotDot: !!perl/hash:RE_ast
     name: sym
     rest: ''
     sym: '...'
-assertion__S_074QuestionQuestionQuestion: !!perl/hash:RE_ast
+assertion__S_075QuestionQuestionQuestion: !!perl/hash:RE_ast
   dba: assertion
   dic: STD::Regex
   re: !!perl/hash:RE_method
@@ -53833,7 +53838,7 @@ assertion__S_074QuestionQuestionQuestion: !!perl/hash:RE_ast
     name: sym
     rest: ''
     sym: ???
-assertion__S_075BangBangBang: !!perl/hash:RE_ast
+assertion__S_076BangBangBang: !!perl/hash:RE_ast
   dba: assertion
   dic: STD::Regex
   re: !!perl/hash:RE_method
@@ -53841,7 +53846,7 @@ assertion__S_075BangBangBang: !!perl/hash:RE_ast
     name: sym
     rest: ''
     sym: '!!!'
-assertion__S_076Question: !!perl/hash:RE_ast
+assertion__S_077Question: !!perl/hash:RE_ast
   dba: assertion
   dic: STD::Regex
   re: !!perl/hash:RE_sequence
@@ -53853,12 +53858,12 @@ assertion__S_076Question: !!perl/hash:RE_ast
       sym: '?'
     - !!perl/hash:RE_bracket
       re: &1 !!perl/hash:RE_any
-        altname: assertion__S_076Question_0
+        altname: assertion__S_077Question_0
         dba: assertion
         dic: STD::Regex
         zyg:
         - !!perl/hash:RE_assertion
-          alt: assertion__S_076Question_0 0
+          alt: assertion__S_077Question_0 0
           assert: '?'
           re: !!perl/hash:RE_method_re
             name: before
@@ -53867,11 +53872,11 @@ assertion__S_076Question: !!perl/hash:RE_ast
               i: 0
               text: '>'
         - !!perl/hash:RE_method
-          alt: assertion__S_076Question_0 1
+          alt: assertion__S_077Question_0 1
           name: assertion
           rest: ''
-assertion__S_076Question_0: *1
-assertion__S_077Bang: !!perl/hash:RE_ast
+assertion__S_077Question_0: *1
+assertion__S_078Bang: !!perl/hash:RE_ast
   dba: assertion
   dic: STD::Regex
   re: !!perl/hash:RE_sequence
@@ -53883,12 +53888,12 @@ assertion__S_077Bang: !!perl/hash:RE_ast
       sym: '!'
     - !!perl/hash:RE_bracket
       re: &2 !!perl/hash:RE_any
-        altname: assertion__S_077Bang_0
+        altname: assertion__S_078Bang_0
         dba: assertion
         dic: STD::Regex
         zyg:
         - !!perl/hash:RE_assertion
-          alt: assertion__S_077Bang_0 0
+          alt: assertion__S_078Bang_0 0
           assert: '?'
           re: !!perl/hash:RE_method_re
             name: before
@@ -53897,11 +53902,11 @@ assertion__S_077Bang: !!perl/hash:RE_ast
               i: 0
               text: '>'
         - !!perl/hash:RE_method
-          alt: assertion__S_077Bang_0 1
+          alt: assertion__S_078Bang_0 1
           name: assertion
           rest: ''
-assertion__S_077Bang_0: *2
-assertion__S_078Star: !!perl/hash:RE_ast
+assertion__S_078Bang_0: *2
+assertion__S_079Star: !!perl/hash:RE_ast
   dba: assertion
   dic: STD::Regex
   re: !!perl/hash:RE_sequence
@@ -53913,12 +53918,12 @@ assertion__S_078Star: !!perl/hash:RE_ast
       sym: '*'
     - !!perl/hash:RE_bracket
       re: &3 !!perl/hash:RE_any
-        altname: assertion__S_078Star_0
+        altname: assertion__S_079Star_0
         dba: assertion
         dic: STD::Regex
         zyg:
         - !!perl/hash:RE_assertion
-          alt: assertion__S_078Star_0 0
+          alt: assertion__S_079Star_0 0
           assert: '?'
           re: !!perl/hash:RE_method_re
             name: before
@@ -53927,7 +53932,7 @@ assertion__S_078Star: !!perl/hash:RE_ast
               i: 0
               text: '>'
         - !!perl/hash:RE_sequence
-          alt: assertion__S_078Star_0 1
+          alt: assertion__S_079Star_0 1
           zyg:
           - !!perl/hash:RE_method
             name: ws
@@ -53935,14 +53940,14 @@ assertion__S_078Star: !!perl/hash:RE_ast
           - !!perl/hash:RE_method
             name: nibbler
             rest: ''
-assertion__S_078Star_0: *3
-assertion__S_079Cur_Ly: !!perl/hash:RE_ast
+assertion__S_079Star_0: *3
+assertion__S_080Cur_Ly: !!perl/hash:RE_ast
   dba: assertion
   dic: STD::Regex
   re: !!perl/hash:RE_method
     name: embeddedblock
     rest: ''
-assertion__S_080variable: !!perl/hash:RE_ast
+assertion__S_081variable: !!perl/hash:RE_ast
   dba: assertion
   dic: STD::Regex
   re: !!perl/hash:RE_sequence
@@ -53963,7 +53968,7 @@ assertion__S_080variable: !!perl/hash:RE_ast
           atom: !!perl/hash:RE_method
             name: EXPR
             rest: 1
-assertion__S_081method: !!perl/hash:RE_ast
+assertion__S_082method: !!perl/hash:RE_ast
   dba: assertion
   dic: STD::Regex
   re: !!perl/hash:RE_sequence
@@ -53973,12 +53978,12 @@ assertion__S_081method: !!perl/hash:RE_ast
       text: .
     - !!perl/hash:RE_bracket
       re: &4 !!perl/hash:RE_any
-        altname: assertion__S_081method_0
+        altname: assertion__S_082method_0
         dba: assertion
         dic: STD::Regex
         zyg:
         - !!perl/hash:RE_sequence
-          alt: assertion__S_081method_0 0
+          alt: assertion__S_082method_0 0
           zyg:
           - !!perl/hash:RE_assertion
             assert: '?'
@@ -53992,15 +53997,15 @@ assertion__S_081method: !!perl/hash:RE_ast
             name: assertion
             rest: ''
         - !!perl/hash:RE_bracket
-          alt: assertion__S_081method_0 1
+          alt: assertion__S_082method_0 1
           re: !!perl/hash:RE_sequence
             zyg:
             - !!perl/hash:RE_decl {}
             - !!perl/hash:RE_method
               name: dottyop
               rest: ''
-assertion__S_081method_0: *4
-assertion__S_082name: !!perl/hash:RE_ast
+assertion__S_082method_0: *4
+assertion__S_083name: !!perl/hash:RE_ast
   dba: assertion
   dic: STD::Regex
   re: !!perl/hash:RE_sequence
@@ -54015,12 +54020,12 @@ assertion__S_082name: !!perl/hash:RE_ast
     - !!perl/hash:RE_quantified_atom
       atom: !!perl/hash:RE_bracket
         re: &5 !!perl/hash:RE_any
-          altname: assertion__S_082name_0
+          altname: assertion__S_083name_0
           dba: assertion
           dic: STD::Regex
           zyg:
           - !!perl/hash:RE_sequence
-            alt: assertion__S_082name_0 0
+            alt: assertion__S_083name_0 0
             zyg:
             - !!perl/hash:RE_assertion
               assert: '?'
@@ -54032,7 +54037,7 @@ assertion__S_082name: !!perl/hash:RE_ast
                   text: '>'
             - !!perl/hash:RE_block {}
           - !!perl/hash:RE_sequence
-            alt: assertion__S_082name_0 1
+            alt: assertion__S_083name_0 1
             zyg:
             - !!perl/hash:RE_quantified_atom
               atom: !!perl/hash:RE_method
@@ -54047,7 +54052,7 @@ assertion__S_082name: !!perl/hash:RE_ast
               name: ws
               rest: ''
           - !!perl/hash:RE_sequence
-            alt: assertion__S_082name_0 2
+            alt: assertion__S_083name_0 2
             zyg:
             - !!perl/hash:RE_string
               i: 0
@@ -54056,7 +54061,7 @@ assertion__S_082name: !!perl/hash:RE_ast
               name: assertion
               rest: ''
           - !!perl/hash:RE_sequence
-            alt: assertion__S_082name_0 3
+            alt: assertion__S_083name_0 3
             zyg:
             - !!perl/hash:RE_string
               i: 0
@@ -54072,7 +54077,7 @@ assertion__S_082name: !!perl/hash:RE_ast
                   name: arglist
                   rest: ''
           - !!perl/hash:RE_sequence
-            alt: assertion__S_082name_0 4
+            alt: assertion__S_083name_0 4
             zyg:
             - !!perl/hash:RE_string
               i: 0
@@ -54096,8 +54101,32 @@ assertion__S_082name: !!perl/hash:RE_ast
                   rest: 1
       quant:
       - '?'
-assertion__S_082name_0: *5
-assertion__S_083Bra: !!perl/hash:RE_ast
+assertion__S_083name_0: *5
+assertion__S_084Colon: !!perl/hash:RE_ast
+  dba: assertion
+  dic: STD::Regex
+  re: !!perl/hash:RE_sequence
+    zyg:
+    - !!perl/hash:RE_assertion
+      assert: '?'
+      re: !!perl/hash:RE_method_re
+        name: before
+        nobind: 1
+        re: !!perl/hash:RE_sequence
+          zyg:
+          - !!perl/hash:RE_string
+            i: 0
+            text: ':'
+          - !!perl/hash:RE_method
+            name: alpha
+            rest: ''
+    - !!perl/hash:RE_quantified_atom
+      atom: !!perl/hash:RE_method
+        name: cclass_elem
+        rest: ''
+      quant:
+      - +
+assertion__S_085Bra: !!perl/hash:RE_ast
   dba: assertion
   dic: STD::Regex
   re: !!perl/hash:RE_sequence
@@ -54116,7 +54145,7 @@ assertion__S_083Bra: !!perl/hash:RE_ast
         rest: ''
       quant:
       - +
-assertion__S_084Plus: !!perl/hash:RE_ast
+assertion__S_086Plus: !!perl/hash:RE_ast
   dba: assertion
   dic: STD::Regex
   re: !!perl/hash:RE_sequence
@@ -54135,7 +54164,7 @@ assertion__S_084Plus: !!perl/hash:RE_ast
         rest: ''
       quant:
       - +
-assertion__S_085Minus: !!perl/hash:RE_ast
+assertion__S_087Minus: !!perl/hash:RE_ast
   dba: assertion
   dic: STD::Regex
   re: !!perl/hash:RE_sequence
@@ -54154,7 +54183,7 @@ assertion__S_085Minus: !!perl/hash:RE_ast
         rest: ''
       quant:
       - +
-assertion__S_086Dot: !!perl/hash:RE_ast
+assertion__S_088Dot: !!perl/hash:RE_ast
   dba: assertion
   dic: STD::Regex
   re: !!perl/hash:RE_method
@@ -54162,7 +54191,7 @@ assertion__S_086Dot: !!perl/hash:RE_ast
     name: sym
     rest: ''
     sym: .
-assertion__S_087Comma: !!perl/hash:RE_ast
+assertion__S_089Comma: !!perl/hash:RE_ast
   dba: assertion
   dic: STD::Regex
   re: !!perl/hash:RE_method
@@ -54170,7 +54199,7 @@ assertion__S_087Comma: !!perl/hash:RE_ast
     name: sym
     rest: ''
     sym: ','
-assertion__S_088TildeTilde: !!perl/hash:RE_ast
+assertion__S_090TildeTilde: !!perl/hash:RE_ast
   dba: assertion
   dic: STD::Regex
   re: !!perl/hash:RE_sequence
@@ -54182,12 +54211,12 @@ assertion__S_088TildeTilde: !!perl/hash:RE_ast
       sym: ~~
     - !!perl/hash:RE_bracket
       re: &6 !!perl/hash:RE_any
-        altname: assertion__S_088TildeTilde_0
+        altname: assertion__S_090TildeTilde_0
         dba: assertion
         dic: STD::Regex
         zyg:
         - !!perl/hash:RE_assertion
-          alt: assertion__S_088TildeTilde_0 0
+          alt: assertion__S_090TildeTilde_0 0
           assert: '?'
           re: !!perl/hash:RE_method_re
             name: before
@@ -54196,18 +54225,18 @@ assertion__S_088TildeTilde: !!perl/hash:RE_ast
               i: 0
               text: '>'
         - !!perl/hash:RE_quantified_atom
-          alt: assertion__S_088TildeTilde_0 1
+          alt: assertion__S_090TildeTilde_0 1
           atom: !!perl/hash:RE_meta
             min: 1
             text: \d
           quant:
           - +
         - !!perl/hash:RE_method
-          alt: assertion__S_088TildeTilde_0 2
+          alt: assertion__S_090TildeTilde_0 2
           name: desigilname
           rest: ''
-assertion__S_088TildeTilde_0: *6
-assertion__S_089bogus: !!perl/hash:RE_ast
+assertion__S_090TildeTilde_0: *6
+assertion__S_091bogus: !!perl/hash:RE_ast
   dba: assertion
   dic: STD::Regex
   re: !!perl/hash:RE_method
@@ -54237,7 +54266,7 @@ atom: !!perl/hash:RE_ast
 atom_0: *7
 backslash:*:
   dic: STD::Regex
-backslash__S_047unspace: !!perl/hash:RE_ast
+backslash__S_048unspace: !!perl/hash:RE_ast
   dba: backslash
   dic: STD::Regex
   re: !!perl/hash:RE_sequence
@@ -54253,7 +54282,7 @@ backslash__S_047unspace: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: SUPER::ws
       rest: ''
-backslash__S_0480: !!perl/hash:RE_ast
+backslash__S_0490: !!perl/hash:RE_ast
   dba: backslash
   dic: STD::Regex
   re: !!perl/hash:RE_sequence
@@ -54269,7 +54298,7 @@ backslash__S_0480: !!perl/hash:RE_ast
         re: !!perl/hash:RE_cclass
           i: 0
           text: '[0..7]'
-backslash__S_049A: !!perl/hash:RE_ast
+backslash__S_050A: !!perl/hash:RE_ast
   dba: backslash
   dic: STD::Regex
   re: !!perl/hash:RE_sequence
@@ -54282,7 +54311,7 @@ backslash__S_049A: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: obs
       rest: 1
-backslash__S_050a: !!perl/hash:RE_ast
+backslash__S_051a: !!perl/hash:RE_ast
   dba: backslash
   dic: STD::Regex
   re: !!perl/hash:RE_sequence
@@ -54295,7 +54324,7 @@ backslash__S_050a: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: sorry
       rest: 1
-backslash__S_051B: !!perl/hash:RE_ast
+backslash__S_052B: !!perl/hash:RE_ast
   dba: backslash
   dic: STD::Regex
   re: !!perl/hash:RE_sequence
@@ -54308,7 +54337,7 @@ backslash__S_051B: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: obs
       rest: 1
-backslash__S_052b: !!perl/hash:RE_ast
+backslash__S_053b: !!perl/hash:RE_ast
   dba: backslash
   dic: STD::Regex
   re: !!perl/hash:RE_sequence
@@ -54321,7 +54350,7 @@ backslash__S_052b: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: obs
       rest: 1
-backslash__S_053c: !!perl/hash:RE_ast
+backslash__S_054c: !!perl/hash:RE_ast
   dba: backslash
   dic: STD::Regex
   re: !!perl/hash:RE_sequence
@@ -54334,7 +54363,7 @@ backslash__S_053c: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: charspec
       rest: ''
-backslash__S_054d: !!perl/hash:RE_ast
+backslash__S_055d: !!perl/hash:RE_ast
   dba: backslash
   dic: STD::Regex
   re: !!perl/hash:RE_method
@@ -54342,7 +54371,7 @@ backslash__S_054d: !!perl/hash:RE_ast
     name: sym
     rest: ''
     sym: d
-backslash__S_055e: !!perl/hash:RE_ast
+backslash__S_056e: !!perl/hash:RE_ast
   dba: backslash
   dic: STD::Regex
   re: !!perl/hash:RE_method
@@ -54350,7 +54379,7 @@ backslash__S_055e: !!perl/hash:RE_ast
     name: sym
     rest: ''
     sym: e
-backslash__S_056f: !!perl/hash:RE_ast
+backslash__S_057f: !!perl/hash:RE_ast
   dba: backslash
   dic: STD::Regex
   re: !!perl/hash:RE_method
@@ -54358,7 +54387,7 @@ backslash__S_056f: !!perl/hash:RE_ast
     name: sym
     rest: ''
     sym: f
-backslash__S_057h: !!perl/hash:RE_ast
+backslash__S_058h: !!perl/hash:RE_ast
   dba: backslash
   dic: STD::Regex
   re: !!perl/hash:RE_method
@@ -54366,7 +54395,7 @@ backslash__S_057h: !!perl/hash:RE_ast
     name: sym
     rest: ''
     sym: h
-backslash__S_058n: !!perl/hash:RE_ast
+backslash__S_059n: !!perl/hash:RE_ast
   dba: backslash
   dic: STD::Regex
   re: !!perl/hash:RE_method
@@ -54374,7 +54403,7 @@ backslash__S_058n: !!perl/hash:RE_ast
     name: sym
     rest: ''
     sym: n
-backslash__S_059o: !!perl/hash:RE_ast
+backslash__S_060o: !!perl/hash:RE_ast
   dba: octal character
   dic: STD::Regex
   re: !!perl/hash:RE_sequence
@@ -54386,16 +54415,16 @@ backslash__S_059o: !!perl/hash:RE_ast
       sym: o
     - !!perl/hash:RE_bracket
       re: &8 !!perl/hash:RE_any
-        altname: backslash__S_059o_0
+        altname: backslash__S_060o_0
         dba: octal character
         dic: STD::Regex
         zyg:
         - !!perl/hash:RE_method
-          alt: backslash__S_059o_0 0
+          alt: backslash__S_060o_0 0
           name: octint
           rest: ''
         - !!perl/hash:RE_bracket
-          alt: backslash__S_059o_0 1
+          alt: backslash__S_060o_0 1
           re: !!perl/hash:RE_sequence
             zyg:
             - !!perl/hash:RE_string
@@ -54414,8 +54443,8 @@ backslash__S_059o: !!perl/hash:RE_ast
                 - !!perl/hash:RE_method
                   name: FAILGOAL
                   rest: 1
-backslash__S_059o_0: *8
-backslash__S_060p: !!perl/hash:RE_ast
+backslash__S_060o_0: *8
+backslash__S_061p: !!perl/hash:RE_ast
   dba: backslash
   dic: STD::Regex
   re: !!perl/hash:RE_sequence
@@ -54481,7 +54510,7 @@ backslash__S_060p: !!perl/hash:RE_ast
             i: 0
             text: '}'
           - !!perl/hash:RE_block {}
-backslash__S_061Q: !!perl/hash:RE_ast
+backslash__S_062Q: !!perl/hash:RE_ast
   dba: backslash
   dic: STD::Regex
   re: !!perl/hash:RE_sequence
@@ -54494,7 +54523,7 @@ backslash__S_061Q: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: obs
       rest: 1
-backslash__S_062r: !!perl/hash:RE_ast
+backslash__S_063r: !!perl/hash:RE_ast
   dba: backslash
   dic: STD::Regex
   re: !!perl/hash:RE_method
@@ -54502,7 +54531,7 @@ backslash__S_062r: !!perl/hash:RE_ast
     name: sym
     rest: ''
     sym: r
-backslash__S_063s: !!perl/hash:RE_ast
+backslash__S_064s: !!perl/hash:RE_ast
   dba: backslash
   dic: STD::Regex
   re: !!perl/hash:RE_method
@@ -54510,7 +54539,7 @@ backslash__S_063s: !!perl/hash:RE_ast
     name: sym
     rest: ''
     sym: s
-backslash__S_064t: !!perl/hash:RE_ast
+backslash__S_065t: !!perl/hash:RE_ast
   dba: backslash
   dic: STD::Regex
   re: !!perl/hash:RE_method
@@ -54518,7 +54547,7 @@ backslash__S_064t: !!perl/hash:RE_ast
     name: sym
     rest: ''
     sym: t
-backslash__S_065v: !!perl/hash:RE_ast
+backslash__S_066v: !!perl/hash:RE_ast
   dba: backslash
   dic: STD::Regex
   re: !!perl/hash:RE_method
@@ -54526,7 +54555,7 @@ backslash__S_065v: !!perl/hash:RE_ast
     name: sym
     rest: ''
     sym: v
-backslash__S_066w: !!perl/hash:RE_ast
+backslash__S_067w: !!perl/hash:RE_ast
   dba: backslash
   dic: STD::Regex
   re: !!perl/hash:RE_method
@@ -54534,7 +54563,7 @@ backslash__S_066w: !!perl/hash:RE_ast
     name: sym
     rest: ''
     sym: w
-backslash__S_067x: !!perl/hash:RE_ast
+backslash__S_068x: !!perl/hash:RE_ast
   dba: hex character
   dic: STD::Regex
   re: !!perl/hash:RE_sequence
@@ -54546,16 +54575,16 @@ backslash__S_067x: !!perl/hash:RE_ast
       sym: x
     - !!perl/hash:RE_bracket
       re: &9 !!perl/hash:RE_any
-        altname: backslash__S_067x_0
+        altname: backslash__S_068x_0
         dba: hex character
         dic: STD::Regex
         zyg:
         - !!perl/hash:RE_method
-          alt: backslash__S_067x_0 0
+          alt: backslash__S_068x_0 0
           name: hexint
           rest: ''
         - !!perl/hash:RE_bracket
-          alt: backslash__S_067x_0 1
+          alt: backslash__S_068x_0 1
           re: !!perl/hash:RE_sequence
             zyg:
             - !!perl/hash:RE_string
@@ -54574,8 +54603,8 @@ backslash__S_067x: !!perl/hash:RE_ast
                 - !!perl/hash:RE_method
                   name: FAILGOAL
                   rest: 1
-backslash__S_067x_0: *9
-backslash__S_068z: !!perl/hash:RE_ast
+backslash__S_068x_0: *9
+backslash__S_069z: !!perl/hash:RE_ast
   dba: backslash
   dic: STD::Regex
   re: !!perl/hash:RE_sequence
@@ -54588,7 +54617,7 @@ backslash__S_068z: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: obs
       rest: 1
-backslash__S_069Z: !!perl/hash:RE_ast
+backslash__S_070Z: !!perl/hash:RE_ast
   dba: backslash
   dic: STD::Regex
   re: !!perl/hash:RE_sequence
@@ -54601,7 +54630,7 @@ backslash__S_069Z: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: obs
       rest: 1
-backslash__S_070misc: !!perl/hash:RE_ast
+backslash__S_071misc: !!perl/hash:RE_ast
   dba: backslash
   dic: STD::Regex
   re: !!perl/hash:RE_bindnamed
@@ -54609,7 +54638,7 @@ backslash__S_070misc: !!perl/hash:RE_ast
       re: !!perl/hash:RE_meta
         min: 1
         text: \W
-backslash__S_071oldbackref: !!perl/hash:RE_ast
+backslash__S_072oldbackref: !!perl/hash:RE_ast
   dba: backslash
   dic: STD::Regex
   re: !!perl/hash:RE_sequence
@@ -54628,7 +54657,7 @@ backslash__S_071oldbackref: !!perl/hash:RE_ast
             quant:
             - '*'
     - !!perl/hash:RE_block {}
-backslash__S_072oops: !!perl/hash:RE_ast
+backslash__S_073oops: !!perl/hash:RE_ast
   dba: backslash
   dic: STD::Regex
   re: !!perl/hash:RE_sequence
@@ -54714,6 +54743,14 @@ cclass_elem: !!perl/hash:RE_ast
           - !!perl/hash:RE_method
             name: quibble
             rest: 1
+        - !!perl/hash:RE_bracket
+          alt: cclass_elem_0 2
+          re: !!perl/hash:RE_sequence
+            zyg:
+            - !!perl/hash:RE_decl {}
+            - !!perl/hash:RE_method
+              name: colonpair
+              rest: ''
     - !!perl/hash:RE_quantified_atom
       atom: !!perl/hash:RE_method
         name: normspace
@@ -55063,7 +55100,15 @@ metachar__S_026ColonColon: !!perl/hash:RE_ast
     name: sym
     rest: ''
     sym: '::'
-metachar__S_027ColonColonColon: !!perl/hash:RE_ast
+metachar__S_027ColonColonGt: !!perl/hash:RE_ast
+  dba: metachar
+  dic: STD::Regex
+  re: !!perl/hash:RE_method
+    i: 0
+    name: sym
+    rest: ''
+    sym: ::>
+metachar__S_028ColonColonColon: !!perl/hash:RE_ast
   dba: metachar
   dic: STD::Regex
   re: !!perl/hash:RE_method
@@ -55071,7 +55116,7 @@ metachar__S_027ColonColonColon: !!perl/hash:RE_ast
     name: sym
     rest: ''
     sym: ':::'
-metachar__S_028Bra_Ket: !!perl/hash:RE_ast
+metachar__S_029Bra_Ket: !!perl/hash:RE_ast
   dba: bracketed regex
   dic: STD::Regex
   re: !!perl/hash:RE_sequence
@@ -55097,7 +55142,7 @@ metachar__S_028Bra_Ket: !!perl/hash:RE_ast
               rest: 1
     - !!perl/hash:RE_block {}
     - !!perl/hash:RE_block {}
-metachar__S_029Paren_Thesis: !!perl/hash:RE_ast
+metachar__S_030Paren_Thesis: !!perl/hash:RE_ast
   dba: capture parens
   dic: STD::Regex
   re: !!perl/hash:RE_sequence
@@ -55122,43 +55167,43 @@ metachar__S_029Paren_Thesis: !!perl/hash:RE_ast
               name: FAILGOAL
               rest: 1
     - !!perl/hash:RE_block {}
-metachar__S_030LtParen: !!perl/hash:RE_ast
+metachar__S_031LtParen: !!perl/hash:RE_ast
   dba: metachar
   dic: STD::Regex
   re: !!perl/hash:RE_string
     i: 0
     text: <(
-metachar__S_031ThesisGt: !!perl/hash:RE_ast
+metachar__S_032ThesisGt: !!perl/hash:RE_ast
   dba: metachar
   dic: STD::Regex
   re: !!perl/hash:RE_string
     i: 0
     text: )>
-metachar__S_032LtLt: !!perl/hash:RE_ast
+metachar__S_033LtLt: !!perl/hash:RE_ast
   dba: metachar
   dic: STD::Regex
   re: !!perl/hash:RE_string
     i: 0
     text: <<
-metachar__S_033GtGt: !!perl/hash:RE_ast
+metachar__S_034GtGt: !!perl/hash:RE_ast
   dba: metachar
   dic: STD::Regex
   re: !!perl/hash:RE_string
     i: 0
     text: '>>'
-metachar__S_034Fre: !!perl/hash:RE_ast
+metachar__S_035Fre: !!perl/hash:RE_ast
   dba: metachar
   dic: STD::Regex
   re: !!perl/hash:RE_string
     i: 0
     text: «
-metachar__S_035Nch: !!perl/hash:RE_ast
+metachar__S_036Nch: !!perl/hash:RE_ast
   dba: metachar
   dic: STD::Regex
   re: !!perl/hash:RE_string
     i: 0
     text: »
-metachar__S_036qw: !!perl/hash:RE_ast
+metachar__S_037qw: !!perl/hash:RE_ast
   dba: metachar
   dic: STD::Regex
   re: !!perl/hash:RE_sequence
@@ -55179,7 +55224,7 @@ metachar__S_036qw: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: circumfix
       rest: ''
-metachar__S_037Lt_Gt: !!perl/hash:RE_ast
+metachar__S_038Lt_Gt: !!perl/hash:RE_ast
   dba: metachar
   dic: STD::Regex
   re: !!perl/hash:RE_bracket
@@ -55201,7 +55246,7 @@ metachar__S_037Lt_Gt: !!perl/hash:RE_ast
           - !!perl/hash:RE_method
             name: FAILGOAL
             rest: 1
-metachar__S_038Back: !!perl/hash:RE_ast
+metachar__S_039Back: !!perl/hash:RE_ast
   dba: metachar
   dic: STD::Regex
   re: !!perl/hash:RE_sequence
@@ -55214,7 +55259,7 @@ metachar__S_038Back: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: backslash
       rest: ''
-metachar__S_039Dot: !!perl/hash:RE_ast
+metachar__S_040Dot: !!perl/hash:RE_ast
   dba: metachar
   dic: STD::Regex
   re: !!perl/hash:RE_method
@@ -55222,7 +55267,7 @@ metachar__S_039Dot: !!perl/hash:RE_ast
     name: sym
     rest: ''
     sym: .
-metachar__S_040CaretCaret: !!perl/hash:RE_ast
+metachar__S_041CaretCaret: !!perl/hash:RE_ast
   dba: metachar
   dic: STD::Regex
   re: !!perl/hash:RE_method
@@ -55230,7 +55275,7 @@ metachar__S_040CaretCaret: !!perl/hash:RE_ast
     name: sym
     rest: ''
     sym: ^^
-metachar__S_041Caret: !!perl/hash:RE_ast
+metachar__S_042Caret: !!perl/hash:RE_ast
   dba: metachar
   dic: STD::Regex
   re: !!perl/hash:RE_method
@@ -55238,7 +55283,7 @@ metachar__S_041Caret: !!perl/hash:RE_ast
     name: sym
     rest: ''
     sym: ^
-metachar__S_042DollarDollar: !!perl/hash:RE_ast
+metachar__S_043DollarDollar: !!perl/hash:RE_ast
   dba: metachar
   dic: STD::Regex
   re: !!perl/hash:RE_sequence
@@ -55265,7 +55310,7 @@ metachar__S_042DollarDollar: !!perl/hash:RE_ast
             rest: 1
       quant:
       - '?'
-metachar__S_043Dollar: !!perl/hash:RE_ast
+metachar__S_044Dollar: !!perl/hash:RE_ast
   dba: metachar
   dic: STD::Regex
   re: !!perl/hash:RE_sequence
@@ -55279,43 +55324,43 @@ metachar__S_043Dollar: !!perl/hash:RE_ast
         name: before
         nobind: 1
         re: &12 !!perl/hash:RE_any
-          altname: metachar__S_043Dollar_0
+          altname: metachar__S_044Dollar_0
           dba: metachar
           dic: STD::Regex
           zyg:
           - !!perl/hash:RE_meta
-            alt: metachar__S_043Dollar_0 0
+            alt: metachar__S_044Dollar_0 0
             min: 1
             text: \s
           - !!perl/hash:RE_string
-            alt: metachar__S_043Dollar_0 1
+            alt: metachar__S_044Dollar_0 1
             i: 0
             text: '|'
           - !!perl/hash:RE_string
-            alt: metachar__S_043Dollar_0 2
+            alt: metachar__S_044Dollar_0 2
             i: 0
             text: '&'
           - !!perl/hash:RE_string
-            alt: metachar__S_043Dollar_0 3
+            alt: metachar__S_044Dollar_0 3
             i: 0
             text: )
           - !!perl/hash:RE_string
-            alt: metachar__S_043Dollar_0 4
+            alt: metachar__S_044Dollar_0 4
             i: 0
             text: ']'
           - !!perl/hash:RE_string
-            alt: metachar__S_043Dollar_0 5
+            alt: metachar__S_044Dollar_0 5
             i: 0
             text: '>'
           - !!perl/hash:RE_meta
-            alt: metachar__S_043Dollar_0 6
+            alt: metachar__S_044Dollar_0 6
             text: $
           - !!perl/hash:RE_method
-            alt: metachar__S_043Dollar_0 7
+            alt: metachar__S_044Dollar_0 7
             name: stopper
             rest: ''
-metachar__S_043Dollar_0: *12
-metachar__S_044Single_Single: !!perl/hash:RE_ast
+metachar__S_044Dollar_0: *12
+metachar__S_045Single_Single: !!perl/hash:RE_ast
   dba: metachar
   dic: STD::Regex
   re: !!perl/hash:RE_sequence
@@ -55335,7 +55380,7 @@ metachar__S_044Single_Single: !!perl/hash:RE_ast
         - !!perl/hash:RE_method
           name: quote
           rest: ''
-metachar__S_045Double_Double: !!perl/hash:RE_ast
+metachar__S_046Double_Double: !!perl/hash:RE_ast
   dba: metachar
   dic: STD::Regex
   re: !!perl/hash:RE_sequence
@@ -55355,7 +55400,7 @@ metachar__S_045Double_Double: !!perl/hash:RE_ast
         - !!perl/hash:RE_method
           name: quote
           rest: ''
-metachar__S_046var: !!perl/hash:RE_ast
+metachar__S_047var: !!perl/hash:RE_ast
   dba: metachar
   dic: STD::Regex
   re: !!perl/hash:RE_sequence
@@ -55468,7 +55513,7 @@ mod_arg: !!perl/hash:RE_ast
             rest: 1
 mod_internal:*:
   dic: STD::Regex
-mod_internal__S_090Colonmy: !!perl/hash:RE_ast
+mod_internal__S_092Colonmy: !!perl/hash:RE_ast
   dba: mod_internal
   dic: STD::Regex
   re: !!perl/hash:RE_sequence
@@ -55485,36 +55530,36 @@ mod_internal__S_090Colonmy: !!perl/hash:RE_ast
           zyg:
           - !!perl/hash:RE_bracket
             re: &13 !!perl/hash:RE_any
-              altname: mod_internal__S_090Colonmy_0
+              altname: mod_internal__S_092Colonmy_0
               dba: mod_internal
               dic: STD::Regex
               zyg:
               - !!perl/hash:RE_string
-                alt: mod_internal__S_090Colonmy_0 0
+                alt: mod_internal__S_092Colonmy_0 0
                 i: 0
                 text: my
               - !!perl/hash:RE_string
-                alt: mod_internal__S_090Colonmy_0 1
+                alt: mod_internal__S_092Colonmy_0 1
                 i: 0
                 text: state
               - !!perl/hash:RE_string
-                alt: mod_internal__S_090Colonmy_0 2
+                alt: mod_internal__S_092Colonmy_0 2
                 i: 0
                 text: our
               - !!perl/hash:RE_string
-                alt: mod_internal__S_090Colonmy_0 3
+                alt: mod_internal__S_092Colonmy_0 3
                 i: 0
                 text: anon
               - !!perl/hash:RE_string
-                alt: mod_internal__S_090Colonmy_0 4
+                alt: mod_internal__S_092Colonmy_0 4
                 i: 0
                 text: constant
               - !!perl/hash:RE_string
-                alt: mod_internal__S_090Colonmy_0 5
+                alt: mod_internal__S_092Colonmy_0 5
                 i: 0
                 text: temp
               - !!perl/hash:RE_string
-                alt: mod_internal__S_090Colonmy_0 6
+                alt: mod_internal__S_092Colonmy_0 6
                 i: 0
                 text: let
           - !!perl/hash:RE_meta
@@ -55530,8 +55575,8 @@ mod_internal__S_090Colonmy: !!perl/hash:RE_ast
         - !!perl/hash:RE_method
           name: eat_terminator
           rest: ''
-mod_internal__S_090Colonmy_0: *13
-mod_internal__S_091Coloni: !!perl/hash:RE_ast
+mod_internal__S_092Colonmy_0: *13
+mod_internal__S_093Coloni: !!perl/hash:RE_ast
   dba: mod_internal
   dic: STD::Regex
   re: !!perl/hash:RE_sequence
@@ -55539,23 +55584,23 @@ mod_internal__S_091Coloni: !!perl/hash:RE_ast
     - !!perl/hash:RE_bindnamed
       atom: !!perl/hash:RE_bracket
         re: &14 !!perl/hash:RE_any
-          altname: mod_internal__S_091Coloni_0
+          altname: mod_internal__S_093Coloni_0
           dba: mod_internal
           dic: STD::Regex
           zyg:
           - !!perl/hash:RE_string
-            alt: mod_internal__S_091Coloni_0 0
+            alt: mod_internal__S_093Coloni_0 0
             i: 0
             text: :i
           - !!perl/hash:RE_string
-            alt: mod_internal__S_091Coloni_0 1
+            alt: mod_internal__S_093Coloni_0 1
             i: 0
             text: :ignorecase
     - !!perl/hash:RE_meta
       text: »
     - !!perl/hash:RE_block {}
-mod_internal__S_091Coloni_0: *14
-mod_internal__S_092ColonBangi: !!perl/hash:RE_ast
+mod_internal__S_093Coloni_0: *14
+mod_internal__S_094ColonBangi: !!perl/hash:RE_ast
   dba: mod_internal
   dic: STD::Regex
   re: !!perl/hash:RE_sequence
@@ -55563,23 +55608,23 @@ mod_internal__S_092ColonBangi: !!perl/hash:RE_ast
     - !!perl/hash:RE_bindnamed
       atom: !!perl/hash:RE_bracket
         re: &15 !!perl/hash:RE_any
-          altname: mod_internal__S_092ColonBangi_0
+          altname: mod_internal__S_094ColonBangi_0
           dba: mod_internal
           dic: STD::Regex
           zyg:
           - !!perl/hash:RE_string
-            alt: mod_internal__S_092ColonBangi_0 0
+            alt: mod_internal__S_094ColonBangi_0 0
             i: 0
             text: :!i
           - !!perl/hash:RE_string
-            alt: mod_internal__S_092ColonBangi_0 1
+            alt: mod_internal__S_094ColonBangi_0 1
             i: 0
             text: :!ignorecase
     - !!perl/hash:RE_meta
       text: »
     - !!perl/hash:RE_block {}
-mod_internal__S_092ColonBangi_0: *15
-mod_internal__S_093ColoniParen_Thesis: !!perl/hash:RE_ast
+mod_internal__S_094ColonBangi_0: *15
+mod_internal__S_095ColoniParen_Thesis: !!perl/hash:RE_ast
   dba: mod_internal
   dic: STD::Regex
   re: !!perl/hash:RE_sequence
@@ -55587,24 +55632,24 @@ mod_internal__S_093ColoniParen_Thesis: !!perl/hash:RE_ast
     - !!perl/hash:RE_bindnamed
       atom: !!perl/hash:RE_bracket
         re: &16 !!perl/hash:RE_any
-          altname: mod_internal__S_093ColoniParen_Thesis_0
+          altname: mod_internal__S_095ColoniParen_Thesis_0
           dba: mod_internal
           dic: STD::Regex
           zyg:
           - !!perl/hash:RE_string
-            alt: mod_internal__S_093ColoniParen_Thesis_0 0
+            alt: mod_internal__S_095ColoniParen_Thesis_0 0
             i: 0
             text: :i
           - !!perl/hash:RE_string
-            alt: mod_internal__S_093ColoniParen_Thesis_0 1
+            alt: mod_internal__S_095ColoniParen_Thesis_0 1
             i: 0
             text: :ignorecase
     - !!perl/hash:RE_method
       name: mod_arg
       rest: ''
     - !!perl/hash:RE_block {}
-mod_internal__S_093ColoniParen_Thesis_0: *16
-mod_internal__S_094Colon0i: !!perl/hash:RE_ast
+mod_internal__S_095ColoniParen_Thesis_0: *16
+mod_internal__S_096Colon0i: !!perl/hash:RE_ast
   dba: mod_internal
   dic: STD::Regex
   re: !!perl/hash:RE_sequence
@@ -55622,21 +55667,21 @@ mod_internal__S_094Colon0i: !!perl/hash:RE_ast
           - +
     - !!perl/hash:RE_bracket
       re: &17 !!perl/hash:RE_any
-        altname: mod_internal__S_094Colon0i_0
+        altname: mod_internal__S_096Colon0i_0
         dba: mod_internal
         dic: STD::Regex
         zyg:
         - !!perl/hash:RE_string
-          alt: mod_internal__S_094Colon0i_0 0
+          alt: mod_internal__S_096Colon0i_0 0
           i: 0
           text: i
         - !!perl/hash:RE_string
-          alt: mod_internal__S_094Colon0i_0 1
+          alt: mod_internal__S_096Colon0i_0 1
           i: 0
           text: ignorecase
     - !!perl/hash:RE_block {}
-mod_internal__S_094Colon0i_0: *17
-mod_internal__S_095Colona: !!perl/hash:RE_ast
+mod_internal__S_096Colon0i_0: *17
+mod_internal__S_097Colona: !!perl/hash:RE_ast
   dba: mod_internal
   dic: STD::Regex
   re: !!perl/hash:RE_sequence
@@ -55644,23 +55689,23 @@ mod_internal__S_095Colona: !!perl/hash:RE_ast
     - !!perl/hash:RE_bindnamed
       atom: !!perl/hash:RE_bracket
         re: &18 !!perl/hash:RE_any
-          altname: mod_internal__S_095Colona_0
+          altname: mod_internal__S_097Colona_0
           dba: mod_internal
           dic: STD::Regex
           zyg:
           - !!perl/hash:RE_string
-            alt: mod_internal__S_095Colona_0 0
+            alt: mod_internal__S_097Colona_0 0
             i: 0
             text: :a
           - !!perl/hash:RE_string
-            alt: mod_internal__S_095Colona_0 1
+            alt: mod_internal__S_097Colona_0 1
             i: 0
             text: :ignoreaccent
     - !!perl/hash:RE_meta
       text: »
     - !!perl/hash:RE_block {}
-mod_internal__S_095Colona_0: *18
-mod_internal__S_096ColonBanga: !!perl/hash:RE_ast
+mod_internal__S_097Colona_0: *18
+mod_internal__S_098ColonBanga: !!perl/hash:RE_ast
   dba: mod_internal
   dic: STD::Regex
   re: !!perl/hash:RE_sequence
@@ -55668,23 +55713,23 @@ mod_internal__S_096ColonBanga: !!perl/hash:RE_ast
     - !!perl/hash:RE_bindnamed
       atom: !!perl/hash:RE_bracket
         re: &19 !!perl/hash:RE_any
-          altname: mod_internal__S_096ColonBanga_0
+          altname: mod_internal__S_098ColonBanga_0
           dba: mod_internal
           dic: STD::Regex
           zyg:
           - !!perl/hash:RE_string
-            alt: mod_internal__S_096ColonBanga_0 0
+            alt: mod_internal__S_098ColonBanga_0 0
             i: 0
             text: :!a
           - !!perl/hash:RE_string
-            alt: mod_internal__S_096ColonBanga_0 1
+            alt: mod_internal__S_098ColonBanga_0 1
             i: 0
             text: :!ignoreaccent
     - !!perl/hash:RE_meta
       text: »
     - !!perl/hash:RE_block {}
-mod_internal__S_096ColonBanga_0: *19
-mod_internal__S_097ColonaParen_Thesis: !!perl/hash:RE_ast
+mod_internal__S_098ColonBanga_0: *19
+mod_internal__S_099ColonaParen_Thesis: !!perl/hash:RE_ast
   dba: mod_internal
   dic: STD::Regex
   re: !!perl/hash:RE_sequence
@@ -55692,24 +55737,24 @@ mod_internal__S_097ColonaParen_Thesis: !!perl/hash:RE_ast
     - !!perl/hash:RE_bindnamed
       atom: !!perl/hash:RE_bracket
         re: &20 !!perl/hash:RE_any
-          altname: mod_internal__S_097ColonaParen_Thesis_0
+          altname: mod_internal__S_099ColonaParen_Thesis_0
           dba: mod_internal
           dic: STD::Regex
           zyg:
           - !!perl/hash:RE_string
-            alt: mod_internal__S_097ColonaParen_Thesis_0 0
+            alt: mod_internal__S_099ColonaParen_Thesis_0 0
             i: 0
             text: :a
           - !!perl/hash:RE_string
-            alt: mod_internal__S_097ColonaParen_Thesis_0 1
+            alt: mod_internal__S_099ColonaParen_Thesis_0 1
             i: 0
             text: :ignoreaccent
     - !!perl/hash:RE_method
       name: mod_arg
       rest: ''
     - !!perl/hash:RE_block {}
-mod_internal__S_097ColonaParen_Thesis_0: *20
-mod_internal__S_098Colon0a: !!perl/hash:RE_ast
+mod_internal__S_099ColonaParen_Thesis_0: *20
+mod_internal__S_100Colon0a: !!perl/hash:RE_ast
   dba: mod_internal
   dic: STD::Regex
   re: !!perl/hash:RE_sequence
@@ -55727,21 +55772,21 @@ mod_internal__S_098Colon0a: !!perl/hash:RE_ast
           - +
     - !!perl/hash:RE_bracket
       re: &21 !!perl/hash:RE_any
-        altname: mod_internal__S_098Colon0a_0
+        altname: mod_internal__S_100Colon0a_0
         dba: mod_internal
         dic: STD::Regex
         zyg:
         - !!perl/hash:RE_string
-          alt: mod_internal__S_098Colon0a_0 0
+          alt: mod_internal__S_100Colon0a_0 0
           i: 0
           text: a
         - !!perl/hash:RE_string
-          alt: mod_internal__S_098Colon0a_0 1
+          alt: mod_internal__S_100Colon0a_0 1
           i: 0
           text: ignoreaccent
     - !!perl/hash:RE_block {}
-mod_internal__S_098Colon0a_0: *21
-mod_internal__S_099Colons: !!perl/hash:RE_ast
+mod_internal__S_100Colon0a_0: *21
+mod_internal__S_101Colons: !!perl/hash:RE_ast
   dba: mod_internal
   dic: STD::Regex
   re: !!perl/hash:RE_sequence
@@ -55758,7 +55803,7 @@ mod_internal__S_099Colons: !!perl/hash:RE_ast
     - !!perl/hash:RE_meta
       text: »
     - !!perl/hash:RE_block {}
-mod_internal__S_100ColonBangs: !!perl/hash:RE_ast
+mod_internal__S_102ColonBangs: !!perl/hash:RE_ast
   dba: mod_internal
   dic: STD::Regex
   re: !!perl/hash:RE_sequence
@@ -55775,7 +55820,7 @@ mod_internal__S_100ColonBangs: !!perl/hash:RE_ast
     - !!perl/hash:RE_meta
       text: »
     - !!perl/hash:RE_block {}
-mod_internal__S_101ColonsParen_Thesis: !!perl/hash:RE_ast
+mod_internal__S_103ColonsParen_Thesis: !!perl/hash:RE_ast
   dba: mod_internal
   dic: STD::Regex
   re: !!perl/hash:RE_sequence
@@ -55793,7 +55838,7 @@ mod_internal__S_101ColonsParen_Thesis: !!perl/hash:RE_ast
       name: mod_arg
       rest: ''
     - !!perl/hash:RE_block {}
-mod_internal__S_102Colon0s: !!perl/hash:RE_ast
+mod_internal__S_104Colon0s: !!perl/hash:RE_ast
   dba: mod_internal
   dic: STD::Regex
   re: !!perl/hash:RE_sequence
@@ -55821,7 +55866,7 @@ mod_internal__S_102Colon0s: !!perl/hash:RE_ast
     - !!perl/hash:RE_meta
       text: »
     - !!perl/hash:RE_block {}
-mod_internal__S_103Colonr: !!perl/hash:RE_ast
+mod_internal__S_105Colonr: !!perl/hash:RE_ast
   dba: mod_internal
   dic: STD::Regex
   re: !!perl/hash:RE_sequence
@@ -55838,7 +55883,7 @@ mod_internal__S_103Colonr: !!perl/hash:RE_ast
     - !!perl/hash:RE_meta
       text: »
     - !!perl/hash:RE_block {}
-mod_internal__S_104ColonBangr: !!perl/hash:RE_ast
+mod_internal__S_106ColonBangr: !!perl/hash:RE_ast
   dba: mod_internal
   dic: STD::Regex
   re: !!perl/hash:RE_sequence
@@ -55855,7 +55900,7 @@ mod_internal__S_104ColonBangr: !!perl/hash:RE_ast
     - !!perl/hash:RE_meta
       text: »
     - !!perl/hash:RE_block {}
-mod_internal__S_105ColonrParen_Thesis: !!perl/hash:RE_ast
+mod_internal__S_107ColonrParen_Thesis: !!perl/hash:RE_ast
   dba: mod_internal
   dic: STD::Regex
   re: !!perl/hash:RE_sequence
@@ -55875,7 +55920,7 @@ mod_internal__S_105ColonrParen_Thesis: !!perl/hash:RE_ast
       name: mod_arg
       rest: ''
     - !!perl/hash:RE_block {}
-mod_internal__S_106Colon0r: !!perl/hash:RE_ast
+mod_internal__S_108Colon0r: !!perl/hash:RE_ast
   dba: mod_internal
   dic: STD::Regex
   re: !!perl/hash:RE_sequence
@@ -55903,23 +55948,23 @@ mod_internal__S_106Colon0r: !!perl/hash:RE_ast
     - !!perl/hash:RE_meta
       text: »
     - !!perl/hash:RE_block {}
-mod_internal__S_107ColonPerl5: !!perl/hash:RE_ast
+mod_internal__S_109ColonPerl5: !!perl/hash:RE_ast
   dba: mod_internal
   dic: STD::Regex
   re: !!perl/hash:RE_sequence
     zyg:
     - !!perl/hash:RE_bracket
       re: &22 !!perl/hash:RE_any
-        altname: mod_internal__S_107ColonPerl5_0
+        altname: mod_internal__S_109ColonPerl5_0
         dba: mod_internal
         dic: STD::Regex
         zyg:
         - !!perl/hash:RE_string
-          alt: mod_internal__S_107ColonPerl5_0 0
+          alt: mod_internal__S_109ColonPerl5_0 0
           i: 0
           text: :Perl5
         - !!perl/hash:RE_string
-          alt: mod_internal__S_107ColonPerl5_0 1
+          alt: mod_internal__S_109ColonPerl5_0 1
           i: 0
           text: :P5
     - !!perl/hash:RE_method
@@ -55932,8 +55977,8 @@ mod_internal__S_107ColonPerl5: !!perl/hash:RE_ast
         - !!perl/hash:RE_method
           name: nibbler
           rest: ''
-mod_internal__S_107ColonPerl5_0: *22
-mod_internal__S_108p6adv: !!perl/hash:RE_ast
+mod_internal__S_109ColonPerl5_0: *22
+mod_internal__S_110p6adv: !!perl/hash:RE_ast
   dba: mod_internal
   dic: STD::Regex
   re: !!perl/hash:RE_sequence
@@ -55950,16 +55995,16 @@ mod_internal__S_108p6adv: !!perl/hash:RE_ast
             text: ':'
           - !!perl/hash:RE_bracket
             re: &23 !!perl/hash:RE_any
-              altname: mod_internal__S_108p6adv_0
+              altname: mod_internal__S_110p6adv_0
               dba: mod_internal
               dic: STD::Regex
               zyg:
               - !!perl/hash:RE_string
-                alt: mod_internal__S_108p6adv_0 0
+                alt: mod_internal__S_110p6adv_0 0
                 i: 0
                 text: dba
               - !!perl/hash:RE_string
-                alt: mod_internal__S_108p6adv_0 1
+                alt: mod_internal__S_110p6adv_0 1
                 i: 0
                 text: lang
           - !!perl/hash:RE_meta
@@ -55972,8 +56017,8 @@ mod_internal__S_108p6adv: !!perl/hash:RE_ast
           name: quotepair
           rest: ''
     - !!perl/hash:RE_block {}
-mod_internal__S_108p6adv_0: *23
-mod_internal__S_109oops: !!perl/hash:RE_ast
+mod_internal__S_110p6adv_0: *23
+mod_internal__S_111oops: !!perl/hash:RE_ast
   dba: mod_internal
   dic: STD::Regex
   re: !!perl/hash:RE_sequence
@@ -56153,7 +56198,7 @@ quantified_atom: !!perl/hash:RE_ast
       - '?'
 quantifier:*:
   dic: STD::Regex
-quantifier__S_110Star: !!perl/hash:RE_ast
+quantifier__S_112Star: !!perl/hash:RE_ast
   dba: quantifier
   dic: STD::Regex
   re: !!perl/hash:RE_sequence
@@ -56166,7 +56211,7 @@ quantifier__S_110Star: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: quantmod
       rest: ''
-quantifier__S_111Plus: !!perl/hash:RE_ast
+quantifier__S_113Plus: !!perl/hash:RE_ast
   dba: quantifier
   dic: STD::Regex
   re: !!perl/hash:RE_sequence
@@ -56179,7 +56224,7 @@ quantifier__S_111Plus: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: quantmod
       rest: ''
-quantifier__S_112Question: !!perl/hash:RE_ast
+quantifier__S_114Question: !!perl/hash:RE_ast
   dba: quantifier
   dic: STD::Regex
   re: !!perl/hash:RE_sequence
@@ -56192,7 +56237,7 @@ quantifier__S_112Question: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: quantmod
       rest: ''
-quantifier__S_113Colon: !!perl/hash:RE_ast
+quantifier__S_115Colon: !!perl/hash:RE_ast
   dba: quantifier
   dic: STD::Regex
   re: !!perl/hash:RE_sequence
@@ -56211,7 +56256,7 @@ quantifier__S_113Colon: !!perl/hash:RE_ast
         re: !!perl/hash:RE_meta
           min: 1
           text: \s
-quantifier__S_114StarStar: !!perl/hash:RE_ast
+quantifier__S_116StarStar: !!perl/hash:RE_ast
   dba: quantifier
   dic: STD::Regex
   re: !!perl/hash:RE_sequence
@@ -56240,12 +56285,12 @@ quantifier__S_114StarStar: !!perl/hash:RE_ast
       - '?'
     - !!perl/hash:RE_bracket
       re: &25 !!perl/hash:RE_any
-        altname: quantifier__S_114StarStar_0
+        altname: quantifier__S_116StarStar_0
         dba: quantifier
         dic: STD::Regex
         zyg:
         - !!perl/hash:RE_sequence
-          alt: quantifier__S_114StarStar_0 0
+          alt: quantifier__S_116StarStar_0 0
           zyg:
           - !!perl/hash:RE_quantified_atom
             atom: !!perl/hash:RE_meta
@@ -56266,7 +56311,7 @@ quantifier__S_114StarStar: !!perl/hash:RE_ast
             name: panic
             rest: 1
         - !!perl/hash:RE_sequence
-          alt: quantifier__S_114StarStar_0 1
+          alt: quantifier__S_116StarStar_0 1
           zyg:
           - !!perl/hash:RE_bindpos
             atom: !!perl/hash:RE_paren
@@ -56285,12 +56330,12 @@ quantifier__S_114StarStar: !!perl/hash:RE_ast
                   text: ..
                 - !!perl/hash:RE_bracket
                   re: &26 !!perl/hash:RE_any
-                    altname: quantifier__S_114StarStar_1
+                    altname: quantifier__S_116StarStar_1
                     dba: quantifier
                     dic: STD::Regex
                     zyg:
                     - !!perl/hash:RE_sequence
-                      alt: quantifier__S_114StarStar_1 0
+                      alt: quantifier__S_116StarStar_1 0
                       zyg:
                       - !!perl/hash:RE_bindpos
                         atom: !!perl/hash:RE_paren
@@ -56302,26 +56347,26 @@ quantifier__S_114StarStar: !!perl/hash:RE_ast
                             - +
                       - !!perl/hash:RE_block {}
                     - !!perl/hash:RE_string
-                      alt: quantifier__S_114StarStar_1 1
+                      alt: quantifier__S_116StarStar_1 1
                       i: 0
                       text: '*'
                     - !!perl/hash:RE_method
-                      alt: quantifier__S_114StarStar_1 2
+                      alt: quantifier__S_116StarStar_1 2
                       name: panic
                       rest: 1
             quant:
             - '?'
         - !!perl/hash:RE_method
-          alt: quantifier__S_114StarStar_0 2
+          alt: quantifier__S_116StarStar_0 2
           name: embeddedblock
           rest: ''
         - !!perl/hash:RE_method
-          alt: quantifier__S_114StarStar_0 3
+          alt: quantifier__S_116StarStar_0 3
           name: quantified_atom
           rest: ''
-quantifier__S_114StarStar_0: *25
-quantifier__S_114StarStar_1: *26
-quantifier__S_115Tilde: !!perl/hash:RE_ast
+quantifier__S_116StarStar_0: *25
+quantifier__S_116StarStar_1: *26
+quantifier__S_117Tilde: !!perl/hash:RE_ast
   dba: quantifier
   dic: STD::Regex
   re: !!perl/hash:RE_sequence
@@ -56351,19 +56396,19 @@ quantifier__S_115Tilde: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: quantified_atom
       rest: ''
-quantifier__S_116TildeTilde: !!perl/hash:RE_ast
+quantifier__S_118TildeTilde: !!perl/hash:RE_ast
   dba: quantifier
   dic: STD::Regex
   re: !!perl/hash:RE_sequence
     zyg:
     - !!perl/hash:RE_bracket
       re: &27 !!perl/hash:RE_any
-        altname: quantifier__S_116TildeTilde_0
+        altname: quantifier__S_118TildeTilde_0
         dba: quantifier
         dic: STD::Regex
         zyg:
         - !!perl/hash:RE_sequence
-          alt: quantifier__S_116TildeTilde_0 0
+          alt: quantifier__S_118TildeTilde_0 0
           zyg:
           - !!perl/hash:RE_string
             i: 0
@@ -56374,7 +56419,7 @@ quantifier__S_116TildeTilde: !!perl/hash:RE_ast
             rest: ''
             sym: ~~
         - !!perl/hash:RE_method
-          alt: quantifier__S_116TildeTilde_0 1
+          alt: quantifier__S_118TildeTilde_0 1
           i: 0
           name: sym
           rest: ''
@@ -56385,8 +56430,8 @@ quantifier__S_116TildeTilde: !!perl/hash:RE_ast
     - !!perl/hash:RE_method
       name: quantified_atom
       rest: ''
-quantifier__S_116TildeTilde_0: *27
-quantifier__S_117CurNCommaMLy: !!perl/hash:RE_ast
+quantifier__S_118TildeTilde_0: *27
+quantifier__S_119CurNCommaMLy: !!perl/hash:RE_ast
   dba: quantifier
   dic: STD::Regex
   re: !!perl/hash:RE_sequence
@@ -57281,10 +57326,7 @@ last if $xact->[-2];  # committed?
 })) { ($C) } else { () }
 }))) { ($C) } else { () }
 }))
-and ($C) = (do {
-my $M = $C;
-$C->panic("No unspace allowed in regex; if you meant to match the literal character, please enclose in single quotes ('" . substr($::ORIG,$C->{'_pos'},1) . "') or use a backslashed form like \\x" . sprintf("%M->{02}x", ord(substr($::ORIG,$C->{'_pos'},1))))
-})) {
+and ($C) = ($C->panic("No unspace allowed in regex; if you meant to match the literal character, please enclose in single quotes ('" . substr($::ORIG,$C->{'_pos'},1) . "') or use a backslashed form like \\x" . sprintf('%02x', ord(substr($::ORIG,$C->{'_pos'},1)))))) {
 $C
 } else { () }
 
@@ -58482,36 +58524,52 @@ $C->{sym} = "\:\:";
 $self->_MATCHIFYr($S, "metachar__S_026ColonColon", $C->_EXACT("\:\:"));
 }
 ;
-## token metachar:sym<:::> {
-sub metachar__S_027ColonColonColon__PEEK { $_[0]->_AUTOLEXpeek('metachar__S_027ColonColonColon', $retree) }
-sub metachar__S_027ColonColonColon {
+## token metachar:sym«::>» {
+sub metachar__S_027ColonColonGt__PEEK { $_[0]->_AUTOLEXpeek('metachar__S_027ColonColonGt', $retree) }
+sub metachar__S_027ColonColonGt {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE metachar__S_027ColonColonColon");
+my $C = $self->cursor_xact("RULE metachar__S_027ColonColonGt");
+my $xact = $C->xact;
+my $S = $C->{'_pos'};
+$C->{sym} = "\:\:\>";
+$self->_MATCHIFYr($S, "metachar__S_027ColonColonGt", $C->_EXACT("\:\:\>"));
+}
+;
+## token metachar:sym<:::> {
+sub metachar__S_028ColonColonColon__PEEK { $_[0]->_AUTOLEXpeek('metachar__S_028ColonColonColon', $retree) }
+sub metachar__S_028ColonColonColon {
+no warnings 'recursion';
+my $self = shift;
+
+
+local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
+
+my $C = $self->cursor_xact("RULE metachar__S_028ColonColonColon");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\:\:\:";
-$self->_MATCHIFYr($S, "metachar__S_027ColonColonColon", $C->_EXACT("\:\:\:"));
+$self->_MATCHIFYr($S, "metachar__S_028ColonColonColon", $C->_EXACT("\:\:\:"));
 }
 ;
 ## token metachar:sym<[ ]> {
-sub metachar__S_028Bra_Ket__PEEK { $_[0]->_AUTOLEXpeek('metachar__S_028Bra_Ket', $retree) }
-sub metachar__S_028Bra_Ket {
+sub metachar__S_029Bra_Ket__PEEK { $_[0]->_AUTOLEXpeek('metachar__S_029Bra_Ket', $retree) }
+sub metachar__S_029Bra_Ket {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE metachar__S_028Bra_Ket");
+my $C = $self->cursor_xact("RULE metachar__S_029Bra_Ket");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\[\ \]";
-$self->_MATCHIFYr($S, "metachar__S_028Bra_Ket", do {
+$self->_MATCHIFYr($S, "metachar__S_029Bra_Ket", do {
 my $C = $C;
 if (($C) = ($C->_BRACKETr(sub {
 my $C=shift;
@@ -58557,19 +58615,19 @@ $M->{'sym'} = <[ ]>}, $C)
 }
 ;
 ## token metachar:sym<( )> {
-sub metachar__S_029Paren_Thesis__PEEK { $_[0]->_AUTOLEXpeek('metachar__S_029Paren_Thesis', $retree) }
-sub metachar__S_029Paren_Thesis {
+sub metachar__S_030Paren_Thesis__PEEK { $_[0]->_AUTOLEXpeek('metachar__S_030Paren_Thesis', $retree) }
+sub metachar__S_030Paren_Thesis {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE metachar__S_029Paren_Thesis");
+my $C = $self->cursor_xact("RULE metachar__S_030Paren_Thesis");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\(\ \)";
-$self->_MATCHIFYr($S, "metachar__S_029Paren_Thesis", do {
+$self->_MATCHIFYr($S, "metachar__S_030Paren_Thesis", do {
 if (my ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 local $::GOAL = "\)";
@@ -58611,115 +58669,115 @@ $M->{'sym'} = <( )> }, $C)
 }
 ;
 ## token metachar:sym« <( » { '<(' }
-sub metachar__S_030LtParen__PEEK { $_[0]->_AUTOLEXpeek('metachar__S_030LtParen', $retree) }
-sub metachar__S_030LtParen {
+sub metachar__S_031LtParen__PEEK { $_[0]->_AUTOLEXpeek('metachar__S_031LtParen', $retree) }
+sub metachar__S_031LtParen {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE metachar__S_030LtParen");
+my $C = $self->cursor_xact("RULE metachar__S_031LtParen");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\<\(";
-$self->_MATCHIFYr($S, "metachar__S_030LtParen", $C->_EXACT("\<\("));
+$self->_MATCHIFYr($S, "metachar__S_031LtParen", $C->_EXACT("\<\("));
 }
 ;
 ## token metachar:sym« )> » { ')>' }
-sub metachar__S_031ThesisGt__PEEK { $_[0]->_AUTOLEXpeek('metachar__S_031ThesisGt', $retree) }
-sub metachar__S_031ThesisGt {
+sub metachar__S_032ThesisGt__PEEK { $_[0]->_AUTOLEXpeek('metachar__S_032ThesisGt', $retree) }
+sub metachar__S_032ThesisGt {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE metachar__S_031ThesisGt");
+my $C = $self->cursor_xact("RULE metachar__S_032ThesisGt");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\)\>";
-$self->_MATCHIFYr($S, "metachar__S_031ThesisGt", $C->_EXACT("\)\>"));
+$self->_MATCHIFYr($S, "metachar__S_032ThesisGt", $C->_EXACT("\)\>"));
 }
 ;
 ## token metachar:sym« << » { '<<' }
-sub metachar__S_032LtLt__PEEK { $_[0]->_AUTOLEXpeek('metachar__S_032LtLt', $retree) }
-sub metachar__S_032LtLt {
+sub metachar__S_033LtLt__PEEK { $_[0]->_AUTOLEXpeek('metachar__S_033LtLt', $retree) }
+sub metachar__S_033LtLt {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE metachar__S_032LtLt");
+my $C = $self->cursor_xact("RULE metachar__S_033LtLt");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\<\<";
-$self->_MATCHIFYr($S, "metachar__S_032LtLt", $C->_EXACT("\<\<"));
+$self->_MATCHIFYr($S, "metachar__S_033LtLt", $C->_EXACT("\<\<"));
 }
 ;
 ## token metachar:sym« >> » { '>>' }
-sub metachar__S_033GtGt__PEEK { $_[0]->_AUTOLEXpeek('metachar__S_033GtGt', $retree) }
-sub metachar__S_033GtGt {
+sub metachar__S_034GtGt__PEEK { $_[0]->_AUTOLEXpeek('metachar__S_034GtGt', $retree) }
+sub metachar__S_034GtGt {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE metachar__S_033GtGt");
+my $C = $self->cursor_xact("RULE metachar__S_034GtGt");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\>\>";
-$self->_MATCHIFYr($S, "metachar__S_033GtGt", $C->_EXACT("\>\>"));
+$self->_MATCHIFYr($S, "metachar__S_034GtGt", $C->_EXACT("\>\>"));
 }
 ;
 ## token metachar:sym< « > { '«' }
-sub metachar__S_034Fre__PEEK { $_[0]->_AUTOLEXpeek('metachar__S_034Fre', $retree) }
-sub metachar__S_034Fre {
+sub metachar__S_035Fre__PEEK { $_[0]->_AUTOLEXpeek('metachar__S_035Fre', $retree) }
+sub metachar__S_035Fre {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE metachar__S_034Fre");
+my $C = $self->cursor_xact("RULE metachar__S_035Fre");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "«";
-$self->_MATCHIFYr($S, "metachar__S_034Fre", $C->_EXACT("«"));
+$self->_MATCHIFYr($S, "metachar__S_035Fre", $C->_EXACT("«"));
 }
 ;
 ## token metachar:sym< » > { '»' }
-sub metachar__S_035Nch__PEEK { $_[0]->_AUTOLEXpeek('metachar__S_035Nch', $retree) }
-sub metachar__S_035Nch {
+sub metachar__S_036Nch__PEEK { $_[0]->_AUTOLEXpeek('metachar__S_036Nch', $retree) }
+sub metachar__S_036Nch {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE metachar__S_035Nch");
+my $C = $self->cursor_xact("RULE metachar__S_036Nch");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "»";
-$self->_MATCHIFYr($S, "metachar__S_035Nch", $C->_EXACT("»"));
+$self->_MATCHIFYr($S, "metachar__S_036Nch", $C->_EXACT("»"));
 }
 ;
 ## token metachar:qw {
-sub metachar__S_036qw__PEEK { $_[0]->_AUTOLEXpeek('metachar__S_036qw', $retree) }
-sub metachar__S_036qw {
+sub metachar__S_037qw__PEEK { $_[0]->_AUTOLEXpeek('metachar__S_037qw', $retree) }
+sub metachar__S_037qw {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE metachar__S_036qw");
+my $C = $self->cursor_xact("RULE metachar__S_037qw");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "qw";
-$self->_MATCHIFYr($S, "metachar__S_036qw", do {
+$self->_MATCHIFYr($S, "metachar__S_037qw", do {
 if (my ($C) = ($C->before(sub {
 my $C=shift;
 if (my ($C) = ($C->before(sub {
@@ -58737,19 +58795,19 @@ $C->circumfix
 }
 ;
 ## token metachar:sym«< >» {
-sub metachar__S_037Lt_Gt__PEEK { $_[0]->_AUTOLEXpeek('metachar__S_037Lt_Gt', $retree) }
-sub metachar__S_037Lt_Gt {
+sub metachar__S_038Lt_Gt__PEEK { $_[0]->_AUTOLEXpeek('metachar__S_038Lt_Gt', $retree) }
+sub metachar__S_038Lt_Gt {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE metachar__S_037Lt_Gt");
+my $C = $self->cursor_xact("RULE metachar__S_038Lt_Gt");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\<\ \>";
-$self->_MATCHIFYr($S, "metachar__S_037Lt_Gt", $C->_BRACKETr(sub {
+$self->_MATCHIFYr($S, "metachar__S_038Lt_Gt", $C->_BRACKETr(sub {
 my $C=shift;
 local $::GOAL = "\>";
 my $goalpos = $C;
@@ -58786,19 +58844,19 @@ $C
 }
 ;
 ## token metachar:sym<\\> { <sym> <backslash> }
-sub metachar__S_038Back__PEEK { $_[0]->_AUTOLEXpeek('metachar__S_038Back', $retree) }
-sub metachar__S_038Back {
+sub metachar__S_039Back__PEEK { $_[0]->_AUTOLEXpeek('metachar__S_039Back', $retree) }
+sub metachar__S_039Back {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE metachar__S_038Back");
+my $C = $self->cursor_xact("RULE metachar__S_039Back");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\\";
-$self->_MATCHIFYr($S, "metachar__S_038Back", do {
+$self->_MATCHIFYr($S, "metachar__S_039Back", do {
 if (my ($C) = ($C->_EXACT("\\"))) {
 $C->_SUBSUMEr(['backslash'], sub {
 my $C = shift;
@@ -58810,68 +58868,68 @@ $C->backslash
 }
 ;
 ## token metachar:sym<.>  { <sym> }
-sub metachar__S_039Dot__PEEK { $_[0]->_AUTOLEXpeek('metachar__S_039Dot', $retree) }
-sub metachar__S_039Dot {
+sub metachar__S_040Dot__PEEK { $_[0]->_AUTOLEXpeek('metachar__S_040Dot', $retree) }
+sub metachar__S_040Dot {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE metachar__S_039Dot");
+my $C = $self->cursor_xact("RULE metachar__S_040Dot");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\.";
-$self->_MATCHIFYr($S, "metachar__S_039Dot", $C->_EXACT("\."));
+$self->_MATCHIFYr($S, "metachar__S_040Dot", $C->_EXACT("\."));
 }
 ;
 ## token metachar:sym<^^> { <sym> }
-sub metachar__S_040CaretCaret__PEEK { $_[0]->_AUTOLEXpeek('metachar__S_040CaretCaret', $retree) }
-sub metachar__S_040CaretCaret {
+sub metachar__S_041CaretCaret__PEEK { $_[0]->_AUTOLEXpeek('metachar__S_041CaretCaret', $retree) }
+sub metachar__S_041CaretCaret {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE metachar__S_040CaretCaret");
+my $C = $self->cursor_xact("RULE metachar__S_041CaretCaret");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\^\^";
-$self->_MATCHIFYr($S, "metachar__S_040CaretCaret", $C->_EXACT("\^\^"));
+$self->_MATCHIFYr($S, "metachar__S_041CaretCaret", $C->_EXACT("\^\^"));
 }
 ;
 ## token metachar:sym<^>  { <sym> }
-sub metachar__S_041Caret__PEEK { $_[0]->_AUTOLEXpeek('metachar__S_041Caret', $retree) }
-sub metachar__S_041Caret {
+sub metachar__S_042Caret__PEEK { $_[0]->_AUTOLEXpeek('metachar__S_042Caret', $retree) }
+sub metachar__S_042Caret {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE metachar__S_041Caret");
+my $C = $self->cursor_xact("RULE metachar__S_042Caret");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\^";
-$self->_MATCHIFYr($S, "metachar__S_041Caret", $C->_EXACT("\^"));
+$self->_MATCHIFYr($S, "metachar__S_042Caret", $C->_EXACT("\^"));
 }
 ;
 ## token metachar:sym<$$> {
-sub metachar__S_042DollarDollar__PEEK { $_[0]->_AUTOLEXpeek('metachar__S_042DollarDollar', $retree) }
-sub metachar__S_042DollarDollar {
+sub metachar__S_043DollarDollar__PEEK { $_[0]->_AUTOLEXpeek('metachar__S_043DollarDollar', $retree) }
+sub metachar__S_043DollarDollar {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE metachar__S_042DollarDollar");
+my $C = $self->cursor_xact("RULE metachar__S_043DollarDollar");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{'0'} = [];
 $C->{sym} = "\$\$";
-$self->_MATCHIFYr($S, "metachar__S_042DollarDollar", do {
+$self->_MATCHIFYr($S, "metachar__S_043DollarDollar", do {
 if (my ($C) = ($C->_EXACT("\$\$"))) {
 $C->_OPTr(sub {
 my $C=shift;
@@ -58899,19 +58957,19 @@ $C
 }
 ;
 ## token metachar:sym<$>  {
-sub metachar__S_043Dollar__PEEK { $_[0]->_AUTOLEXpeek('metachar__S_043Dollar', $retree) }
-sub metachar__S_043Dollar {
+sub metachar__S_044Dollar__PEEK { $_[0]->_AUTOLEXpeek('metachar__S_044Dollar', $retree) }
+sub metachar__S_044Dollar {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE metachar__S_043Dollar");
+my $C = $self->cursor_xact("RULE metachar__S_044Dollar");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\$";
-$self->_MATCHIFYr($S, "metachar__S_043Dollar", do {
+$self->_MATCHIFYr($S, "metachar__S_044Dollar", do {
 my $C = $C;
 if (($C) = ($C->_EXACT("\$"))
 and ($C) = ($C->before(sub {
@@ -58926,14 +58984,14 @@ my $relex;
 
 my $fate;
 my $x;
-if ($fate = $C->{'_fate'} and $fate->[1] eq 'metachar__S_043Dollar_0') {
-$C->deb("Fate passed to metachar__S_043Dollar_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'metachar__S_044Dollar_0') {
+$C->deb("Fate passed to metachar__S_044Dollar_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
 ($C->{'_fate'}, $tag, $try) = @$fate;
 @try = ($try);
-$x = 'ALT metachar__S_043Dollar_0';    # some outer ltm is controlling us
+$x = 'ALT metachar__S_044Dollar_0';    # some outer ltm is controlling us
 }
 else {
-$x = 'ALTLTM metachar__S_043Dollar_0'; # we are top level ltm
+$x = 'ALTLTM metachar__S_044Dollar_0'; # we are top level ltm
 }
 my $C = $C->cursor_xact($x);
 my $xact = $C->{_xact};
@@ -58941,7 +58999,7 @@ my $xact = $C->{_xact};
 my @gather = ();
 for (;;) {
 unless (@try) {
-$relex //= $C->cursor_fate('STD::Regex', 'metachar__S_043Dollar_0', $retree);
+$relex //= $C->cursor_fate('STD::Regex', 'metachar__S_044Dollar_0', $retree);
 @try = $relex->($C) or last;
 }
 $try = shift(@try) // next;
@@ -58950,7 +59008,7 @@ if (ref $try) {
 ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
 }
 
-$C->deb("metachar__S_043Dollar_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+$C->deb("metachar__S_044Dollar_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
 push @gather, ((
 sub {
 my $C=shift;
@@ -59001,19 +59059,19 @@ $C
 }
 ;
 ## token metachar:sym<' '> { <?before "'"> [:lang(%*LANG<MAIN>) <quote>] }
-sub metachar__S_044Single_Single__PEEK { $_[0]->_AUTOLEXpeek('metachar__S_044Single_Single', $retree) }
-sub metachar__S_044Single_Single {
+sub metachar__S_045Single_Single__PEEK { $_[0]->_AUTOLEXpeek('metachar__S_045Single_Single', $retree) }
+sub metachar__S_045Single_Single {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE metachar__S_044Single_Single");
+my $C = $self->cursor_xact("RULE metachar__S_045Single_Single");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\'\ \'";
-$self->_MATCHIFYr($S, "metachar__S_044Single_Single", do {
+$self->_MATCHIFYr($S, "metachar__S_045Single_Single", do {
 my $C = $C;
 if (($C) = ($C->before(sub {
 my $C=shift;
@@ -59038,19 +59096,19 @@ $C
 }
 ;
 ## token metachar:sym<" "> { <?before '"'> [:lang(%*LANG<MAIN>) <quote>] }
-sub metachar__S_045Double_Double__PEEK { $_[0]->_AUTOLEXpeek('metachar__S_045Double_Double', $retree) }
-sub metachar__S_045Double_Double {
+sub metachar__S_046Double_Double__PEEK { $_[0]->_AUTOLEXpeek('metachar__S_046Double_Double', $retree) }
+sub metachar__S_046Double_Double {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE metachar__S_045Double_Double");
+my $C = $self->cursor_xact("RULE metachar__S_046Double_Double");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\"\ \"";
-$self->_MATCHIFYr($S, "metachar__S_045Double_Double", do {
+$self->_MATCHIFYr($S, "metachar__S_046Double_Double", do {
 my $C = $C;
 if (($C) = ($C->before(sub {
 my $C=shift;
@@ -59075,19 +59133,19 @@ $C
 }
 ;
 ## token metachar:var {
-sub metachar__S_046var__PEEK { $_[0]->_AUTOLEXpeek('metachar__S_046var', $retree) }
-sub metachar__S_046var {
+sub metachar__S_047var__PEEK { $_[0]->_AUTOLEXpeek('metachar__S_047var', $retree) }
+sub metachar__S_047var {
 no warnings 'recursion';
 my $self = shift;
 
 local $::QSIGIL = substr($::ORIG,$self->{'_pos'},1);
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE metachar__S_046var");
+my $C = $self->cursor_xact("RULE metachar__S_047var");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "var";
-$self->_MATCHIFYr($S, "metachar__S_046var", do {
+$self->_MATCHIFYr($S, "metachar__S_047var", do {
 my $C = $C;
 if (($C) = ($C->_NOTBEFORE(sub {
 my $C=shift;
@@ -59181,19 +59239,19 @@ $C
 }
 ;
 ## token backslash:unspace { <?before \s> <.SUPER::ws> }
-sub backslash__S_047unspace__PEEK { $_[0]->_AUTOLEXpeek('backslash__S_047unspace', $retree) }
-sub backslash__S_047unspace {
+sub backslash__S_048unspace__PEEK { $_[0]->_AUTOLEXpeek('backslash__S_048unspace', $retree) }
+sub backslash__S_048unspace {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE backslash__S_047unspace");
+my $C = $self->cursor_xact("RULE backslash__S_048unspace");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "unspace";
-$self->_MATCHIFYr($S, "backslash__S_047unspace", do {
+$self->_MATCHIFYr($S, "backslash__S_048unspace", do {
 my $C = $C;
 if (($C) = ($C->before(sub {
 my $C=shift;
@@ -59210,18 +59268,18 @@ $C
 }
 ;
 ## token backslash:sym<0> { '0' <!before <[0..7]> > }
-sub backslash__S_0480__PEEK { $_[0]->_AUTOLEXpeek('backslash__S_0480', $retree) }
-sub backslash__S_0480 {
+sub backslash__S_0490__PEEK { $_[0]->_AUTOLEXpeek('backslash__S_0490', $retree) }
+sub backslash__S_0490 {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE backslash__S_0480");
+my $C = $self->cursor_xact("RULE backslash__S_0490");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
-$self->_MATCHIFYr($S, "backslash__S_0480", do {
+$self->_MATCHIFYr($S, "backslash__S_0490", do {
 my $C = $C;
 if (($C) = ($C->_EXACT("0"))
 and ($C) = ($C->_NOTBEFORE(sub {
@@ -59238,19 +59296,19 @@ $C
 }
 ;
 ## token backslash:A { <sym> <.obs('\\A as beginning-of-string matcher', '^')> }
-sub backslash__S_049A__PEEK { $_[0]->_AUTOLEXpeek('backslash__S_049A', $retree) }
-sub backslash__S_049A {
+sub backslash__S_050A__PEEK { $_[0]->_AUTOLEXpeek('backslash__S_050A', $retree) }
+sub backslash__S_050A {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE backslash__S_049A");
+my $C = $self->cursor_xact("RULE backslash__S_050A");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "A";
-$self->_MATCHIFYr($S, "backslash__S_049A", do {
+$self->_MATCHIFYr($S, "backslash__S_050A", do {
 my $C = $C;
 if (($C) = ($C->_EXACT("A"))
 and ($C) = ($C->obs('\\A as beginning-of-string matcher', '^'))) {
@@ -59261,19 +59319,19 @@ $C
 }
 ;
 ## token backslash:a { <sym> <.sorry: "\\a is allowed only in strings, not regexes"> }
-sub backslash__S_050a__PEEK { $_[0]->_AUTOLEXpeek('backslash__S_050a', $retree) }
-sub backslash__S_050a {
+sub backslash__S_051a__PEEK { $_[0]->_AUTOLEXpeek('backslash__S_051a', $retree) }
+sub backslash__S_051a {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE backslash__S_050a");
+my $C = $self->cursor_xact("RULE backslash__S_051a");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "a";
-$self->_MATCHIFYr($S, "backslash__S_050a", do {
+$self->_MATCHIFYr($S, "backslash__S_051a", do {
 my $C = $C;
 if (($C) = ($C->_EXACT("a"))
 and ($C) = ($C->sorry("\\a is allowed only in strings, not regexes"))) {
@@ -59284,19 +59342,19 @@ $C
 }
 ;
 ## token backslash:B { <sym> <.obs('\\B as word non-boundary', '<!wb>')> }
-sub backslash__S_051B__PEEK { $_[0]->_AUTOLEXpeek('backslash__S_051B', $retree) }
-sub backslash__S_051B {
+sub backslash__S_052B__PEEK { $_[0]->_AUTOLEXpeek('backslash__S_052B', $retree) }
+sub backslash__S_052B {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE backslash__S_051B");
+my $C = $self->cursor_xact("RULE backslash__S_052B");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "B";
-$self->_MATCHIFYr($S, "backslash__S_051B", do {
+$self->_MATCHIFYr($S, "backslash__S_052B", do {
 my $C = $C;
 if (($C) = ($C->_EXACT("B"))
 and ($C) = ($C->obs('\\B as word non-boundary', '<!wb>'))) {
@@ -59307,19 +59365,19 @@ $C
 }
 ;
 ## token backslash:b { <sym> <.obs('\\b as word boundary', '<?wb> (or either of « or »)')> }
-sub backslash__S_052b__PEEK { $_[0]->_AUTOLEXpeek('backslash__S_052b', $retree) }
-sub backslash__S_052b {
+sub backslash__S_053b__PEEK { $_[0]->_AUTOLEXpeek('backslash__S_053b', $retree) }
+sub backslash__S_053b {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE backslash__S_052b");
+my $C = $self->cursor_xact("RULE backslash__S_053b");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "b";
-$self->_MATCHIFYr($S, "backslash__S_052b", do {
+$self->_MATCHIFYr($S, "backslash__S_053b", do {
 my $C = $C;
 if (($C) = ($C->_EXACT("b"))
 and ($C) = ($C->obs('\\b as word boundary', '<?wb> (or either of « or »)'))) {
@@ -59330,19 +59388,19 @@ $C
 }
 ;
 ## token backslash:c { :i <sym> <charspec> }
-sub backslash__S_053c__PEEK { $_[0]->_AUTOLEXpeek('backslash__S_053c', $retree) }
-sub backslash__S_053c {
+sub backslash__S_054c__PEEK { $_[0]->_AUTOLEXpeek('backslash__S_054c', $retree) }
+sub backslash__S_054c {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE backslash__S_053c");
+my $C = $self->cursor_xact("RULE backslash__S_054c");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "c";
-$self->_MATCHIFYr($S, "backslash__S_053c", do {
+$self->_MATCHIFYr($S, "backslash__S_054c", do {
 if (my ($C) = ($C->_PATTERN(qr/\G(?i:c)/))) {
 $C->_SUBSUMEr(['charspec'], sub {
 my $C = shift;
@@ -59354,99 +59412,99 @@ $C->charspec
 }
 ;
 ## token backslash:d { :i <sym> }
-sub backslash__S_054d__PEEK { $_[0]->_AUTOLEXpeek('backslash__S_054d', $retree) }
-sub backslash__S_054d {
+sub backslash__S_055d__PEEK { $_[0]->_AUTOLEXpeek('backslash__S_055d', $retree) }
+sub backslash__S_055d {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE backslash__S_054d");
+my $C = $self->cursor_xact("RULE backslash__S_055d");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "d";
-$self->_MATCHIFYr($S, "backslash__S_054d", $C->_PATTERN(qr/\G(?i:d)/));
+$self->_MATCHIFYr($S, "backslash__S_055d", $C->_PATTERN(qr/\G(?i:d)/));
 }
 ;
 ## token backslash:e { :i <sym> }
-sub backslash__S_055e__PEEK { $_[0]->_AUTOLEXpeek('backslash__S_055e', $retree) }
-sub backslash__S_055e {
+sub backslash__S_056e__PEEK { $_[0]->_AUTOLEXpeek('backslash__S_056e', $retree) }
+sub backslash__S_056e {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE backslash__S_055e");
+my $C = $self->cursor_xact("RULE backslash__S_056e");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "e";
-$self->_MATCHIFYr($S, "backslash__S_055e", $C->_PATTERN(qr/\G(?i:e)/));
+$self->_MATCHIFYr($S, "backslash__S_056e", $C->_PATTERN(qr/\G(?i:e)/));
 }
 ;
 ## token backslash:f { :i <sym> }
-sub backslash__S_056f__PEEK { $_[0]->_AUTOLEXpeek('backslash__S_056f', $retree) }
-sub backslash__S_056f {
+sub backslash__S_057f__PEEK { $_[0]->_AUTOLEXpeek('backslash__S_057f', $retree) }
+sub backslash__S_057f {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE backslash__S_056f");
+my $C = $self->cursor_xact("RULE backslash__S_057f");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "f";
-$self->_MATCHIFYr($S, "backslash__S_056f", $C->_PATTERN(qr/\G(?i:f)/));
+$self->_MATCHIFYr($S, "backslash__S_057f", $C->_PATTERN(qr/\G(?i:f)/));
 }
 ;
 ## token backslash:h { :i <sym> }
-sub backslash__S_057h__PEEK { $_[0]->_AUTOLEXpeek('backslash__S_057h', $retree) }
-sub backslash__S_057h {
+sub backslash__S_058h__PEEK { $_[0]->_AUTOLEXpeek('backslash__S_058h', $retree) }
+sub backslash__S_058h {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE backslash__S_057h");
+my $C = $self->cursor_xact("RULE backslash__S_058h");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "h";
-$self->_MATCHIFYr($S, "backslash__S_057h", $C->_PATTERN(qr/\G(?i:h)/));
+$self->_MATCHIFYr($S, "backslash__S_058h", $C->_PATTERN(qr/\G(?i:h)/));
 }
 ;
 ## token backslash:n { :i <sym> }
-sub backslash__S_058n__PEEK { $_[0]->_AUTOLEXpeek('backslash__S_058n', $retree) }
-sub backslash__S_058n {
+sub backslash__S_059n__PEEK { $_[0]->_AUTOLEXpeek('backslash__S_059n', $retree) }
+sub backslash__S_059n {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE backslash__S_058n");
+my $C = $self->cursor_xact("RULE backslash__S_059n");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "n";
-$self->_MATCHIFYr($S, "backslash__S_058n", $C->_PATTERN(qr/\G(?i:n)/));
+$self->_MATCHIFYr($S, "backslash__S_059n", $C->_PATTERN(qr/\G(?i:n)/));
 }
 ;
 ## token backslash:o { :i :dba('octal character') <sym> [ <octint> | '[' ~ ']' <octints> ] }
-sub backslash__S_059o__PEEK { $_[0]->_AUTOLEXpeek('backslash__S_059o', $retree) }
-sub backslash__S_059o {
+sub backslash__S_060o__PEEK { $_[0]->_AUTOLEXpeek('backslash__S_060o', $retree) }
+sub backslash__S_060o {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE backslash__S_059o");
+my $C = $self->cursor_xact("RULE backslash__S_060o");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "o";
-$self->_MATCHIFYr($S, "backslash__S_059o", do {
+$self->_MATCHIFYr($S, "backslash__S_060o", do {
 my $C = $C;
 if (($C) = ($C->_PATTERN(qr/\G(?i:o)/))
 and ($C) = ($C->_BRACKETr(sub {
@@ -59458,14 +59516,14 @@ my $relex;
 
 my $fate;
 my $x;
-if ($fate = $C->{'_fate'} and $fate->[1] eq 'backslash__S_059o_0') {
-$C->deb("Fate passed to backslash__S_059o_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'backslash__S_060o_0') {
+$C->deb("Fate passed to backslash__S_060o_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
 ($C->{'_fate'}, $tag, $try) = @$fate;
 @try = ($try);
-$x = 'ALT backslash__S_059o_0';    # some outer ltm is controlling us
+$x = 'ALT backslash__S_060o_0';    # some outer ltm is controlling us
 }
 else {
-$x = 'ALTLTM backslash__S_059o_0'; # we are top level ltm
+$x = 'ALTLTM backslash__S_060o_0'; # we are top level ltm
 }
 my $C = $C->cursor_xact($x);
 my $xact = $C->{_xact};
@@ -59473,7 +59531,7 @@ my $xact = $C->{_xact};
 my @gather = ();
 for (;;) {
 unless (@try) {
-$relex //= $C->cursor_fate('STD::Regex', 'backslash__S_059o_0', $retree);
+$relex //= $C->cursor_fate('STD::Regex', 'backslash__S_060o_0', $retree);
 @try = $relex->($C) or last;
 }
 $try = shift(@try) // next;
@@ -59482,7 +59540,7 @@ if (ref $try) {
 ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
 }
 
-$C->deb("backslash__S_059o_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+$C->deb("backslash__S_060o_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
 push @gather, ((
 sub {
 my $C=shift;
@@ -59540,19 +59598,19 @@ $C
 }
 ;
 ## token backslash:p {
-sub backslash__S_060p__PEEK { $_[0]->_AUTOLEXpeek('backslash__S_060p', $retree) }
-sub backslash__S_060p {
+sub backslash__S_061p__PEEK { $_[0]->_AUTOLEXpeek('backslash__S_061p', $retree) }
+sub backslash__S_061p {
 no warnings 'recursion';
 my $self = shift;
 
 my $s;my $m;my $p;
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE backslash__S_060p");
+my $C = $self->cursor_xact("RULE backslash__S_061p");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "p";
-$self->_MATCHIFYr($S, "backslash__S_060p", do {
+$self->_MATCHIFYr($S, "backslash__S_061p", do {
 my $C = $C;
 if (($C) = ($C->_SUBSUMEr(['sym'], sub {
 my $C = shift;
@@ -59650,19 +59708,19 @@ $C
 }
 ;
 ## token backslash:Q { <sym> <.obs('\\Q as quotemeta', 'quotes or literal variable match')> }
-sub backslash__S_061Q__PEEK { $_[0]->_AUTOLEXpeek('backslash__S_061Q', $retree) }
-sub backslash__S_061Q {
+sub backslash__S_062Q__PEEK { $_[0]->_AUTOLEXpeek('backslash__S_062Q', $retree) }
+sub backslash__S_062Q {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE backslash__S_061Q");
+my $C = $self->cursor_xact("RULE backslash__S_062Q");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "Q";
-$self->_MATCHIFYr($S, "backslash__S_061Q", do {
+$self->_MATCHIFYr($S, "backslash__S_062Q", do {
 my $C = $C;
 if (($C) = ($C->_EXACT("Q"))
 and ($C) = ($C->obs('\\Q as quotemeta', 'quotes or literal variable match'))) {
@@ -59673,99 +59731,99 @@ $C
 }
 ;
 ## token backslash:r { :i <sym> }
-sub backslash__S_062r__PEEK { $_[0]->_AUTOLEXpeek('backslash__S_062r', $retree) }
-sub backslash__S_062r {
+sub backslash__S_063r__PEEK { $_[0]->_AUTOLEXpeek('backslash__S_063r', $retree) }
+sub backslash__S_063r {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE backslash__S_062r");
+my $C = $self->cursor_xact("RULE backslash__S_063r");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "r";
-$self->_MATCHIFYr($S, "backslash__S_062r", $C->_PATTERN(qr/\G(?i:r)/));
+$self->_MATCHIFYr($S, "backslash__S_063r", $C->_PATTERN(qr/\G(?i:r)/));
 }
 ;
 ## token backslash:s { :i <sym> }
-sub backslash__S_063s__PEEK { $_[0]->_AUTOLEXpeek('backslash__S_063s', $retree) }
-sub backslash__S_063s {
+sub backslash__S_064s__PEEK { $_[0]->_AUTOLEXpeek('backslash__S_064s', $retree) }
+sub backslash__S_064s {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE backslash__S_063s");
+my $C = $self->cursor_xact("RULE backslash__S_064s");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "s";
-$self->_MATCHIFYr($S, "backslash__S_063s", $C->_PATTERN(qr/\G(?i:s)/));
+$self->_MATCHIFYr($S, "backslash__S_064s", $C->_PATTERN(qr/\G(?i:s)/));
 }
 ;
 ## token backslash:t { :i <sym> }
-sub backslash__S_064t__PEEK { $_[0]->_AUTOLEXpeek('backslash__S_064t', $retree) }
-sub backslash__S_064t {
+sub backslash__S_065t__PEEK { $_[0]->_AUTOLEXpeek('backslash__S_065t', $retree) }
+sub backslash__S_065t {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE backslash__S_064t");
+my $C = $self->cursor_xact("RULE backslash__S_065t");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "t";
-$self->_MATCHIFYr($S, "backslash__S_064t", $C->_PATTERN(qr/\G(?i:t)/));
+$self->_MATCHIFYr($S, "backslash__S_065t", $C->_PATTERN(qr/\G(?i:t)/));
 }
 ;
 ## token backslash:v { :i <sym> }
-sub backslash__S_065v__PEEK { $_[0]->_AUTOLEXpeek('backslash__S_065v', $retree) }
-sub backslash__S_065v {
+sub backslash__S_066v__PEEK { $_[0]->_AUTOLEXpeek('backslash__S_066v', $retree) }
+sub backslash__S_066v {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE backslash__S_065v");
+my $C = $self->cursor_xact("RULE backslash__S_066v");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "v";
-$self->_MATCHIFYr($S, "backslash__S_065v", $C->_PATTERN(qr/\G(?i:v)/));
+$self->_MATCHIFYr($S, "backslash__S_066v", $C->_PATTERN(qr/\G(?i:v)/));
 }
 ;
 ## token backslash:w { :i <sym> }
-sub backslash__S_066w__PEEK { $_[0]->_AUTOLEXpeek('backslash__S_066w', $retree) }
-sub backslash__S_066w {
+sub backslash__S_067w__PEEK { $_[0]->_AUTOLEXpeek('backslash__S_067w', $retree) }
+sub backslash__S_067w {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE backslash__S_066w");
+my $C = $self->cursor_xact("RULE backslash__S_067w");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "w";
-$self->_MATCHIFYr($S, "backslash__S_066w", $C->_PATTERN(qr/\G(?i:w)/));
+$self->_MATCHIFYr($S, "backslash__S_067w", $C->_PATTERN(qr/\G(?i:w)/));
 }
 ;
 ## token backslash:x { :i :dba('hex character') <sym> [ <hexint> | '[' ~ ']' <hexints> ] }
-sub backslash__S_067x__PEEK { $_[0]->_AUTOLEXpeek('backslash__S_067x', $retree) }
-sub backslash__S_067x {
+sub backslash__S_068x__PEEK { $_[0]->_AUTOLEXpeek('backslash__S_068x', $retree) }
+sub backslash__S_068x {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE backslash__S_067x");
+my $C = $self->cursor_xact("RULE backslash__S_068x");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "x";
-$self->_MATCHIFYr($S, "backslash__S_067x", do {
+$self->_MATCHIFYr($S, "backslash__S_068x", do {
 my $C = $C;
 if (($C) = ($C->_PATTERN(qr/\G(?i:x)/))
 and ($C) = ($C->_BRACKETr(sub {
@@ -59777,14 +59835,14 @@ my $relex;
 
 my $fate;
 my $x;
-if ($fate = $C->{'_fate'} and $fate->[1] eq 'backslash__S_067x_0') {
-$C->deb("Fate passed to backslash__S_067x_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'backslash__S_068x_0') {
+$C->deb("Fate passed to backslash__S_068x_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
 ($C->{'_fate'}, $tag, $try) = @$fate;
 @try = ($try);
-$x = 'ALT backslash__S_067x_0';    # some outer ltm is controlling us
+$x = 'ALT backslash__S_068x_0';    # some outer ltm is controlling us
 }
 else {
-$x = 'ALTLTM backslash__S_067x_0'; # we are top level ltm
+$x = 'ALTLTM backslash__S_068x_0'; # we are top level ltm
 }
 my $C = $C->cursor_xact($x);
 my $xact = $C->{_xact};
@@ -59792,7 +59850,7 @@ my $xact = $C->{_xact};
 my @gather = ();
 for (;;) {
 unless (@try) {
-$relex //= $C->cursor_fate('STD::Regex', 'backslash__S_067x_0', $retree);
+$relex //= $C->cursor_fate('STD::Regex', 'backslash__S_068x_0', $retree);
 @try = $relex->($C) or last;
 }
 $try = shift(@try) // next;
@@ -59801,7 +59859,7 @@ if (ref $try) {
 ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
 }
 
-$C->deb("backslash__S_067x_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+$C->deb("backslash__S_068x_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
 push @gather, ((
 sub {
 my $C=shift;
@@ -59859,19 +59917,19 @@ $C
 }
 ;
 ## token backslash:z { <sym> <.obs('\\z as end-of-string matcher', '$')> }
-sub backslash__S_068z__PEEK { $_[0]->_AUTOLEXpeek('backslash__S_068z', $retree) }
-sub backslash__S_068z {
+sub backslash__S_069z__PEEK { $_[0]->_AUTOLEXpeek('backslash__S_069z', $retree) }
+sub backslash__S_069z {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE backslash__S_068z");
+my $C = $self->cursor_xact("RULE backslash__S_069z");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "z";
-$self->_MATCHIFYr($S, "backslash__S_068z", do {
+$self->_MATCHIFYr($S, "backslash__S_069z", do {
 my $C = $C;
 if (($C) = ($C->_EXACT("z"))
 and ($C) = ($C->obs('\\z as end-of-string matcher', '$'))) {
@@ -59882,19 +59940,19 @@ $C
 }
 ;
 ## token backslash:Z { <sym> <.obs('\\Z as end-of-string matcher', '\\n?$')> }
-sub backslash__S_069Z__PEEK { $_[0]->_AUTOLEXpeek('backslash__S_069Z', $retree) }
-sub backslash__S_069Z {
+sub backslash__S_070Z__PEEK { $_[0]->_AUTOLEXpeek('backslash__S_070Z', $retree) }
+sub backslash__S_070Z {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE backslash__S_069Z");
+my $C = $self->cursor_xact("RULE backslash__S_070Z");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "Z";
-$self->_MATCHIFYr($S, "backslash__S_069Z", do {
+$self->_MATCHIFYr($S, "backslash__S_070Z", do {
 my $C = $C;
 if (($C) = ($C->_EXACT("Z"))
 and ($C) = ($C->obs('\\Z as end-of-string matcher', '\\n?$'))) {
@@ -59905,19 +59963,19 @@ $C
 }
 ;
 ## token backslash:misc { $<litchar>=(\W) }
-sub backslash__S_070misc__PEEK { $_[0]->_AUTOLEXpeek('backslash__S_070misc', $retree) }
-sub backslash__S_070misc {
+sub backslash__S_071misc__PEEK { $_[0]->_AUTOLEXpeek('backslash__S_071misc', $retree) }
+sub backslash__S_071misc {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE backslash__S_070misc");
+my $C = $self->cursor_xact("RULE backslash__S_071misc");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "misc";
-$self->_MATCHIFYr($S, "backslash__S_070misc", $C->_SUBSUMEr(['litchar'], sub {
+$self->_MATCHIFYr($S, "backslash__S_071misc", $C->_SUBSUMEr(['litchar'], sub {
 my $C = shift;
 $C->_PAREN( sub {
 my $C=shift;
@@ -59928,19 +59986,19 @@ $C->_PATTERN(qr/\G\W/)
 }
 ;
 ## token backslash:oldbackref { (<[1..9]>\d*) { my $d = $0.Str; $¢.sorryobs("the 1-based special form '
-sub backslash__S_071oldbackref__PEEK { $_[0]->_AUTOLEXpeek('backslash__S_071oldbackref', $retree) }
-sub backslash__S_071oldbackref {
+sub backslash__S_072oldbackref__PEEK { $_[0]->_AUTOLEXpeek('backslash__S_072oldbackref', $retree) }
+sub backslash__S_072oldbackref {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE backslash__S_071oldbackref");
+my $C = $self->cursor_xact("RULE backslash__S_072oldbackref");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "oldbackref";
-$self->_MATCHIFYr($S, "backslash__S_071oldbackref", do {
+$self->_MATCHIFYr($S, "backslash__S_072oldbackref", do {
 if (my ($C) = ($C->_SUBSUMEr(['0'], sub {
 my $C = shift;
 $C->_PAREN( sub {
@@ -59960,19 +60018,19 @@ $C->sorryobs("the 1-based special form '\\$d' as a backreference", "the 0-based 
 }
 ;
 ## token backslash:oops { <.sorry: "Unrecognized regex backslash sequence"> . }
-sub backslash__S_072oops__PEEK { $_[0]->_AUTOLEXpeek('backslash__S_072oops', $retree) }
-sub backslash__S_072oops {
+sub backslash__S_073oops__PEEK { $_[0]->_AUTOLEXpeek('backslash__S_073oops', $retree) }
+sub backslash__S_073oops {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE backslash__S_072oops");
+my $C = $self->cursor_xact("RULE backslash__S_073oops");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "oops";
-$self->_MATCHIFYr($S, "backslash__S_072oops", do {
+$self->_MATCHIFYr($S, "backslash__S_073oops", do {
 if (my ($C) = ($C->sorry("Unrecognized regex backslash sequence"))) {
 $C->cursor_incr()
 } else { () }
@@ -59981,67 +60039,67 @@ $C->cursor_incr()
 }
 ;
 ## token assertion:sym<...> { <sym> }
-sub assertion__S_073DotDotDot__PEEK { $_[0]->_AUTOLEXpeek('assertion__S_073DotDotDot', $retree) }
-sub assertion__S_073DotDotDot {
+sub assertion__S_074DotDotDot__PEEK { $_[0]->_AUTOLEXpeek('assertion__S_074DotDotDot', $retree) }
+sub assertion__S_074DotDotDot {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE assertion__S_073DotDotDot");
+my $C = $self->cursor_xact("RULE assertion__S_074DotDotDot");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\.\.\.";
-$self->_MATCHIFYr($S, "assertion__S_073DotDotDot", $C->_EXACT("\.\.\."));
+$self->_MATCHIFYr($S, "assertion__S_074DotDotDot", $C->_EXACT("\.\.\."));
 }
 ;
 ## token assertion:sym<???> { <sym> }
-sub assertion__S_074QuestionQuestionQuestion__PEEK { $_[0]->_AUTOLEXpeek('assertion__S_074QuestionQuestionQuestion', $retree) }
-sub assertion__S_074QuestionQuestionQuestion {
+sub assertion__S_075QuestionQuestionQuestion__PEEK { $_[0]->_AUTOLEXpeek('assertion__S_075QuestionQuestionQuestion', $retree) }
+sub assertion__S_075QuestionQuestionQuestion {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE assertion__S_074QuestionQuestionQuestion");
+my $C = $self->cursor_xact("RULE assertion__S_075QuestionQuestionQuestion");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\?\?\?";
-$self->_MATCHIFYr($S, "assertion__S_074QuestionQuestionQuestion", $C->_EXACT("\?\?\?"));
+$self->_MATCHIFYr($S, "assertion__S_075QuestionQuestionQuestion", $C->_EXACT("\?\?\?"));
 }
 ;
 ## token assertion:sym<!!!> { <sym> }
-sub assertion__S_075BangBangBang__PEEK { $_[0]->_AUTOLEXpeek('assertion__S_075BangBangBang', $retree) }
-sub assertion__S_075BangBangBang {
+sub assertion__S_076BangBangBang__PEEK { $_[0]->_AUTOLEXpeek('assertion__S_076BangBangBang', $retree) }
+sub assertion__S_076BangBangBang {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE assertion__S_075BangBangBang");
+my $C = $self->cursor_xact("RULE assertion__S_076BangBangBang");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\!\!\!";
-$self->_MATCHIFYr($S, "assertion__S_075BangBangBang", $C->_EXACT("\!\!\!"));
+$self->_MATCHIFYr($S, "assertion__S_076BangBangBang", $C->_EXACT("\!\!\!"));
 }
 ;
 ## token assertion:sym<?> { <sym> [ <?before '>'> | <assertion> ] }
-sub assertion__S_076Question__PEEK { $_[0]->_AUTOLEXpeek('assertion__S_076Question', $retree) }
-sub assertion__S_076Question {
+sub assertion__S_077Question__PEEK { $_[0]->_AUTOLEXpeek('assertion__S_077Question', $retree) }
+sub assertion__S_077Question {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE assertion__S_076Question");
+my $C = $self->cursor_xact("RULE assertion__S_077Question");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\?";
-$self->_MATCHIFYr($S, "assertion__S_076Question", do {
+$self->_MATCHIFYr($S, "assertion__S_077Question", do {
 my $C = $C;
 if (($C) = ($C->_EXACT("\?"))
 and ($C) = ($C->_BRACKETr(sub {
@@ -60053,14 +60111,14 @@ my $relex;
 
 my $fate;
 my $x;
-if ($fate = $C->{'_fate'} and $fate->[1] eq 'assertion__S_076Question_0') {
-$C->deb("Fate passed to assertion__S_076Question_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'assertion__S_077Question_0') {
+$C->deb("Fate passed to assertion__S_077Question_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
 ($C->{'_fate'}, $tag, $try) = @$fate;
 @try = ($try);
-$x = 'ALT assertion__S_076Question_0';    # some outer ltm is controlling us
+$x = 'ALT assertion__S_077Question_0';    # some outer ltm is controlling us
 }
 else {
-$x = 'ALTLTM assertion__S_076Question_0'; # we are top level ltm
+$x = 'ALTLTM assertion__S_077Question_0'; # we are top level ltm
 }
 my $C = $C->cursor_xact($x);
 my $xact = $C->{_xact};
@@ -60068,7 +60126,7 @@ my $xact = $C->{_xact};
 my @gather = ();
 for (;;) {
 unless (@try) {
-$relex //= $C->cursor_fate('STD::Regex', 'assertion__S_076Question_0', $retree);
+$relex //= $C->cursor_fate('STD::Regex', 'assertion__S_077Question_0', $retree);
 @try = $relex->($C) or last;
 }
 $try = shift(@try) // next;
@@ -60077,7 +60135,7 @@ if (ref $try) {
 ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
 }
 
-$C->deb("assertion__S_076Question_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+$C->deb("assertion__S_077Question_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
 push @gather, ((
 sub {
 my $C=shift;
@@ -60110,19 +60168,19 @@ $C
 }
 ;
 ## token assertion:sym<!> { <sym> [ <?before '>'> | <assertion> ] }
-sub assertion__S_077Bang__PEEK { $_[0]->_AUTOLEXpeek('assertion__S_077Bang', $retree) }
-sub assertion__S_077Bang {
+sub assertion__S_078Bang__PEEK { $_[0]->_AUTOLEXpeek('assertion__S_078Bang', $retree) }
+sub assertion__S_078Bang {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE assertion__S_077Bang");
+my $C = $self->cursor_xact("RULE assertion__S_078Bang");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\!";
-$self->_MATCHIFYr($S, "assertion__S_077Bang", do {
+$self->_MATCHIFYr($S, "assertion__S_078Bang", do {
 my $C = $C;
 if (($C) = ($C->_EXACT("\!"))
 and ($C) = ($C->_BRACKETr(sub {
@@ -60134,14 +60192,14 @@ my $relex;
 
 my $fate;
 my $x;
-if ($fate = $C->{'_fate'} and $fate->[1] eq 'assertion__S_077Bang_0') {
-$C->deb("Fate passed to assertion__S_077Bang_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'assertion__S_078Bang_0') {
+$C->deb("Fate passed to assertion__S_078Bang_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
 ($C->{'_fate'}, $tag, $try) = @$fate;
 @try = ($try);
-$x = 'ALT assertion__S_077Bang_0';    # some outer ltm is controlling us
+$x = 'ALT assertion__S_078Bang_0';    # some outer ltm is controlling us
 }
 else {
-$x = 'ALTLTM assertion__S_077Bang_0'; # we are top level ltm
+$x = 'ALTLTM assertion__S_078Bang_0'; # we are top level ltm
 }
 my $C = $C->cursor_xact($x);
 my $xact = $C->{_xact};
@@ -60149,7 +60207,7 @@ my $xact = $C->{_xact};
 my @gather = ();
 for (;;) {
 unless (@try) {
-$relex //= $C->cursor_fate('STD::Regex', 'assertion__S_077Bang_0', $retree);
+$relex //= $C->cursor_fate('STD::Regex', 'assertion__S_078Bang_0', $retree);
 @try = $relex->($C) or last;
 }
 $try = shift(@try) // next;
@@ -60158,7 +60216,7 @@ if (ref $try) {
 ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
 }
 
-$C->deb("assertion__S_077Bang_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+$C->deb("assertion__S_078Bang_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
 push @gather, ((
 sub {
 my $C=shift;
@@ -60191,19 +60249,19 @@ $C
 }
 ;
 ## token assertion:sym<*> { <sym> [ <?before '>'> | <.ws> <nibbler> ] }
-sub assertion__S_078Star__PEEK { $_[0]->_AUTOLEXpeek('assertion__S_078Star', $retree) }
-sub assertion__S_078Star {
+sub assertion__S_079Star__PEEK { $_[0]->_AUTOLEXpeek('assertion__S_079Star', $retree) }
+sub assertion__S_079Star {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE assertion__S_078Star");
+my $C = $self->cursor_xact("RULE assertion__S_079Star");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\*";
-$self->_MATCHIFYr($S, "assertion__S_078Star", do {
+$self->_MATCHIFYr($S, "assertion__S_079Star", do {
 my $C = $C;
 if (($C) = ($C->_EXACT("\*"))
 and ($C) = ($C->_BRACKETr(sub {
@@ -60215,14 +60273,14 @@ my $relex;
 
 my $fate;
 my $x;
-if ($fate = $C->{'_fate'} and $fate->[1] eq 'assertion__S_078Star_0') {
-$C->deb("Fate passed to assertion__S_078Star_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'assertion__S_079Star_0') {
+$C->deb("Fate passed to assertion__S_079Star_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
 ($C->{'_fate'}, $tag, $try) = @$fate;
 @try = ($try);
-$x = 'ALT assertion__S_078Star_0';    # some outer ltm is controlling us
+$x = 'ALT assertion__S_079Star_0';    # some outer ltm is controlling us
 }
 else {
-$x = 'ALTLTM assertion__S_078Star_0'; # we are top level ltm
+$x = 'ALTLTM assertion__S_079Star_0'; # we are top level ltm
 }
 my $C = $C->cursor_xact($x);
 my $xact = $C->{_xact};
@@ -60230,7 +60288,7 @@ my $xact = $C->{_xact};
 my @gather = ();
 for (;;) {
 unless (@try) {
-$relex //= $C->cursor_fate('STD::Regex', 'assertion__S_078Star_0', $retree);
+$relex //= $C->cursor_fate('STD::Regex', 'assertion__S_079Star_0', $retree);
 @try = $relex->($C) or last;
 }
 $try = shift(@try) // next;
@@ -60239,7 +60297,7 @@ if (ref $try) {
 ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
 }
 
-$C->deb("assertion__S_078Star_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+$C->deb("assertion__S_079Star_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
 push @gather, ((
 sub {
 my $C=shift;
@@ -60274,38 +60332,38 @@ $C
 }
 ;
 ## token assertion:sym<{ }> { <embeddedblock> }
-sub assertion__S_079Cur_Ly__PEEK { $_[0]->_AUTOLEXpeek('assertion__S_079Cur_Ly', $retree) }
-sub assertion__S_079Cur_Ly {
+sub assertion__S_080Cur_Ly__PEEK { $_[0]->_AUTOLEXpeek('assertion__S_080Cur_Ly', $retree) }
+sub assertion__S_080Cur_Ly {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE assertion__S_079Cur_Ly");
+my $C = $self->cursor_xact("RULE assertion__S_080Cur_Ly");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\{\ \}";
-$self->_MATCHIFYr($S, "assertion__S_079Cur_Ly", $C->_SUBSUMEr(['embeddedblock'], sub {
+$self->_MATCHIFYr($S, "assertion__S_080Cur_Ly", $C->_SUBSUMEr(['embeddedblock'], sub {
 my $C = shift;
 $C->embeddedblock
 }));
 }
 ;
 ## token assertion:variable {
-sub assertion__S_080variable__PEEK { $_[0]->_AUTOLEXpeek('assertion__S_080variable', $retree) }
-sub assertion__S_080variable {
+sub assertion__S_081variable__PEEK { $_[0]->_AUTOLEXpeek('assertion__S_081variable', $retree) }
+sub assertion__S_081variable {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE assertion__S_080variable");
+my $C = $self->cursor_xact("RULE assertion__S_081variable");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "variable";
-$self->_MATCHIFYr($S, "assertion__S_080variable", do {
+$self->_MATCHIFYr($S, "assertion__S_081variable", do {
 my $C = $C;
 if (($C) = ($C->before(sub {
 my $C=shift;
@@ -60333,19 +60391,19 @@ $C
 }
 ;
 ## token assertion:method {
-sub assertion__S_081method__PEEK { $_[0]->_AUTOLEXpeek('assertion__S_081method', $retree) }
-sub assertion__S_081method {
+sub assertion__S_082method__PEEK { $_[0]->_AUTOLEXpeek('assertion__S_082method', $retree) }
+sub assertion__S_082method {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE assertion__S_081method");
+my $C = $self->cursor_xact("RULE assertion__S_082method");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "method";
-$self->_MATCHIFYr($S, "assertion__S_081method", do {
+$self->_MATCHIFYr($S, "assertion__S_082method", do {
 my $C = $C;
 if (($C) = ($C->_EXACT("\."))
 and ($C) = ($C->_BRACKETr(sub {
@@ -60357,14 +60415,14 @@ my $relex;
 
 my $fate;
 my $x;
-if ($fate = $C->{'_fate'} and $fate->[1] eq 'assertion__S_081method_0') {
-$C->deb("Fate passed to assertion__S_081method_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'assertion__S_082method_0') {
+$C->deb("Fate passed to assertion__S_082method_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
 ($C->{'_fate'}, $tag, $try) = @$fate;
 @try = ($try);
-$x = 'ALT assertion__S_081method_0';    # some outer ltm is controlling us
+$x = 'ALT assertion__S_082method_0';    # some outer ltm is controlling us
 }
 else {
-$x = 'ALTLTM assertion__S_081method_0'; # we are top level ltm
+$x = 'ALTLTM assertion__S_082method_0'; # we are top level ltm
 }
 my $C = $C->cursor_xact($x);
 my $xact = $C->{_xact};
@@ -60372,7 +60430,7 @@ my $xact = $C->{_xact};
 my @gather = ();
 for (;;) {
 unless (@try) {
-$relex //= $C->cursor_fate('STD::Regex', 'assertion__S_081method_0', $retree);
+$relex //= $C->cursor_fate('STD::Regex', 'assertion__S_082method_0', $retree);
 @try = $relex->($C) or last;
 }
 $try = shift(@try) // next;
@@ -60381,7 +60439,7 @@ if (ref $try) {
 ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
 }
 
-$C->deb("assertion__S_081method_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+$C->deb("assertion__S_082method_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
 push @gather, ((
 sub {
 my $C=shift;
@@ -60424,22 +60482,22 @@ $C
 }
 ;
 ## token assertion:name { [ :lang($¢.cursor_fresh(%*LANG<MAIN>).unbalanced('>')) <longname> ]
-sub assertion__S_082name__PEEK { $_[0]->_AUTOLEXpeek('assertion__S_082name', $retree) }
-sub assertion__S_082name {
+sub assertion__S_083name__PEEK { $_[0]->_AUTOLEXpeek('assertion__S_083name', $retree) }
+sub assertion__S_083name {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE assertion__S_082name");
+my $C = $self->cursor_xact("RULE assertion__S_083name");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{'arglist'} = [];
 $C->{'assertion'} = [];
 $C->{'nibbler'} = [];
 $C->{sym} = "name";
-$self->_MATCHIFYr($S, "assertion__S_082name", do {
+$self->_MATCHIFYr($S, "assertion__S_083name", do {
 if (my ($C) = ($C->_BRACKETr(sub {
 my $C=shift;
 my $newlang = ($C->cursor_fresh($::LANG{'MAIN'})->unbalanced('>'));
@@ -60460,14 +60518,14 @@ my $relex;
 
 my $fate;
 my $x;
-if ($fate = $C->{'_fate'} and $fate->[1] eq 'assertion__S_082name_0') {
-$C->deb("Fate passed to assertion__S_082name_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'assertion__S_083name_0') {
+$C->deb("Fate passed to assertion__S_083name_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
 ($C->{'_fate'}, $tag, $try) = @$fate;
 @try = ($try);
-$x = 'ALT assertion__S_082name_0';    # some outer ltm is controlling us
+$x = 'ALT assertion__S_083name_0';    # some outer ltm is controlling us
 }
 else {
-$x = 'ALTLTM assertion__S_082name_0'; # we are top level ltm
+$x = 'ALTLTM assertion__S_083name_0'; # we are top level ltm
 }
 my $C = $C->cursor_xact($x);
 my $xact = $C->{_xact};
@@ -60475,7 +60533,7 @@ my $xact = $C->{_xact};
 my @gather = ();
 for (;;) {
 unless (@try) {
-$relex //= $C->cursor_fate('STD::Regex', 'assertion__S_082name_0', $retree);
+$relex //= $C->cursor_fate('STD::Regex', 'assertion__S_083name_0', $retree);
 @try = $relex->($C) or last;
 }
 $try = shift(@try) // next;
@@ -60484,7 +60542,7 @@ if (ref $try) {
 ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
 }
 
-$C->deb("assertion__S_082name_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+$C->deb("assertion__S_083name_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
 push @gather, ((
 sub {
 my $C=shift;
@@ -60594,21 +60652,55 @@ last if $xact->[-2];  # committed?
 });
 }
 ;
-## token assertion:sym<[> { <?before '['> <cclass_elem>+ }
-sub assertion__S_083Bra__PEEK { $_[0]->_AUTOLEXpeek('assertion__S_083Bra', $retree) }
-sub assertion__S_083Bra {
+## token assertion:sym<:> { <?before ':'<alpha>> <cclass_elem>+ }
+sub assertion__S_084Colon__PEEK { $_[0]->_AUTOLEXpeek('assertion__S_084Colon', $retree) }
+sub assertion__S_084Colon {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE assertion__S_083Bra");
+my $C = $self->cursor_xact("RULE assertion__S_084Colon");
+my $xact = $C->xact;
+my $S = $C->{'_pos'};
+$C->{'cclass_elem'} = [];
+$C->{sym} = "\:";
+$self->_MATCHIFYr($S, "assertion__S_084Colon", do {
+if (my ($C) = ($C->before(sub {
+my $C=shift;
+if (my ($C) = ($C->before(sub {
+my $C=shift;
+$C->_PATTERN(qr/\G\:[_[:alpha:]]/)
+}))) { ($C) } else { () }
+}))) {
+$C->_PLUSr(sub {
+my $C=shift;
+$C->_SUBSUMEr(['cclass_elem'], sub {
+my $C = shift;
+$C->cclass_elem
+})
+})
+} else { () }
+
+});
+}
+;
+## token assertion:sym<[> { <?before '['> <cclass_elem>+ }
+sub assertion__S_085Bra__PEEK { $_[0]->_AUTOLEXpeek('assertion__S_085Bra', $retree) }
+sub assertion__S_085Bra {
+no warnings 'recursion';
+my $self = shift;
+
+
+local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
+
+my $C = $self->cursor_xact("RULE assertion__S_085Bra");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{'cclass_elem'} = [];
 $C->{sym} = "\[";
-$self->_MATCHIFYr($S, "assertion__S_083Bra", do {
+$self->_MATCHIFYr($S, "assertion__S_085Bra", do {
 if (my ($C) = ($C->before(sub {
 my $C=shift;
 if (my ($C) = ($C->before(sub {
@@ -60629,20 +60721,20 @@ $C->cclass_elem
 }
 ;
 ## token assertion:sym<+> { <?before '+'> <cclass_elem>+ }
-sub assertion__S_084Plus__PEEK { $_[0]->_AUTOLEXpeek('assertion__S_084Plus', $retree) }
-sub assertion__S_084Plus {
+sub assertion__S_086Plus__PEEK { $_[0]->_AUTOLEXpeek('assertion__S_086Plus', $retree) }
+sub assertion__S_086Plus {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE assertion__S_084Plus");
+my $C = $self->cursor_xact("RULE assertion__S_086Plus");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{'cclass_elem'} = [];
 $C->{sym} = "\+";
-$self->_MATCHIFYr($S, "assertion__S_084Plus", do {
+$self->_MATCHIFYr($S, "assertion__S_086Plus", do {
 if (my ($C) = ($C->before(sub {
 my $C=shift;
 if (my ($C) = ($C->before(sub {
@@ -60663,20 +60755,20 @@ $C->cclass_elem
 }
 ;
 ## token assertion:sym<-> { <?before '-'> <cclass_elem>+ }
-sub assertion__S_085Minus__PEEK { $_[0]->_AUTOLEXpeek('assertion__S_085Minus', $retree) }
-sub assertion__S_085Minus {
+sub assertion__S_087Minus__PEEK { $_[0]->_AUTOLEXpeek('assertion__S_087Minus', $retree) }
+sub assertion__S_087Minus {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE assertion__S_085Minus");
+my $C = $self->cursor_xact("RULE assertion__S_087Minus");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{'cclass_elem'} = [];
 $C->{sym} = "\-";
-$self->_MATCHIFYr($S, "assertion__S_085Minus", do {
+$self->_MATCHIFYr($S, "assertion__S_087Minus", do {
 if (my ($C) = ($C->before(sub {
 my $C=shift;
 if (my ($C) = ($C->before(sub {
@@ -60697,51 +60789,51 @@ $C->cclass_elem
 }
 ;
 ## token assertion:sym<.> { <sym> }
-sub assertion__S_086Dot__PEEK { $_[0]->_AUTOLEXpeek('assertion__S_086Dot', $retree) }
-sub assertion__S_086Dot {
+sub assertion__S_088Dot__PEEK { $_[0]->_AUTOLEXpeek('assertion__S_088Dot', $retree) }
+sub assertion__S_088Dot {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE assertion__S_086Dot");
+my $C = $self->cursor_xact("RULE assertion__S_088Dot");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\.";
-$self->_MATCHIFYr($S, "assertion__S_086Dot", $C->_EXACT("\."));
+$self->_MATCHIFYr($S, "assertion__S_088Dot", $C->_EXACT("\."));
 }
 ;
 ## token assertion:sym<,> { <sym> }
-sub assertion__S_087Comma__PEEK { $_[0]->_AUTOLEXpeek('assertion__S_087Comma', $retree) }
-sub assertion__S_087Comma {
+sub assertion__S_089Comma__PEEK { $_[0]->_AUTOLEXpeek('assertion__S_089Comma', $retree) }
+sub assertion__S_089Comma {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE assertion__S_087Comma");
+my $C = $self->cursor_xact("RULE assertion__S_089Comma");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\,";
-$self->_MATCHIFYr($S, "assertion__S_087Comma", $C->_EXACT("\,"));
+$self->_MATCHIFYr($S, "assertion__S_089Comma", $C->_EXACT("\,"));
 }
 ;
 ## token assertion:sym<~~> { <sym> [ <?before '>'> | \d+ | <desigilname> ] }
-sub assertion__S_088TildeTilde__PEEK { $_[0]->_AUTOLEXpeek('assertion__S_088TildeTilde', $retree) }
-sub assertion__S_088TildeTilde {
+sub assertion__S_090TildeTilde__PEEK { $_[0]->_AUTOLEXpeek('assertion__S_090TildeTilde', $retree) }
+sub assertion__S_090TildeTilde {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE assertion__S_088TildeTilde");
+my $C = $self->cursor_xact("RULE assertion__S_090TildeTilde");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\~\~";
-$self->_MATCHIFYr($S, "assertion__S_088TildeTilde", do {
+$self->_MATCHIFYr($S, "assertion__S_090TildeTilde", do {
 my $C = $C;
 if (($C) = ($C->_EXACT("\~\~"))
 and ($C) = ($C->_BRACKETr(sub {
@@ -60753,14 +60845,14 @@ my $relex;
 
 my $fate;
 my $x;
-if ($fate = $C->{'_fate'} and $fate->[1] eq 'assertion__S_088TildeTilde_0') {
-$C->deb("Fate passed to assertion__S_088TildeTilde_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'assertion__S_090TildeTilde_0') {
+$C->deb("Fate passed to assertion__S_090TildeTilde_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
 ($C->{'_fate'}, $tag, $try) = @$fate;
 @try = ($try);
-$x = 'ALT assertion__S_088TildeTilde_0';    # some outer ltm is controlling us
+$x = 'ALT assertion__S_090TildeTilde_0';    # some outer ltm is controlling us
 }
 else {
-$x = 'ALTLTM assertion__S_088TildeTilde_0'; # we are top level ltm
+$x = 'ALTLTM assertion__S_090TildeTilde_0'; # we are top level ltm
 }
 my $C = $C->cursor_xact($x);
 my $xact = $C->{_xact};
@@ -60768,7 +60860,7 @@ my $xact = $C->{_xact};
 my @gather = ();
 for (;;) {
 unless (@try) {
-$relex //= $C->cursor_fate('STD::Regex', 'assertion__S_088TildeTilde_0', $retree);
+$relex //= $C->cursor_fate('STD::Regex', 'assertion__S_090TildeTilde_0', $retree);
 @try = $relex->($C) or last;
 }
 $try = shift(@try) // next;
@@ -60777,7 +60869,7 @@ if (ref $try) {
 ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
 }
 
-$C->deb("assertion__S_088TildeTilde_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+$C->deb("assertion__S_090TildeTilde_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
 push @gather, ((
 sub {
 my $C=shift;
@@ -60814,19 +60906,19 @@ $C
 }
 ;
 ## token assertion:bogus { <.panic: "Unrecognized regex assertion"> }
-sub assertion__S_089bogus__PEEK { $_[0]->_AUTOLEXpeek('assertion__S_089bogus', $retree) }
-sub assertion__S_089bogus {
+sub assertion__S_091bogus__PEEK { $_[0]->_AUTOLEXpeek('assertion__S_091bogus', $retree) }
+sub assertion__S_091bogus {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE assertion__S_089bogus");
+my $C = $self->cursor_xact("RULE assertion__S_091bogus");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "bogus";
-$self->_MATCHIFYr($S, "assertion__S_089bogus", $C->panic("Unrecognized regex assertion"));
+$self->_MATCHIFYr($S, "assertion__S_091bogus", $C->panic("Unrecognized regex assertion"));
 }
 ;
 ## token sign { '+' | '-' | <?> }
@@ -60978,6 +61070,18 @@ my $C = shift;
 $C->quibble($C->cursor_fresh( $::LANG{'Q'} )->tweak('cc' => 1))
 })
 } else { () }
+},
+sub {
+my $C=shift;
+if (my ($C) = ($C->_BRACKETr(sub {
+my $C=shift;
+my $newlang = ($::LANG{'MAIN'});
+$C = bless($C, (ref($newlang) || $newlang));
+$C->_SUBSUMEr(['colonpair'], sub {
+my $C = shift;
+$C->colonpair
+})
+}))) { ($C) } else { () }
 }
 )[$try])->($C);
 last if @gather;
@@ -61047,19 +61151,19 @@ $C
 }
 ;
 ## token mod_internal:sym<:my>    { ':' <?before ['my'|'state'|'our'|'anon'|'constant'|'temp'|'let'] \s
-sub mod_internal__S_090Colonmy__PEEK { $_[0]->_AUTOLEXpeek('mod_internal__S_090Colonmy', $retree) }
-sub mod_internal__S_090Colonmy {
+sub mod_internal__S_092Colonmy__PEEK { $_[0]->_AUTOLEXpeek('mod_internal__S_092Colonmy', $retree) }
+sub mod_internal__S_092Colonmy {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE mod_internal__S_090Colonmy");
+my $C = $self->cursor_xact("RULE mod_internal__S_092Colonmy");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\:my";
-$self->_MATCHIFYr($S, "mod_internal__S_090Colonmy", do {
+$self->_MATCHIFYr($S, "mod_internal__S_092Colonmy", do {
 my $C = $C;
 if (($C) = ($C->_EXACT("\:"))
 and ($C) = ($C->before(sub {
@@ -61075,14 +61179,14 @@ my $relex;
 
 my $fate;
 my $x;
-if ($fate = $C->{'_fate'} and $fate->[1] eq 'mod_internal__S_090Colonmy_0') {
-$C->deb("Fate passed to mod_internal__S_090Colonmy_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'mod_internal__S_092Colonmy_0') {
+$C->deb("Fate passed to mod_internal__S_092Colonmy_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
 ($C->{'_fate'}, $tag, $try) = @$fate;
 @try = ($try);
-$x = 'ALT mod_internal__S_090Colonmy_0';    # some outer ltm is controlling us
+$x = 'ALT mod_internal__S_092Colonmy_0';    # some outer ltm is controlling us
 }
 else {
-$x = 'ALTLTM mod_internal__S_090Colonmy_0'; # we are top level ltm
+$x = 'ALTLTM mod_internal__S_092Colonmy_0'; # we are top level ltm
 }
 my $C = $C->cursor_xact($x);
 my $xact = $C->{_xact};
@@ -61090,7 +61194,7 @@ my $xact = $C->{_xact};
 my @gather = ();
 for (;;) {
 unless (@try) {
-$relex //= $C->cursor_fate('STD::Regex', 'mod_internal__S_090Colonmy_0', $retree);
+$relex //= $C->cursor_fate('STD::Regex', 'mod_internal__S_092Colonmy_0', $retree);
 @try = $relex->($C) or last;
 }
 $try = shift(@try) // next;
@@ -61099,7 +61203,7 @@ if (ref $try) {
 ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
 }
 
-$C->deb("mod_internal__S_090Colonmy_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+$C->deb("mod_internal__S_092Colonmy_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
 push @gather, ((
 sub {
 my $C=shift;
@@ -61164,19 +61268,19 @@ $C
 }
 ;
 ## token mod_internal:sym<:i>    { $<sym>=[':i'|':ignorecase'] » { %*RX<i> = 1 } }
-sub mod_internal__S_091Coloni__PEEK { $_[0]->_AUTOLEXpeek('mod_internal__S_091Coloni', $retree) }
-sub mod_internal__S_091Coloni {
+sub mod_internal__S_093Coloni__PEEK { $_[0]->_AUTOLEXpeek('mod_internal__S_093Coloni', $retree) }
+sub mod_internal__S_093Coloni {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE mod_internal__S_091Coloni");
+my $C = $self->cursor_xact("RULE mod_internal__S_093Coloni");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\:i";
-$self->_MATCHIFYr($S, "mod_internal__S_091Coloni", do {
+$self->_MATCHIFYr($S, "mod_internal__S_093Coloni", do {
 my $C = $C;
 if (($C) = ($C->_SUBSUMEr(['sym'], sub {
 my $C = shift;
@@ -61189,14 +61293,14 @@ my $relex;
 
 my $fate;
 my $x;
-if ($fate = $C->{'_fate'} and $fate->[1] eq 'mod_internal__S_091Coloni_0') {
-$C->deb("Fate passed to mod_internal__S_091Coloni_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'mod_internal__S_093Coloni_0') {
+$C->deb("Fate passed to mod_internal__S_093Coloni_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
 ($C->{'_fate'}, $tag, $try) = @$fate;
 @try = ($try);
-$x = 'ALT mod_internal__S_091Coloni_0';    # some outer ltm is controlling us
+$x = 'ALT mod_internal__S_093Coloni_0';    # some outer ltm is controlling us
 }
 else {
-$x = 'ALTLTM mod_internal__S_091Coloni_0'; # we are top level ltm
+$x = 'ALTLTM mod_internal__S_093Coloni_0'; # we are top level ltm
 }
 my $C = $C->cursor_xact($x);
 my $xact = $C->{_xact};
@@ -61204,7 +61308,7 @@ my $xact = $C->{_xact};
 my @gather = ();
 for (;;) {
 unless (@try) {
-$relex //= $C->cursor_fate('STD::Regex', 'mod_internal__S_091Coloni_0', $retree);
+$relex //= $C->cursor_fate('STD::Regex', 'mod_internal__S_093Coloni_0', $retree);
 @try = $relex->($C) or last;
 }
 $try = shift(@try) // next;
@@ -61213,7 +61317,7 @@ if (ref $try) {
 ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
 }
 
-$C->deb("mod_internal__S_091Coloni_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+$C->deb("mod_internal__S_093Coloni_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
 push @gather, ((
 sub {
 my $C=shift;
@@ -61240,19 +61344,19 @@ $::RX{'i'} = 1 }, $C)
 }
 ;
 ## token mod_internal:sym<:!i>   { $<sym>=[':!i'|':!ignorecase'] » { %*RX<i> = 0 } }
-sub mod_internal__S_092ColonBangi__PEEK { $_[0]->_AUTOLEXpeek('mod_internal__S_092ColonBangi', $retree) }
-sub mod_internal__S_092ColonBangi {
+sub mod_internal__S_094ColonBangi__PEEK { $_[0]->_AUTOLEXpeek('mod_internal__S_094ColonBangi', $retree) }
+sub mod_internal__S_094ColonBangi {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE mod_internal__S_092ColonBangi");
+my $C = $self->cursor_xact("RULE mod_internal__S_094ColonBangi");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\:\!i";
-$self->_MATCHIFYr($S, "mod_internal__S_092ColonBangi", do {
+$self->_MATCHIFYr($S, "mod_internal__S_094ColonBangi", do {
 my $C = $C;
 if (($C) = ($C->_SUBSUMEr(['sym'], sub {
 my $C = shift;
@@ -61265,14 +61369,14 @@ my $relex;
 
 my $fate;
 my $x;
-if ($fate = $C->{'_fate'} and $fate->[1] eq 'mod_internal__S_092ColonBangi_0') {
-$C->deb("Fate passed to mod_internal__S_092ColonBangi_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'mod_internal__S_094ColonBangi_0') {
+$C->deb("Fate passed to mod_internal__S_094ColonBangi_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
 ($C->{'_fate'}, $tag, $try) = @$fate;
 @try = ($try);
-$x = 'ALT mod_internal__S_092ColonBangi_0';    # some outer ltm is controlling us
+$x = 'ALT mod_internal__S_094ColonBangi_0';    # some outer ltm is controlling us
 }
 else {
-$x = 'ALTLTM mod_internal__S_092ColonBangi_0'; # we are top level ltm
+$x = 'ALTLTM mod_internal__S_094ColonBangi_0'; # we are top level ltm
 }
 my $C = $C->cursor_xact($x);
 my $xact = $C->{_xact};
@@ -61280,7 +61384,7 @@ my $xact = $C->{_xact};
 my @gather = ();
 for (;;) {
 unless (@try) {
-$relex //= $C->cursor_fate('STD::Regex', 'mod_internal__S_092ColonBangi_0', $retree);
+$relex //= $C->cursor_fate('STD::Regex', 'mod_internal__S_094ColonBangi_0', $retree);
 @try = $relex->($C) or last;
 }
 $try = shift(@try) // next;
@@ -61289,7 +61393,7 @@ if (ref $try) {
 ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
 }
 
-$C->deb("mod_internal__S_092ColonBangi_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+$C->deb("mod_internal__S_094ColonBangi_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
 push @gather, ((
 sub {
 my $C=shift;
@@ -61316,19 +61420,19 @@ $::RX{'i'} = 0 }, $C)
 }
 ;
 ## token mod_internal:sym<:i( )> { $<sym>=[':i'|':ignorecase'] <mod_arg> { %*RX<i> = eval $<mod_arg>.St
-sub mod_internal__S_093ColoniParen_Thesis__PEEK { $_[0]->_AUTOLEXpeek('mod_internal__S_093ColoniParen_Thesis', $retree) }
-sub mod_internal__S_093ColoniParen_Thesis {
+sub mod_internal__S_095ColoniParen_Thesis__PEEK { $_[0]->_AUTOLEXpeek('mod_internal__S_095ColoniParen_Thesis', $retree) }
+sub mod_internal__S_095ColoniParen_Thesis {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE mod_internal__S_093ColoniParen_Thesis");
+my $C = $self->cursor_xact("RULE mod_internal__S_095ColoniParen_Thesis");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\:i\(\ \)";
-$self->_MATCHIFYr($S, "mod_internal__S_093ColoniParen_Thesis", do {
+$self->_MATCHIFYr($S, "mod_internal__S_095ColoniParen_Thesis", do {
 my $C = $C;
 if (($C) = ($C->_SUBSUMEr(['sym'], sub {
 my $C = shift;
@@ -61341,14 +61445,14 @@ my $relex;
 
 my $fate;
 my $x;
-if ($fate = $C->{'_fate'} and $fate->[1] eq 'mod_internal__S_093ColoniParen_Thesis_0') {
-$C->deb("Fate passed to mod_internal__S_093ColoniParen_Thesis_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'mod_internal__S_095ColoniParen_Thesis_0') {
+$C->deb("Fate passed to mod_internal__S_095ColoniParen_Thesis_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
 ($C->{'_fate'}, $tag, $try) = @$fate;
 @try = ($try);
-$x = 'ALT mod_internal__S_093ColoniParen_Thesis_0';    # some outer ltm is controlling us
+$x = 'ALT mod_internal__S_095ColoniParen_Thesis_0';    # some outer ltm is controlling us
 }
 else {
-$x = 'ALTLTM mod_internal__S_093ColoniParen_Thesis_0'; # we are top level ltm
+$x = 'ALTLTM mod_internal__S_095ColoniParen_Thesis_0'; # we are top level ltm
 }
 my $C = $C->cursor_xact($x);
 my $xact = $C->{_xact};
@@ -61356,7 +61460,7 @@ my $xact = $C->{_xact};
 my @gather = ();
 for (;;) {
 unless (@try) {
-$relex //= $C->cursor_fate('STD::Regex', 'mod_internal__S_093ColoniParen_Thesis_0', $retree);
+$relex //= $C->cursor_fate('STD::Regex', 'mod_internal__S_095ColoniParen_Thesis_0', $retree);
 @try = $relex->($C) or last;
 }
 $try = shift(@try) // next;
@@ -61365,7 +61469,7 @@ if (ref $try) {
 ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
 }
 
-$C->deb("mod_internal__S_093ColoniParen_Thesis_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+$C->deb("mod_internal__S_095ColoniParen_Thesis_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
 push @gather, ((
 sub {
 my $C=shift;
@@ -61396,19 +61500,19 @@ $::RX{'i'} = eval $M->{'mod_arg'}->Str }, $C)
 }
 ;
 ## token mod_internal:sym<:0i>   { ':' (\d+) ['i'|'ignorecase'] { %*RX<i> = $0 } }
-sub mod_internal__S_094Colon0i__PEEK { $_[0]->_AUTOLEXpeek('mod_internal__S_094Colon0i', $retree) }
-sub mod_internal__S_094Colon0i {
+sub mod_internal__S_096Colon0i__PEEK { $_[0]->_AUTOLEXpeek('mod_internal__S_096Colon0i', $retree) }
+sub mod_internal__S_096Colon0i {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE mod_internal__S_094Colon0i");
+my $C = $self->cursor_xact("RULE mod_internal__S_096Colon0i");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\:0i";
-$self->_MATCHIFYr($S, "mod_internal__S_094Colon0i", do {
+$self->_MATCHIFYr($S, "mod_internal__S_096Colon0i", do {
 my $C = $C;
 if (($C) = ($C->_EXACT("\:"))
 and ($C) = ($C->_SUBSUMEr(['0'], sub {
@@ -61428,14 +61532,14 @@ my $relex;
 
 my $fate;
 my $x;
-if ($fate = $C->{'_fate'} and $fate->[1] eq 'mod_internal__S_094Colon0i_0') {
-$C->deb("Fate passed to mod_internal__S_094Colon0i_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'mod_internal__S_096Colon0i_0') {
+$C->deb("Fate passed to mod_internal__S_096Colon0i_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
 ($C->{'_fate'}, $tag, $try) = @$fate;
 @try = ($try);
-$x = 'ALT mod_internal__S_094Colon0i_0';    # some outer ltm is controlling us
+$x = 'ALT mod_internal__S_096Colon0i_0';    # some outer ltm is controlling us
 }
 else {
-$x = 'ALTLTM mod_internal__S_094Colon0i_0'; # we are top level ltm
+$x = 'ALTLTM mod_internal__S_096Colon0i_0'; # we are top level ltm
 }
 my $C = $C->cursor_xact($x);
 my $xact = $C->{_xact};
@@ -61443,7 +61547,7 @@ my $xact = $C->{_xact};
 my @gather = ();
 for (;;) {
 unless (@try) {
-$relex //= $C->cursor_fate('STD::Regex', 'mod_internal__S_094Colon0i_0', $retree);
+$relex //= $C->cursor_fate('STD::Regex', 'mod_internal__S_096Colon0i_0', $retree);
 @try = $relex->($C) or last;
 }
 $try = shift(@try) // next;
@@ -61452,7 +61556,7 @@ if (ref $try) {
 ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
 }
 
-$C->deb("mod_internal__S_094Colon0i_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+$C->deb("mod_internal__S_096Colon0i_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
 push @gather, ((
 sub {
 my $C=shift;
@@ -61478,19 +61582,19 @@ $::RX{'i'} = $M->{0} }, $C)
 }
 ;
 ## token mod_internal:sym<:a>    { $<sym>=[':a'|':ignoreaccent'] » { %*RX<a> = 1 } }
-sub mod_internal__S_095Colona__PEEK { $_[0]->_AUTOLEXpeek('mod_internal__S_095Colona', $retree) }
-sub mod_internal__S_095Colona {
+sub mod_internal__S_097Colona__PEEK { $_[0]->_AUTOLEXpeek('mod_internal__S_097Colona', $retree) }
+sub mod_internal__S_097Colona {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE mod_internal__S_095Colona");
+my $C = $self->cursor_xact("RULE mod_internal__S_097Colona");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\:a";
-$self->_MATCHIFYr($S, "mod_internal__S_095Colona", do {
+$self->_MATCHIFYr($S, "mod_internal__S_097Colona", do {
 my $C = $C;
 if (($C) = ($C->_SUBSUMEr(['sym'], sub {
 my $C = shift;
@@ -61503,14 +61607,14 @@ my $relex;
 
 my $fate;
 my $x;
-if ($fate = $C->{'_fate'} and $fate->[1] eq 'mod_internal__S_095Colona_0') {
-$C->deb("Fate passed to mod_internal__S_095Colona_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'mod_internal__S_097Colona_0') {
+$C->deb("Fate passed to mod_internal__S_097Colona_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
 ($C->{'_fate'}, $tag, $try) = @$fate;
 @try = ($try);
-$x = 'ALT mod_internal__S_095Colona_0';    # some outer ltm is controlling us
+$x = 'ALT mod_internal__S_097Colona_0';    # some outer ltm is controlling us
 }
 else {
-$x = 'ALTLTM mod_internal__S_095Colona_0'; # we are top level ltm
+$x = 'ALTLTM mod_internal__S_097Colona_0'; # we are top level ltm
 }
 my $C = $C->cursor_xact($x);
 my $xact = $C->{_xact};
@@ -61518,7 +61622,7 @@ my $xact = $C->{_xact};
 my @gather = ();
 for (;;) {
 unless (@try) {
-$relex //= $C->cursor_fate('STD::Regex', 'mod_internal__S_095Colona_0', $retree);
+$relex //= $C->cursor_fate('STD::Regex', 'mod_internal__S_097Colona_0', $retree);
 @try = $relex->($C) or last;
 }
 $try = shift(@try) // next;
@@ -61527,7 +61631,7 @@ if (ref $try) {
 ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
 }
 
-$C->deb("mod_internal__S_095Colona_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+$C->deb("mod_internal__S_097Colona_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
 push @gather, ((
 sub {
 my $C=shift;
@@ -61554,19 +61658,19 @@ $::RX{'a'} = 1 }, $C)
 }
 ;
 ## token mod_internal:sym<:!a>   { $<sym>=[':!a'|':!ignoreaccent'] » { %*RX<a> = 0 } }
-sub mod_internal__S_096ColonBanga__PEEK { $_[0]->_AUTOLEXpeek('mod_internal__S_096ColonBanga', $retree) }
-sub mod_internal__S_096ColonBanga {
+sub mod_internal__S_098ColonBanga__PEEK { $_[0]->_AUTOLEXpeek('mod_internal__S_098ColonBanga', $retree) }
+sub mod_internal__S_098ColonBanga {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE mod_internal__S_096ColonBanga");
+my $C = $self->cursor_xact("RULE mod_internal__S_098ColonBanga");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\:\!a";
-$self->_MATCHIFYr($S, "mod_internal__S_096ColonBanga", do {
+$self->_MATCHIFYr($S, "mod_internal__S_098ColonBanga", do {
 my $C = $C;
 if (($C) = ($C->_SUBSUMEr(['sym'], sub {
 my $C = shift;
@@ -61579,14 +61683,14 @@ my $relex;
 
 my $fate;
 my $x;
-if ($fate = $C->{'_fate'} and $fate->[1] eq 'mod_internal__S_096ColonBanga_0') {
-$C->deb("Fate passed to mod_internal__S_096ColonBanga_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'mod_internal__S_098ColonBanga_0') {
+$C->deb("Fate passed to mod_internal__S_098ColonBanga_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
 ($C->{'_fate'}, $tag, $try) = @$fate;
 @try = ($try);
-$x = 'ALT mod_internal__S_096ColonBanga_0';    # some outer ltm is controlling us
+$x = 'ALT mod_internal__S_098ColonBanga_0';    # some outer ltm is controlling us
 }
 else {
-$x = 'ALTLTM mod_internal__S_096ColonBanga_0'; # we are top level ltm
+$x = 'ALTLTM mod_internal__S_098ColonBanga_0'; # we are top level ltm
 }
 my $C = $C->cursor_xact($x);
 my $xact = $C->{_xact};
@@ -61594,7 +61698,7 @@ my $xact = $C->{_xact};
 my @gather = ();
 for (;;) {
 unless (@try) {
-$relex //= $C->cursor_fate('STD::Regex', 'mod_internal__S_096ColonBanga_0', $retree);
+$relex //= $C->cursor_fate('STD::Regex', 'mod_internal__S_098ColonBanga_0', $retree);
 @try = $relex->($C) or last;
 }
 $try = shift(@try) // next;
@@ -61603,7 +61707,7 @@ if (ref $try) {
 ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
 }
 
-$C->deb("mod_internal__S_096ColonBanga_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+$C->deb("mod_internal__S_098ColonBanga_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
 push @gather, ((
 sub {
 my $C=shift;
@@ -61630,19 +61734,19 @@ $::RX{'a'} = 0 }, $C)
 }
 ;
 ## token mod_internal:sym<:a( )> { $<sym>=[':a'|':ignoreaccent'] <mod_arg> { %*RX<a> = eval $<mod_arg>.
-sub mod_internal__S_097ColonaParen_Thesis__PEEK { $_[0]->_AUTOLEXpeek('mod_internal__S_097ColonaParen_Thesis', $retree) }
-sub mod_internal__S_097ColonaParen_Thesis {
+sub mod_internal__S_099ColonaParen_Thesis__PEEK { $_[0]->_AUTOLEXpeek('mod_internal__S_099ColonaParen_Thesis', $retree) }
+sub mod_internal__S_099ColonaParen_Thesis {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE mod_internal__S_097ColonaParen_Thesis");
+my $C = $self->cursor_xact("RULE mod_internal__S_099ColonaParen_Thesis");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\:a\(\ \)";
-$self->_MATCHIFYr($S, "mod_internal__S_097ColonaParen_Thesis", do {
+$self->_MATCHIFYr($S, "mod_internal__S_099ColonaParen_Thesis", do {
 my $C = $C;
 if (($C) = ($C->_SUBSUMEr(['sym'], sub {
 my $C = shift;
@@ -61655,14 +61759,14 @@ my $relex;
 
 my $fate;
 my $x;
-if ($fate = $C->{'_fate'} and $fate->[1] eq 'mod_internal__S_097ColonaParen_Thesis_0') {
-$C->deb("Fate passed to mod_internal__S_097ColonaParen_Thesis_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'mod_internal__S_099ColonaParen_Thesis_0') {
+$C->deb("Fate passed to mod_internal__S_099ColonaParen_Thesis_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
 ($C->{'_fate'}, $tag, $try) = @$fate;
 @try = ($try);
-$x = 'ALT mod_internal__S_097ColonaParen_Thesis_0';    # some outer ltm is controlling us
+$x = 'ALT mod_internal__S_099ColonaParen_Thesis_0';    # some outer ltm is controlling us
 }
 else {
-$x = 'ALTLTM mod_internal__S_097ColonaParen_Thesis_0'; # we are top level ltm
+$x = 'ALTLTM mod_internal__S_099ColonaParen_Thesis_0'; # we are top level ltm
 }
 my $C = $C->cursor_xact($x);
 my $xact = $C->{_xact};
@@ -61670,7 +61774,7 @@ my $xact = $C->{_xact};
 my @gather = ();
 for (;;) {
 unless (@try) {
-$relex //= $C->cursor_fate('STD::Regex', 'mod_internal__S_097ColonaParen_Thesis_0', $retree);
+$relex //= $C->cursor_fate('STD::Regex', 'mod_internal__S_099ColonaParen_Thesis_0', $retree);
 @try = $relex->($C) or last;
 }
 $try = shift(@try) // next;
@@ -61679,7 +61783,7 @@ if (ref $try) {
 ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
 }
 
-$C->deb("mod_internal__S_097ColonaParen_Thesis_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+$C->deb("mod_internal__S_099ColonaParen_Thesis_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
 push @gather, ((
 sub {
 my $C=shift;
@@ -61710,19 +61814,19 @@ $::RX{'a'} = eval $M->{'mod_arg'}->Str }, $C)
 }
 ;
 ## token mod_internal:sym<:0a>   { ':' (\d+) ['a'|'ignoreaccent'] { %*RX<a> = $0 } }
-sub mod_internal__S_098Colon0a__PEEK { $_[0]->_AUTOLEXpeek('mod_internal__S_098Colon0a', $retree) }
-sub mod_internal__S_098Colon0a {
+sub mod_internal__S_100Colon0a__PEEK { $_[0]->_AUTOLEXpeek('mod_internal__S_100Colon0a', $retree) }
+sub mod_internal__S_100Colon0a {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE mod_internal__S_098Colon0a");
+my $C = $self->cursor_xact("RULE mod_internal__S_100Colon0a");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\:0a";
-$self->_MATCHIFYr($S, "mod_internal__S_098Colon0a", do {
+$self->_MATCHIFYr($S, "mod_internal__S_100Colon0a", do {
 my $C = $C;
 if (($C) = ($C->_EXACT("\:"))
 and ($C) = ($C->_SUBSUMEr(['0'], sub {
@@ -61742,14 +61846,14 @@ my $relex;
 
 my $fate;
 my $x;
-if ($fate = $C->{'_fate'} and $fate->[1] eq 'mod_internal__S_098Colon0a_0') {
-$C->deb("Fate passed to mod_internal__S_098Colon0a_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'mod_internal__S_100Colon0a_0') {
+$C->deb("Fate passed to mod_internal__S_100Colon0a_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
 ($C->{'_fate'}, $tag, $try) = @$fate;
 @try = ($try);
-$x = 'ALT mod_internal__S_098Colon0a_0';    # some outer ltm is controlling us
+$x = 'ALT mod_internal__S_100Colon0a_0';    # some outer ltm is controlling us
 }
 else {
-$x = 'ALTLTM mod_internal__S_098Colon0a_0'; # we are top level ltm
+$x = 'ALTLTM mod_internal__S_100Colon0a_0'; # we are top level ltm
 }
 my $C = $C->cursor_xact($x);
 my $xact = $C->{_xact};
@@ -61757,7 +61861,7 @@ my $xact = $C->{_xact};
 my @gather = ();
 for (;;) {
 unless (@try) {
-$relex //= $C->cursor_fate('STD::Regex', 'mod_internal__S_098Colon0a_0', $retree);
+$relex //= $C->cursor_fate('STD::Regex', 'mod_internal__S_100Colon0a_0', $retree);
 @try = $relex->($C) or last;
 }
 $try = shift(@try) // next;
@@ -61766,7 +61870,7 @@ if (ref $try) {
 ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
 }
 
-$C->deb("mod_internal__S_098Colon0a_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+$C->deb("mod_internal__S_100Colon0a_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
 push @gather, ((
 sub {
 my $C=shift;
@@ -61792,19 +61896,19 @@ $::RX{'a'} = $M->{0} }, $C)
 }
 ;
 ## token mod_internal:sym<:s>    { ':s' 'igspace'? » { %*RX<s> = 1 } }
-sub mod_internal__S_099Colons__PEEK { $_[0]->_AUTOLEXpeek('mod_internal__S_099Colons', $retree) }
-sub mod_internal__S_099Colons {
+sub mod_internal__S_101Colons__PEEK { $_[0]->_AUTOLEXpeek('mod_internal__S_101Colons', $retree) }
+sub mod_internal__S_101Colons {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE mod_internal__S_099Colons");
+my $C = $self->cursor_xact("RULE mod_internal__S_101Colons");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\:s";
-$self->_MATCHIFYr($S, "mod_internal__S_099Colons", do {
+$self->_MATCHIFYr($S, "mod_internal__S_101Colons", do {
 if (my ($C) = ($C->_PATTERN(qr/\G\:s(?:igspace)?+\b/))) {
 scalar(do {
 $::RX{'s'} = 1 }, $C)
@@ -61814,19 +61918,19 @@ $::RX{'s'} = 1 }, $C)
 }
 ;
 ## token mod_internal:sym<:!s>   { ':!s' 'igspace'? » { %*RX<s> = 0 } }
-sub mod_internal__S_100ColonBangs__PEEK { $_[0]->_AUTOLEXpeek('mod_internal__S_100ColonBangs', $retree) }
-sub mod_internal__S_100ColonBangs {
+sub mod_internal__S_102ColonBangs__PEEK { $_[0]->_AUTOLEXpeek('mod_internal__S_102ColonBangs', $retree) }
+sub mod_internal__S_102ColonBangs {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE mod_internal__S_100ColonBangs");
+my $C = $self->cursor_xact("RULE mod_internal__S_102ColonBangs");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\:\!s";
-$self->_MATCHIFYr($S, "mod_internal__S_100ColonBangs", do {
+$self->_MATCHIFYr($S, "mod_internal__S_102ColonBangs", do {
 if (my ($C) = ($C->_PATTERN(qr/\G\:\!s(?:igspace)?+\b/))) {
 scalar(do {
 $::RX{'s'} = 0 }, $C)
@@ -61836,19 +61940,19 @@ $::RX{'s'} = 0 }, $C)
 }
 ;
 ## token mod_internal:sym<:s( )> { ':s' 'igspace'? <mod_arg> { %*RX<s> = eval $<mod_arg>.Str } }
-sub mod_internal__S_101ColonsParen_Thesis__PEEK { $_[0]->_AUTOLEXpeek('mod_internal__S_101ColonsParen_Thesis', $retree) }
-sub mod_internal__S_101ColonsParen_Thesis {
+sub mod_internal__S_103ColonsParen_Thesis__PEEK { $_[0]->_AUTOLEXpeek('mod_internal__S_103ColonsParen_Thesis', $retree) }
+sub mod_internal__S_103ColonsParen_Thesis {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE mod_internal__S_101ColonsParen_Thesis");
+my $C = $self->cursor_xact("RULE mod_internal__S_103ColonsParen_Thesis");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\:s\(\ \)";
-$self->_MATCHIFYr($S, "mod_internal__S_101ColonsParen_Thesis", do {
+$self->_MATCHIFYr($S, "mod_internal__S_103ColonsParen_Thesis", do {
 my $C = $C;
 if (($C) = ($C->_PATTERN(qr/\G\:s(?:igspace)?+/))
 and ($C) = ($C->_SUBSUMEr(['mod_arg'], sub {
@@ -61864,19 +61968,19 @@ $::RX{'s'} = eval $M->{'mod_arg'}->Str }, $C)
 }
 ;
 ## token mod_internal:sym<:0s>   { ':' (\d+) 's' 'igspace'? » { %*RX<s> = $0 } }
-sub mod_internal__S_102Colon0s__PEEK { $_[0]->_AUTOLEXpeek('mod_internal__S_102Colon0s', $retree) }
-sub mod_internal__S_102Colon0s {
+sub mod_internal__S_104Colon0s__PEEK { $_[0]->_AUTOLEXpeek('mod_internal__S_104Colon0s', $retree) }
+sub mod_internal__S_104Colon0s {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE mod_internal__S_102Colon0s");
+my $C = $self->cursor_xact("RULE mod_internal__S_104Colon0s");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\:0s";
-$self->_MATCHIFYr($S, "mod_internal__S_102Colon0s", do {
+$self->_MATCHIFYr($S, "mod_internal__S_104Colon0s", do {
 my $C = $C;
 if (($C) = ($C->_EXACT("\:"))
 and ($C) = ($C->_SUBSUMEr(['0'], sub {
@@ -61897,19 +62001,19 @@ $::RX{'s'} = $M->{0} }, $C)
 }
 ;
 ## token mod_internal:sym<:r>    { ':r' 'atchet'? » { %*RX<r> = 1 } }
-sub mod_internal__S_103Colonr__PEEK { $_[0]->_AUTOLEXpeek('mod_internal__S_103Colonr', $retree) }
-sub mod_internal__S_103Colonr {
+sub mod_internal__S_105Colonr__PEEK { $_[0]->_AUTOLEXpeek('mod_internal__S_105Colonr', $retree) }
+sub mod_internal__S_105Colonr {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE mod_internal__S_103Colonr");
+my $C = $self->cursor_xact("RULE mod_internal__S_105Colonr");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\:r";
-$self->_MATCHIFYr($S, "mod_internal__S_103Colonr", do {
+$self->_MATCHIFYr($S, "mod_internal__S_105Colonr", do {
 if (my ($C) = ($C->_PATTERN(qr/\G\:r(?:atchet)?+\b/))) {
 scalar(do {
 $::RX{'r'} = 1 }, $C)
@@ -61919,19 +62023,19 @@ $::RX{'r'} = 1 }, $C)
 }
 ;
 ## token mod_internal:sym<:!r>   { ':!r' 'atchet'? » { %*RX<r> = 0 } }
-sub mod_internal__S_104ColonBangr__PEEK { $_[0]->_AUTOLEXpeek('mod_internal__S_104ColonBangr', $retree) }
-sub mod_internal__S_104ColonBangr {
+sub mod_internal__S_106ColonBangr__PEEK { $_[0]->_AUTOLEXpeek('mod_internal__S_106ColonBangr', $retree) }
+sub mod_internal__S_106ColonBangr {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE mod_internal__S_104ColonBangr");
+my $C = $self->cursor_xact("RULE mod_internal__S_106ColonBangr");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\:\!r";
-$self->_MATCHIFYr($S, "mod_internal__S_104ColonBangr", do {
+$self->_MATCHIFYr($S, "mod_internal__S_106ColonBangr", do {
 if (my ($C) = ($C->_PATTERN(qr/\G\:\!r(?:atchet)?+\b/))) {
 scalar(do {
 $::RX{'r'} = 0 }, $C)
@@ -61941,19 +62045,19 @@ $::RX{'r'} = 0 }, $C)
 }
 ;
 ## token mod_internal:sym<:r( )> { ':r' 'atchet'? » <mod_arg> { %*RX<r> = eval $<mod_arg>.Str } }
-sub mod_internal__S_105ColonrParen_Thesis__PEEK { $_[0]->_AUTOLEXpeek('mod_internal__S_105ColonrParen_Thesis', $retree) }
-sub mod_internal__S_105ColonrParen_Thesis {
+sub mod_internal__S_107ColonrParen_Thesis__PEEK { $_[0]->_AUTOLEXpeek('mod_internal__S_107ColonrParen_Thesis', $retree) }
+sub mod_internal__S_107ColonrParen_Thesis {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE mod_internal__S_105ColonrParen_Thesis");
+my $C = $self->cursor_xact("RULE mod_internal__S_107ColonrParen_Thesis");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\:r\(\ \)";
-$self->_MATCHIFYr($S, "mod_internal__S_105ColonrParen_Thesis", do {
+$self->_MATCHIFYr($S, "mod_internal__S_107ColonrParen_Thesis", do {
 my $C = $C;
 if (($C) = ($C->_PATTERN(qr/\G\:r(?:atchet)?+\b/))
 and ($C) = ($C->_SUBSUMEr(['mod_arg'], sub {
@@ -61969,19 +62073,19 @@ $::RX{'r'} = eval $M->{'mod_arg'}->Str }, $C)
 }
 ;
 ## token mod_internal:sym<:0r>   { ':' (\d+) 'r' 'atchet'? » { %*RX<r> = $0 } }
-sub mod_internal__S_106Colon0r__PEEK { $_[0]->_AUTOLEXpeek('mod_internal__S_106Colon0r', $retree) }
-sub mod_internal__S_106Colon0r {
+sub mod_internal__S_108Colon0r__PEEK { $_[0]->_AUTOLEXpeek('mod_internal__S_108Colon0r', $retree) }
+sub mod_internal__S_108Colon0r {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE mod_internal__S_106Colon0r");
+my $C = $self->cursor_xact("RULE mod_internal__S_108Colon0r");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\:0r";
-$self->_MATCHIFYr($S, "mod_internal__S_106Colon0r", do {
+$self->_MATCHIFYr($S, "mod_internal__S_108Colon0r", do {
 my $C = $C;
 if (($C) = ($C->_EXACT("\:"))
 and ($C) = ($C->_SUBSUMEr(['0'], sub {
@@ -62002,19 +62106,19 @@ $::RX{'r'} = $M->{0} }, $C)
 }
 ;
 ## token mod_internal:sym<:Perl5>    { [':Perl5' | ':P5'] <.require_P5> [ :lang( $¢.cursor_fresh( %*LAN
-sub mod_internal__S_107ColonPerl5__PEEK { $_[0]->_AUTOLEXpeek('mod_internal__S_107ColonPerl5', $retree) }
-sub mod_internal__S_107ColonPerl5 {
+sub mod_internal__S_109ColonPerl5__PEEK { $_[0]->_AUTOLEXpeek('mod_internal__S_109ColonPerl5', $retree) }
+sub mod_internal__S_109ColonPerl5 {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE mod_internal__S_107ColonPerl5");
+my $C = $self->cursor_xact("RULE mod_internal__S_109ColonPerl5");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\:Perl5";
-$self->_MATCHIFYr($S, "mod_internal__S_107ColonPerl5", do {
+$self->_MATCHIFYr($S, "mod_internal__S_109ColonPerl5", do {
 my $C = $C;
 if (($C) = ($C->_BRACKETr(sub {
 my $C=shift;
@@ -62025,14 +62129,14 @@ my $relex;
 
 my $fate;
 my $x;
-if ($fate = $C->{'_fate'} and $fate->[1] eq 'mod_internal__S_107ColonPerl5_0') {
-$C->deb("Fate passed to mod_internal__S_107ColonPerl5_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'mod_internal__S_109ColonPerl5_0') {
+$C->deb("Fate passed to mod_internal__S_109ColonPerl5_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
 ($C->{'_fate'}, $tag, $try) = @$fate;
 @try = ($try);
-$x = 'ALT mod_internal__S_107ColonPerl5_0';    # some outer ltm is controlling us
+$x = 'ALT mod_internal__S_109ColonPerl5_0';    # some outer ltm is controlling us
 }
 else {
-$x = 'ALTLTM mod_internal__S_107ColonPerl5_0'; # we are top level ltm
+$x = 'ALTLTM mod_internal__S_109ColonPerl5_0'; # we are top level ltm
 }
 my $C = $C->cursor_xact($x);
 my $xact = $C->{_xact};
@@ -62040,7 +62144,7 @@ my $xact = $C->{_xact};
 my @gather = ();
 for (;;) {
 unless (@try) {
-$relex //= $C->cursor_fate('STD::Regex', 'mod_internal__S_107ColonPerl5_0', $retree);
+$relex //= $C->cursor_fate('STD::Regex', 'mod_internal__S_109ColonPerl5_0', $retree);
 @try = $relex->($C) or last;
 }
 $try = shift(@try) // next;
@@ -62049,7 +62153,7 @@ if (ref $try) {
 ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
 }
 
-$C->deb("mod_internal__S_107ColonPerl5_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+$C->deb("mod_internal__S_109ColonPerl5_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
 push @gather, ((
 sub {
 my $C=shift;
@@ -62083,19 +62187,19 @@ $C
 }
 ;
 ## token mod_internal:p6adv {
-sub mod_internal__S_108p6adv__PEEK { $_[0]->_AUTOLEXpeek('mod_internal__S_108p6adv', $retree) }
-sub mod_internal__S_108p6adv {
+sub mod_internal__S_110p6adv__PEEK { $_[0]->_AUTOLEXpeek('mod_internal__S_110p6adv', $retree) }
+sub mod_internal__S_110p6adv {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE mod_internal__S_108p6adv");
+my $C = $self->cursor_xact("RULE mod_internal__S_110p6adv");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "p6adv";
-$self->_MATCHIFYr($S, "mod_internal__S_108p6adv", do {
+$self->_MATCHIFYr($S, "mod_internal__S_110p6adv", do {
 my $C = $C;
 if (($C) = ($C->before(sub {
 my $C=shift;
@@ -62113,14 +62217,14 @@ my $relex;
 
 my $fate;
 my $x;
-if ($fate = $C->{'_fate'} and $fate->[1] eq 'mod_internal__S_108p6adv_0') {
-$C->deb("Fate passed to mod_internal__S_108p6adv_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'mod_internal__S_110p6adv_0') {
+$C->deb("Fate passed to mod_internal__S_110p6adv_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
 ($C->{'_fate'}, $tag, $try) = @$fate;
 @try = ($try);
-$x = 'ALT mod_internal__S_108p6adv_0';    # some outer ltm is controlling us
+$x = 'ALT mod_internal__S_110p6adv_0';    # some outer ltm is controlling us
 }
 else {
-$x = 'ALTLTM mod_internal__S_108p6adv_0'; # we are top level ltm
+$x = 'ALTLTM mod_internal__S_110p6adv_0'; # we are top level ltm
 }
 my $C = $C->cursor_xact($x);
 my $xact = $C->{_xact};
@@ -62128,7 +62232,7 @@ my $xact = $C->{_xact};
 my @gather = ();
 for (;;) {
 unless (@try) {
-$relex //= $C->cursor_fate('STD::Regex', 'mod_internal__S_108p6adv_0', $retree);
+$relex //= $C->cursor_fate('STD::Regex', 'mod_internal__S_110p6adv_0', $retree);
 @try = $relex->($C) or last;
 }
 $try = shift(@try) // next;
@@ -62137,7 +62241,7 @@ if (ref $try) {
 ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
 }
 
-$C->deb("mod_internal__S_108p6adv_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+$C->deb("mod_internal__S_110p6adv_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
 push @gather, ((
 sub {
 my $C=shift;
@@ -62177,19 +62281,19 @@ $M->{'sym'} = ':' . $M->{'quotepair'}->{'k'} }, $C)
 }
 ;
 ## token mod_internal:oops { {} (':'\w+) <.sorry: "Unrecognized regex modifier " ~ $0.Str > }
-sub mod_internal__S_109oops__PEEK { $_[0]->_AUTOLEXpeek('mod_internal__S_109oops', $retree) }
-sub mod_internal__S_109oops {
+sub mod_internal__S_111oops__PEEK { $_[0]->_AUTOLEXpeek('mod_internal__S_111oops', $retree) }
+sub mod_internal__S_111oops {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE mod_internal__S_109oops");
+my $C = $self->cursor_xact("RULE mod_internal__S_111oops");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "oops";
-$self->_MATCHIFYr($S, "mod_internal__S_109oops", do {
+$self->_MATCHIFYr($S, "mod_internal__S_111oops", do {
 my $C = $C;
 if (($C) = (scalar(do {
 }, $C))
@@ -62212,19 +62316,19 @@ $C
 }
 ;
 ## token quantifier:sym<*>  { <sym> <quantmod> }
-sub quantifier__S_110Star__PEEK { $_[0]->_AUTOLEXpeek('quantifier__S_110Star', $retree) }
-sub quantifier__S_110Star {
+sub quantifier__S_112Star__PEEK { $_[0]->_AUTOLEXpeek('quantifier__S_112Star', $retree) }
+sub quantifier__S_112Star {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE quantifier__S_110Star");
+my $C = $self->cursor_xact("RULE quantifier__S_112Star");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\*";
-$self->_MATCHIFYr($S, "quantifier__S_110Star", do {
+$self->_MATCHIFYr($S, "quantifier__S_112Star", do {
 if (my ($C) = ($C->_EXACT("\*"))) {
 $C->_SUBSUMEr(['quantmod'], sub {
 my $C = shift;
@@ -62236,19 +62340,19 @@ $C->quantmod
 }
 ;
 ## token quantifier:sym<+>  { <sym> <quantmod> }
-sub quantifier__S_111Plus__PEEK { $_[0]->_AUTOLEXpeek('quantifier__S_111Plus', $retree) }
-sub quantifier__S_111Plus {
+sub quantifier__S_113Plus__PEEK { $_[0]->_AUTOLEXpeek('quantifier__S_113Plus', $retree) }
+sub quantifier__S_113Plus {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE quantifier__S_111Plus");
+my $C = $self->cursor_xact("RULE quantifier__S_113Plus");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\+";
-$self->_MATCHIFYr($S, "quantifier__S_111Plus", do {
+$self->_MATCHIFYr($S, "quantifier__S_113Plus", do {
 if (my ($C) = ($C->_EXACT("\+"))) {
 $C->_SUBSUMEr(['quantmod'], sub {
 my $C = shift;
@@ -62260,19 +62364,19 @@ $C->quantmod
 }
 ;
 ## token quantifier:sym<?>  { <sym> <quantmod> }
-sub quantifier__S_112Question__PEEK { $_[0]->_AUTOLEXpeek('quantifier__S_112Question', $retree) }
-sub quantifier__S_112Question {
+sub quantifier__S_114Question__PEEK { $_[0]->_AUTOLEXpeek('quantifier__S_114Question', $retree) }
+sub quantifier__S_114Question {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE quantifier__S_112Question");
+my $C = $self->cursor_xact("RULE quantifier__S_114Question");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\?";
-$self->_MATCHIFYr($S, "quantifier__S_112Question", do {
+$self->_MATCHIFYr($S, "quantifier__S_114Question", do {
 if (my ($C) = ($C->_EXACT("\?"))) {
 $C->_SUBSUMEr(['quantmod'], sub {
 my $C = shift;
@@ -62284,19 +62388,19 @@ $C->quantmod
 }
 ;
 ## token quantifier:sym<:>  { <sym> {} <?before \s> }
-sub quantifier__S_113Colon__PEEK { $_[0]->_AUTOLEXpeek('quantifier__S_113Colon', $retree) }
-sub quantifier__S_113Colon {
+sub quantifier__S_115Colon__PEEK { $_[0]->_AUTOLEXpeek('quantifier__S_115Colon', $retree) }
+sub quantifier__S_115Colon {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE quantifier__S_113Colon");
+my $C = $self->cursor_xact("RULE quantifier__S_115Colon");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\:";
-$self->_MATCHIFYr($S, "quantifier__S_113Colon", do {
+$self->_MATCHIFYr($S, "quantifier__S_115Colon", do {
 my $C = $C;
 if (($C) = ($C->_EXACT("\:"))
 and ($C) = (scalar(do {
@@ -62315,21 +62419,21 @@ $C
 }
 ;
 ## token quantifier:sym<**> { <sym> :: <normspace>? <quantmod> <normspace>?
-sub quantifier__S_114StarStar__PEEK { $_[0]->_AUTOLEXpeek('quantifier__S_114StarStar', $retree) }
-sub quantifier__S_114StarStar {
+sub quantifier__S_116StarStar__PEEK { $_[0]->_AUTOLEXpeek('quantifier__S_116StarStar', $retree) }
+sub quantifier__S_116StarStar {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE quantifier__S_114StarStar");
+my $C = $self->cursor_xact("RULE quantifier__S_116StarStar");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{'1'} = [];
 $C->{'normspace'} = [];
 $C->{sym} = "\*\*";
-$self->_MATCHIFYr($S, "quantifier__S_114StarStar", do {
+$self->_MATCHIFYr($S, "quantifier__S_116StarStar", do {
 my $C = $C;
 if (($C) = ($C->_EXACT("\*\*"))
 and ($C) = ($C->_COMMITLTM())
@@ -62360,14 +62464,14 @@ my $relex;
 
 my $fate;
 my $x;
-if ($fate = $C->{'_fate'} and $fate->[1] eq 'quantifier__S_114StarStar_0') {
-$C->deb("Fate passed to quantifier__S_114StarStar_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'quantifier__S_116StarStar_0') {
+$C->deb("Fate passed to quantifier__S_116StarStar_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
 ($C->{'_fate'}, $tag, $try) = @$fate;
 @try = ($try);
-$x = 'ALT quantifier__S_114StarStar_0';    # some outer ltm is controlling us
+$x = 'ALT quantifier__S_116StarStar_0';    # some outer ltm is controlling us
 }
 else {
-$x = 'ALTLTM quantifier__S_114StarStar_0'; # we are top level ltm
+$x = 'ALTLTM quantifier__S_116StarStar_0'; # we are top level ltm
 }
 my $C = $C->cursor_xact($x);
 my $xact = $C->{_xact};
@@ -62375,7 +62479,7 @@ my $xact = $C->{_xact};
 my @gather = ();
 for (;;) {
 unless (@try) {
-$relex //= $C->cursor_fate('STD::Regex', 'quantifier__S_114StarStar_0', $retree);
+$relex //= $C->cursor_fate('STD::Regex', 'quantifier__S_116StarStar_0', $retree);
 @try = $relex->($C) or last;
 }
 $try = shift(@try) // next;
@@ -62384,7 +62488,7 @@ if (ref $try) {
 ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
 }
 
-$C->deb("quantifier__S_114StarStar_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+$C->deb("quantifier__S_116StarStar_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
 push @gather, ((
 sub {
 my $C=shift;
@@ -62417,14 +62521,14 @@ my $relex;
 
 my $fate;
 my $x;
-if ($fate = $C->{'_fate'} and $fate->[1] eq 'quantifier__S_114StarStar_1') {
-$C->deb("Fate passed to quantifier__S_114StarStar_1: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'quantifier__S_116StarStar_1') {
+$C->deb("Fate passed to quantifier__S_116StarStar_1: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
 ($C->{'_fate'}, $tag, $try) = @$fate;
 @try = ($try);
-$x = 'ALT quantifier__S_114StarStar_1';    # some outer ltm is controlling us
+$x = 'ALT quantifier__S_116StarStar_1';    # some outer ltm is controlling us
 }
 else {
-$x = 'ALTLTM quantifier__S_114StarStar_1'; # we are top level ltm
+$x = 'ALTLTM quantifier__S_116StarStar_1'; # we are top level ltm
 }
 my $C = $C->cursor_xact($x);
 my $xact = $C->{_xact};
@@ -62432,7 +62536,7 @@ my $xact = $C->{_xact};
 my @gather = ();
 for (;;) {
 unless (@try) {
-$relex //= $C->cursor_fate('STD::Regex', 'quantifier__S_114StarStar_1', $retree);
+$relex //= $C->cursor_fate('STD::Regex', 'quantifier__S_116StarStar_1', $retree);
 @try = $relex->($C) or last;
 }
 $try = shift(@try) // next;
@@ -62441,7 +62545,7 @@ if (ref $try) {
 ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
 }
 
-$C->deb("quantifier__S_114StarStar_1 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+$C->deb("quantifier__S_116StarStar_1 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
 push @gather, ((
 sub {
 my $C=shift;
@@ -62507,21 +62611,21 @@ $C
 }
 ;
 ## token quantifier:sym<~> {
-sub quantifier__S_115Tilde__PEEK { $_[0]->_AUTOLEXpeek('quantifier__S_115Tilde', $retree) }
-sub quantifier__S_115Tilde {
+sub quantifier__S_117Tilde__PEEK { $_[0]->_AUTOLEXpeek('quantifier__S_117Tilde', $retree) }
+sub quantifier__S_117Tilde {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE quantifier__S_115Tilde");
+my $C = $self->cursor_xact("RULE quantifier__S_117Tilde");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{'normspace'} = [];
 $C->{'quantified_atom'} = [];
 $C->{sym} = "\~";
-$self->_MATCHIFYr($S, "quantifier__S_115Tilde", do {
+$self->_MATCHIFYr($S, "quantifier__S_117Tilde", do {
 my $C = $C;
 if (($C) = ($C->_EXACT("\~"))
 and ($C) = ($C->_COMMITLTM())
@@ -62553,19 +62657,19 @@ $C->quantified_atom
 }
 ;
 ## token quantifier:sym<~~> {
-sub quantifier__S_116TildeTilde__PEEK { $_[0]->_AUTOLEXpeek('quantifier__S_116TildeTilde', $retree) }
-sub quantifier__S_116TildeTilde {
+sub quantifier__S_118TildeTilde__PEEK { $_[0]->_AUTOLEXpeek('quantifier__S_118TildeTilde', $retree) }
+sub quantifier__S_118TildeTilde {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE quantifier__S_116TildeTilde");
+my $C = $self->cursor_xact("RULE quantifier__S_118TildeTilde");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\~\~";
-$self->_MATCHIFYr($S, "quantifier__S_116TildeTilde", do {
+$self->_MATCHIFYr($S, "quantifier__S_118TildeTilde", do {
 my $C = $C;
 if (($C) = ($C->_BRACKETr(sub {
 my $C=shift;
@@ -62576,14 +62680,14 @@ my $relex;
 
 my $fate;
 my $x;
-if ($fate = $C->{'_fate'} and $fate->[1] eq 'quantifier__S_116TildeTilde_0') {
-$C->deb("Fate passed to quantifier__S_116TildeTilde_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
+if ($fate = $C->{'_fate'} and $fate->[1] eq 'quantifier__S_118TildeTilde_0') {
+$C->deb("Fate passed to quantifier__S_118TildeTilde_0: ", ::fatestr($fate)) if $::DEBUG & DEBUG::fates;
 ($C->{'_fate'}, $tag, $try) = @$fate;
 @try = ($try);
-$x = 'ALT quantifier__S_116TildeTilde_0';    # some outer ltm is controlling us
+$x = 'ALT quantifier__S_118TildeTilde_0';    # some outer ltm is controlling us
 }
 else {
-$x = 'ALTLTM quantifier__S_116TildeTilde_0'; # we are top level ltm
+$x = 'ALTLTM quantifier__S_118TildeTilde_0'; # we are top level ltm
 }
 my $C = $C->cursor_xact($x);
 my $xact = $C->{_xact};
@@ -62591,7 +62695,7 @@ my $xact = $C->{_xact};
 my @gather = ();
 for (;;) {
 unless (@try) {
-$relex //= $C->cursor_fate('STD::Regex', 'quantifier__S_116TildeTilde_0', $retree);
+$relex //= $C->cursor_fate('STD::Regex', 'quantifier__S_118TildeTilde_0', $retree);
 @try = $relex->($C) or last;
 }
 $try = shift(@try) // next;
@@ -62600,7 +62704,7 @@ if (ref $try) {
 ($C->{'_fate'}, $tag, $try) = @$try;   # next candidate fate
 }
 
-$C->deb("quantifier__S_116TildeTilde_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
+$C->deb("quantifier__S_118TildeTilde_0 trying $tag $try") if $::DEBUG & DEBUG::try_processing;
 push @gather, ((
 sub {
 my $C=shift;
@@ -62707,19 +62811,19 @@ last if $xact->[-2];  # committed?
 }
 ;
 ## token quantifier:sym<{N,M}> {
-sub quantifier__S_117CurNCommaMLy__PEEK { $_[0]->_AUTOLEXpeek('quantifier__S_117CurNCommaMLy', $retree) }
-sub quantifier__S_117CurNCommaMLy {
+sub quantifier__S_119CurNCommaMLy__PEEK { $_[0]->_AUTOLEXpeek('quantifier__S_119CurNCommaMLy', $retree) }
+sub quantifier__S_119CurNCommaMLy {
 no warnings 'recursion';
 my $self = shift;
 
 
 local $::CTX = $self->callm() if $::DEBUG & DEBUG::trace_call;
 
-my $C = $self->cursor_xact("RULE quantifier__S_117CurNCommaMLy");
+my $C = $self->cursor_xact("RULE quantifier__S_119CurNCommaMLy");
 my $xact = $C->xact;
 my $S = $C->{'_pos'};
 $C->{sym} = "\{N\,M\}";
-$self->_MATCHIFYr($S, "quantifier__S_117CurNCommaMLy", do {
+$self->_MATCHIFYr($S, "quantifier__S_119CurNCommaMLy", do {
 my $C = $C;
 if (($C) = (scalar(do {
 }, $C))
@@ -63895,6 +63999,8 @@ if ($here->lineof($here->{'_pos'}) - $last < $last - $first)  {
 $m .= "(Possible runaway string from line $first to line $last)\n"};
 }};
 $m .= $s;
+if (substr($::ORIG,$here->{'_pos'},1) =~ /\)|\]|\}|\»/) {
+$m =~ s|Confused|Unexpected closing bracket| and $highvalid = 0};
 if ($highvalid) {
 $m .= $::HIGHMESS if $::HIGHMESS;
 $::HIGHMESS = $m;
